@@ -10,18 +10,22 @@ website:
   navbar:
     logo: logo_dark.webp
     right:
-      - href: about.qmd
-        text: About
-      - href: teaching.qmd
-        text: Teaching
-      - href: scholarship.qmd
-        text: Scholarship
-      - href: people.qmd
-        text: People
+      - text: "About"
+        menu: 
+          - href: about.qmd
+            text: Keefe Reuther
+          - href: people.qmd
+            text: People
+          - href: contact.qmd
+            text: Contact Us
+      - text: "Our Work"
+        menu: 
+          - href: teaching.qmd
+            text: Teaching
+          - href: scholarship.qmd
+            text: Scholarship
       - href: blog.qmd
         text: Blog
-      - href: contact.qmd
-        text: Contact
 
   page-footer:
     left: |

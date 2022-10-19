@@ -8,5 +8,13 @@
       "/classes/BILD_5.html",
       "/classes/BISP_194.html"
     ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/undergrads/mentormosaic/index.html",
+      "/posts/educators/welcome/index.html",
+      "/posts/techsupport/post-with-code/index.html"
+    ]
   }
 ]

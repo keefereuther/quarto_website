@@ -1,0 +1,30 @@
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: false
+
+# Enable banner style title blocks
+title-block-banner: "#ffffff"
+
+# Enable CC licence appendix
+license: "CC BY"
+
+# Default for table of contents
+toc: true
+toc-title: Table of contents
+toc-location: left
+
+# Default author
+#author:
+  #- name: Keefe Reuther
+    #url: https://reutherlab.biosci.ucsd.edu
+    #affiliation: U.C. San Diego
+    #affiliation-url: https://biosci.ucsd.edu
+    #orcid: 0000-0001-7638-8521
+
+# Default fields for citation
+citation: true

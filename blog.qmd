@@ -1,9 +1,38 @@
 ---
-title: "About"
+title: ""
+page-layout: full
+title-block-banner: true
+listing:
+  - id: undergrads
+    contents: posts/undergrads
+    sort: "date desc"
+  - id: educators
+    contents: posts/educators
+    sort: "date desc"
+  - id: techsupport
+    contents: posts/techsupport
+    sort: "date desc"
 ---
 
-About this site
+## Thoughts on teaching, learning, technology, and biology
 
-```{r}
-1 + 1
-```
+------------------------------------------------------------------------
+
+## Undergraduates and Graduates
+
+::: {#undergrads}
+:::
+
+------------------------------------------------------------------------
+
+## Educators
+
+::: {#educators}
+:::
+
+------------------------------------------------------------------------
+
+## Tech Support
+
+::: {#techsupport}
+:::
