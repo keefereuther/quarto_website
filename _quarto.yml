@@ -1,0 +1,46 @@
+project:
+  type: website
+
+website:
+  title: "The Reuther Lab"
+  image: "logo_dark.webp"
+  reader-mode: true
+  open-graph: true
+  favicon: "logo_dark.webp"
+  navbar:
+    logo: logo_dark.webp
+    right:
+      - href: about.qmd
+        text: About
+      - href: teaching.qmd
+        text: Teaching
+      - href: scholarship.qmd
+        text: Scholarship
+      - href: people.qmd
+        text: People
+      - href: blog.qmd
+        text: Blog
+      - href: contact.qmd
+        text: Contact
+
+  page-footer:
+    left: |
+      [![](UCSanDiegoLogo-Blue.png){fig-alt="UCSD" width=150px}](https://biosci.ucsd.edu)
+    right:
+      - icon: github
+        href: https://github.com/keefereuther
+        aria-label: Keefe Reuther GitHub
+      - text: "License"
+        href: license.qmd
+
+format:
+  html:
+    theme:
+      light: minty
+      dark: solar
+    css: styles.css
+    toc: true
+    fontsize: 1.3em
+
+editor: visual
+

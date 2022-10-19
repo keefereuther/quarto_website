@@ -1,0 +1,10 @@
+---
+title: "Welcome!"
+about:
+  template: jolla
+  image: logo_dark.webp
+  image-shape: round
+---
+
+  Hi y'all! If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) section. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of my team, [contact me!](/contact.qmd). Finally, if you want to read about teaching, biology, and education, head over to my [blog!](/blog.qmd).
+

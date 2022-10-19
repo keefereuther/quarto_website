@@ -1,0 +1,5 @@
+---
+title: "BILD 5"
+description: Data Analysis and Design for Biologists
+image: floppy.png
+---

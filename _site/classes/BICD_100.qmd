@@ -1,0 +1,6 @@
+---
+title: "BICD 100 - Genetics"
+description: This course is an introduction to genetics
+image: peas.png
+---
+
