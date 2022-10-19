@@ -15,6 +15,8 @@ about:
 
 I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula to teach experimental design, information literacy, statistics, and R programming to undergraduate biologists.
 
+[Curriculum Vitae](/KeefeReutherCV.pdf)
+
 ## Education
 
 Saint Louis University \| St. Louis, MO Ph.D. in Biology \| August 2004 - May 2009

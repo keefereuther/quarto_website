@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "Keefe Reuther",
     "section": "",
-    "text": "I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula to teach experimental design, information literacy, statistics, and R programming to undergraduate biologists."
+    "text": "I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula to teach experimental design, information literacy, statistics, and R programming to undergraduate biologists.\nCurriculum Vitae"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome!",
     "section": "",
-    "text": "Hi y’all! If you want to check out the courses I teach, visit the teaching section. You can find my research projects and educational tools in the scholarship section. The wonderful people I work with are here. If you would like to speak with me or possibly become a collaborator or member of my team, contact me!. Finally, if you want to read about teaching, biology, and education, head over to my blog!."
+    "text": "If you want to check out the courses I teach, visit the teaching section. You can find my research projects and educational tools in the scholarship section. The wonderful people I work with are here. If you would like to speak with me or possibly become a collaborator or member of my team, contact me. Finally, if you want to read about teaching, biology, and education, head over to my blog."
   },
   {
     "objectID": "teaching.html",
@@ -116,14 +116,14 @@
     "href": "posts/educators/welcome/index.html",
     "title": "Welcome To My Blog",
     "section": "",
-    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{o'malley2022,\n  author = {Tristan O’Malley},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-10-15},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTristan O’Malley. 2022. “Welcome To My Blog.” October 15,\n2022."
+    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{o'malley2022,\n  author = {Tristan O’Malley},\n  editor = {},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-10-15},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTristan O’Malley. 2022. “Welcome To My Blog.” October 15,\n2022."
   },
   {
     "objectID": "posts/techsupport/post-with-code/index.html",
     "href": "posts/techsupport/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "text": "1 + 1\n\n[1] 2\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{malloc2022,\n  author = {Harlow Malloc},\n  editor = {},\n  title = {Post {With} {Code}},\n  date = {2022-10-18},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nHarlow Malloc. 2022. “Post With Code.” October 18, 2022."
   },
   {
     "objectID": "posts/techsupport/index.html",
@@ -222,5 +222,12 @@
     "title": "The Reuther Lab",
     "section": "Undergraduates and Graduates",
     "text": "Undergraduates and Graduates\n\n\n\n\n  \n\n\n\n\nWhy You Need Mosaic Mentorship\n\n\n\n\n\n\n\n\n\n\n\n\nOct 8, 2022\n\n\nAllison Kifer\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "classes/BILD_3.html",
+    "href": "classes/BILD_3.html",
+    "title": "The Reuther Lab",
+    "section": "",
+    "text": "## Course Description:\nAn introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.\n## Syllabus:\n<embed src=“BICD 100-Reuther Spring 21 Syllabus.pdf” type=“application/pdf” iframe width=“100%” height=“800”>"
   }
 ]
