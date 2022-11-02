@@ -4,23 +4,23 @@ author: "Allison Kifer"
 date: "2022-10-08"
 ---
 
-Finding mentors and fostering relationships can one of the most fulfilling and productive pursuits for undergraduates, graduate students, everyone.
+Finding mentors and fostering relationships can one of the most fulfilling and productive pursuits for undergraduates, graduate students, everyone. ***edit***
 
 ![Mentorship is a community effort.](priscilla-du-preez-unsplash.jpg)
 
 ## Figuring it out by messing it all up
 
-In my third year at UCSD, I was thrilled to have found a professor who 1) embodied my interest in merging science and writing and 2) had genuine enthusiasm in my professional development. With the right program, he encouraged me that he would be able to support my independent research ventures. The TRELS program at UCSD was the perfect platform for me to both explore the communication of climate change and completely botch my mentorship with my professor.
+In my third year at UCSD, I was thrilled to have found a professor who 1) embodied my interest in merging science and writing and 2) had genuine enthusiasm in my professional development. With the right program, he encouraged me that he would be able to support my independent research ventures. The TRELS program at UCSD was the perfect platform for me to both explore the communication of climate change and completely botch my mentorship with my professor. ***a instead of my***
 
 Although this was not my intention, the experience taught me an important lesson that I wished I understood earlier during my time at UCSD.
 
-How exactly did I achieve this? The Triton Research & Experiential Learning Scholars (TRELS) program was the first platform I had been granted to express and develop my academic interests with a professor. I immediately poured all parts of myself into this project and, in doing so, asked for multiple layers of mentorship from a sole educator.
+How exactly did I achieve this? The Triton Research & Experiential Learning Scholars (TRELS) program was the first platform I had been granted to express and develop my academic interests with a professor. I immediately poured all parts of myself into this project and, in doing so, asked for multiple layers of mentorship from a sole educator. ***my mentor for WAY too much.***
 
 I wanted to explore human language, to understand how the structure of words in a sentence could have an impact on how we perceive and make decisions about climate change. I wished to investigate decades of discussions surrounding global warming and how this history perpetuates misinformation we still see today. I sought to labor through dense climate reports and reference the well researched biology, chemistry, and physics that already existed.
 
 And beyond my research paper, I had an innate desire to understand who exactly I was becoming in my journey of personal and professional development. While I rejected it at the time, my identity was intricately woven between my interests.
 
-It was only after I told this story to another professor of mine did the reality of my "plan" of mentorship come crashing down. No one person would be able to appeal to all the facets of my interests and needs in my academic development. I needed a linguist, a historian, and a climate scientist at least to aid me in my research goal, and instead, I had brought these expectations into my mentorship with my professor.
+It was only after I told this story to another professor of mine did the reality of my "plan" of mentorship come crashing down. No one person would be able to appeal to all the facets of my interests and needs in my academic development. I needed a linguist, a historian, and a climate scientist at least to aid me in my research goal ***goals*** , and instead, I had brought these expectations into my mentorship with my ***a single*** professor.
 
 ![](dylan-ferreira-unsplash.jpg)
 
@@ -28,7 +28,7 @@ I'll admit I'm being a little hard on my third-year self, as the pursuit for men
 
 University is many students' first opportunity to dictate their education. Many students are coming from high school where education is driven by obligation, and most classes, teachers, and times of instruction are assigned with little student input. Upon entering UCSD, I found myself in control of my chosen degree with the exception of a few administrative nudges in the right direction in order to graduate on time. The void of academic constraint was suddenly overflowing with choices I had to make, and after planning out the first few quarters at UCSD, I was satiated with my own involvement in my undergraduate degree. Directing my own mentorship, which would include the close involvement of PhD-holding professors, was completely absent from my mind.
 
-#### *However, as I became more comfortable with the campus, I realized that there was an unavoidably large piece of my education missing with the lack of mentorship.*
+#### *However, as I became more comfortable with the campus, I realized that there was an unavoidably large piece of my education [missing with the lack of ---]{.underline} mentorship.*
 
 By my third year, when I had finally found a professor who acknowledged my interests as something worth investing in, I didn't know how to ask for what I needed. After months of searching for a professor to represent me and my academic growth, I came into my mentorship starstruck and unable to use critical thinking. I was looking for too much guidance in too many places, all the while not really knowing what I was looking for.
 
