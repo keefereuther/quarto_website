@@ -11,14 +11,14 @@
     "href": "index.html",
     "title": "Welcome!",
     "section": "",
-    "text": "If you want to check out the courses I teach, visit the teaching section. You can find my research projects and educational tools in the scholarship section. The wonderful people I work with are here. If you would like to speak with me or possibly become a collaborator or member of my team, contact me. Finally, if you want to read about teaching, biology, and education, head over to my blog."
+    "text": "We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, and data science.\n\nIf you want to check out the courses I teach, visit the teaching section. You can find my research projects and educational tools in the scholarship section. The wonderful people I work with are here. If you would like to speak with me or possibly become a collaborator or member of my team, contact me. Finally, if you want to read about teaching, biology, and education, head over to my blog."
   },
   {
     "objectID": "teaching.html",
     "href": "teaching.html",
     "title": "The Reuther Lab",
     "section": "",
-    "text": "Talks\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Courses\n\n\n\n\n\n\n\n\n\n\nBICD 100 - Genetics\n\n\n\n\n\n\n\n\n\n\n\n\n\nBILD 4\n\n\n\n\n\n\n\n\n\n\n\n\n\nBILD 5\n\n\n\n\n\n\n\n\n\n\n\n\n\nBISP 194\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\nTalks\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "scholarship.html",
@@ -39,14 +39,14 @@
     "href": "contact.html",
     "title": "Contact me",
     "section": "",
-    "text": "Full Name  Email Address  Message\n\n\n\n\n\n\nIf you are in the UCSD area or want to send me something via mail, my mailing address is:Keefe ReutherU.C. San Diego; School of Biological Sciences8085 HSS Building9500 Gilman Dr.Mail code 0101La Jolla, CA 92093"
+    "text": "You can use this form to ask me about collaborations, consultations, speaking engagements, if you have thoughts, ideas, suggestions, or questions about any of my education resources.\n\n\nFull Name  Email Address  Message\n\n\n\n\n\n\nIf you are in the UCSD area or want to send me something via mail, my mailing address is:Keefe ReutherU.C. San Diego; School of Biological Sciences8085 HSS Building9500 Gilman Dr.Mail code 0101La Jolla, CA 92093"
   },
   {
     "objectID": "people.html",
     "href": "people.html",
     "title": "About",
     "section": "",
-    "text": "1 + 1\n\n[1] 2"
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "about.html#education",
@@ -116,14 +116,14 @@
     "href": "posts/educators/welcome/index.html",
     "title": "Welcome To My Blog",
     "section": "",
-    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{o'malley2022,\n  author = {Tristan O’Malley},\n  editor = {},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-10-15},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTristan O’Malley. 2022. “Welcome To My Blog.” October 15,\n2022."
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{o'malley2022,\n  author = {Tristan O’Malley},\n  title = {Welcome {To} {My} {Blog}},\n  date = {2022-10-15},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nTristan O’Malley. 2022. “Welcome To My Blog.” October 15,\n2022."
   },
   {
     "objectID": "posts/techsupport/post-with-code/index.html",
     "href": "posts/techsupport/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "1 + 1\n\n[1] 2\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{malloc2022,\n  author = {Harlow Malloc},\n  editor = {},\n  title = {Post {With} {Code}},\n  date = {2022-10-18},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nHarlow Malloc. 2022. “Post With Code.” October 18, 2022."
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\nReusehttps://creativecommons.org/licenses/by/4.0/CitationBibTeX citation:@online{malloc2022,\n  author = {Harlow Malloc},\n  title = {Post {With} {Code}},\n  date = {2022-10-18},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nHarlow Malloc. 2022. “Post With Code.” October 18, 2022."
   },
   {
     "objectID": "posts/techsupport/index.html",
@@ -221,13 +221,55 @@
     "href": "blog.html#undergraduates-and-graduates",
     "title": "The Reuther Lab",
     "section": "Undergraduates and Graduates",
-    "text": "Undergraduates and Graduates\n\n\n\n\n  \n\n\n\n\nWhy You Need Mosaic Mentorship\n\n\n\n\n\n\n\n\n\n\n\n\nOct 8, 2022\n\n\nAllison Kifer\n\n\n\n\n\n\nNo matching items"
+    "text": "Undergraduates and Graduates\n\n\n\n\n  \n\n\n\n\nIncorporating a Mentorship Plan into Your Degree\n\n\n\n\n\n\n\n\n\n\n\n\nOct 26, 2022\n\n\nAllison Kifer\n\n\n\n\n\n\n  \n\n\n\n\nWhy You Need Mosaic Mentorship\n\n\n\n\n\n\n\n\n\n\n\n\nOct 8, 2022\n\n\nAllison Kifer\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "classes/BILD_3.html",
     "href": "classes/BILD_3.html",
     "title": "The Reuther Lab",
     "section": "",
-    "text": "## Course Description:\nAn introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.\n## Syllabus:\n<embed src=“BICD 100-Reuther Spring 21 Syllabus.pdf” type=“application/pdf” iframe width=“100%” height=“800”>"
+    "text": "# BILD 3 - Organismic and Evolutionary Biology\n## Course Description:\nAn introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.\n## Syllabus:\n<embed src=“BICD 100-Reuther Spring 21 Syllabus.pdf” type=“application/pdf” iframe width=“100%” height=“800”>"
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html",
+    "href": "posts/undergrads/mentormosaic2/index.html",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "",
+    "text": "While many aspects of a degree are well planned, mentorship is an aspect that is often overlooked."
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html#how-does-one-successfully-create-a-mentorship-plan",
+    "href": "posts/undergrads/mentormosaic2/index.html#how-does-one-successfully-create-a-mentorship-plan",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "How does one successfully create a mentorship plan?",
+    "text": "How does one successfully create a mentorship plan?\nFirstly, it is important to differentiate a research plan from a mentorship plan. Similar to many other research-based MS programs, I submitted a research proposal during my application process. A research proposal outlines what types of experiments you will be conducting in order to answer a set of scientific questions, and how you might achieve these goals throughout your academic timeline. While it is easy for you to think your research proposal encompasses your mentorship plan, this is not the case. \nA mentorship plan recognizes the mentors that you currently have (professors, postdocs, TAs, peers etc) and what they are capable of assisting you with. From there, you may notice the gaps of support where you need it most. Much of my own anxiety from graduate school stemmed from the feeling of trying incredibly hard and still failing. This made me believe that “my best” was never going to be good enough, and that I might not complete what I had set to achieve in my master’s degree because of my own abilities. \n\nAlthough getting a degree can feel like an endeavor that is meant to be shouldered by one person, it is absolutely not designed to be done alone.\nMy relationship with my master’s degree pivoted when I filled my “failures” with support from the people around me. There were two major steps I took: finding new mentors and changing my relationship with current ones."
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html#finding-new-mentors",
+    "href": "posts/undergrads/mentormosaic2/index.html#finding-new-mentors",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "Finding New Mentors",
+    "text": "Finding New Mentors\nPersonally, I lacked confidence in discussing and presenting my research to other academics and knew that I needed help preparing for my oral defense. Because I knew my current mentors were extremely busy and could only offer me certan guidance, I attempted to expand my support. I employed the use of community or mosaic mentorship, which is the concept that mentorship should utilize the expertise of many mentors rather than a sole educator. I have written a blog on the impact of mosaic mentorship, which you can find below. \nOne of my professors gave our class the option to present our own research in class without the pressure of receiving a grade. I used it as an opportunity to receive feedback from my professor and my peers, as well as establish a mentor relationship with my professor. If you have similar fears as me, there are also “Grad Slams” on campus where graduate students present their work and receive useful critiques. It is a great opportunity to hear the frequently asked questions that might surface during your presentation.\nWhen picking my committee members for my thesis, which are required for most master degrees, I emphasized early on that I needed support in professional development. My second committee member was able to meet with me once a month to help craft a larger picture of life outside of my master’s. During particularly difficult sections of my program, speaking with my second committee member helped motivate me and reminded me of why I was doing my master’s in the first place."
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html#changing-relationships-with-past-mentors",
+    "href": "posts/undergrads/mentormosaic2/index.html#changing-relationships-with-past-mentors",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "Changing relationships with past mentors:",
+    "text": "Changing relationships with past mentors:\nWhile finding new mentors naturally made sense to me, it was difficult to realize that I was unable to maintain the same relationship with my previous mentors. Expectations of my work had changed, and with that, I needed to reestablish where I and my direct mentor stood.\n\n\nMentorship involves two sides of a professional relationship. As your mentor recognizes new academic potentials within you, you must be able to reflect the same onto your mentor.\nAlthough your mentor can have the best of intentions by entrusting more elaborate work onto you, it is important to understand boundaries and how to assert them. This can help your relationship with your mentor grow as well as maintain a good work-life balance.\nWhat is a boundary? My therapist described a boundary as a statement and an action. A boundary is a statement that defines and protects your integrity. For example, I try to maintain work-life balance by minimizing how much I immediately reply to emails over the weekend. However, boundaries must be “I-centric”, as it defines what you will do if the other person disregards your statement. Thus a boundary is also an action. \n\n\nDefining your boundaries using the “I-centric” model is both empowering and realistic, as you are not telling the other person what to do, rather, what you will do if that boundary is crossed. \nContinuing with my email example, rather than tell my mentor to not email over the weekend, I would inform them of my boundary: I won’t respond to emails over the weekend immediately, it’s best to contact me during the week. It’s to the point, polite, and defines your stance on a topic to your mentor. \nI have found with mentors, students, friends, and family members alike, that undefined boundaries will be continually crossed over and over, many times without knowing the harm it is causing. \nThere may be circumstances where your boundaries will be tested, and in some cases, crossed. It is best to find a mentor who respects your boundaries and does not seek to alter your integrity regularly, whether or not they are doing this intentionally. If you find your mentor continually doing this, restating your boundaries is necessary. \nStating boundaries early in one’s mentorship will help your professional relationship, or in more extreme cases, signal to you that you may need to seek a different mentor."
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html#in-summary",
+    "href": "posts/undergrads/mentormosaic2/index.html#in-summary",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "In Summary:",
+    "text": "In Summary:\nTrusting another person with your academic and professional journey can be nerve wracking. Vulnerability gives others the ability to criticize you and your work, whether that criticism be hurtful or constructive. \nHowever, creating a plan that fills your academic space with mentors who recognize your vulnerability and choose to uplift you will only enhance your professional journey."
+  },
+  {
+    "objectID": "posts/undergrads/mentormosaic2/index.html#tdlr",
+    "href": "posts/undergrads/mentormosaic2/index.html#tdlr",
+    "title": "Incorporating a Mentorship Plan into Your Degree",
+    "section": "TDLR:",
+    "text": "TDLR:\n\nRecognizing that expectations placed on you by your mentor, program etc not only require changes within how you work to adapt, but also in your support system\nYou can adapt to handle more responsibilities, but your support and mentorship should equally increase. A mentorship plan will help you achieve this \nA research proposal is different from a mentorship plan  \nAn important aspect of a mentorship plan is receiving guidance from different people for different areas of your growth (Feel free to read my article “Mosaic Mentorship” for more on this) \nAs your academic goals develop, you may need new mentorship or current mentors to change their area of guidance \nVulnerability, at the face of supportive mentors, will help you grow tremendously"
   }
 ]

@@ -8,7 +8,7 @@ freeze: true
 title-block-banner: false
 
 # Enable banner style title blocks
-title-block-banner: "#ffffff"
+# title-block-banner: "#ffffff"
 
 # Enable CC licence appendix
 license: "CC BY"
