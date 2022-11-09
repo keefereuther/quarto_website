@@ -1,9 +1,25 @@
 ---
-title: "About"
+title: ""
+listing:
+    - id: projects
+      type: grid
+      image-height: 300px
+      fields: [image, title]
+      grid-columns: 3
+      contents:
+      - "projects/*.qmd"
+    - id: publications
+      type: table
+      contents:
+      - "papers/*.qmd"
 ---
 
-About this site
+# Current Projects
 
-```{r}
-1 + 1
-```
+::: {#projects}
+:::
+
+# Recent Publications
+
+::: {#publications}
+:::

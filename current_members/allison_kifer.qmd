@@ -1,0 +1,21 @@
+---
+title: ""
+subtitle: "Research Data Analyst"
+image: kifer.jpg
+---
+
+# Allison Kifer
+
+## Research Data Analyst
+
+![](kifer.jpg){alt="Allison Kifer" align="middle" fig-align="center" width="300" height="300"}
+
+Allison Kifer received her M.S. in Biology from UC San Diego where she studied viral-induced rearrangements of host organelles in budding yeast. She aims to broaden her interests in science education, communication, and policy over the next few years in San Diego and intends to create space for necessary dialogue between researchers and the people whom they affect. When she's not inside a coffee shop reading and writing, she's outside setting up a tent and rock climbing with friends.
+
+### Contributions
+
+[Why You Need Mosaic Mentorship](../posts/undergrads/mentormosaic/)
+
+[Incorporating a Mentorship Plan into Your Degree](../posts/undergrads/mentormosaic2/)
+
+### Projects

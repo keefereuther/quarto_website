@@ -28,8 +28,11 @@ website:
         text: Blog
 
   page-footer:
+    border: true
     left: |
-      [![](UCSanDiegoLogo-Blue.png){fig-alt="UCSD" width=150px}](https://biosci.ucsd.edu)
+      [![](/ucsdbioweb.png){fig-alt="UCSD Bio" width=100px}](https://biosci.ucsd.edu) 
+      [![](/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
+      [![](/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
     right:
       - icon: github
         href: https://github.com/keefereuther
@@ -39,12 +42,13 @@ website:
 
 format:
   html:
+    page-layout: article
     theme:
       light: minty
-      dark: solar
+      dark: cyborg
     css: styles.css
     toc: true
-    fontsize: 1.3em
+    fontsize: 1.2em
 
 editor: visual
 

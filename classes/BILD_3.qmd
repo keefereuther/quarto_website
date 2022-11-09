@@ -3,12 +3,12 @@ title: ""
 image: birdpara1.png
 ---
 
-\# BILD 3 - Organismic and Evolutionary Biology
+# BILD 3 - Organismic and Evolutionary Biology
 
-\## Course Description:
+## Course Description:
 
-An introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.
+This course deals with the living world at the level of whole organisms, populations, communities, biomes, ecosystems and the biosphere. It is designed to introduce you to the fields of evolution, systematics, ecology, environmental science, behavior and conservation biology. The major focus of the course will be on evolution, since an understanding of the evolutionary process enables us to grasp why there are so many different kinds of living things, how they interact with each other to produce complex ecosystems, the ways in which these interactions may lead to the evolution of complex behaviors, how evolution has often brought about large changes in body plan, and how species (including ourselves) are likely to continue to evolve. Such knowledge is essential for understanding biology in general, and provides the tools for our stewardship of the planet's biota and the sustainability of the ecological services we take for granted.
 
-\## Syllabus:
+## Syllabus:
 
-\<embed src="BICD 100-Reuther Spring 21 Syllabus.pdf" type="application/pdf" iframe width="100%" height="800"\>
+<embed src="Reuther_BILD_3_syllabus_F22.pdf" type="application/pdf" iframe width="100%" height="800">

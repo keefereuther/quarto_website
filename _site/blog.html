@@ -101,9 +101,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: [],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -129,9 +129,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+      searchColumns: [],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -153,7 +153,6 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="The Reuther Lab -">
-<meta property="og:image" content="./posts/educators/welcome/thumbnail.jpg">
 <meta property="og:site-name" content="The Reuther Lab">
 </head>
 
@@ -324,34 +323,7 @@ No matching items
 <h2 class="anchored" data-anchor-id="educators">Educators</h2>
 <div id="listing-educators" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="news" data-listing-date-sort="1665817200000" data-listing-file-modified-sort="1667365708017" data-listing-reading-time-sort="0.16">
-<div class="thumbnail">
-<p><a href="./posts/educators/welcome/index.html"> <img src="./posts/educators/welcome/thumbnail.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/educators/welcome/index.html">
-<h3 class="no-anchor listing-title">
-Welcome To My Blog
-</h3>
-<div class="listing-subtitle">
 
-</div>
-<div class="listing-description">
-This is the first post in a Quarto blog. Welcome!
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/educators/welcome/index.html">
-<div class="listing-date">
-Oct 15, 2022
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -363,34 +335,7 @@ No matching items
 <h2 class="anchored" data-anchor-id="tech-support">Tech Support</h2>
 <div id="listing-techsupport" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="news,code,analysis" data-listing-date-sort="1666076400000" data-listing-file-modified-sort="1667365708019" data-listing-reading-time-sort="0.045">
-<div class="thumbnail">
-<p><a href="./posts/techsupport/post-with-code/index.html"> <img src="./posts/techsupport/post-with-code/image.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/techsupport/post-with-code/index.html">
-<h3 class="no-anchor listing-title">
-Post With Code
-</h3>
-<div class="listing-subtitle">
 
-</div>
-<div class="listing-description">
-This is a post with executable code.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/techsupport/post-with-code/index.html">
-<div class="listing-date">
-Oct 18, 2022
-</div>
-<div class="listing-author">
-Harlow Malloc
-</div>
-</a>
-</div>
-</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -653,7 +598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src="UCSanDiegoLogo-Blue.png" class="img-fluid" alt="UCSD" width="150"></a></div>   
+    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src=".\ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src=".\ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src=".\UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

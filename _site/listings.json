@@ -3,19 +3,28 @@
     "listing": "/teaching.html",
     "items": [
       "/classes/BICD_100.html",
+      "/classes/BILD_3.html",
       "/classes/BILD_4.html",
       "/classes/BILD_5.html",
-      "/classes/BISP_194.html",
-      "/classes/BILD_3.html"
+      "/classes/BISP_194.html"
     ]
   },
   {
     "listing": "/blog.html",
     "items": [
       "/posts/undergrads/mentormosaic2/index.html",
-      "/posts/undergrads/mentormosaic/index.html",
-      "/posts/educators/welcome/index.html",
-      "/posts/techsupport/post-with-code/index.html"
+      "/posts/undergrads/mentormosaic/index.html"
     ]
+  },
+  {
+    "listing": "/people.html",
+    "items": [
+      "/current_members/allison_kifer.html",
+      "/past_members/caleb_schimke.html"
+    ]
+  },
+  {
+    "listing": "/scholarship.html",
+    "items": []
   }
 ]
