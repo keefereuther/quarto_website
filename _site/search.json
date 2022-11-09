@@ -25,7 +25,7 @@
     "href": "scholarship.html",
     "title": "The Reuther Lab",
     "section": "",
-    "text": "Current Projects\n\n\n\n\n\n\n \n\n\n\n\n\n\nNo matching items\n\n\n\n\nRecent Publications\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Current Projects\n\n\n\n\n\n\n\n\n\n\nBICD 100 - Genetics\n\n\n\n\n\n\n\n\n\n\nNo matching items\n\n\n\n\nRecent Publications\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          File Name\n        \n         \n          Modified - Oldest\n        \n         \n          Modified - Newest\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nFile Name\n\n\nModified\n\n\n\n\n\n\nConvertingBIMM101.qmd\n\n\n11/9/22, 9:31:26 AM\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "blog.html",
@@ -228,7 +228,7 @@
     "href": "classes/BILD_3.html",
     "title": "The Reuther Lab",
     "section": "",
-    "text": "# BILD 3 - Organismic and Evolutionary Biology\n## Course Description:\nAn introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.\n## Syllabus:\n<embed src=“BICD 100-Reuther Spring 21 Syllabus.pdf” type=“application/pdf” iframe width=“100%” height=“800”>"
+    "text": "This course deals with the living world at the level of whole organisms, populations, communities, biomes, ecosystems and the biosphere. It is designed to introduce you to the fields of evolution, systematics, ecology, environmental science, behavior and conservation biology. The major focus of the course will be on evolution, since an understanding of the evolutionary process enables us to grasp why there are so many different kinds of living things, how they interact with each other to produce complex ecosystems, the ways in which these interactions may lead to the evolution of complex behaviors, how evolution has often brought about large changes in body plan, and how species (including ourselves) are likely to continue to evolve. Such knowledge is essential for understanding biology in general, and provides the tools for our stewardship of the planet’s biota and the sustainability of the ecological services we take for granted."
   },
   {
     "objectID": "posts/undergrads/mentormosaic2/index.html",
@@ -292,5 +292,33 @@
     "title": "The Reuther Lab",
     "section": "",
     "text": "Allison Kifer received her M.S. in Biology from UC San Diego where she studied viral-induced rearrangements of host organelles in budding yeast. She aims to broaden her interests in science education, communication, and policy over the next few years in San Diego and intends to create space for necessary dialogue between researchers and the people whom they affect. When she’s not inside a coffee shop reading and writing, she’s outside setting up a tent and rock climbing with friends.\n\n\nWhy You Need Mosaic Mentorship\nIncorporating a Mentorship Plan into Your Degree"
+  },
+  {
+    "objectID": "classes/BILD_4.html",
+    "href": "classes/BILD_4.html",
+    "title": "The Reuther Lab",
+    "section": "",
+    "text": "BILD 4 is designed to be a collaborative environment for everyone to learn together and construct a shared understanding of the material. Active participation and contribution in classes and in the laboratory are essential because many ideas and laboratory methods that will be developed in these activities cannot be easily captured otherwise. Being able to communicate understanding, articulate confusion, and defend scientific arguments based on evidence and reasoning is both useful for learning and critical to success in any discipline. To encourage collaboration and community building, many class and laboratory activities and assignments will be done in teams, and grades will not be assigned on a curve. Instead of memorization, we will focus on developing an understanding of fundamental concepts and laboratory skills as they apply to different examples and learn to draw conclusions based on evidence and reasoning. We will utilize class and laboratory time to construct and apply our knowledge, troubleshoot challenging topics, practice problem solving, and develop skills in critical thinking. Laboratory reports and the research proposal will challenge us to think critically about data and experiments."
+  },
+  {
+    "objectID": "classes/BILD_5.html",
+    "href": "classes/BILD_5.html",
+    "title": "The Reuther Lab",
+    "section": "",
+    "text": "This course is a practical introduction to information literacy, experimental design, and data analysis for biologists. Students will be introduced to coding, data management, and quantitative analysis using the R programming language and the RStudio IDE. However, this is not a traditional statistics course and no math prerequisites are required. Rather this course focuses on practical skills related to effectively asking and answering biological questions with data."
+  },
+  {
+    "objectID": "classes/BISP_194.html",
+    "href": "classes/BISP_194.html",
+    "title": "The Reuther Lab",
+    "section": "",
+    "text": "Since the initial spread of the SARS-CoV-2 virus and COVID-19, we have witnessed the rapid development, testing, and dissemination of mRNA vaccines. In this seminar, we’ll discuss several aspects of the vaccination approval pipeline from discovery to testing for safety and efficacy. While we will discuss biological mechanisms, the primary focus of this course will be in experimental design and drawing conclusions from data. In the usual seminar format, one or more people speak on a selected topic, and then there is a period for discussion of the topic. This course will give you practice using primary literature to learn about a topic, communicate that knowledge to others, and lead a discussion among your peers."
+  },
+  {
+    "objectID": "projects/BICD_100.html",
+    "href": "projects/BICD_100.html",
+    "title": "The Reuther Lab",
+    "section": "",
+    "text": "An introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis."
   }
 ]

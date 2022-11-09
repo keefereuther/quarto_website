@@ -1,10 +1,13 @@
 ---
 title: ""
+page-layout: full
 listing:
     - id: projects
       type: grid
-      image-height: 300px
-      fields: [image, title]
+      grid-item-border: false
+      grid-item-align: center
+      image-height: 325px
+      fields: [image, title, description]
       grid-columns: 3
       contents:
       - "projects/*.qmd"

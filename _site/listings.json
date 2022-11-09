@@ -25,6 +25,8 @@
   },
   {
     "listing": "/scholarship.html",
-    "items": []
+    "items": [
+      "/projects/BICD_100.html"
+    ]
   }
 ]
