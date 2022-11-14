@@ -1,14 +1,13 @@
 ---
 title: ""
-page-layout: full
 listing:
     - id: projects
       type: grid
+      image-placeholder: science.png
       grid-item-border: false
-      grid-item-align: center
-      image-height: 325px
+      image-height: 150px
       fields: [image, title, description]
-      grid-columns: 3
+      grid-columns: 2
       contents:
       - "projects/*.qmd"
     - id: publications

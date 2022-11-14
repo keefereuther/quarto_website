@@ -5,6 +5,7 @@ listing:
       type: grid
       image-height: 300px
       fields: [image, title]
+      grid-item-border: false
       grid-columns: 3
       contents:
       - "classes/*.qmd"
