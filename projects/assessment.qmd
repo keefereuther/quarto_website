@@ -1,7 +1,13 @@
 ---
-title: "Methods in Course-based Undergraduate Research Experiences (CURE)"
+title: "Assessing outcomes of science process learning in early undergraduate education"
 image: figures.png
-description: "We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science. Simulation provide an opportunity for learners to actively discover patterns rather than being asked to memorize concepts that may be complex or intimidating."
+description: "Evaluating the effects of courses explicitly focused on science process skills on learning and attitudes toward science in early undergraduate education."
 ---
 
-# 
+# Assessing outcomes of science process learning in early undergraduate education
+
+Historically, university biology programs have rarely incorporated courses explicitly focused on science process skills into their introductory course series. However, information literacy, experimental design, and data analysis are foundational skills for professional scientists. Developing that toolkit early may be integral to undergraduate learners identifying as biologists and persisting in the field. Data Analysis and Design for Biologists (BILD 5; 4 units) was piloted in the winter of 2022 at U.C. San Diego to help fill that role. This course is a practical introduction to core science process skills. Additionally, students are introduced to coding, data management, and quantitative analysis using the R programming language. Students learn how to evaluate scientific information, design experiments, manage data, and analyze it statistically. 
+
+A central part of the course is a term project in which students complete their own investigative cycle from start to finish. A series of checkpoints provide formative feedback as they ask a biological question, design an experiment, create an analytical plan, and then receive simulated data for analysis in their final summative assessment. Course lecture topics mirror this investigative cycle, allowing them to slowly develop these skills in the class through small group work, practice exercises, and other active learning exercises. We assessed learning gains by utilizing a pre and post concept inventory (adapted from the Test of Scientific Literacy Skills (TOSLS) mapped to our course learning objectives. For most course objectives there was an increase in the number of correctly answered questions on the post-course concept inventory. Our attitudes survey was adapted from multiple sources, such as the Student Course Engagement Questionnaire (SCEQ) and the Biggs Study Process Questionnaire.
+
+Significant gains were made in multiple areas, including student perception of their ability to read and understand primary literature and experience carrying out a research project entirely of student design. Based on this analysis, early, explicit instruction in science process skills is valuable, both to students' learning and their perception of themselves as independent scientists and thinkers. In the future, we hope to continue to monitor student success downstream to see the long-range impact of this course.

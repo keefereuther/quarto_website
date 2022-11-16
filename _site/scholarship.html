@@ -101,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-title","listing-author"],
     };
@@ -217,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Current Projects</h1>
 <div id="listing-projects" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1668468550082" data-listing-reading-time-sort="0.005">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1668626655020" data-listing-reading-time-sort="1.725">
 <a href="./projects/assessment.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
@@ -225,16 +225,16 @@ ul.task-list li input[type="checkbox"] {
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title" data-anchor-id="current-projects">
-Methods in Course-based Undergraduate Research Experiences (CURE)
+Assessing outcomes of science process learning in early undergraduate education
 </h5>
 <div class="card-text listing-description">
-We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science. Simulation…
+Evaluating the effects of courses explicitly focused on science process skills on learning and attitudes toward science in early undergraduate education.
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1668468701910" data-listing-reading-time-sort="0.005">
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1668625659668" data-listing-reading-time-sort="0.795">
 <a href="./projects/cures.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
@@ -242,16 +242,33 @@ We are building open-source Shiny web applications to teach quantitative concept
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Using Simulation to Learn Biology
+Best Practices in Course-based Undergradate Research Experiences (CUREs)
 </h5>
 <div class="card-text listing-description">
-We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science. Simulation…
+Exploring best practices in designing CUREs that both maximize learning and provide a useable research product.
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1668468192924" data-listing-reading-time-sort="0.005">
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1668625582303" data-listing-reading-time-sort="0.005">
+<a href="./projects/writing.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left borderless">
+<p class="card-img-top">
+<img src="./projects/keyboard.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Science writing for undergrads and beyond
+</h5>
+<div class="card-text listing-description">
+I am curating and writing a variety of articles and texts aimed at providing open-access support for both undergraduates and educators.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1668468192924" data-listing-reading-time-sort="0.005">
 <a href="./projects/shiny.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
@@ -263,23 +280,6 @@ Using Simulation to Learn Biology
 </h5>
 <div class="card-text listing-description">
 We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science.
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1668467404242" data-listing-reading-time-sort="0.005">
-<a href="./projects/writing.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left borderless">
-<p class="card-img-top">
-<img src="./projects/keyboard.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Using Simulation to Learn Biology
-</h5>
-<div class="card-text listing-description">
-We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science. Simulation…
 </div>
 </div>
 </div>
@@ -303,9 +303,6 @@ No matching items
          <option value="listing-title-sort" data-direction="asc">
           Title
         </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
      </select>
   </div>
     <div class="input-group input-group-sm quarto-listing-filter">
@@ -320,17 +317,12 @@ No matching items
 <th>
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
 </th>
-<th>
-<a class="sort" data-sort="listing-author" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Author</a>
-</th>
 </tr>
 </thead>
 <tbody class="list">
 <tr data-index="0" data-listing-file-modified-sort="1668036784146" data-listing-reading-time-sort="1.32" data-listing-title-sort="Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab" data-listing-filename-sort="ConvertingBIMM101.qmd">
 <td class="listing-title">
 <a href="./papers/ConvertingBIMM101.html" class="title">Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab</a>
-</td>
-<td class="listing-author">
 </td>
 </tr>
 </tbody>
