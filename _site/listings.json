@@ -8,5 +8,29 @@
       "/classes/BILD_5.html",
       "/classes/BISP_194.html"
     ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/undergrads/mentormosaic2/index.html",
+      "/posts/undergrads/mentormosaic/index.html"
+    ]
+  },
+  {
+    "listing": "/people.html",
+    "items": [
+      "/current_members/allison_kifer.html",
+      "/past_members/caleb_schimke.html"
+    ]
+  },
+  {
+    "listing": "/scholarship.html",
+    "items": [
+      "/projects/assessment.html",
+      "/projects/cures.html",
+      "/projects/writing.html",
+      "/projects/shiny.html",
+      "/papers/ConvertingBIMM101.html"
+    ]
   }
 ]

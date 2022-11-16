@@ -1,0 +1,10 @@
+---
+title: ""
+image: shiny.png
+---
+
+# BICD 100 - Genetics
+
+## Course Description:
+
+An introduction to the principles of heredity emphasizing diploid organisms. Topics include Mendelian inheritance and deviations from classical Mendelian ratios, pedigree analysis, gene interactions, gene mutation, linkage and gene mapping, reverse genetics, population genetics, and quantitative genetics. Significant portions of the course are dedicated to examining the mechanisms and applications of innovative genetic technologies and data analysis.

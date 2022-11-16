@@ -1,0 +1,15 @@
+---
+title: ""
+subtitle: "Research Data Analyst"
+image: Caleb_Schimke.png
+---
+
+# Caleb Schimke
+
+## Research Data Analyst
+
+![](Caleb_Schimke.png){alt="Caleb Schimke" align="middle" height="350"}
+
+Caleb is attending the interdisciplinary PhD Program In Biomedical and Biological Sciences (PIBBS) at USC. He hopes that his time there will prepare him for a career in global health and/or environmental sustainability where he can help implement practices shared by the Effective Altruist (EA) community. While working in the lab, he used python and R code to create onion plots, a novel way of visualizing outliers and p values. This work is currently in development.
+
+### Projects

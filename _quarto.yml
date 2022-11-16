@@ -10,22 +10,29 @@ website:
   navbar:
     logo: logo_dark.webp
     right:
-      - href: about.qmd
-        text: About
-      - href: teaching.qmd
-        text: Teaching
-      - href: scholarship.qmd
-        text: Scholarship
-      - href: people.qmd
-        text: People
+      - text: "About"
+        menu: 
+          - href: about.qmd
+            text: Keefe Reuther
+          - href: people.qmd
+            text: People
+          - href: contact.qmd
+            text: Contact Us
+      - text: "Our Work"
+        menu: 
+          - href: teaching.qmd
+            text: Teaching
+          - href: scholarship.qmd
+            text: Scholarship
       - href: blog.qmd
         text: Blog
-      - href: contact.qmd
-        text: Contact
 
   page-footer:
+    border: true
     left: |
-      [![](UCSanDiegoLogo-Blue.png){fig-alt="UCSD" width=150px}](https://biosci.ucsd.edu)
+      [![](/ucsdbioweb.png){fig-alt="UCSD Bio" width=100px}](https://biosci.ucsd.edu) 
+      [![](/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
+      [![](/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
     right:
       - icon: github
         href: https://github.com/keefereuther
@@ -35,12 +42,13 @@ website:
 
 format:
   html:
+    page-layout: article
     theme:
       light: minty
-      dark: solar
+      dark: cyborg
     css: styles.css
     toc: true
-    fontsize: 1.3em
+    fontsize: 1.2em
 
 editor: visual
 

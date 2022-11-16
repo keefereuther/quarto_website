@@ -87,23 +87,38 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page">About</a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-about" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./teaching.html">Teaching</a>
+        <li>
+    <a class="dropdown-item" href="./people.html">
+ <span class="dropdown-text">People</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./scholarship.html">Scholarship</a>
+        <li>
+    <a class="dropdown-item" href="./contact.html">
+ <span class="dropdown-text">Contact Us</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./people.html">People</a>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-our-work" role="button" data-bs-toggle="dropdown" aria-expanded="false">Our Work</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-our-work">    
+        <li>
+    <a class="dropdown-item" href="./teaching.html">
+ <span class="dropdown-text">Teaching</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./scholarship.html">
+ <span class="dropdown-text">Scholarship</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./blog.html">Blog</a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./contact.html">Contact</a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -149,6 +164,8 @@ ul.task-list li input[type="checkbox"] {
   </div>
   <div class="about-contents"><main class="content" id="quarto-document-content">
 <p>I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula to teach experimental design, information literacy, statistics, and R programming to undergraduate biologists.</p>
+<p><strong><a href="./KeefeReutherCV.pdf">Curriculum Vitae</a></strong></p>
+<p><strong><a href="mailto:kdreuther@ucsd.edu">Send Email</a></strong></p>
 <section id="education" class="level2">
 <h2 data-anchor-id="education">Education</h2>
 <p>Saint Louis University | St.&nbsp;Louis, MO Ph.D.&nbsp;in Biology | August 2004 - May 2009</p>
@@ -379,7 +396,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src="UCSanDiegoLogo-Blue.png" class="img-fluid" alt="UCSD" width="150"></a></div>   
+    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src="./ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src="./ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src="./UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item compact">

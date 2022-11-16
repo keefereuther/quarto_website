@@ -1,9 +1,28 @@
 ---
-title: "About"
+title: ""
+listing:
+    - id: projects
+      type: grid
+      image-placeholder: science.png
+      grid-item-border: false
+      image-height: 150px
+      fields: [image, title, description]
+      grid-columns: 2
+      contents:
+      - "projects/*.qmd"
+    - id: publications
+      type: table
+      fields: [title]
+      contents:
+      - "papers/*.qmd"
 ---
 
-About this site
+# Current Projects
 
-```{r}
-1 + 1
-```
+::: {#projects}
+:::
+
+# Recent Publications
+
+::: {#publications}
+:::

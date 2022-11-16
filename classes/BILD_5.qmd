@@ -1,5 +1,14 @@
 ---
-title: "BILD 5"
-description: Data Analysis and Design for Biologists
+title: ""
 image: floppy.png
 ---
+
+# BILD 5 - Data Analysis and Design for Biologists
+
+## Course Description:
+
+This course is a practical introduction to information literacy, experimental design, and data analysis for biologists. Students will be introduced to coding, data management, and quantitative analysis using the R programming language and the RStudio IDE. However, this is not a traditional statistics course and no math prerequisites are required. Rather this course focuses on practical skills related to effectively asking and answering biological questions with data.
+
+## Syllabus:
+
+<embed src="BILD_5_Syllabus_Reuther_F22.pdf" type="application/pdf" iframe width="100%" height="800">

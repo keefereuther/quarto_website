@@ -1,0 +1,13 @@
+---
+title: "Best Practices in Course-based Undergradate Research Experiences (CUREs)"
+image: cures.jpg
+description: "Exploring best practices in designing CUREs that both maximize learning and provide a useable research product."
+---
+
+# Best Practices in Course-based Undergradate Research Experiences (CUREs)
+
+CUREs bring research into the classroom. Students learn by participating in a research project that may use their collected and analyzed data to address a question important to the larger scientific community. This may include contributing to peer-reviewed publications, white papers, online databases, etc. Students can claim ownership of a legitimate scientific product, thereby helping them gain confidence in their identity as a scientist.
+
+However, CURE data is often problematic. Students by nature are novices, making data quality a serious issue. Additionally, sampling is often structured to fit into a quarterly or semester schedule, repeated throughout the year, which potentially leads to significant pseudoreplication and diminished statistical power. Most importantly, the primary goals of teaching and experimentation are different and sometime challenging to align.
+
+Our research uses data collected from CUREs run in undergraduate lab courses to test various methods to address these issues. Currently, we are drafting best practices for data validation and the handling of missing and outlier data.

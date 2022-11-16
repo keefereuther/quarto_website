@@ -1,0 +1,13 @@
+---
+title: ""
+---
+
+# Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab
+
+[Link the to CourseSource paper](https://qubeshub.org/community/groups/coursesource/publications?id=2731&tab_active=about&v=1)
+
+------------------------------------------------------------------------
+
+The COVID-19 pandemic created a need to convert in-person laboratory courses into an online format in a short amount of time. For this reason, we converted our face-to-face molecular biology lab course to an online version in Spring 2020. The lab course focuses on using CRISPR-Cas9 editing to introduce mutations into the ADE2 gene in Saccharomyces cerevisiae. When planning the conversion to online, we identified a number of challenges to addressing the course goals, such as including technology, accessing real data for analysis, and engaging students in collaboration. After brainstorming ways to address these and other challenges, we developed an online lab course for which the "in lab" portion was largely focused on working collaboratively on data analysis, troubleshooting, and drawing conclusions, as well as experimental design and examining primary literature. Surveys suggest students perceived significant gains in key scientific thinking and process skills including forming scientific arguments, data analysis, and working collaboratively. Students also reported multiple different ways in which the online courses made them feel like scientists. Here we describe key parts of the course structure and our experience in teaching the course to over 200 students. We also describe the process of converting from face-to-face to online, as the process could be applied to any existing hands-on lab. The process enabled us to quickly adapt important information, course goals, and experimental contexts from existing labs, reducing the workload involved in creating a new lab while still providing the experience of focusing on scientific thinking skills to students.
+
+<embed src="Converting a Face-to-Face Lab to Online.pdf" type="application/pdf" iframe width="100%" height="800">

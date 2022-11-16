@@ -9,23 +9,37 @@ self-contained: true
 type: form
 ---
 
+You can use this form to ask me about collaborations, consultations, speaking engagements, if you have thoughts, ideas, suggestions, or questions about any of my education resources.
 
-You can use this form to ask me about collaborations, consultations, speaking engagements, if you have thoughts, ideas, suggestions, or questions about any of my education resources.<br><br> 
+#### Note to those interested in joining the lab:
 
+Currently, our lab is only looking for undergraduate students. My primary projects center on scientific communication and the creation and assessment of computer-based learning tools for biology, experimental design, and statistics. As a result, I am only looking for undergraduates that have a basic skill set in one or both of these areas.
 
+**Interested in writing?** Send me at least one example of writing that you are particularly proud of. Bonus points for it being published somewhere publicly available (e.g., *Saltman Quarterly*, an online blog).
+
+**Interested in creating learning tools?** You must have completed my BILD 5 course successfully OR have taken a comparable class in the R computing language.
+
+**You're in the driver's seat.** I am here to support your ideas and help you find viable projects that YOU have ownership over. You won't be doing my busywork and you'll have the opportunity to gain confidence in your problem-solving and critical thinking skills. It's up to you whether your work get's published, presented, or shared online.
 
 <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xlevjneo" method="post">
-  <fieldset id="fs-frm-inputs">
-    <label for="full-name">Full Name</label>
-    <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
-    <label for="email-address">Email Address</label>
-    <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required="">
-    <label for="message">Message</label>
-    <textarea rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
-    <input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
-  </fieldset>
-  <input type="submit" value="Submit">
-</form><style>/* reset */
+
+<fieldset id="fs-frm-inputs">
+
+<label for="full-name">Full Name</label> <input type="text" name="name" id="full-name" placeholder="First and Last" required=""> <label for="email-address">Email Address</label> <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required=""> <label for="message">Message</label>
+
+```{=html}
+<textarea rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
+```
+<input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+
+</fieldset>
+
+<input type="submit" value="Submit">
+
+</form>
+
+```{=html}
+<style>/* reset */
 #fs-frm input,
 #fs-frm select,
 #fs-frm textarea,
@@ -133,5 +147,5 @@ You can use this form to ask me about collaborations, consultations, speaking en
   margin-right: 3%;
 }
 </style>
-
+```
 <br><br>If you are in the UCSD area or want to send me something via mail, my mailing address is:<br><br>Keefe Reuther<br>U.C. San Diego; School of Biological Sciences<br>8085 HSS Building<br>9500 Gilman Dr.<br>Mail code 0101<br>La Jolla, CA 92093

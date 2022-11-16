@@ -1,9 +1,32 @@
 ---
-title: "About"
+title: ""
+listing:
+    - id: current
+      type: grid
+      image-height: 350px
+      grid-item-border: false
+      grid-item-align: center
+      fields: [image, title, subtitle]
+      grid-columns: 2
+      contents:
+      - "current_members/*.qmd"
+    - id: past
+      type: grid
+      image-height: 350px
+      grid-item-border: false
+      grid-item-align: center
+      fields: [image, title, subtitle]
+      grid-columns: 3
+      contents:
+      - "past_members/*.qmd"
 ---
 
-About this site
+# Current Members
 
-```{r}
-1 + 1
-```
+::: {#current}
+:::
+
+# Past Members
+
+::: {#past}
+:::
