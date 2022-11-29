@@ -26,7 +26,10 @@
   {
     "listing": "/scholarship.html",
     "items": [
-      "/projects/BICD_100.html",
+      "/projects/assessment.html",
+      "/projects/cures.html",
+      "/projects/writing.html",
+      "/projects/shiny.html",
       "/papers/ConvertingBIMM101.html"
     ]
   }
