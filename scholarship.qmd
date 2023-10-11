@@ -22,7 +22,7 @@ listing:
 ::: {#projects}
 :::
 
-# Recent Publications
+# Recent Publications and Presentations
 
 ::: {#publications}
 :::

@@ -1,8 +1,7 @@
 ---
-title: ""
+title: "Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab"
+date: 2021-01-01
 ---
-
-# Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab
 
 [Link the to CourseSource paper](https://qubeshub.org/community/groups/coursesource/publications?id=2731&tab_active=about&v=1)
 

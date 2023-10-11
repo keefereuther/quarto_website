@@ -1,0 +1,12 @@
+---
+title: "Schema Study: Harnessing AI to Enhance Study Skills and Learning in Biology"
+date: 2023-09-21
+---
+
+[2023 Teaching With AI Conference](https://digitallearning.ucf.edu/teachwithai/2023-conference/)
+
+------------------------------------------------------------------------
+ 
+Schema Study is a user-friendly web application designed to enhance student study skills in undergraduate biology. Utilizing an OpenAI API, SchemaStudy provides personalized formative feedback as students actively engage with course topics, terms, themes, examples, or concepts at three progressively complex levels. From defining terms and making connections to constructing intricate concept networks, students receive immediate feedback from the API. This accessible tool, requiring no coding experience from faculty, exemplifies the transformative potential of AI in fostering conceptual understanding and improving study skills in STEM education. 
+
+<embed src="Orlando_AI_Conference Talk_Reuther.pdf" type="application/pdf" iframe width="100%" height="800">
