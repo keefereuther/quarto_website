@@ -1,8 +1,8 @@
 # example netlify.toml
 [build]
-  command = "netlify init"
-  functions = "netlify/functions"
-  publish = "."
+  command = "quarto render"
+  # functions = "netlify/functions"
+  publish = "_site/"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
