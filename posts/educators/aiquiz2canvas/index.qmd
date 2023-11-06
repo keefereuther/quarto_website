@@ -1,0 +1,566 @@
+---
+title: "A Beginner's Guide to Using AI to Create Canvas Quizzes"
+description: "A step-by-step guide for instructors to create, format, and upload quizzes to their Canvas LMS."
+date: "2023-10-22"
+format: 
+  html:
+    page-layout: full
+---
+
+![Created by DALL-E 3](DALL·E%202023-11-02%2016.39.52.png){fig-align="left" width="400"}
+
+::: callout-important
+### *Bureaucracy is the death of all sound work.* - Albert Einstein {style="color: darkcyan"}
+:::
+
+> ## The Problem:
+
+Canvas quiz creation can be an incredibly time-consuming and frustrating process. Manually writing questions in Canvas is clunky and soul-draining. While writing questions in a text editor and uploading them seems like an obvious solution, the upload format is prohibitively complicated. The end result is often spending hours awkwardly crafting quiz questions directly in Canvas or desperately trying to rework old quizzes. There has to be a better way to spend your limited prep time.
+
+------------------------------------------------------------------------
+
+> ## The Goal:
+
+Use technology to create/format assessment questions that can be imported to Canvas LMS as a Canvas quiz.
+
+------------------------------------------------------------------------
+
+> ## Prerequisites
+
+-   A list of topics you want covered in your assessment OR assessment questions you have already written.
+
+-   A text editor ([Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), or whatever came with your computer)
+
+-   Access to [ChatGPT](https://chat.openai.com/auth/login) or [ClaudeAI](https://claude.ai/login?returnTo=%2F)
+
+-   A Canvas LMS account.
+
+------------------------------------------------------------------------
+
+> ## An Overview
+
+1.  Use Gen AI to properly format or generate assessment questions.
+
+2.  Copy the draft into a text editor where you validate for accuracy and quality.
+
+3.  Upload that text (.txt) file to a [web app](https://text2qti.streamlit.app/) I created or convert it locally using the python library found [here.](https://github.com/gpoore/text2qti) It will generate a QTI formatted zip file.
+
+4.  Upload the QTI.zip file to Canvas.
+
+------------------------------------------------------------------------
+
+# A Step-by-Step Walk-Through
+
+## **Part 1: Using Generative AI**
+
+#### **What generative AI platform should you use?**
+
+-   [ChatGPT](https://chat.openai.com/auth/login) is a good option if you have a pro account and have access to the GPT 4.0 model. The free 3.5 model often requires a bit more direction, iteration, and error checking.
+
+-   [ClaudeAI](https://claude.ai/login?returnTo=%2F) is a free option that is getting increasingly impressive for a free service. I find it works well for this project.
+
+#### **Using the Prompt**:
+
+-   Copy and paste one of the prompts provided below to the generative AI platform of your choice.
+
+### [*Option 1: You already have questions*]{.underline}
+
+Option 1 is if you already have assessment questions and need them formatted for upload to Canvas. Copy and paste (and edit as needed) the prompt below into a gen AI chat.
+
+<details>
+
+<summary>OPTION 1 PROMPT</summary>
+
+``` {.markdown .wrap style="max-height: 500px; color: blue; overflow-y: scroll"}
+I have questions that I need properly formatted according to the style guide outlined in this prompt. 
+My questions will include the following question types:
+  - multiple choice questions
+  - multiple answer questions
+  - applied or conceptual essay questions 
+
+Each question carries a point value of 1. 
+
+Your first response should request my drafted quiz questions. You will only modify the formatting as required. Do NOT change the wording of the questions I provide.
+
+Questions must follow the style guide provided:
+
+1. Use format encapsulated within a code block.
+2. Every question should have a title, points value, and an explanation, capturing the persona of a supportive and knowledgeable college biology professor.
+3. For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"
+4. For multiple answer questions, use "[ ]" for options and "[*]" for correct answers.
+5. Essay questions should end with a new line that includes "_________". See examples below.
+6. Begin every feedback with three dots
+7. Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.
+
+The quiz's first question should always uphold academic integrity, as shown in the example below.
+
+ Example format in (generate your response entirely within a code block):
+
+Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis
+Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.
+
+Title: Learn with integrity
+Points: 1
+1. I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.
+*a) I agree
+b) I disagree
+
+Title: PCR - Mechanism and Reagents
+Points: 1
+2. Which of the following describes the mechanism of PCR?
+... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).
+a) PCR breaks down proteins.
+b) PCR translates mRNA into protein.
+*c) PCR amplifies specific DNA segments.
+d) PCR transcribes DNA into RNA.
+
+Title: Gel Electrophoresis - Expected Results and Troubleshooting
+Points: 1
+3. In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?
+... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.
+*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.
+b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.
+c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.
+d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.
+
+Title: DNA - Structure and Replication
+Points: 1
+4. What aspect of DNA is crucial for its replication in PCR and why?
+... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.
+*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.
+b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.
+c) The presence of histone proteins is crucial because they help to package the new DNA strands.
+d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.
+
+Title: DNA - Complimentary Base Pairing
+Points: 1
+5. If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?
+... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.
+a) 3'-TACGCAT-5'
+b) 5'-ATGCGTA-3'
+*c) 5'-TACGCAT-3'
+d) 5'-CATGCGT-3'
+
+Title: PCR - Expected Results
+Points: 1
+6. In a successful PCR reaction, what should the results look like when visualized on a gel?
+... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.
+*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.
+b) Multiple bands at various positions.
+c) A gradient of color throughout the gel.
+d) No visible bands.
+
+Title: PCR - Reagents
+Points: 1
+7. In a PCR reaction, which of the following reagents are required?
+... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.
+[*] Template DNA
+[*] Primers
+[*] dNTPs
+[*] DNA Polymerase
+[ ] RNA Polymerase
+
+Title: Gel Electrophoresis - Components
+Points: 1
+8. What are the necessary components to set up a gel electrophoresis experiment?
+... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.
+[*] Agarose gel
+[*] Buffer solution
+[*] Power supply
+[*] DNA ladder
+[*] DNA samples
+[ ] dNTPs
+[ ] Primers
+
+Title: Troubleshooting in PCR
+Points: 1
+9. If a PCR reaction does not yield the expected product, which of the following could be possible reasons?
+... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.
+[*] Poor quality or insufficient quantity of template DNA
+[*] Incorrect primer sequences
+[*] Inappropriate reaction conditions
+[ ] Contamination in the DNA ladder
+[*] Issues with the DNA polymerase
+
+Title: Controls in Experiments
+Points: 1
+10. Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.
+... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.
+_________
+
+Title: Data Analysis in Biology
+Points: 1
+11. Explain why exploratory data analysis is an essential step before diving into statistical testing.
+... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.
+_________ 
+
+Title: Understanding False Positives and Negatives
+Points: 1
+12. Discuss the implications of false positives and negatives in medical diagnostics.
+... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.
+_________ 
+
+Title: Lab Techniques
+Points: 1
+13. List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.
+... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.
+_________ 
+```
+
+### [*Option 2: AI generated questions*]{.underline}
+
+Option 2 is if you want gen AI to generate questions for you. Copy and paste (and edit as needed) the prompt below into a gen AI chat.
+
+<details>
+
+<summary>OPTION 2 PROMPT</summary>
+
+``` {.markdown .wrap style="max-height: 500px; color: blue; overflow-y: scroll"}
+Design a compelling online quiz tailored for an undergraduate biology course, emphasizing higher-order cognitive skills based on Bloom's taxonomy. The quiz should comprise:
+- 10 multiple choice questions
+- 10 multiple answer questions
+- 5 applied or conceptual essay questions 
+
+Each question carries a point value of 1. Ensure questions are not based on mere factual recall. Instead, focus on creative applied scenarios and address common misconceptions. Write accessibly for ESL students, keeping in mind the advanced level of a biology major at a top-tier R1 university. 
+
+Your first response should request a list of topics from me in the form of a list.
+
+Questions must follow the style guide provided:
+
+1. Use format encapsulated within a code block.
+2. Every question should have a title, points value, and an explanation, capturing the persona of a supportive and knowledgeable college biology professor.
+3. For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"
+4. For multiple answer questions, use "[ ]" for options and "[*]" for correct answers.
+5. Essay questions should end with a new line that includes "_________". See examples below.
+6. Begin every feedback with three dots
+7. Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.
+
+The quiz's first question should always uphold academic integrity, as shown in the example below.
+
+
+Example format in (generate your response entirely within a code block):
+
+Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis
+Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.
+
+Title: Learn with integrity
+Points: 1
+1. I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.
+*a) I agree
+b) I disagree
+
+Title: PCR - Mechanism and Reagents
+Points: 1
+2. Which of the following describes the mechanism of PCR?
+... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).
+a) PCR breaks down proteins.
+b) PCR translates mRNA into protein.
+*c) PCR amplifies specific DNA segments.
+d) PCR transcribes DNA into RNA.
+
+Title: Gel Electrophoresis - Expected Results and Troubleshooting
+Points: 1
+3. In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?
+... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.
+*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.
+b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.
+c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.
+d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.
+
+Title: DNA - Structure and Replication
+Points: 1
+4. What aspect of DNA is crucial for its replication in PCR and why?
+... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.
+*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.
+b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.
+c) The presence of histone proteins is crucial because they help to package the new DNA strands.
+d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.
+
+Title: DNA - Complimentary Base Pairing
+Points: 1
+5. If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?
+... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.
+a) 3'-TACGCAT-5'
+b) 5'-ATGCGTA-3'
+*c) 5'-TACGCAT-3'
+d) 5'-CATGCGT-3'
+
+Title: PCR - Expected Results
+Points: 1
+6. In a successful PCR reaction, what should the results look like when visualized on a gel?
+... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.
+*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.
+b) Multiple bands at various positions.
+c) A gradient of color throughout the gel.
+d) No visible bands.
+
+Title: PCR - Reagents
+Points: 1
+7. In a PCR reaction, which of the following reagents are required?
+... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.
+[*] Template DNA
+[*] Primers
+[*] dNTPs
+[*] DNA Polymerase
+[ ] RNA Polymerase
+
+Title: Gel Electrophoresis - Components
+Points: 1
+8. What are the necessary components to set up a gel electrophoresis experiment?
+... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.
+[*] Agarose gel
+[*] Buffer solution
+[*] Power supply
+[*] DNA ladder
+[*] DNA samples
+[ ] dNTPs
+[ ] Primers
+
+Title: Troubleshooting in PCR
+Points: 1
+9. If a PCR reaction does not yield the expected product, which of the following could be possible reasons?
+... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.
+[*] Poor quality or insufficient quantity of template DNA
+[*] Incorrect primer sequences
+[*] Inappropriate reaction conditions
+[ ] Contamination in the DNA ladder
+[*] Issues with the DNA polymerase
+
+Title: Controls in Experiments
+Points: 1
+10. Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.
+... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.
+_________
+
+Title: Data Analysis in Biology
+Points: 1
+11. Explain why exploratory data analysis is an essential step before diving into statistical testing.
+... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.
+_________ 
+
+Title: Understanding False Positives and Negatives
+Points: 1
+12. Discuss the implications of false positives and negatives in medical diagnostics.
+... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.
+_________ 
+
+Title: Lab Techniques
+Points: 1
+13. List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.
+... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.
+_________ 
+```
+
+</details>
+
+### [***Option 3: The no AI option***]{.underline}
+
+If you already have questions and only need to format them for conversion, you can do the process manually without the use of any gen AI.
+
+Conduct all of your reformatting in a text editor. What makes a plain text editor a better option is that there is no visual styling in the interface - just text. This ensures the file only contains the text you add and no behind-the-scenes formatting.
+
+Use the style guide found [here](https://github.com/gpoore/text2qti#readme) (the more detailed option). You may also check out the example style I have created below (the simpler option)
+
+<details>
+
+<summary>OPTION 3 STYLE GUIDE</summary>
+
+``` {.markdown .wrap style="max-height: 500px; color: blue; overflow-y: scroll"}
+    Questions must follow the style guide provided:
+
+1. Every question should have a title, points value, and an explanation.
+2. For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"
+3. For multiple answer questions, use "[ ]" for options and "[*]" for correct answers.
+4. Essay questions should end with a new line that includes "_________". See examples below.
+5. Begin every feedback with three dots
+6. Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.
+
+Example format in (generate your response entirely within a code block):
+
+Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis
+Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.
+
+Title: Learn with integrity
+Points: 1
+1. I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.
+*a) I agree
+b) I disagree
+
+Title: PCR - Mechanism and Reagents
+Points: 1
+2. Which of the following describes the mechanism of PCR?
+... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).
+a) PCR breaks down proteins.
+b) PCR translates mRNA into protein.
+*c) PCR amplifies specific DNA segments.
+d) PCR transcribes DNA into RNA.
+
+Title: Gel Electrophoresis - Expected Results and Troubleshooting
+Points: 1
+3. In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?
+... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.
+*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.
+b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.
+c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.
+d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.
+
+Title: DNA - Structure and Replication
+Points: 1
+4. What aspect of DNA is crucial for its replication in PCR and why?
+... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.
+*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.
+b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.
+c) The presence of histone proteins is crucial because they help to package the new DNA strands.
+d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.
+
+Title: DNA - Complimentary Base Pairing
+Points: 1
+5. If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?
+... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.
+a) 3'-TACGCAT-5'
+b) 5'-ATGCGTA-3'
+*c) 5'-TACGCAT-3'
+d) 5'-CATGCGT-3'
+
+Title: PCR - Expected Results
+Points: 1
+6. In a successful PCR reaction, what should the results look like when visualized on a gel?
+... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.
+*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.
+b) Multiple bands at various positions.
+c) A gradient of color throughout the gel.
+d) No visible bands.
+
+Title: PCR - Reagents
+Points: 1
+7. In a PCR reaction, which of the following reagents are required?
+... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.
+[*] Template DNA
+[*] Primers
+[*] dNTPs
+[*] DNA Polymerase
+[ ] RNA Polymerase
+
+Title: Gel Electrophoresis - Components
+Points: 1
+8. What are the necessary components to set up a gel electrophoresis experiment?
+... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.
+[*] Agarose gel
+[*] Buffer solution
+[*] Power supply
+[*] DNA ladder
+[*] DNA samples
+[ ] dNTPs
+[ ] Primers
+
+Title: Troubleshooting in PCR
+Points: 1
+9. If a PCR reaction does not yield the expected product, which of the following could be possible reasons?
+... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.
+[*] Poor quality or insufficient quantity of template DNA
+[*] Incorrect primer sequences
+[*] Inappropriate reaction conditions
+[ ] Contamination in the DNA ladder
+[*] Issues with the DNA polymerase
+
+Title: Controls in Experiments
+Points: 1
+10. Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.
+... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.
+_________
+
+Title: Data Analysis in Biology
+Points: 1
+11. Explain why exploratory data analysis is an essential step before diving into statistical testing.
+... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.
+_________ 
+
+Title: Understanding False Positives and Negatives
+Points: 1
+12. Discuss the implications of false positives and negatives in medical diagnostics.
+... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.
+_________ 
+
+Title: Lab Techniques
+Points: 1
+13. List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.
+... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.
+_________ 
+```
+
+</details>
+
+------------------------------------------------------------------------
+
+## **Part 2: Verify, verify, verify**
+
+> **ALWAYS** verify the accuracy of the information produced by gen AI. It will frequently produce bad questions and false information. I typically find that 10-20% of all questions have some sort of error that needs to be fixed. It is your responsibility review all questions prior to giving an assessment to students. Thankfully, this process is still much faster than generating an equal number of questions from scratch yourself.
+
+1.  Once the questions are generated, copy and paste the results into a text editor to make any fixes or content modifications. Any text editor such as [Sublime Text](https://www.sublimetext.com/), [Notepad++](https://notepad-plus-plus.org/), or whatever came with your computer will suffice.
+
+    -   *Note: Be wary of using Microsoft Word or Google Documents. This needs to be a perfectly formatted .txt file and the more complex the software, the more likely it will add extraneous formatting*
+
+2.  Edit the document and verify the accuracy and content of the quiz. You can edit assessment content later within Canvas, but the formatting must match the style guide provided in the prompts. A more comprehensive style sheet can be found [here](https://github.com/gpoore/text2qti#readme) if needed.
+
+3.  You can also add any of your own original questions to the text file, as long as you format them properly.
+
+4.  Save the document as a ".txt" file. This is what you will be converting in the next part.
+
+------------------------------------------------------------------------
+
+## **Part 3:** Converting Questions to qti.zip Format
+
+1.  This app, based on the [text2qti python library](https://github.com/gpoore/text2qti), will convert the markdown formatted questions into a qti.zip file compatible with Canvas LMS.
+
+    <a class="btn btn-primary" href="https://text2qti.streamlit.app/" role="button">Click here to visit the web app</a>
+
+    You may need to "wake up" the app by clicking a button. This is normal.
+
+2.  Drag and drop or select your quiz text (.txt) file. Click to convert.
+
+3.  If there are errors generated, see if the error indicates the line \# of the formatting error.
+
+    -   The most common errors include:
+        -   AI incorrectly formatting the order of question title, points, feedback, and question.
+        -   AI not including a '\_\_\_\_\_\_\_\_\_\_' on the line immediately after any essay questions.
+        -   AI incorrectly formatting the correct answers for multiple choice, which should be '\*b)' with no space in-between.
+        -   AI incorrectly formatting multiple answer questions. Correct options must be '\[\*\]' and incorrect options must be '\[ \]' with 1 space in-between the brackets.
+        -   It is also helpful if the '.txt' file name has no spaces in it and is short. A good example of a name could be 'quiz_3.txt'
+
+4.  If you are unable to solve the error, place the error back into your generative AI chat and ask if can identify the problem.
+
+5.  Download the generated .zip file to your computer.
+
+------------------------------------------------------------------------
+
+## **Part 4:** Uploading the qti.zip file to Canvas
+
+1.  Log in to your Canvas LMS account.
+
+2.  Navigate to the course where you want to upload the quiz.
+
+3.  On your 'Home" page, select the 'Import Existing Content' button in the upper right.
+
+4.  In the drop-down bar, select 'QTI .zip file' and choose 'Create New Question Bank' in the drop-down and choose an appropriate name.
+
+5.  Select 'Import'
+
+6.  Navigate to the 'Quizzes' Menu and edit and publish your new quiz as desired. You're done!
+
+------------------------------------------------------------------------
+
+## Part 5: Watch the Video Walk-through
+
+For a more detailed visual walkthrough, watch the tutorial video below:
+
+<iframe width="560" height="315" src="youtube_video_link_here" frameborder="0" allowfullscreen>
+
+</iframe>
+
+------------------------------------------------------------------------
+
+## Additional Resources
+
+-   [ChatGPT Official Documentation](chatgpt_link_here)
+-   [Streamlit Documentation](streamlit_link_here)
+-   [Canvas LMS Help Center](canvas_lms_link_here)

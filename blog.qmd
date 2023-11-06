@@ -9,9 +9,6 @@ listing:
   - id: educators
     contents: posts/educators
     sort: "date desc"
-  - id: techsupport
-    contents: posts/techsupport
-    sort: "date desc"
 ---
 
 ## Thoughts on teaching, learning, technology, and biology
@@ -30,9 +27,3 @@ listing:
 ::: {#educators}
 :::
 
-------------------------------------------------------------------------
-
-## Tech Support
-
-::: {#techsupport}
-:::

@@ -34,6 +34,7 @@ website:
       [![](/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
       [![](/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
     right:
+      - text: "This site combines my original content with AI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther."
       - icon: github
         href: https://github.com/keefereuther
         aria-label: Keefe Reuther GitHub
