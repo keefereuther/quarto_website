@@ -551,7 +551,9 @@ _________
 
 ## Part 5: Watch the Video Walk-through
 
-{{< video https://youtu.be/CnOmRkzb-zA >}}
+[A Beginner\'s Guide to Using AI to Create Canvas Quizzes](https://youtu.be/CnOmRkzb-zA)
+
+{{< video https://www.youtube.com/embed/CnOmRkzb-zA?si=5Zf0sjGmTNhdIrTj >}}
 
 ------------------------------------------------------------------------
 
