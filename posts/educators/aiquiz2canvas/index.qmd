@@ -551,11 +551,7 @@ _________
 
 ## Part 5: Watch the Video Walk-through
 
-For a more detailed visual walkthrough, watch the tutorial video below:
-
-<iframe width="560" height="315" src="youtube_video_link_here" frameborder="0" allowfullscreen>
-
-</iframe>
+{{< video https://youtu.be/CnOmRkzb-zA >}}
 
 ------------------------------------------------------------------------
 
