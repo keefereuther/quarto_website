@@ -63,7 +63,7 @@ Use technology to create/format assessment questions that can be imported to Can
 
 -   Copy and paste one of the prompts provided below to the generative AI platform of your choice.
 
-### [*Option 1: You already have questions*]{.underline}
+#### [*Option 1: You already have questions*]{.underline}
 
 Option 1 is if you already have assessment questions and need them formatted for upload to Canvas. Copy and paste (and edit as needed) the prompt below into a gen AI chat.
 
@@ -207,7 +207,7 @@ Points: 1
 _________ 
 ```
 
-### [*Option 2: AI generated questions*]{.underline}
+#### [*Option 2: AI generated questions*]{.underline}
 
 Option 2 is if you want gen AI to generate questions for you. Copy and paste (and edit as needed) the prompt below into a gen AI chat.
 
@@ -353,7 +353,7 @@ _________
 
 </details>
 
-### [***Option 3: The no AI option***]{.underline}
+#### [***Option 3: The no AI option***]{.underline}
 
 If you already have questions and only need to format them for conversion, you can do the process manually without the use of any gen AI.
 
