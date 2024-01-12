@@ -24,6 +24,8 @@ website:
             text: Teaching
           - href: scholarship.qmd
             text: Scholarship
+      - href: genai.qmd
+        text: GenAI Resources
       - href: blog.qmd
         text: Blog
 

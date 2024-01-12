@@ -1,0 +1,17 @@
+---
+title: "Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach"
+image: saber.png
+date: 2024-01-13
+---
+
+[SABER West Conference 2024](https://sites.google.com/uci.edu/saber-west-2024/home)
+
+------------------------------------------------------------------------
+ 
+In contemporary educational settings, grading equity remains a significant challenge, with first-generation and minoritized students of color often facing systemic disparities. This poster presents a novel approach utilizing machine learning to identify and optimize syllabus policies that minimize grading inequity. The research focuses on developing intentional grading policies that can be easily amended to effectively reduce grading differences. The study begins with the premise that while many factors contribute to the equity gap in grading, optimizable grading policies play a crucial role. These policies, including assessment weightings, late policies, dropped assignments, and minimum scores, often lack evidence-based best practices.
+
+This research aims to establish a more data-driven approach to these policies using a differential evolution machine learning model. Differential evolution is an optimization algorithm that iteratively improves candidate solutions regarding a quality measure, inspired by natural evolution. The objective was to minimize the median grade difference between minoritized and non-minoritized students by optimizing the weight of assignment groups. The data came from an ecology and evolution course at an R1 university with over 300 students.
+
+The optimized grading policies decreased the median grade difference from 5.79% to 3.07%. This highlights the potential of machine learning as a tool to address systemic inequities in education. The model will be tested on new datasets from real courses. Future study can determine evidence-based best practices for more equitable grading policies and explore implementing optimized policies in active classrooms. I am actively looking for collaborators that have experience using machine learning techniques in research as well as instructors interested in using this approach in the classroom.
+
+<embed src="Reuther SABER West 2024 ML Inequity.pdf" type="application/pdf" iframe width="100%" height="800">

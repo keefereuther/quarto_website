@@ -1,7 +1,0 @@
----
-title: "Using Simulation to Learn Biology"
-image: shiny.jpg
-description: "We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science."
----
-
-# 

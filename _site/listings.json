@@ -1,15 +1,5 @@
 [
   {
-    "listing": "/teaching.html",
-    "items": [
-      "/classes/BICD_100.html",
-      "/classes/BILD_3.html",
-      "/classes/BILD_4.html",
-      "/classes/BILD_5.html",
-      "/classes/BISP_194.html"
-    ]
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/posts/undergrads/mentormosaic2/index.html",
@@ -20,8 +10,28 @@
   {
     "listing": "/people.html",
     "items": [
-      "/current_members/allison_kifer.html",
+      "/past_members/allison_kifer.html",
       "/past_members/caleb_schimke.html"
+    ]
+  },
+  {
+    "listing": "/teaching.html",
+    "items": [
+      "/classes/BICD_100.html",
+      "/classes/BILD_3.html",
+      "/classes/BILD_4.html",
+      "/classes/BILD_5.html",
+      "/classes/BISP_194.html"
+    ]
+  },
+  {
+    "listing": "/genai.html",
+    "items": [
+      "/genai_us/index.html",
+      "/genai_us/syllabuspolicy.html",
+      "/genai_us/saberwestsurvey.html",
+      "/genai_us/saberwestML.html",
+      "/genai_them/ucf_chatgpt_assignments.html"
     ]
   },
   {
@@ -32,6 +42,8 @@
       "/projects/writing.html",
       "/projects/shiny.html",
       "/papers/ConvertingBIMM101.html",
+      "/papers/saberwestsurvey.html",
+      "/papers/saberwestML.html",
       "/papers/TeachingAI2023.html"
     ]
   }
