@@ -3,12 +3,12 @@ project:
 
 website:
   title: "The Reuther Lab"
-  image: "logo_dark.webp"
+  image: "logolight.png"
   reader-mode: true
   open-graph: true
   favicon: "logo_dark.webp"
   navbar:
-    logo: logo_dark.webp
+    logo: logolight.png
     right:
       - text: "About"
         menu: 
