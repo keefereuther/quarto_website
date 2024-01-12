@@ -1,0 +1,7 @@
+---
+title: "Using Simulation to Learn Biology"
+image: central_limit_theorem.png
+description: "We are building open-source web applications and R packages to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science."
+---
+
+# 

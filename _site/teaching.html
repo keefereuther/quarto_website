@@ -92,34 +92,6 @@ ul.task-list li input[type="checkbox"] {
       window['quarto-listing-loaded']();
     }
   })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-talks .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-talks'] = new List('listing-talks', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
   </script>
 
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -170,21 +142,14 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-our-work" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Our Work</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-our-work">    
-        <li>
-    <a class="dropdown-item" href="./teaching.html" rel="" target="">
- <span class="dropdown-text">Teaching</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="./teaching.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Teaching</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./scholarship.html" rel="" target="">
- <span class="dropdown-text">Scholarship</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./scholarship.html" rel="" target="">
+ <span class="menu-text">Scholarship</span></a>
   </li>  
-    </ul>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="./genai.html" rel="" target="">
  <span class="menu-text">GenAI Resources</span></a>
@@ -216,7 +181,6 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#courses" id="toc-courses" class="nav-link active" data-scroll-target="#courses">Courses</a></li>
-  <li><a href="#talks" id="toc-talks" class="nav-link" data-scroll-target="#talks">Talks</a></li>
   </ul>
 </nav>
     </div>
@@ -300,30 +264,6 @@ BISP 194 - COVID-19 mRNA Vaccines
 </a>
 </div>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
-<section id="talks" class="level1">
-<h1>Talks</h1>
-<div id="listing-talks" class="quarto-listing quarto-listing-container-table">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-</tr>
-</thead>
-<tbody class="list">
-</tbody>
-
-</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>

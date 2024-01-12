@@ -1,0 +1,7 @@
+---
+title: "Teaching and Learning with Generative AI"
+image: DALLEneon.png
+description: "Since ChatGPT's launch in November 2022, its integration into college education, especially in biology, has been significant. Higher education is actively exploring generative AI's effects on teaching and learning, with numerous conferences and publications dedicated to its impact. However, its specific influence on undergraduate biology, distinct from fields like creative writing or computer science, requires further examination."
+---
+
+# 

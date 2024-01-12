@@ -12,7 +12,8 @@ listing:
       - "projects/*.qmd"
     - id: publications
       type: table
-      fields: [title]
+      fields: [title, date]
+      sort: date desc
       contents:
       - "papers/*.qmd"
 ---

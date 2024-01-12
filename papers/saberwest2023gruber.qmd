@@ -1,0 +1,18 @@
+---
+title: "Assessment on the Implementation of Laboratory Kits in a Large-Enrollment Introductory Remote Course-Based Undergraduate Research Experience on Soil Microbiomes"
+image: saber.png
+date: 2023-01-13
+---
+
+[SABER West Conference 2023](https://sites.google.com/uci.edu/saberwest2023/home)
+
+------------------------------------------------------------------------
+ 
+Gruber, Maxwell A., Tsai, Randy G., Mel, Stephanie F., Reuther, Keefe D., and Lo, Stanley M.
+University of California, San Diego
+
+Course-based undergraduate research experiences (CUREs) serve as innovative avenues for increasing accessibility of early research experience to a larger number of students, including underrepresented minority students. Previously, we reported the implementation of a large-enrollment introductory in-person CURE on soil microbiomes (Lo 2017; Lo 2020). The COVID-19 pandemic necessitated the shift to remote learning, where hands-on experience in physical laboratories ceased. In an effort to address the lack of hands-on lab experience, we created and distributed lab kits that allowed students to complete about half of the hands-on experiments that were previously present in the in-person CURE.
+
+In this study, we describe student outcomes on self-efficacy on research skills from 3 course modalities: in-person CURE (n=596), remote CURE without lab kits (n=201), and remote CURE with lab kits (n=696). Student outcomes were measured pre- and post-course using a modified version of the classroom undergraduate research experience survey (Denofrio 2007; Mordacq 2017). We hypothesized students would report decreases in self-efficacy on research skills in the remote CUREs compared to the in-person CURE. We also hypothesized students in the remote CURE with lab kits would report gains in self-efficacy on research skills compared to the remote CURE without lab kits.
+
+One-way ANOVA analyses showed that students in the remote CURE without lab kits reported significant self-efficacy gains in 10 out of 21 items compared to the in-person CURE. Students in the remote CURE with lab kits reported significant gains in 3 additional items: carrying out a project entirely designed by students (81.1% increase, p<0.0001), analyzing research data (60.8% increase, p<0.0001), and writing a research proposal (56.6% increase, p<0.0001). The data suggest that remote CUREs with lab kits may provide an avenue to positively enhance the development of research skills in undergraduate students enrolled in remote learning programs.

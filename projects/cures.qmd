@@ -4,7 +4,7 @@ image: cures.jpg
 description: "Exploring best practices in designing CUREs that both maximize learning and provide a useable research product."
 ---
 
-# Best Practices in Course-based Undergradate Research Experiences (CUREs)
+---------------------------------------------------------------------------------
 
 CUREs bring research into the classroom. Students learn by participating in a research project that may use their collected and analyzed data to address a question important to the larger scientific community. This may include contributing to peer-reviewed publications, white papers, online databases, etc. Students can claim ownership of a legitimate scientific product, thereby helping them gain confidence in their identity as a scientist.
 

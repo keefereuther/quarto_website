@@ -1,7 +1,0 @@
----
-title: "Science writing for undergrads and beyond"
-image: keyboard.jpg
-description: "I am curating and writing a variety of articles and texts aimed at providing open-access support for both undergraduates and educators."
----
-
-# 

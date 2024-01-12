@@ -1,0 +1,25 @@
+---
+title: "Fake data, real learning: A new R package to use synthesized data in the classroom"
+image: saber.png
+date: 2023-01-13
+---
+
+[SABER West Conference 2023](https://sites.google.com/uci.edu/saberwest2023/home)
+
+------------------------------------------------------------------------
+ 
+Liam O. Mueller, Keefe Reuther
+University of California, San Diego
+
+Given the short timeframe of the college course, it can be difficult to have students generate an experimental design, collect data, and analyze those data in 10-16 weeks (unless the class is built around that goal). Work arounds for many classes have included giving students an experimental design, or having the analysis pre-described (everyone in the class does the exact same statistical test). However, until now, there has not been an easy way for instructors to forgo the data collection step, and still get randomized, unique, lifelike data sets. Here we present and offer you an opportunity to test a new R based tool that gives students unique, lifelike, computer synthesized datasets and instructors individualized grading keys that address the following issues common in coursework projects:
+
+1.	Each student has their own unique data, removing the necessity of group work that live data collection often brings. Issues of students not contributing to group analysis and academic integrity are reduced/removed when each student has a never-before-seen data set. Having the ability to asses each student’s individual statistical ability is important for building strong STEM graduates (How do you split up the work of running a t-test anyway?).
+
+2.	Given the data is computer generated, the instructor is in control of the success of the study. Parameters in the R package can adjust the coefficient of interest (r, t, b, etc.) and the type II error rate (β) of the data, meaning that each student’s data can be guaranteed to have a p- value lower than α. Or, if the goal of the project is to have students make difficult decisions about what their conclusions should be, the power of the synthetic data can be lowered.
+
+3.	Deviations from the assumptions of a statistical test, especially deviations from normality, can be difficult to determine in natural data. With synthesized data, instructors can set very specific data issues like skew, kurtosis, and outliers. Having a known  problem  with the data also makes assessment easier on graders, who themselves might not have the statistical acumen to grade challenging data decisions.
+
+4.	In classes that use real data, instructors must put in considerable time in developing grading keys for IAs. This R package will automatically generate grading keys for instructors. 
+
+
+<embed src="Mueller and Reuther Saber West final.pdf" type="application/pdf" iframe width="100%" height="800">

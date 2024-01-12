@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -170,21 +170,14 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-our-work" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Our Work</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-our-work">    
-        <li>
-    <a class="dropdown-item" href="./teaching.html" rel="" target="">
- <span class="dropdown-text">Teaching</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./teaching.html" rel="" target="">
+ <span class="menu-text">Teaching</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./scholarship.html" rel="" target="">
- <span class="dropdown-text">Scholarship</span></a>
+  <li class="nav-item">
+    <a class="nav-link active" href="./scholarship.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Scholarship</span></a>
   </li>  
-    </ul>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="./genai.html" rel="" target="">
  <span class="menu-text">GenAI Resources</span></a>
@@ -229,7 +222,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Current Projects</h1>
 <div id="listing-projects" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1697040394335" data-listing-reading-time-sort="2">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1705095537927" data-listing-reading-time-sort="2">
 <a href="./projects/assessment.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
@@ -246,7 +239,7 @@ Evaluating the effects of courses explicitly focused on science process skills o
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1697040394336" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1705095580890" data-listing-reading-time-sort="1">
 <a href="./projects/cures.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
@@ -263,35 +256,35 @@ Exploring best practices in designing CUREs that both maximize learning and prov
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1697040394337" data-listing-reading-time-sort="1">
-<a href="./projects/writing.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1705098097193" data-listing-reading-time-sort="1">
+<a href="./projects/genaischolarship.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
-<img src="./projects/keyboard.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img src="./projects/DALLEneon.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Science writing for undergrads and beyond
+Teaching and Learning with Generative AI
 </h5>
 <div class="card-text listing-description">
-I am curating and writing a variety of articles and texts aimed at providing open-access support for both undergraduates and educators.
+Since ChatGPT’s launch in November 2022, its integration into college education, especially in biology, has been significant. Higher education is actively exploring…
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1697040394337" data-listing-reading-time-sort="1">
-<a href="./projects/shiny.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1705098065928" data-listing-reading-time-sort="1">
+<a href="./projects/simulation.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left borderless">
 <p class="card-img-top">
-<img src="./projects/shiny.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img src="./projects/central_limit_theorem.png" class="thumbnail-image card-img" style="height: 150px;">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Using Simulation to Learn Biology
 </h5>
 <div class="card-text listing-description">
-We are building open-source Shiny web applications to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science.
+We are building open-source web applications and R packages to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science.
 </div>
 </div>
 </div>
@@ -312,6 +305,12 @@ No matching items
      <select id="listing-publications-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-publications'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
          <option value="listing-title-sort" data-direction="asc">
           Title
         </option>
@@ -329,28 +328,67 @@ No matching items
 <th>
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
 </th>
+<th>
+<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
+</th>
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-listing-date-sort="1609488000000" data-listing-file-modified-sort="1697041836176" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab" data-listing-filename-sort="ConvertingBIMM101.qmd">
+
+<tr data-index="0" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705038124873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach" data-listing-filename-sort="saberwestML.qmd">
 <td>
-<a href="./papers/ConvertingBIMM101.html" class="title listing-title">Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab</a>
+<a href="./papers/saberwestML.html" class="title listing-title">Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach</a>
+</td>
+<td>
+<span class="listing-date">Jan 13, 2024</span>
 </td>
 </tr>
 <tr data-index="1" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705038087364" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Gathering Perspectives on Generative AI in Undergraduate Biology Education" data-listing-filename-sort="saberwestsurvey.qmd">
 <td>
 <a href="./papers/saberwestsurvey.html" class="title listing-title">Gathering Perspectives on Generative AI in Undergraduate Biology Education</a>
 </td>
-</tr>
-
-<tr data-index="2" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705038124873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach" data-listing-filename-sort="saberwestML.qmd">
 <td>
-<a href="./papers/saberwestML.html" class="title listing-title">Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach</a>
+<span class="listing-date">Jan 13, 2024</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1695279600000" data-listing-file-modified-sort="1697041868272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Schema Study: Harnessing AI to Enhance Study Skills and Learning in Biology" data-listing-filename-sort="TeachingAI2023.qmd">
+<tr data-index="2" data-listing-date-sort="1695279600000" data-listing-file-modified-sort="1697041868272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-title-sort="Schema Study: Harnessing AI to Enhance Study Skills and Learning in Biology" data-listing-filename-sort="TeachingAI2023.qmd">
 <td>
 <a href="./papers/TeachingAI2023.html" class="title listing-title">Schema Study: Harnessing AI to Enhance Study Skills and Learning in Biology</a>
+</td>
+<td>
+<span class="listing-date">Sep 21, 2023</span>
+</td>
+</tr>
+<tr data-index="3" data-listing-date-sort="1673596800000" data-listing-file-modified-sort="1705095166408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Assessment on the Implementation of Laboratory Kits in a Large-Enrollment Introductory Remote Course-Based Undergraduate Research Experience on Soil Microbiomes" data-listing-filename-sort="saberwest2023gruber.qmd">
+<td>
+<a href="./papers/saberwest2023gruber.html" class="title listing-title">Assessment on the Implementation of Laboratory Kits in a Large-Enrollment Introductory Remote Course-Based Undergraduate Research Experience on Soil Microbiomes</a>
+</td>
+<td>
+<span class="listing-date">Jan 13, 2023</span>
+</td>
+</tr>
+<tr data-index="4" data-listing-date-sort="1673596800000" data-listing-file-modified-sort="1705095227354" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Fake data, real learning: A new R package to use synthesized data in the classroom" data-listing-filename-sort="saberwest2023mueller.qmd">
+<td>
+<a href="./papers/saberwest2023mueller.html" class="title listing-title">Fake data, real learning: A new R package to use synthesized data in the classroom</a>
+</td>
+<td>
+<span class="listing-date">Jan 13, 2023</span>
+</td>
+</tr>
+<tr data-index="5" data-listing-date-sort="1673596800000" data-listing-file-modified-sort="1705094996953" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="A course in science process skills for undergraduate biologists: an evaluation of learning and attitude gains" data-listing-filename-sort="saberwest2023reuther.qmd">
+<td>
+<a href="./papers/saberwest2023reuther.html" class="title listing-title">A course in science process skills for undergraduate biologists: an evaluation of learning and attitude gains</a>
+</td>
+<td>
+<span class="listing-date">Jan 13, 2023</span>
+</td>
+</tr>
+<tr data-index="6" data-listing-date-sort="1609488000000" data-listing-file-modified-sort="1697041836176" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-title-sort="Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab" data-listing-filename-sort="ConvertingBIMM101.qmd">
+<td>
+<a href="./papers/ConvertingBIMM101.html" class="title listing-title">Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab</a>
+</td>
+<td>
+<span class="listing-date">Jan 1, 2021</span>
 </td>
 </tr>
 </tbody>

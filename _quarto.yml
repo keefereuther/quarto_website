@@ -18,12 +18,10 @@ website:
             text: People
           - href: contact.qmd
             text: Contact Us
-      - text: "Our Work"
-        menu: 
-          - href: teaching.qmd
-            text: Teaching
-          - href: scholarship.qmd
-            text: Scholarship
+      - href: teaching.qmd
+        text: Teaching
+      - href: scholarship.qmd
+        text: Scholarship
       - href: genai.qmd
         text: GenAI Resources
       - href: blog.qmd

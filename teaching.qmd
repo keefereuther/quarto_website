@@ -9,18 +9,9 @@ listing:
       grid-columns: 3
       contents:
       - "classes/*.qmd"
-    - id: talks
-      type: table
-      contents:
-      - "talks/*.qmd"
 ---
 
 # Courses
 
 ::: {#classes}
-:::
-
-# Talks
-
-::: {#talks}
 :::

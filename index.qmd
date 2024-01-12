@@ -6,8 +6,8 @@ about:
   image-shape: round
 ---
 
-### We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, and data science.
+### We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, generative AI, and data science.
 
 ------------------------------------------------------------------------
 
-If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) section. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of the team, [contact me](/contact.qmd) (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, and education, head over to my [blog](/blog.qmd).
+If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) and [GenAI Resources](/genai.qmd) sections. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of the team, [contact me](/contact.qmd) (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, and education, head over to my [blog](/blog.qmd).
