@@ -2,9 +2,10 @@
 title: "Crafting Your GenAI & AI Policy Guide"
 image: ucsdintegrity.png
 date: 2024-01-13
+author: Keefe Reuther and Tricia Bertram-Gallant
 ---
 
-Find my own GenAI syllabus policy and a comprehensive guide authored by Tricia Bertram-Gallant.
+Find my personal GenAI syllabus policy and a comprehensive guide authored by Dr. Tricia Bertram-Gallant, director of the Academic Integrity Office and the Triton Testing Center at UC San Diego.
 
 ------------------------------------------------------------------------
  
