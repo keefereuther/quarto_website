@@ -44,7 +44,7 @@ Include this documentation in your references/citations. It won't impact word or
 
 Generative AI, such as ChatGPT, can sometimes produce misleading or false information. You're accountable for every submission, AI-assisted or not. ALWAYS fact-check AI-generated content before submission.
 
-## The GenAI policy guide created by Tricia Bertram-Gallant
+## The GenAI policy guide created by Dr. Tricia Bertram-Gallant
 
 I **HIGHLY** recommend this guide for all instructors, regardless of what your policy will be.
 
