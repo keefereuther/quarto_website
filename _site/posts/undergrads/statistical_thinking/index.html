@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Keefe Reuther">
+<meta name="dcterms.date" content="2024-01-17">
 
-<title>The Reuther Lab -</title>
+<title>The Reuther Lab - The Science of Asking: How to Formulate Questions and Hypotheses in Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,27 +25,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./logo_dark.webp" rel="icon">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../logo_dark.webp" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -64,83 +64,26 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-undergrads .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-undergrads'] = new List('listing-undergrads', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-educators .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-educators'] = new List('listing-educators', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="The Reuther Lab -">
+<link rel="stylesheet" href="../../../styles.css">
+<meta property="og:title" content="The Reuther Lab - The Science of Asking: How to Formulate Questions and Hypotheses in Research">
+<meta property="og:description" content="">
+<meta property="og:image" content="stat_thoughts.png">
 <meta property="og:site-name" content="The Reuther Lab">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logolight.png" alt="" class="navbar-logo">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../logolight.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">The Reuther Lab</span>
     </a>
   </div>
@@ -156,33 +99,33 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-about">    
         <li>
-    <a class="dropdown-item" href="./about.html" rel="" target="">
+    <a class="dropdown-item" href="../../../about.html" rel="" target="">
  <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./people.html" rel="" target="">
+    <a class="dropdown-item" href="../../../people.html" rel="" target="">
  <span class="dropdown-text">People</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./contact.html" rel="" target="">
+    <a class="dropdown-item" href="../../../contact.html" rel="" target="">
  <span class="dropdown-text">Contact Us</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./teaching.html" rel="" target="">
+    <a class="nav-link" href="../../../teaching.html" rel="" target="">
  <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./scholarship.html" rel="" target="">
+    <a class="nav-link" href="../../../scholarship.html" rel="" target="">
  <span class="menu-text">Scholarship</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./genai.html" rel="" target="">
+    <a class="nav-link" href="../../../genai.html" rel="" target="">
  <span class="menu-text">GenAI Resources</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../../blog.html" rel="" target="">
  <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -199,164 +142,151 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#thoughts-on-teaching-learning-technology-and-biology" id="toc-thoughts-on-teaching-learning-technology-and-biology" class="nav-link active" data-scroll-target="#thoughts-on-teaching-learning-technology-and-biology">Thoughts on teaching, learning, technology, and biology</a></li>
-  <li><a href="#undergraduates-and-graduates" id="toc-undergraduates-and-graduates" class="nav-link" data-scroll-target="#undergraduates-and-graduates">Undergraduates and Graduates</a></li>
-  <li><a href="#educators" id="toc-educators" class="nav-link" data-scroll-target="#educators">Educators</a></li>
+  <li><a href="#a-short-primer-connecting-scientific-questions-to-statistical-conclusions" id="toc-a-short-primer-connecting-scientific-questions-to-statistical-conclusions" class="nav-link active" data-scroll-target="#a-short-primer-connecting-scientific-questions-to-statistical-conclusions">A Short Primer Connecting Scientific Questions to Statistical Conclusions</a>
+  <ul class="collapse">
+  <li><a href="#part-1-formulating-your-question" id="toc-part-1-formulating-your-question" class="nav-link" data-scroll-target="#part-1-formulating-your-question">Part 1: Formulating Your Question</a></li>
+  <li><a href="#part-2-the-importance-of-sampling" id="toc-part-2-the-importance-of-sampling" class="nav-link" data-scroll-target="#part-2-the-importance-of-sampling">Part 2: The importance of sampling</a></li>
+  <li><a href="#part-3-how-uncertain-are-we-in-our-results" id="toc-part-3-how-uncertain-are-we-in-our-results" class="nav-link" data-scroll-target="#part-3-how-uncertain-are-we-in-our-results">Part 3: How uncertain are we in our results?</a></li>
+  <li><a href="#part-4---how-do-i-put-all-of-this-together" id="toc-part-4---how-do-i-put-all-of-this-together" class="nav-link" data-scroll-target="#part-4---how-do-i-put-all-of-this-together">Part 4 - How do I put all of this together?</a></li>
+  </ul></li>
   </ul>
 </nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The Science of Asking: How to Formulate Questions and Hypotheses in Research</h1>
+</div>
 
 
 
-<section id="thoughts-on-teaching-learning-technology-and-biology" class="level2">
-<h2 class="anchored" data-anchor-id="thoughts-on-teaching-learning-technology-and-biology">Thoughts on teaching, learning, technology, and biology</h2>
-<hr>
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Keefe Reuther </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 17, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
+<p><img src="stat_thoughts.png" class="img-fluid"></p>
+<section id="a-short-primer-connecting-scientific-questions-to-statistical-conclusions" class="level1">
+<h1>A Short Primer Connecting Scientific Questions to Statistical Conclusions</h1>
+<p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
+<section id="part-1-formulating-your-question" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-formulating-your-question">Part 1: Formulating Your Question</h2>
+<p>The key to asking a scientific question is specificity. Consider the ‘Who, What, Where, When, How, and Why’ of your question. Evaluating the context and underlying assumptions is crucial in minimizing bias.</p>
+<p><strong>Example of a Vague Scientific Question:</strong> How effective is the Pfizer vaccine?</p>
+<ul>
+<li><strong>Who?</strong> Are we talking about a specific age group, sex, health history? Be specific about the group you want to learn about.</li>
+<li><strong>What?</strong> Clarify what “effective” means in this context. Are we talking about preventing any infection, any symptoms, or preventing hospitalization or death?</li>
+<li><strong>Where?</strong> Choose the location for your study carefully. A study in one country may not be easily generalizable to another.</li>
+<li><strong>When?</strong> When will the data be collected and how often will individuals be tested? Are we collecting short or long-term health data? Might data be collected at a time when a particularly nasty COVID variant is prevalent?</li>
+<li><strong>How?</strong> How will you collect data? Will you use questionnaires or will you test subjects for COVID? Each method has its own errors and biases</li>
+<li><strong>Why?</strong> What is your reason for conducting your experiment? Are people’s lives at stake? The answer to this may affect the amount of error you allow when making conclusions or recommendations.&nbsp;</li>
+</ul>
 </section>
-<section id="undergraduates-and-graduates" class="level2">
-<h2 class="anchored" data-anchor-id="undergraduates-and-graduates">Undergraduates and Graduates</h2>
-<div id="listing-undergrads" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1705478400000" data-listing-file-modified-sort="1705531079004" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
-<div class="thumbnail">
-<p><a href="./posts/undergrads/statistical_thinking/index.html"> <p class="card-img-top"><img src="posts/undergrads/statistical_thinking/stat_thoughts.png"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/undergrads/statistical_thinking/index.html">
-<h3 class="no-anchor listing-title">
-The Science of Asking: How to Formulate Questions and Hypotheses in Research
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional…
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/undergrads/statistical_thinking/index.html">
-<div class="listing-date">
-Jan 17, 2024
-</div>
-<div class="listing-author">
-Keefe Reuther
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1666767600000" data-listing-file-modified-sort="1697040394335" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
-<div class="thumbnail">
-<p><a href="./posts/undergrads/mentormosaic2/index.html"> <p class="card-img-top"><img src="posts/undergrads/mentormosaic2/Header_Image.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/undergrads/mentormosaic2/index.html">
-<h3 class="no-anchor listing-title">
-Incorporating a Mentorship Plan into Your Degree
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-While many aspects of a degree are well planned, mentorship is an aspect that is often overlooked.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/undergrads/mentormosaic2/index.html">
-<div class="listing-date">
-Oct 26, 2022
-</div>
-<div class="listing-author">
-Allison Kifer
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1665212400000" data-listing-file-modified-sort="1697040394327" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7">
-<div class="thumbnail">
-<p><a href="./posts/undergrads/mentormosaic/index.html"> <p class="card-img-top"><img src="posts/undergrads/mentormosaic/priscilla-du-preez-unsplash.jpg"  class="thumbnail-image card-img"/></p> </a></p>
-</div>
-<div class="body">
-<a href="./posts/undergrads/mentormosaic/index.html">
-<h3 class="no-anchor listing-title">
-Why You Need Mosaic Mentorship
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-Finding mentors and fostering relationships can be one of the most fulfilling and productive pursuits for undergraduates, graduate students, everyone.
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/undergrads/mentormosaic/index.html">
-<div class="listing-date">
-Oct 8, 2022
-</div>
-<div class="listing-author">
-Allison Kifer
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<hr>
+<section id="part-2-the-importance-of-sampling" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-the-importance-of-sampling">Part 2: The importance of sampling</h2>
+<p>The scope of your question will likely be broader than the sample you are actually able to test in your experiment.</p>
+<blockquote class="blockquote">
+<p>Example: Let’s say your question asks about the efficacy of the Pfizer vaccine in preventing COVID-related hospitalization in all adults over 16 years old. Will you be able to test ALL adults over the age of 16? No, you might be able to test as many as 50,000, but that is just a subset of the group you are asking about.</p>
+</blockquote>
+<p>Your question addresses a broader group, but your experiment will only measure a sample of it. This means there are two potential answers:</p>
+<ol type="1">
+<li><p>The effect that exists in reality for the entire group of interest.</p></li>
+<li><p>The effect observed in your data collected from your sample.</p></li>
+</ol>
+<p>You aim for these answers to be the same, but discrepancies can occur, and that’s not necessarily your fault.</p>
 </section>
-<section id="educators" class="level2">
-<h2 class="anchored" data-anchor-id="educators">Educators</h2>
-<div id="listing-educators" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1697958000000" data-listing-file-modified-sort="1699315518931" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="26">
-<div class="thumbnail">
-<p><a href="./posts/educators/aiquiz2canvas/index.html"> <p class="card-img-top"><img src="posts/educators/aiquiz2canvas/DALL·E 2023-11-02 16.39.52.png"  class="thumbnail-image card-img"/></p> </a></p>
+<section id="part-3-how-uncertain-are-we-in-our-results" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-how-uncertain-are-we-in-our-results">Part 3: How uncertain are we in our results?</h2>
+<p>After running your experiment and collecting data, it’s important to evaluate the likelihood of inaccuracies.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="table.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Table of Possibilities in Hypothesis Testing</figcaption>
+</figure>
 </div>
-<div class="body">
-<a href="./posts/educators/aiquiz2canvas/index.html">
-<h3 class="no-anchor listing-title">
-A Beginner’s Guide to Using AI to Create Canvas Quizzes
-</h3>
-<div class="listing-subtitle">
-
-</div>
-<div class="listing-description">
-<p>A step-by-step guide for instructors to create, format, and upload quizzes to their Canvas LMS.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/educators/aiquiz2canvas/index.html">
-<div class="listing-date">
-Oct 22, 2023
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-
+<p>As a researcher, you are hoping your results match reality (true positive or negative). Through good design and analysis, you hope to minimize and measure the probability your results are different from reality (false positive or negative).</p>
+<section id="understanding-false-positives-and-magical-mysterious-p-value" class="level4">
+<h4 class="anchored" data-anchor-id="understanding-false-positives-and-magical-mysterious-p-value">Understanding False Positives and magical, mysterious P-value:</h4>
+<p>Take your two types of hypotheses:</p>
+<ol type="1">
+<li><p>Alternate hypotheses: There is an effect! Vaccine is more effective than placebo.</p></li>
+<li><p>Null hypothesis: There is NO effect. Vaccines are equal in efficacy with placebo.</p></li>
+</ol>
+<p><strong>Assuming the null hypothesis is true, the p-value is the probability that you could have gotten your results or something more extremely different by chance.</strong> The lower this probability is, the more likely your results represent a true positive (i.e.&nbsp;significantly different experimental groups).</p>
+<blockquote class="blockquote">
+<p>For example, let’s say you have a perfectly fair coin (i.e.&nbsp;the null hypothesis is true and the probability of flipping heads or tails is the same). You flip the coin 10 times and get 2 heads. Doesn’t sound like a fair coin, but what is the probability of flipping 2 heads by chance with a fair coin? About 4.4%. The p value would be the probability of flipping two heads or something more extreme. This would be the sum of the probabilities of flipping 0, 1, 2, 8, 9, and 10 heads, which happens to be ~11% or a p value = 0.11.</p>
+</blockquote>
+<p><strong>Yet another way to think about p-values:</strong> Let’s say you run your experiment and have a p-value of 0.05. YAY! It’s a significant difference and I won science and all my grants will get funded! Well…maybe. Once again, let’s assume the null is actually true. And imagine you ran your exact same experiment 100 different times. In 5 of those experiments, by random chance, you would think there is a difference but there really isn’t. How do you know whether your results are part of that rare 5% and your positive results are a random fluke? You don’t. Only replication and higher sample size might help you better figure that out.</p>
+<p><strong>So why is 0.05 the magical p-value number of significance?</strong> No particularly specific reason. Historically it was recommended by R. Fisher in 1925 out of convenience. Everything had to be calculated by hand at that time anyway.</p>
+<p>This threshold is called the alpha value and the researcher should set it based on the amount of risk they are willing to assume if the results are a false positive. That is why the significance threshold should be as low as 0.01 or 0.0001 if you’re testing the safety of a medicine that could possibly result in death.</p>
+</section>
+<section id="what-about-false-negatives-arent-they-powerfully-important-too" class="level4">
+<h4 class="anchored" data-anchor-id="what-about-false-negatives-arent-they-powerfully-important-too">What about false negatives? Aren’t they powerfully important too?</h4>
+<p>P-values don’t directly tell us anything about the power of an analysis, which is the ability of our experiment to see an effect that is actually present.</p>
+<p><strong>Statistical power = 1 - the probability of a false negative.</strong></p>
+<p>Good power is often thought to be around .80. This means that if an effect is present, your data analysis will see it 80% of the time. Unfortunately, much of the research published today has much lower power AND it’s often not reported in articles. Isn’t this awful? Tell me about it! Change the system and speak truth to power.</p>
+</section>
+</section>
+<section id="part-4---how-do-i-put-all-of-this-together" class="level2">
+<h2 class="anchored" data-anchor-id="part-4---how-do-i-put-all-of-this-together">Part 4 - How do I put all of this together?</h2>
+<p><strong>Does a p-value tell us anything about effect size (i.e.&nbsp;how different two groups are)?</strong> No, not directly. This is often measured by a statistic called Cohen’s D or Glass’ Delta. It’s also not reported as often as it should be.</p>
+<p><strong>Well that doesn’t sound right. What should I do?</strong> It’s good to report all relevant statistics: p-value, power, sample size, and effect size. In fact, these are things you should incorporate as early as the design phase of your experiment:</p>
+<ul>
+<li><p>Determine the effect size you’d like to be able to see in your experiment. Sometimes you don’t need to be able to tell if the difference between groups is 0.001%.</p></li>
+<li><p>Determine the power and p-value thresholds you are comfortable with BEFORE you collect all your data.</p></li>
+<li><p>Decide on the appropriate statistical test(s) you’ll use to test your hypothesis.</p></li>
+<li><p>Use a power analysis to estimate the sample size needed to be able to see a given effect at your proposed power.</p></li>
+<li><p>Run your experiment with that sample size and calculate the actual (i.e.&nbsp;post-hoc) measures of power, effect size, and p-value. Report your results.</p></li>
+<li><p>Don’t selectively change your analysis, experimental design, or reduce/increase sample size without sufficient reason. Doing so is p-hacking and N-hacking and leads to biased results and conclusions.&nbsp;</p></li>
+</ul>
+<p><em>At UCSD, courses like BILD 5 and Math 11, as well as degree programs in Biostatistics, delve deeper into these topics.</em></p>
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2024,
+  author = {Reuther, Keefe},
+  title = {The {Science} of {Asking:} {How} to {Formulate} {Questions}
+    and {Hypotheses} in {Research}},
+  date = {2024-01-17},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Reuther, Keefe. 2024. <span>“The Science of Asking: How to Formulate
+Questions and Hypotheses in Research.”</span> January 17, 2024.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -708,7 +638,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src="./ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src="./ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src="./UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></div>   
+    <div class="nav-footer-left"><a href="https://biosci.ucsd.edu"><img src="../../../ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src="../../../ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src="../../../UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
@@ -724,7 +654,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./license.html">License</a>
+    <a class="nav-link" href="../../../license.html">License</a>
   </li>  
 </ul>
     </div>
