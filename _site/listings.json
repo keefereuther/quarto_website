@@ -30,6 +30,7 @@
       "/genai_us/index.html",
       "/genai_us/syllabuspolicy.html",
       "/genai_us/saberwestsurvey.html",
+      "/genai_us/saberGenAISIG.html",
       "/genai_them/ucf_chatgpt_assignments.html"
     ]
   },
@@ -46,6 +47,8 @@
   {
     "listing": "/people.html",
     "items": [
+      "/current_members/albert_nguyen.html",
+      "/current_members/grace_constantian.html",
       "/past_members/allison_kifer.html",
       "/past_members/caleb_schimke.html"
     ]

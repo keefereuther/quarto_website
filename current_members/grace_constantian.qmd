@@ -8,7 +8,7 @@ image: logolight.png
 
 ## Research Data Analyst
 
-![](logolight).png){alt="Grace Constantian" align="middle" height="350"}
+![](logolight.png){alt="Grace Constantian" align="middle" height="350"}
 
 
 
