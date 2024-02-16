@@ -1,0 +1,15 @@
+---
+title: ""
+subtitle: "Research Data Analyst"
+image: logolight.png
+---
+
+# Albert Nguyen
+
+## Research Data Analyst
+
+![](logolight).png){alt="Albert Nguyen" align="middle" height="350"}
+
+
+
+### Projects

@@ -1,0 +1,32 @@
+---
+title: "SABER Generative AI Special Interest Group"
+image: saber.png
+date: 2024-02-16
+author: Keefe Reuther
+---
+
+The Special Interest Group on Generative AI in Biology Education Research (BER) aims to leverage the collective expertise of SABER members to integrate GenAI tools like ChatGPT into biology education, fostering innovation and addressing pedagogical needs. Reach out to Keefe Reuther to get involved!
+
+------------------------------------------------------------------------
+
+## Objective
+
+The rapid advancement and integration of Generative Artificial Intelligence (GenAI) into educational environments present both opportunities and challenges. This Special Interest Group aims to forefront the exploration of GenAI tools, such as ChatGPT, in the biology classroom. By fostering a collaborative network, this SIG seeks to harness the collective expertise of SABER members to pioneer innovative educational methodologies, enhance student learning experiences, and address the evolving needs of educators in the realm of biology education research.
+
+## Potential Key Activities and Goals
+
+1. **Facilitate Networking and Collaboration:** Create a vibrant community of educators, researchers, and technologists dedicated to integrating GenAI into biology education. This network will serve as a platform for sharing insights, best practices, and fostering partnerships that could lead to impactful collaborative research and training.
+
+2. **Conduct a Comprehensive Survey:** Launch a detailed survey targeting SABER members to capture a broad spectrum of views, experiences, and pedagogical needs related to the use of GenAI in teaching biology. The insights gained will inform the development of resources, specialized talks, and training workshops tailored to the community's needs.
+
+3. **Develop a Strategic Framework for BER and GenAI:** Articulate a forward-looking framework that outlines key research priorities, potential challenges, and opportunities presented by GenAI in biology education. This framework will guide future scholarly inquiries and the integration of AI technologies in pedagogical practices.
+
+4. **Curating a Repository of Generative AI Tools, Resources, and Learning Activities:** Assemble and maintain a comprehensive collection of GenAI tools, educational resources, and innovative learning activities specifically designed for biology education.
+
+## Why Join Us?
+
+Engaging with the SIG on GenAI in BER offers a unique opportunity to be at the forefront of educational innovation. Members will gain early insights into the transformative potential of GenAI, influence the development of teaching resources and research agendas, and contribute to a pioneering effort to shape the future of biology education.
+
+## Get Involved
+
+We invite all SABER members interested in exploring the intersection of GenAI and biology education to join this exciting initiative. Whether you're a seasoned educator, a curious researcher, or an innovator at heart, your contributions are valuable in steering the fruitful integration of GenAI into biology education research. No technical experience required - just the curiosity and drive to learn about these rapidly emerging and evolving tools.
