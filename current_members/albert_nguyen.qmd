@@ -1,15 +1,15 @@
 ---
 title: ""
-subtitle: "Research Data Analyst"
-image: logolight.png
+subtitle: ""
+image: albert.png
 ---
 
 # Albert Nguyen
 
 ## Research Data Analyst
 
-![](logolight.png){alt="Albert Nguyen" align="middle" height="350"}
+![](albert.png){alt="Albert Nguyen" align="middle" height="300"}
 
-
+Albert Nguyen is a student at the University of California, San Diego, where he is pursuing a degree in Human Biology with a minor in Computer Science. Albert's interest is in the potential of Generative AI to transform Biology education and Biotechnology. He is deeply interested in exploring how artificial intelligence can be applied to enhance educational methodologies and foster innovations in biotechnological research and development. In his free time, Albert likes to bake banana bread and go running at the beach.
 
 ### Projects

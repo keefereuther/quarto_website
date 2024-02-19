@@ -2,7 +2,7 @@
 title: "Welcome!"
 about:
   template: jolla
-  image: logolight.png
+  image: logosimple.webp
   image-shape: round
 ---
 
