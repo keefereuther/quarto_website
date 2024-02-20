@@ -1,15 +1,15 @@
 ---
 title: ""
-subtitle: "Research Data Analyst"
-image: logolight.png
+subtitle: ""
+image: grace.png
 ---
 
 # Grace Constantian
 
 ## Research Data Analyst
 
-![](logolight.png){alt="Grace Constantian" align="middle" height="350"}
+![](grace.png){alt="Grace Constantian" align="middle" height="300"}
 
-
+Grace Constantian is a 3rd year Bioinformatics student at UC San Diego. She is currently involved with working at the UC San Diego Women's Center and Sustainability Resource Center alongside her time in Dr. Reuther's Lab. Her research interest and experience involves field work at the various University of California Natural Reserve System sites and conducting research in her role as a Women's Center Intern to learn more about gender discrimination at the undergraduate level. She hopes that these multitude of work experiences will prepare her for a career in environmental bioinformatics where she can help combat the damages of climate change on small communities and preserve culturally and environmentally critical species in our ecosystems. Outside of work she enjoys camping, herping (the act of searching for reptiles and amphibians), and tidepooling with her friends.
 
 ### Projects
