@@ -7,24 +7,26 @@ website:
   reader-mode: true
   open-graph: true
   favicon: "logosimple.webp"
+  site-url: https://reutherlab.netlify.app
+  repo-url: https://github.com/keefereuther/quarto_website
+  page-navigation: true
+  bread-crumbs: true
   navbar:
     logo: logosimple.webp
     right:
       - text: "About"
         menu: 
-          - href: about.qmd
+          - href: /docs/about/keefe/index.qmd
             text: Keefe Reuther
           - href: people.qmd
             text: People
-          - href: contact.qmd
+          - href: /docs/about/contact/index.qmd
             text: Contact Us
       - href: teaching.qmd
         text: Teaching
       - href: scholarship.qmd
         text: Scholarship
-      - href: genai.qmd
-        text: GenAI Resources
-      - href: blog.qmd
+      - href: docs/blog/index.qmd
         text: Blog
 
   page-footer:

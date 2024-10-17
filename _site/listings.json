@@ -1,12 +1,7 @@
 [
   {
     "listing": "/blog.html",
-    "items": [
-      "/posts/undergrads/statistical_thinking/index.html",
-      "/posts/undergrads/mentormosaic2/index.html",
-      "/posts/undergrads/mentormosaic/index.html",
-      "/posts/educators/aiquiz2canvas/index.html"
-    ]
+    "items": []
   },
   {
     "listing": "/scholarship.html",
@@ -27,7 +22,8 @@
   {
     "listing": "/genai.html",
     "items": [
-      "/genai_us/index.html",
+      "/genai_us/A Beginner's Guide to Using AI to Create Canvas Quizzes.html",
+      "/genai_us/aiprivacy.html",
       "/genai_us/syllabuspolicy.html",
       "/genai_us/saberwestsurvey.html",
       "/genai_us/saberGenAISIG.html",
@@ -51,6 +47,39 @@
       "/current_members/grace_constantian.html",
       "/past_members/allison_kifer.html",
       "/past_members/caleb_schimke.html"
+    ]
+  },
+  {
+    "listing": "/docs/blog/index.html",
+    "items": [
+      "/docs/blog/posts/aiprivacypolicy/index.html",
+      "/docs/blog/posts/genaisig/index.html",
+      "/docs/blog/posts/statistical_thinking/index.html",
+      "/docs/blog/posts/craftingaipolicy/index.html",
+      "/docs/blog/posts/saberwestsurvey/index.html",
+      "/docs/blog/posts/aiquiz2canvas/index.html",
+      "/docs/blog/posts/mentormosaic2/index.html",
+      "/docs/blog/posts/mentormosaic/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/docs/blog/posts/aiprivacypolicy/index.html",
+      "/docs/blog/posts/genaisig/index.html",
+      "/docs/blog/posts/statistical_thinking/index.html",
+      "/papers/saberwestML.html",
+      "/papers/saberwestsurvey.html",
+      "/docs/blog/posts/craftingaipolicy/index.html",
+      "/docs/blog/posts/saberwestsurvey/index.html",
+      "/docs/blog/posts/aiquiz2canvas/index.html",
+      "/papers/TeachingAI2023.html",
+      "/papers/saberwest2023gruber.html",
+      "/papers/saberwest2023mueller.html",
+      "/papers/saberwest2023reuther.html",
+      "/docs/blog/posts/mentormosaic2/index.html",
+      "/docs/blog/posts/mentormosaic/index.html",
+      "/papers/ConvertingBIMM101.html"
     ]
   }
 ]

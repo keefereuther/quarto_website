@@ -1,13 +1,42 @@
 ---
 title: "Welcome!"
 about:
+  id: intro
   template: jolla
-  image: logosimple.webp
+  image: pastellogo.webp
   image-shape: round
+  image-width: 10em
+listing:
+  id: news
+  type: table
+  fields: [title, date]
+  sort: date desc
+  contents:
+    - "papers/*.qmd"
+    - "docs/blog/posts/*/index.qmd"
+  sort-ui: false
+  max-items: 5
+  filter-ui: false
+  categories: true
+  feed: true
+  table-hover: true
+  table-striped: true
 ---
 
-### We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, generative AI, and data science.
+::: {#intro}
+<br></br>
+
+#### We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, generative AI, and data science.
 
 ------------------------------------------------------------------------
 
-If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) and [GenAI Resources](/genai.qmd) sections. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of the team, [contact me](/contact.qmd) (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, and education, head over to my [blog](/blog.qmd).
+If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) section. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of the team, [contact me](/docs/about/contact/index.qmd) (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, AI, and education, head over to my [blog](/docs/blog/index.qmd).
+
+------------------------------------------------------------------------
+:::
+<br></br>
+
+### Recent News
+
+::: {#news}
+:::

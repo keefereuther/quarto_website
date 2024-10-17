@@ -1,0 +1,16 @@
+---
+title: "Gathering Perspectives on Generative AI in Undergraduate Biology Education"
+image: saber.png
+date: 2024-01-13
+categories:
+  - AI
+  - Instructors
+---
+
+[SABER West Conference 2024](https://sites.google.com/uci.edu/saber-west-2024/home)
+
+------------------------------------------------------------------------
+ 
+Since the public release of ChatGPT in November 2022, generative AI has rapidly entered the college classroom. New capabilities are continually emerging that impact teaching and learning environments. In higher education broadly, there has been an influx of conferences, preprints, publications, and working groups examining implications and applications of generative AI. However, there is a need to specifically examine the role of generative AI within undergraduate biology education. The unique challenges and potential solutions in biology classrooms likely differ from other disciplines like creative writing or computer science. To explore this, I have developed a survey to distribute at SABER 2024. This survey has three aims: 1) Build a community of DBER scholars investigating generative AI applications in undergraduate biology. 2) Identify priorities for professional development on generative AI, for both SABER members and their home institutions. 3) Gather instructor and student perspectives on how generative AI is impacting teaching and learning of biology. I have drafted this survey and welcome feedback from the SABER community to improve it before implementation in the summer of 2024. Beyond gathering data, I hope this survey connects those interested in creatively harnessing the potential of generative AI in this new landscape we find ourselves in.
+
+<embed src="Reuther SABER West 2024 Survey.pdf" type="application/pdf" iframe width="100%" height="800">
