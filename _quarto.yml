@@ -16,11 +16,11 @@ website:
     right:
       - text: "About"
         menu: 
-          - href: /docs/about/keefe/index.qmd
+          - href: docs/about/keefe/index.qmd
             text: Keefe Reuther
           - href: people.qmd
             text: People
-          - href: /docs/about/contact/index.qmd
+          - href: docs/about/contact/index.qmd
             text: Contact Us
       - href: teaching.qmd
         text: Teaching
@@ -48,7 +48,7 @@ format:
     page-layout: article
     theme:
       light: minty
-      dark: cyborg
+      dark: quartz
     css: styles.css
     toc: true
     fontsize: 1.2em
