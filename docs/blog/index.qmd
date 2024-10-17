@@ -2,7 +2,7 @@
 title: Reuther Lab Blog
 subtitle: News, tips, and commentary about stuff we find interesting
 page-layout: full
-title-block-banner: "#6A5C59"
+title-block-banner: true
 title-block-banner-color: body
 listing:
   sort: "date desc"
