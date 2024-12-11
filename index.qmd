@@ -60,4 +60,5 @@ It'll answer you in 10 words or less! Try it out below:
     height="400"
 ></iframe>
 ```
+This chatbot uses OpenAI's GPT models and may produce errors. Always confirm its responses with classroom materials and reputable scientific resources.
 :::
