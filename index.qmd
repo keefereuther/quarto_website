@@ -34,9 +34,30 @@ If you want to check out the courses I teach, visit the [teaching](/teaching.qmd
 
 ------------------------------------------------------------------------
 :::
+
 <br></br>
 
 ### Recent News
 
 ::: {#news}
+:::
+
+------------------------------------------------------------------------
+
+::: <br></br>
+### An Embeddable Open Source and Customizable Chatbot
+
+It'll answer you in 10 words or less! Try it out below:
+
+[Gradio OpenAI Chatbot](https://huggingface.co/spaces/keefereuther/Gradio_Embeddable_Chatbot)
+
+```{=html}
+
+<iframe
+    src="https://keefereuther-gradio-embeddable-chatbot.hf.space"
+    frameborder="0"
+    width="700"
+    height="400"
+></iframe>
+```
 :::
