@@ -11,6 +11,9 @@ about:
     - icon: github
       text: Github
       href: https://github.com/keefereuther
+    - icon: huggingface
+      text: Hugging Face
+      href: https://huggingface.co/keefereuther
 ---
 
 I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula that leverage **generative AI** to teach **experimental design**, **statistics**, and **computer programming** to undergraduate biologists.
