@@ -10,12 +10,96 @@
 <atom:link href="https://reutherlab.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://reutherlab.netlify.app/logosimple.webp</url>
+<url>https://reutherlab.netlify.app/assets/logosimple.webp</url>
 <title>The Reuther Lab</title>
 <link>https://reutherlab.netlify.app/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Wed, 16 Oct 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 04 Feb 2025 08:00:00 GMT</lastBuildDate>
+<item>
+  <title>Making a better chatbot</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>“Discovering the unexpected is more important than confirming the known.”</em>- George E. P. Box
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
+<section id="what-is-this-app" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-this-app">What Is This App?</h2>
+<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as: - <strong>Language:</strong> Choose the language in which your chatbot responds. - <strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are. - <strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be. - <strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p>
+<p>The app is hosted publicly on <a href="https://keefereuther-openai-chatbot-tester.hf.space">Hugging Face Spaces</a>, making it accessible to anyone interested in exploring the benefits of conversational AI in education.</p>
+</section>
+<section id="why-should-you-try-it" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-you-try-it">Why Should You Try It?</h2>
+<p>Using this app, educators can: - <strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources. - <strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior. - <strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style. - <strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>OpenAI API Key – Obtain one from <a href="https://platform.openai.com/api-keys">OpenAI</a></p>
+</section>
+<section id="how-it-works-a-step-by-step-guide" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-works-a-step-by-step-guide">How It Works: A Step-by-Step Guide</h2>
+<ol type="1">
+<li><p><strong>Visit the App:</strong><br>
+Head over to <a href="https://keefereuther-openai-chatbot-tester.hf.space">keefereuther-openai-chatbot-tester.hf.space</a> to launch the application.</p></li>
+<li><p><strong>Configure Your Chatbot:</strong></p>
+<ul>
+<li><strong>API Key:</strong> Enter your OpenAI API key in the sidebar to enable full chat functionality.</li>
+<li><strong>Select the Model:</strong> Choose the chatbot model that best suits your needs.</li>
+<li><strong>Adjust Settings:</strong> Use the sliders to modify the temperature, maximum tokens, frequency, and presence penalties.</li>
+<li><strong>Set the Language:</strong> Pick your preferred language so the chatbot responds accordingly.</li>
+<li><strong>Customize System Instructions:</strong> Edit the system instructions to direct how the chatbot should interact with students.</li>
+</ul></li>
+<li><p><strong>Test and Experiment:</strong><br>
+Type a message in the chat box to see how your customized settings influence the chatbot’s responses. Adjust the parameters as needed until you find the perfect configuration for your classroom.</p></li>
+</ol>
+</section>
+<section id="how-this-tool-benefits-your-classroom" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-tool-benefits-your-classroom">How This Tool Benefits Your Classroom</h2>
+<ul>
+<li><strong>Interactive Learning:</strong> Engage students with a dynamic, responsive chatbot that can supplement your lectures and materials.</li>
+<li><strong>Quick Experimentation:</strong> See in real time how different configurations affect chatbot behavior, enabling you to refine its performance quickly.</li>
+<li><strong>Easy Integration:</strong> Once you’re satisfied with your setup, you can use these setting to clone and customize your own embeddable app at <a href="https://huggingface.co/spaces/keefereuther/ST_basebot">Hugging Face Spaces</a></li>
+</ul>
+</section>
+<section id="get-started-today" class="level2">
+<h2 class="anchored" data-anchor-id="get-started-today">Get Started Today!</h2>
+<p>This tool is designed with non-technical educators in mind. Its intuitive interface and straightforward controls mean you can start experimenting with conversational AI in minutes. Whether you’re looking to spark student engagement, provide round-the-clock assistance, or simply explore the possibilities of AI in education, the OpenAI Chatbot Prompt and Parameter Tester is a great place to start.</p>
+<p>If you are interested in learning more or arranging a workshop to build customized apps at no cost to your students, then please reach out at kdreuther@ucsd.edu</p>
+<p>Happy teaching!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {Making a Better Chatbot},
+  date = {2025-02-04},
+  url = {https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
+4, 2025. <a href="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/">https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</a>.
+</div></div></section></div> ]]></description>
+  <guid>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</guid>
+  <pubDate>Tue, 04 Feb 2025 08:00:00 GMT</pubDate>
+</item>
 <item>
   <title>A Brief Guide to Data Privacy and GenAI Chatbots</title>
   <dc:creator>Keefe Reuther</dc:creator>
@@ -278,48 +362,6 @@ Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https
   <category>Undergraduates</category>
   <guid>https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</guid>
   <pubDate>Wed, 17 Jan 2024 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach</title>
-  <link>https://reutherlab.netlify.app/papers/saberwestML.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><a href="https://sites.google.com/uci.edu/saber-west-2024/home">SABER West Conference 2024</a></p>
-<hr>
-<p>In contemporary educational settings, grading equity remains a significant challenge, with first-generation and minoritized students of color often facing systemic disparities. This poster presents a novel approach utilizing machine learning to identify and optimize syllabus policies that minimize grading inequity. The research focuses on developing intentional grading policies that can be easily amended to effectively reduce grading differences. The study begins with the premise that while many factors contribute to the equity gap in grading, optimizable grading policies play a crucial role. These policies, including assessment weightings, late policies, dropped assignments, and minimum scores, often lack evidence-based best practices.</p>
-<p>This research aims to establish a more data-driven approach to these policies using a differential evolution machine learning model. Differential evolution is an optimization algorithm that iteratively improves candidate solutions regarding a quality measure, inspired by natural evolution. The objective was to minimize the median grade difference between minoritized and non-minoritized students by optimizing the weight of assignment groups. The data came from an ecology and evolution course at an R1 university with over 300 students.</p>
-<p>The optimized grading policies decreased the median grade difference from 5.79% to 3.07%. This highlights the potential of machine learning as a tool to address systemic inequities in education. The model will be tested on new datasets from real courses. Future study can determine evidence-based best practices for more equitable grading policies and explore implementing optimized policies in active classrooms. I am actively looking for collaborators that have experience using machine learning techniques in research as well as instructors interested in using this approach in the classroom.</p>
-<embed src="Reuther SABER West 2024 ML Inequity.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/saberwestML.html</guid>
-  <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/papers/saber.png" medium="image" type="image/png" height="64" width="144"/>
-</item>
-<item>
-  <title>Gathering Perspectives on Generative AI in Undergraduate Biology Education</title>
-  <link>https://reutherlab.netlify.app/papers/saberwestsurvey.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<p><a href="https://sites.google.com/uci.edu/saber-west-2024/home">SABER West Conference 2024</a></p>
-<hr>
-<p>Since the public release of ChatGPT in November 2022, generative AI has rapidly entered the college classroom. New capabilities are continually emerging that impact teaching and learning environments. In higher education broadly, there has been an influx of conferences, preprints, publications, and working groups examining implications and applications of generative AI. However, there is a need to specifically examine the role of generative AI within undergraduate biology education. The unique challenges and potential solutions in biology classrooms likely differ from other disciplines like creative writing or computer science. To explore this, I have developed a survey to distribute at SABER 2024. This survey has three aims: 1) Build a community of DBER scholars investigating generative AI applications in undergraduate biology. 2) Identify priorities for professional development on generative AI, for both SABER members and their home institutions. 3) Gather instructor and student perspectives on how generative AI is impacting teaching and learning of biology. I have drafted this survey and welcome feedback from the SABER community to improve it before implementation in the summer of 2024. Beyond gathering data, I hope this survey connects those interested in creatively harnessing the potential of generative AI in this new landscape we find ourselves in.</p>
-<embed src="Reuther SABER West 2024 Survey.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/saberwestsurvey.html</guid>
-  <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/papers/saber.png" medium="image" type="image/png" height="64" width="144"/>
 </item>
 <item>
   <title>Crafting Your GenAI &amp; AI Policy Guide</title>
@@ -1418,91 +1460,6 @@ font-style: inherit;">13. </span>List two techniques you learned in the lab that
   <pubDate>Sun, 22 Oct 2023 07:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Schema Study: Harnessing AI to Enhance Study Skills and Learning in Biology</title>
-  <link>https://reutherlab.netlify.app/papers/TeachingAI2023.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><a href="https://digitallearning.ucf.edu/teachwithai/2023-conference/">2023 Teaching With AI Conference</a></p>
-<hr>
-<p>Schema Study is a user-friendly web application designed to enhance student study skills in undergraduate biology. Utilizing an OpenAI API, SchemaStudy provides personalized formative feedback as students actively engage with course topics, terms, themes, examples, or concepts at three progressively complex levels. From defining terms and making connections to constructing intricate concept networks, students receive immediate feedback from the API. This accessible tool, requiring no coding experience from faculty, exemplifies the transformative potential of AI in fostering conceptual understanding and improving study skills in STEM education.</p>
-<embed src="Orlando_AI_Conference Talk_Reuther.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/TeachingAI2023.html</guid>
-  <pubDate>Thu, 21 Sep 2023 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Assessment on the Implementation of Laboratory Kits in a Large-Enrollment Introductory Remote Course-Based Undergraduate Research Experience on Soil Microbiomes</title>
-  <link>https://reutherlab.netlify.app/papers/saberwest2023gruber.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><a href="https://sites.google.com/uci.edu/saberwest2023/home">SABER West Conference 2023</a></p>
-<hr>
-<p>Gruber, Maxwell A., Tsai, Randy G., Mel, Stephanie F., Reuther, Keefe D., and Lo, Stanley M. University of California, San Diego</p>
-<p>Course-based undergraduate research experiences (CUREs) serve as innovative avenues for increasing accessibility of early research experience to a larger number of students, including underrepresented minority students. Previously, we reported the implementation of a large-enrollment introductory in-person CURE on soil microbiomes (Lo 2017; Lo 2020). The COVID-19 pandemic necessitated the shift to remote learning, where hands-on experience in physical laboratories ceased. In an effort to address the lack of hands-on lab experience, we created and distributed lab kits that allowed students to complete about half of the hands-on experiments that were previously present in the in-person CURE.</p>
-<p>In this study, we describe student outcomes on self-efficacy on research skills from 3 course modalities: in-person CURE (n=596), remote CURE without lab kits (n=201), and remote CURE with lab kits (n=696). Student outcomes were measured pre- and post-course using a modified version of the classroom undergraduate research experience survey (Denofrio 2007; Mordacq 2017). We hypothesized students would report decreases in self-efficacy on research skills in the remote CUREs compared to the in-person CURE. We also hypothesized students in the remote CURE with lab kits would report gains in self-efficacy on research skills compared to the remote CURE without lab kits.</p>
-<p>One-way ANOVA analyses showed that students in the remote CURE without lab kits reported significant self-efficacy gains in 10 out of 21 items compared to the in-person CURE. Students in the remote CURE with lab kits reported significant gains in 3 additional items: carrying out a project entirely designed by students (81.1% increase, p&lt;0.0001), analyzing research data (60.8% increase, p&lt;0.0001), and writing a research proposal (56.6% increase, p&lt;0.0001). The data suggest that remote CUREs with lab kits may provide an avenue to positively enhance the development of research skills in undergraduate students enrolled in remote learning programs.</p>
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/saberwest2023gruber.html</guid>
-  <pubDate>Fri, 13 Jan 2023 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/papers/saber.png" medium="image" type="image/png" height="64" width="144"/>
-</item>
-<item>
-  <title>Fake data, real learning: A new R package to use synthesized data in the classroom</title>
-  <link>https://reutherlab.netlify.app/papers/saberwest2023mueller.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><a href="https://sites.google.com/uci.edu/saberwest2023/home">SABER West Conference 2023</a></p>
-<hr>
-<p>Liam O. Mueller, Keefe Reuther University of California, San Diego</p>
-<p>Given the short timeframe of the college course, it can be difficult to have students generate an experimental design, collect data, and analyze those data in 10-16 weeks (unless the class is built around that goal). Work arounds for many classes have included giving students an experimental design, or having the analysis pre-described (everyone in the class does the exact same statistical test). However, until now, there has not been an easy way for instructors to forgo the data collection step, and still get randomized, unique, lifelike data sets. Here we present and offer you an opportunity to test a new R based tool that gives students unique, lifelike, computer synthesized datasets and instructors individualized grading keys that address the following issues common in coursework projects:</p>
-<ol type="1">
-<li><p>Each student has their own unique data, removing the necessity of group work that live data collection often brings. Issues of students not contributing to group analysis and academic integrity are reduced/removed when each student has a never-before-seen data set. Having the ability to asses each student’s individual statistical ability is important for building strong STEM graduates (How do you split up the work of running a t-test anyway?).</p></li>
-<li><p>Given the data is computer generated, the instructor is in control of the success of the study. Parameters in the R package can adjust the coefficient of interest (r, t, b, etc.) and the type II error rate (β) of the data, meaning that each student’s data can be guaranteed to have a p- value lower than α. Or, if the goal of the project is to have students make difficult decisions about what their conclusions should be, the power of the synthetic data can be lowered.</p></li>
-<li><p>Deviations from the assumptions of a statistical test, especially deviations from normality, can be difficult to determine in natural data. With synthesized data, instructors can set very specific data issues like skew, kurtosis, and outliers. Having a known problem with the data also makes assessment easier on graders, who themselves might not have the statistical acumen to grade challenging data decisions.</p></li>
-<li><p>In classes that use real data, instructors must put in considerable time in developing grading keys for IAs. This R package will automatically generate grading keys for instructors.</p></li>
-</ol>
-<embed src="Mueller and Reuther Saber West final.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/saberwest2023mueller.html</guid>
-  <pubDate>Fri, 13 Jan 2023 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/papers/saber.png" medium="image" type="image/png" height="64" width="144"/>
-</item>
-<item>
-  <title>A course in science process skills for undergraduate biologists: an evaluation of learning and attitude gains</title>
-  <link>https://reutherlab.netlify.app/papers/saberwest2023reuther.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><a href="https://sites.google.com/uci.edu/saberwest2023/home">SABER West Conference 2023</a></p>
-<hr>
-<p>Keefe D. Reuther, Liam O’Connor Mueller University of California, San Diego</p>
-<p>Historically, university biology programs have rarely incorporated courses explicitly focused on science process skills into their introductory course series. However, information literacy, experimental design, and data analysis are foundational skills for professional scientists. Developing that toolkit early may be integral to undergraduate learners identifying as biologists and persisting in the field. Data Analysis and Design for Biologists (BILD 5; 4 units) was piloted in the winter of 2022 at U.C. San Diego to help fill that role. This course is a practical introduction to core science process skills. Additionally, students are introduced to coding, data management, and quantitative analysis using the R programming language. Students learn how to evaluate scientific information, design experiments, manage data, and analyze it statistically. A central part of the course is a term project in which students complete their own investigative cycle from start to finish. A series of checkpoints provide formative feedback as they ask a biological question, design an experiment, create an analytical plan, and then receive simulated data for analysis in their final summative assessment. Course lecture topics mirror this investigative cycle, allowing them to slowly develop these skills in the class through small group work, practice exercises, and other active learning exercises. We assessed learning gains by utilizing a pre and post concept inventory (adapted from the Test of Scientific Literacy Skills (TOSLS) mapped to our course learning objectives. For most course objectives there was an increase in the number of correctly answered questions on the post-course concept inventory. Our attitudes survey was adapted from multiple sources, such as the Student Course Engagement Questionnaire (SCEQ) and the Biggs Study Process Questionnaire. Significant gains were made in multiple areas, including student perception of their ability to read and understand primary literature and experience carrying out a research project entirely of student design. Based on this analysis, early, explicit instruction in science process skills is valuable, both to students’ learning and their perception of themselves as independent scientists and thinkers. In the future, we hope to continue to monitor student success downstream to see the long-range impact of this course.</p>
-<embed src="Reuther SABER West 2024 ML Inequity.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/saberwest2023reuther.html</guid>
-  <pubDate>Fri, 13 Jan 2023 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/papers/saber.png" medium="image" type="image/png" height="64" width="144"/>
-</item>
-<item>
   <title>Incorporating a Mentorship Plan into Your Degree</title>
   <dc:creator>Allison Kifer</dc:creator>
   <link>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</link>
@@ -1678,24 +1635,6 @@ October 8, 2022. <a href="https://reutherlab.netlify.app/docs/blog/posts/mentorm
 </div></div></section></div> ]]></description>
   <guid>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</guid>
   <pubDate>Sat, 08 Oct 2022 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Converting a Face-to-Face Lab to Online: An Example of Process and Outcomes for a CRISPR-Based Molecular Biology Lab</title>
-  <link>https://reutherlab.netlify.app/papers/ConvertingBIMM101.html</link>
-  <description><![CDATA[ 
-
-
-
-<p><a href="https://qubeshub.org/community/groups/coursesource/publications?id=2731&amp;tab_active=about&amp;v=1">Link the to CourseSource paper</a></p>
-<hr>
-<p>The COVID-19 pandemic created a need to convert in-person laboratory courses into an online format in a short amount of time. For this reason, we converted our face-to-face molecular biology lab course to an online version in Spring 2020. The lab course focuses on using CRISPR-Cas9 editing to introduce mutations into the ADE2 gene in Saccharomyces cerevisiae. When planning the conversion to online, we identified a number of challenges to addressing the course goals, such as including technology, accessing real data for analysis, and engaging students in collaboration. After brainstorming ways to address these and other challenges, we developed an online lab course for which the “in lab” portion was largely focused on working collaboratively on data analysis, troubleshooting, and drawing conclusions, as well as experimental design and examining primary literature. Surveys suggest students perceived significant gains in key scientific thinking and process skills including forming scientific arguments, data analysis, and working collaboratively. Students also reported multiple different ways in which the online courses made them feel like scientists. Here we describe key parts of the course structure and our experience in teaching the course to over 200 students. We also describe the process of converting from face-to-face to online, as the process could be applied to any existing hands-on lab. The process enabled us to quickly adapt important information, course goals, and experimental contexts from existing labs, reducing the workload involved in creating a new lab while still providing the experience of focusing on scientific thinking skills to students.</p>
-<embed src="Converting a Face-to-Face Lab to Online.pdf" type="application/pdf" iframe="" width="100%" height="800">
-
-
-
- ]]></description>
-  <guid>https://reutherlab.netlify.app/papers/ConvertingBIMM101.html</guid>
-  <pubDate>Fri, 01 Jan 2021 08:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

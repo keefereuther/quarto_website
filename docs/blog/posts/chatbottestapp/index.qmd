@@ -1,0 +1,67 @@
+---
+title: "Making a better chatbot"
+description: "A new platform for creating and testing your own active learning activities using AI - without needing any coding experience!"
+author: "Keefe Reuther"
+date: "2025-02-04"
+format: 
+  html:
+    page-layout: full
+---
+
+::: callout-important
+### *“Discovering the unexpected is more important than confirming the known."*- George E. P. Box {style="color: darkcyan"}
+:::
+
+Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the **OpenAI Chatbot Prompt and Parameter Tester**, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.
+
+## What Is This App?
+
+This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as:
+- **Language:** Choose the language in which your chatbot responds.
+- **Creativity:** Modify the temperature setting to control how creative or predictable the responses are.
+- **Response Length:** Set the maximum tokens to control how long the chatbot’s responses can be.
+- **Prompt Customization:** Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.
+
+The app is hosted publicly on [Hugging Face Spaces](https://keefereuther-openai-chatbot-tester.hf.space), making it accessible to anyone interested in exploring the benefits of conversational AI in education.
+
+## Why Should You Try It?
+
+Using this app, educators can:
+- **Engage Students:** Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources.
+- **Experiment Easily:** Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior.
+- **Customize to Your Needs:** Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style.
+- **Enhance Accessibility:** Offer assistance in multiple languages, catering to diverse student populations.
+
+## Prerequisites
+
+OpenAI API Key – Obtain one from [OpenAI](https://platform.openai.com/api-keys)
+
+## How It Works: A Step-by-Step Guide
+
+1. **Visit the App:**  
+   Head over to [keefereuther-openai-chatbot-tester.hf.space](https://keefereuther-openai-chatbot-tester.hf.space) to launch the application.
+
+2. **Configure Your Chatbot:**
+   - **API Key:** Enter your OpenAI API key in the sidebar to enable full chat functionality.
+   - **Select the Model:** Choose the chatbot model that best suits your needs.
+   - **Adjust Settings:** Use the sliders to modify the temperature, maximum tokens, frequency, and presence penalties.
+   - **Set the Language:** Pick your preferred language so the chatbot responds accordingly.
+   - **Customize System Instructions:** Edit the system instructions to direct how the chatbot should interact with students.
+
+3. **Test and Experiment:**  
+   Type a message in the chat box to see how your customized settings influence the chatbot’s responses. Adjust the parameters as needed until you find the perfect configuration for your classroom.
+
+## How This Tool Benefits Your Classroom
+
+- **Interactive Learning:** Engage students with a dynamic, responsive chatbot that can supplement your lectures and materials.
+- **Quick Experimentation:** See in real time how different configurations affect chatbot behavior, enabling you to refine its performance quickly.
+- **Easy Integration:** Once you’re satisfied with your setup, you can use these setting to clone and customize your own embeddable app at [Hugging Face Spaces](https://huggingface.co/spaces/keefereuther/ST_basebot)
+
+## Get Started Today!
+
+This tool is designed with non-technical educators in mind. Its intuitive interface and straightforward controls mean you can start experimenting with conversational AI in minutes. Whether you’re looking to spark student engagement, provide round-the-clock assistance, or simply explore the possibilities of AI in education, the OpenAI Chatbot Prompt and Parameter Tester is a great place to start.
+
+If you are interested in learning more or arranging a workshop to build customized apps at no cost to your students, then please reach out at kdreuther@ucsd.edu
+
+Happy teaching!
+

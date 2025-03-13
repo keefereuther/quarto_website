@@ -3,28 +3,28 @@ project:
 
 website:
   title: "The Reuther Lab"
-  image: "logosimple.webp"
+  image: "assets/logosimple.webp"
   reader-mode: true
   open-graph: true
-  favicon: "logosimple.webp"
+  favicon: "assets/logosimple.webp"
   site-url: https://reutherlab.netlify.app
   repo-url: https://github.com/keefereuther/quarto_website
   page-navigation: true
   bread-crumbs: true
   navbar:
-    logo: logosimple.webp
+    logo: assets/logosimple.webp
     right:
       - text: "About"
         menu: 
           - href: docs/about/keefe/index.qmd
             text: Keefe Reuther
-          - href: people.qmd
+          - href: docs/about/people/index.qmd
             text: People
           - href: docs/about/contact/index.qmd
             text: Contact Us
-      - href: teaching.qmd
+      - href: docs/teaching/index.qmd
         text: Teaching
-      - href: scholarship.qmd
+      - href: docs/scholarship/index.qmd
         text: Scholarship
       - href: docs/blog/index.qmd
         text: Blog
@@ -32,11 +32,11 @@ website:
   page-footer:
     border: true
     left: |
-      [![](/ucsdbioweb.png){fig-alt="UCSD Bio" width=100px}](https://biosci.ucsd.edu) 
-      [![](/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
-      [![](/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
+      [![](/assets/ucsdbioweb.png){fig-alt="UCSD Bio" width=100px}](https://biosci.ucsd.edu) 
+      [![](/assets/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
+      [![](/assets/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
     right:
-      - text: "This site combines my original content with AI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther."
+      - text: "This site combines my original content with GAI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther."
       - icon: github
         href: https://github.com/keefereuther
         aria-label: Keefe Reuther GitHub

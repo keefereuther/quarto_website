@@ -18,7 +18,7 @@ about:
 
 I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula that leverage **generative AI** to teach **experimental design**, **statistics**, and **computer programming** to undergraduate biologists.
 
-[**Curriculum Vitae**](/KeefeReutherCV.pdf)
+[**Curriculum Vitae**](KeefeReutherCV.pdf)
 
 <a href="mailto:kdreuther@ucsd.edu">Send Email</a>
 

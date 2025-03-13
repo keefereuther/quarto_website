@@ -3,7 +3,7 @@ title: "Welcome!"
 about:
   id: intro
   template: jolla
-  image: pastellogo.webp
+  image: /assets/pastellogo.webp
   image-shape: round
   image-width: 10em
 listing:
@@ -12,7 +12,7 @@ listing:
   fields: [title, date]
   sort: date desc
   contents:
-    - "papers/*.qmd"
+    - "docs/papers/*.qmd"
     - "docs/blog/posts/*/index.qmd"
   sort-ui: false
   max-items: 5
@@ -23,6 +23,45 @@ listing:
   table-striped: true
 ---
 
+```{=html}
+<script>
+// Force scroll to top when page loads - using multiple event handlers to ensure it happens
+document.addEventListener("DOMContentLoaded", function() {
+  forceScrollToTop();
+});
+
+window.addEventListener("load", function() {
+  forceScrollToTop();
+});
+
+// Use this function to aggressively keep the page at the top
+function forceScrollToTop() {
+  // Immediately scroll to top
+  window.scrollTo(0, 0);
+  
+  // Set a timer to repeatedly scroll to top for a few seconds after page load
+  // This helps override any attempts by elements (like iframes) to scroll the page
+  var scrollInterval;
+  var scrollAttempts = 0;
+  var maxScrollAttempts = 20; // Try for about 2 seconds
+  
+  scrollInterval = setInterval(function() {
+    window.scrollTo(0, 0);
+    scrollAttempts++;
+    
+    if (scrollAttempts >= maxScrollAttempts) {
+      clearInterval(scrollInterval);
+    }
+  }, 100); // Check every 100ms
+}
+
+// Set scroll position immediately
+setTimeout(function() {
+  window.scrollTo(0, 0);
+}, 0);
+</script>
+```
+
 ::: {#intro}
 <br></br>
 
@@ -30,9 +69,18 @@ listing:
 
 ------------------------------------------------------------------------
 
-If you want to check out the courses I teach, visit the [teaching](/teaching.qmd) section. You can find my research projects and educational tools in the [scholarship](/scholarship.qmd) section. The wonderful people I work with are [here](/people.qmd). If you would like to speak with me or possibly become a collaborator or member of the team, [contact me](/docs/about/contact/index.qmd) (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, AI, and education, head over to my [blog](/docs/blog/index.qmd).
+If you want to check out the courses I teach, visit the [teaching](/docs/teaching/index.qmd) section. You can find my research projects and educational tools in the [scholarship](/docs/scholarship/index.qmd) section. If you would like to reach out to me, please visit the [contact me](/docs/about/contact/index.qmd) page. Finally, if you want to read about teaching, biology, science process skills, and AI, head over to my [blog](/docs/blog/index.qmd).
 
 ------------------------------------------------------------------------
+:::
+
+### Upcoming Talk April 4, 2025 @ 11am PST
+
+::: {.callout-note appearance="simple"}
+
+![](assets/keefe_PDET_2025.png){fig-align="center" width="80%"}
+
+Join me at the Professional Development in Experimental Teaching (PDET) SABER seminar, where I'll be sharing insights on integrating generative AI into biology education. See you there!
 :::
 
 <br></br>
@@ -52,13 +100,14 @@ It'll answer you in 10 words or less! Try it out below:
 [Gradio OpenAI Chatbot](https://huggingface.co/spaces/keefereuther/Gradio_Embeddable_Chatbot)
 
 ```{=html}
-
 <iframe
     src="https://keefereuther-gradio-embeddable-chatbot.hf.space"
     style="border: 1px solid;"
     width="100%"
     height="400"
+    loading="lazy"
 ></iframe>
 ```
-This chatbot uses OpenAI's GPT models and may produce errors. Always confirm its responses with classroom materials and reputable scientific resources.
+
+This chatbot uses OpenAI's GPT-4o model and may produce errors. Always confirm its responses with reputable resources.
 :::

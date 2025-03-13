@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./logosimple.webp" rel="icon">
+<link href="./assets/logosimple.webp" rel="icon">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -133,7 +133,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 <link rel="alternate" type="application/rss+xml" title="The Reuther Lab" href="index.xml" data-external="1"><meta property="og:title" content="Welcome! – The Reuther Lab">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://reutherlab.netlify.app/logosimple.webp">
+<meta property="og:image" content="https://reutherlab.netlify.app/assets/logosimple.webp">
 <meta property="og:site_name" content="The Reuther Lab">
 </head>
 
@@ -145,7 +145,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logosimple.webp" alt="" class="navbar-logo">
+    <img src="./assets/logosimple.webp" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">The Reuther Lab</span>
@@ -167,7 +167,7 @@ window.Quarto = {
  <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./people.html">
+    <a class="dropdown-item" href="./docs/about/people/index.html">
  <span class="dropdown-text">People</span></a>
   </li>  
         <li>
@@ -177,11 +177,11 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./teaching.html"> 
+    <a class="nav-link" href="./docs/teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./scholarship.html"> 
+    <a class="nav-link" href="./docs/scholarship/index.html"> 
 <span class="menu-text">Scholarship</span></a>
   </li>  
   <li class="nav-item">
@@ -210,19 +210,56 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#recent-news" id="toc-recent-news" class="nav-link active" data-scroll-target="#recent-news">Recent News</a></li>
+  <li><a href="#upcoming-talk-april-4-2025-11am-pst" id="toc-upcoming-talk-april-4-2025-11am-pst" class="nav-link active" data-scroll-target="#upcoming-talk-april-4-2025-11am-pst">Upcoming Talk April 4, 2025 @ 11am PST</a></li>
+  <li><a href="#recent-news" id="toc-recent-news" class="nav-link" data-scroll-target="#recent-news">Recent News</a></li>
   <li><a href="#an-embeddable-open-source-and-customizable-chatbot" id="toc-an-embeddable-open-source-and-customizable-chatbot" class="nav-link" data-scroll-target="#an-embeddable-open-source-and-customizable-chatbot">An Embeddable Open Source and Customizable Chatbot</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(15)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Experimental Design">Experimental Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Instructor">Instructor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Instructors">Instructors <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Undergraduate">Undergraduate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Undergraduates">Undergraduates <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Experimental Design">Experimental Design <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Instructor">Instructor <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Instructors">Instructors <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Undergraduate">Undergraduate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Undergraduates">Undergraduates <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
 
+<script>
+// Force scroll to top when page loads - using multiple event handlers to ensure it happens
+document.addEventListener("DOMContentLoaded", function() {
+  forceScrollToTop();
+});
+
+window.addEventListener("load", function() {
+  forceScrollToTop();
+});
+
+// Use this function to aggressively keep the page at the top
+function forceScrollToTop() {
+  // Immediately scroll to top
+  window.scrollTo(0, 0);
+  
+  // Set a timer to repeatedly scroll to top for a few seconds after page load
+  // This helps override any attempts by elements (like iframes) to scroll the page
+  var scrollInterval;
+  var scrollAttempts = 0;
+  var maxScrollAttempts = 20; // Try for about 2 seconds
+  
+  scrollInterval = setInterval(function() {
+    window.scrollTo(0, 0);
+    scrollAttempts++;
+    
+    if (scrollAttempts >= maxScrollAttempts) {
+      clearInterval(scrollInterval);
+    }
+  }, 100); // Check every 100ms
+}
+
+// Set scroll position immediately
+setTimeout(function() {
+  window.scrollTo(0, 0);
+}, 0);
+</script>
 <div class="quarto-about-jolla">
-  <img src="pastellogo.webp" class="about-image
+  <img src="/assets/pastellogo.webp" class="about-image
   round " style="height: 10em; width: 10em;">
  <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -235,13 +272,31 @@ window.Quarto = {
 <section id="we-create-and-evaluate-tools-that-help-learners-explore-the-intersection-of-biology-statistics-experimental-design-generative-ai-and-data-science." class="level4">
 <h4 data-anchor-id="we-create-and-evaluate-tools-that-help-learners-explore-the-intersection-of-biology-statistics-experimental-design-generative-ai-and-data-science.">We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, generative AI, and data science.</h4>
 <hr>
-<p>If you want to check out the courses I teach, visit the <a href="./teaching.html">teaching</a> section. You can find my research projects and educational tools in the <a href="./scholarship.html">scholarship</a> section. The wonderful people I work with are <a href="./people.html">here</a>. If you would like to speak with me or possibly become a collaborator or member of the team, <a href="./docs/about/contact/index.html">contact me</a> (especially if you are a UCSD undergrad!!!). Finally, if you want to read about teaching, biology, AI, and education, head over to my <a href="./docs/blog/index.html">blog</a>.</p>
+<p>If you want to check out the courses I teach, visit the <a href="./docs/teaching/index.html">teaching</a> section. You can find my research projects and educational tools in the <a href="./docs/scholarship/index.html">scholarship</a> section. If you would like to reach out to me, please visit the <a href="./docs/about/contact/index.html">contact me</a> page. Finally, if you want to read about teaching, biology, science process skills, and AI, head over to my <a href="./docs/blog/index.html">blog</a>.</p>
 <hr>
 </section>
 </div>  
 </div>
 
+<section id="upcoming-talk-april-4-2025-11am-pst" class="level3">
+<h3 data-anchor-id="upcoming-talk-april-4-2025-11am-pst">Upcoming Talk April 4, 2025 @ 11am PST</h3>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/keefe_PDET_2025.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<p>Join me at the Professional Development in Experimental Teaching (PDET) SABER seminar, where I’ll be sharing insights on integrating generative AI into biology education. See you there!</p>
+</div>
+</div>
+</div>
 <p><br><br></p>
+</section>
 <section id="recent-news" class="level3">
 <h3 data-anchor-id="recent-news">Recent News</h3>
 <div id="listing-news" class="quarto-listing quarto-listing-container-table">
@@ -257,7 +312,16 @@ Date
 </tr>
 </thead>
 <tbody class="list">
-<tr data-index="0" data-categories="AI,Undergraduate,Instructor" data-listing-date-sort="1729062000000" data-listing-file-modified-sort="1729181803662" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="610" data-listing-title-sort="A Brief Guide to Data Privacy and GenAI Chatbots" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="0" data-listing-date-sort="1738656000000" data-listing-file-modified-sort="1738717597367" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="570" data-listing-title-sort="Making a better chatbot" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<a href="./docs/blog/posts/chatbottestapp/index.html" class="title listing-title">Making a better chatbot</a>
+</td>
+<td>
+<span class="listing-date">Feb 4, 2025</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="AI,Undergraduate,Instructor" data-listing-date-sort="1729062000000" data-listing-file-modified-sort="1729181803662" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="610" data-listing-title-sort="A Brief Guide to Data Privacy and GenAI Chatbots" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./docs/blog/posts/aiprivacypolicy/index.html" class="title listing-title">A Brief Guide to Data Privacy and GenAI Chatbots</a>
@@ -266,7 +330,7 @@ Date
 <span class="listing-date">Oct 16, 2024</span>
 </td>
 </tr>
-<tr data-index="1" data-categories="AI,Instructors" data-listing-date-sort="1708070400000" data-listing-file-modified-sort="1729181174970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415" data-listing-title-sort="SABER Generative AI Special Interest Group" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-categories="AI,Instructors" data-listing-date-sort="1708070400000" data-listing-file-modified-sort="1729181174970" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="415" data-listing-title-sort="SABER Generative AI Special Interest Group" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./docs/blog/posts/genaisig/index.html" class="title listing-title">SABER Generative AI Special Interest Group</a>
@@ -275,7 +339,7 @@ Date
 <span class="listing-date">Feb 16, 2024</span>
 </td>
 </tr>
-<tr data-index="2" data-categories="Experimental Design,Statistics,Undergraduates" data-listing-date-sort="1705478400000" data-listing-file-modified-sort="1729181306603" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1263" data-listing-title-sort="The Science of Asking: How to Formulate Questions and Hypotheses in Research" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-categories="Experimental Design,Statistics,Undergraduates" data-listing-date-sort="1705478400000" data-listing-file-modified-sort="1729181306603" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1263" data-listing-title-sort="The Science of Asking: How to Formulate Questions and Hypotheses in Research" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <a href="./docs/blog/posts/statistical_thinking/index.html" class="title listing-title">The Science of Asking: How to Formulate Questions and Hypotheses in Research</a>
@@ -284,19 +348,10 @@ Date
 <span class="listing-date">Jan 17, 2024</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705038124873" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="274" data-listing-title-sort="Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach" data-listing-filename-sort="saberwestML.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="4" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705535207061" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="383" data-listing-title-sort="Crafting Your GenAI &amp; AI Policy Guide" data-listing-filename-sort="index.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
-<a href="./papers/saberwestML.html" class="title listing-title">Intentionally Setting More Equitable Grading Policies: A Machine Learning Approach</a>
-</td>
-<td>
-<span class="listing-date">Jan 13, 2024</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-date-sort="1705132800000" data-listing-file-modified-sort="1705038087364" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="215" data-listing-title-sort="Gathering Perspectives on Generative AI in Undergraduate Biology Education" data-listing-filename-sort="saberwestsurvey.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<a href="./papers/saberwestsurvey.html" class="title listing-title">Gathering Perspectives on Generative AI in Undergraduate Biology Education</a>
+<a href="./docs/blog/posts/craftingaipolicy/index.html" class="title listing-title">Crafting Your GenAI &amp; AI Policy Guide</a>
 </td>
 <td>
 <span class="listing-date">Jan 13, 2024</span>
@@ -314,9 +369,8 @@ No matching items
 <h3 data-anchor-id="an-embeddable-open-source-and-customizable-chatbot">An Embeddable Open Source and Customizable Chatbot</h3>
 <p>It’ll answer you in 10 words or less! Try it out below:</p>
 <p><a href="https://huggingface.co/spaces/keefereuther/Gradio_Embeddable_Chatbot">Gradio OpenAI Chatbot</a></p>
-
-<iframe src="https://keefereuther-gradio-embeddable-chatbot.hf.space" style="border: 1px solid;" width="100%" height="400"></iframe>
-<p>This chatbot uses OpenAI’s GPT models and may produce errors. Always confirm its responses with classroom materials and reputable scientific resources.</p>
+<iframe src="https://keefereuther-gradio-embeddable-chatbot.hf.space" style="border: 1px solid;" width="100%" height="400" loading="lazy"></iframe>
+<p>This chatbot uses OpenAI’s GPT-4o model and may produce errors. Always confirm its responses with reputable resources.</p>
 </section>
 
 
@@ -885,7 +939,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><a href="https://biosci.ucsd.edu"><img src="./ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src="./ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src="./UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></p>
+<p><a href="https://biosci.ucsd.edu"><img src="./assets/ucsdbioweb.png" class="img-fluid" alt="UCSD Bio" width="100"></a> <a href="https://biology.ucsd.edu/research/academic-departments/ebe/"><img src="./assets/ebewebbug.png" class="img-fluid" alt="UCSD EBE" width="100"></a> <a href="https://ucsd.edu"><img src="./assets/UCSanDiegoLogo-BlueGold.png" class="img-fluid" alt="UCSD" width="100"></a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
@@ -893,7 +947,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
- This site combines my original content with AI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther.
+ This site combines my original content with GAI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther.
   </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/keefereuther">

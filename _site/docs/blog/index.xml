@@ -10,12 +10,96 @@
 <atom:link href="https://reutherlab.netlify.app/docs/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://reutherlab.netlify.app/logosimple.webp</url>
+<url>https://reutherlab.netlify.app/assets/logosimple.webp</url>
 <title>The Reuther Lab</title>
 <link>https://reutherlab.netlify.app/docs/blog/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Wed, 16 Oct 2024 07:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 04 Feb 2025 08:00:00 GMT</lastBuildDate>
+<item>
+  <title>Making a better chatbot</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<em>“Discovering the unexpected is more important than confirming the known.”</em>- George E. P. Box
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
+<section id="what-is-this-app" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-this-app">What Is This App?</h2>
+<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as: - <strong>Language:</strong> Choose the language in which your chatbot responds. - <strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are. - <strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be. - <strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p>
+<p>The app is hosted publicly on <a href="https://keefereuther-openai-chatbot-tester.hf.space">Hugging Face Spaces</a>, making it accessible to anyone interested in exploring the benefits of conversational AI in education.</p>
+</section>
+<section id="why-should-you-try-it" class="level2">
+<h2 class="anchored" data-anchor-id="why-should-you-try-it">Why Should You Try It?</h2>
+<p>Using this app, educators can: - <strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources. - <strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior. - <strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style. - <strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>OpenAI API Key – Obtain one from <a href="https://platform.openai.com/api-keys">OpenAI</a></p>
+</section>
+<section id="how-it-works-a-step-by-step-guide" class="level2">
+<h2 class="anchored" data-anchor-id="how-it-works-a-step-by-step-guide">How It Works: A Step-by-Step Guide</h2>
+<ol type="1">
+<li><p><strong>Visit the App:</strong><br>
+Head over to <a href="https://keefereuther-openai-chatbot-tester.hf.space">keefereuther-openai-chatbot-tester.hf.space</a> to launch the application.</p></li>
+<li><p><strong>Configure Your Chatbot:</strong></p>
+<ul>
+<li><strong>API Key:</strong> Enter your OpenAI API key in the sidebar to enable full chat functionality.</li>
+<li><strong>Select the Model:</strong> Choose the chatbot model that best suits your needs.</li>
+<li><strong>Adjust Settings:</strong> Use the sliders to modify the temperature, maximum tokens, frequency, and presence penalties.</li>
+<li><strong>Set the Language:</strong> Pick your preferred language so the chatbot responds accordingly.</li>
+<li><strong>Customize System Instructions:</strong> Edit the system instructions to direct how the chatbot should interact with students.</li>
+</ul></li>
+<li><p><strong>Test and Experiment:</strong><br>
+Type a message in the chat box to see how your customized settings influence the chatbot’s responses. Adjust the parameters as needed until you find the perfect configuration for your classroom.</p></li>
+</ol>
+</section>
+<section id="how-this-tool-benefits-your-classroom" class="level2">
+<h2 class="anchored" data-anchor-id="how-this-tool-benefits-your-classroom">How This Tool Benefits Your Classroom</h2>
+<ul>
+<li><strong>Interactive Learning:</strong> Engage students with a dynamic, responsive chatbot that can supplement your lectures and materials.</li>
+<li><strong>Quick Experimentation:</strong> See in real time how different configurations affect chatbot behavior, enabling you to refine its performance quickly.</li>
+<li><strong>Easy Integration:</strong> Once you’re satisfied with your setup, you can use these setting to clone and customize your own embeddable app at <a href="https://huggingface.co/spaces/keefereuther/ST_basebot">Hugging Face Spaces</a></li>
+</ul>
+</section>
+<section id="get-started-today" class="level2">
+<h2 class="anchored" data-anchor-id="get-started-today">Get Started Today!</h2>
+<p>This tool is designed with non-technical educators in mind. Its intuitive interface and straightforward controls mean you can start experimenting with conversational AI in minutes. Whether you’re looking to spark student engagement, provide round-the-clock assistance, or simply explore the possibilities of AI in education, the OpenAI Chatbot Prompt and Parameter Tester is a great place to start.</p>
+<p>If you are interested in learning more or arranging a workshop to build customized apps at no cost to your students, then please reach out at kdreuther@ucsd.edu</p>
+<p>Happy teaching!</p>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {Making a Better Chatbot},
+  date = {2025-02-04},
+  url = {https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
+4, 2025. <a href="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/">https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</a>.
+</div></div></section></div> ]]></description>
+  <guid>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</guid>
+  <pubDate>Tue, 04 Feb 2025 08:00:00 GMT</pubDate>
+</item>
 <item>
   <title>A Brief Guide to Data Privacy and GenAI Chatbots</title>
   <dc:creator>Keefe Reuther</dc:creator>
