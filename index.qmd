@@ -72,18 +72,6 @@ setTimeout(function() {
 If you want to check out the courses I teach, visit the [teaching](/docs/teaching/index.qmd) section. You can find my research projects and educational tools in the [scholarship](/docs/scholarship/index.qmd) section. If you would like to reach out to me, please visit the [contact me](/docs/about/contact/index.qmd) page. Finally, if you want to read about teaching, biology, science process skills, and AI, head over to my [blog](/docs/blog/index.qmd).
 
 ------------------------------------------------------------------------
-:::
-
-### Upcoming Talk April 4, 2025 @ 11am PST
-
-::: {.callout-note appearance="simple"}
-
-![](assets/keefe_PDET_2025.png){fig-align="center" width="80%"}
-
-Join me at the Professional Development in Experimental Teaching (PDET) SABER seminar, where I'll be sharing insights on integrating generative AI into biology education. See you there!
-:::
-
-<br></br>
 
 ### Recent News
 
