@@ -231,9 +231,9 @@ Skip to main content
 
 
 
-<p><a href="https://qubeshub.org/community/groups/coursesource">CourseSource Teaching Tools and Strategies</a></p>
+<p><a href="https://qubeshub.org/community/groups/coursesource/publications?id=5776" class="btn btn-primary">Read the paper on QUBESHub</a></p>
 <hr>
-<p>Reuther, K., Mueller, L. O., Constantian, G., &amp; Nguyen, A. (2026). Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry. <em>CourseSource Teaching Tools and Strategies</em>.</p>
+<p>Reuther, K., Mueller, L. O., Constantian, G., &amp; Nguyen, A. (2026). <a href="https://qubeshub.org/community/groups/coursesource/publications?id=5776">Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry</a>. <em>CourseSource Teaching Tools and Strategies</em>.</p>
 <p>Schema Study is a free, open-source web application that converts a spreadsheet of course terms into an AI-powered study coach for biology students. Using a Socratic questioning approach, the app provides personalized formative feedback and guided inquiry without revealing direct answers. During a pilot in a 225-student introductory biology course, 72% of students reported they would reuse the tool in future courses, and each additional day per week of use more than doubled the likelihood of recommending it. Schema Study enhanced students’ AI self-efficacy and beliefs about the relevance of AI to their education and careers.</p>
 <p>The production version is freely available at <a href="https://huggingface.co/spaces/keefereuther/Schema_Study">https://huggingface.co/spaces/keefereuther/Schema_Study</a>.</p>
 

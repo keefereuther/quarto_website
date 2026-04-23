@@ -38,7 +38,7 @@ The S2 User Manual walks you through every step of setting up your own copy — 
 
 | | Resource | Description |
 |---|---|---|
-| [{{< fa file-pdf >}} Download](schema-study/SchemaStudy_manuscript.pdf){download="SchemaStudy_manuscript"} | **Published Paper (PDF)** | Reuther et al. (2026), *CourseSource* |
+| [{{< fa external-link-alt >}} Read online](https://qubeshub.org/community/groups/coursesource/publications?id=5776) | **Published Paper** | Reuther et al. (2026), *CourseSource* — open access on QUBESHub |
 | [{{< fa file-csv >}} Download](schema-study/S1_terms_example.csv){download="S1_terms_example"} | **S1 — Example Terms CSV** | Template spreadsheet to build your own term list |
 | [{{< fa file-pdf >}} Download](schema-study/S2_user_manual.pdf){download="S2_SchemaStudy_UserManual"} | **S2 — User Manual** | Full instructor setup guide (start here) |
 | [{{< fa file-word >}} Download](schema-study/S3_student_activities.docx){download="S3_student_activities"} | **S3 — Student Activities** | Ready-to-use classroom activities |
@@ -46,7 +46,7 @@ The S2 User Manual walks you through every step of setting up your own copy — 
 | [{{< fa fa-file-powerpoint >}} Download](schema-study/S5_teaching_slides.pptx){download="S5_teaching_slides"} | **S5 — Teaching Slides** | Slides for introducing Schema Study to your class |
 | [{{< fa file-word >}} Download](schema-study/S6_workshop_surveys.docx){download="S6_workshop_surveys"} | **S6 — Workshop Surveys** | Survey instruments for instructor-facing workshops |
 
-*Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry. CourseSource Teaching Tools and Strategies.*
+*Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). [Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry](https://qubeshub.org/community/groups/coursesource/publications?id=5776). CourseSource Teaching Tools and Strategies.*
 
 ---
 

@@ -20,7 +20,7 @@ Schema Study is a no-code, open-source Streamlit app that converts a course term
 - Each additional day per week of use more than doubled the likelihood of recommending it to peers
 - Increased student AI self-efficacy and beliefs about AI relevance to their education and careers
 
-*Published: Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry. CourseSource Teaching Tools and Strategies.*
+*Published: Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). [Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry](https://qubeshub.org/community/groups/coursesource/publications?id=5776). CourseSource Teaching Tools and Strategies.*
 
 [**Launch Schema Study**](https://huggingface.co/spaces/keefereuther/Schema_Study){.btn .btn-primary}
 [**Source Code**](https://huggingface.co/spaces/keefereuther/Schema_Study/tree/main){.btn .btn-outline-secondary}

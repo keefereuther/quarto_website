@@ -24,7 +24,7 @@ about:
 
 I am an Assistant Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work sits at the intersection of **generative AI** and **undergraduate biology education** — I build open-source AI tools, study how students and instructors engage with them, and teach others how to design and evaluate their own.
 
-My flagship tool, [Schema Study](https://huggingface.co/spaces/keefereuther/Schema_Study), is a no-code LLM application for asynchronous student learning. It was published in *CourseSource* in 2026 and piloted with over 200 students. I also co-founded the [SABER Generative AI Special Interest Group](https://saberbio.wildapricot.org/generative-AI-SIG) and co-organized the UC San Diego Generative AI Faculty Learning Community — communities that connect educators thinking carefully about AI in higher education.
+My flagship tool, [Schema Study](https://huggingface.co/spaces/keefereuther/Schema_Study), is a no-code LLM application for asynchronous student learning. It was [published in *CourseSource*](https://qubeshub.org/community/groups/coursesource/publications?id=5776) in 2026 and piloted with over 200 students. I also co-founded the [SABER Generative AI Special Interest Group](https://saberbio.wildapricot.org/generative-AI-SIG) and co-organized the UC San Diego Generative AI Faculty Learning Community — communities that connect educators thinking carefully about AI in higher education.
 
 I'm also a biologist. I teach BILD 5 (*Data Analysis & Design for Biologists*), a course centered on experimental design, statistics, and R programming, as well as courses in ecology and evolutionary biology.
 
