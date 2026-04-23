@@ -1,150 +1,47 @@
 ---
-title: "Contact me"
+title: "Contact"
 format:
   html:
     toc: true
     html-math-method: katex
 self-contained: true
-type: form
 ---
 
-You can use this form to ask me about collaborations, consultations, speaking engagements, if you have thoughts, ideas, suggestions, or questions about any of my education resources.
+The best way to reach me is by email: **[kdreuther@ucsd.edu](mailto:kdreuther@ucsd.edu)**. A short note about what you're working on and what you need is plenty.
 
-#### Note to those interested in joining the lab:
+Below are the kinds of conversations I'm most often asked about.
 
-  It is important to me that any work completed in service to the lab's research goals is fairly compensated. Therefore, I only take on students via paid listings I post on the [REAL portal](https://real.ucsd.edu/) or through the [UCSD Academic Internship Program](https://aip.ucsd.edu). 
-  
-  **CURRENTLY, I AM NOT ACCEPTING ANY NEW STUDENTS IN 2025.**
+## Workshops and seminars
 
-**Interested in writing for my blog?** Send me at least one example of writing that you are particularly proud of. 
+I run workshops and invited seminars for departments, programs, teaching centers, and companies. Common topics: **curricular design with AI**, **active learning**, **assessment design in the age of AI**, and **prompt engineering for educators**. Formats range from a one-hour talk to a multi-day hands-on workshop.
 
-**Interested in creating learning tools?** You must have completed my BILD 5 course successfully OR have taken a comparable comfort with creating web applications. Streamlit (Python) and R Shiny (R) are my preferred frameworks for creating web applications.
+## AI collaborations on pedagogical projects
 
-<form id="fs-frm" name="simple-contact-form" accept-charset="utf-8" action="https://formspree.io/f/xlevjneo" method="post">
+If you're working on a teaching or learning project and need someone on the AI side — scoping the tool, designing the pedagogy around it, building a prototype, or running a study on how students actually use it — I'm interested. I'm especially keen on projects in biology, but I work across STEM and the humanities.
 
-<fieldset id="fs-frm-inputs">
+## Help installing or adapting my web apps
 
-<label for="full-name">Full Name</label> <input type="text" name="name" id="full-name" placeholder="First and Last" required=""> <label for="email-address">Email Address</label> <input type="email" name="_replyto" id="email-address" placeholder="email@domain.tld" required=""> <label for="message">Message</label>
+My tools ([Schema Study](/docs/genai/tools/index.qmd), AI Personas, the embeddable chatbot template) are designed to be set up without coding, but "no coding required" and "zero friction" aren't the same thing. If you're stuck on a Hugging Face fork, an API key, an LMS embed, or adapting a tool for your course, send me an email and I'll help you get it running.
 
-```{=html}
-<textarea rows="5" name="message" id="message" placeholder="Aenean lacinia bibendum nulla sed consectetur. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla nullam quis risus." required=""></textarea>
-```
-<input type="hidden" name="_subject" id="email-subject" value="Contact Form Submission">
+## Joining the lab
 
-</fieldset>
+I take on students for **research credit** and, when funding allows, through paid listings on the [REAL portal](https://real.ucsd.edu/) and the [UCSD Academic Internship Program](https://aip.ucsd.edu).
 
-<input type="submit" value="Submit">
+I also have **side projects that I'm actively looking for undergraduates to lead and push forward**. Two current directions:
 
-</form>
+- **Machine learning and grading equity in the classroom.** Extending a machine-learning approach to detecting and minimizing bias in classroom grading. See my SABER West poster, [*Machine Learning Inequity in the Classroom*](/docs/scholarship/papers/saberwestML.qmd), for the starting point.
+- **Human inability to spatially sample randomly.** Designing an in-class active learning lesson that takes students through a complete investigative cycle demonstrating why science has to work hard to minimize sampling bias — using the well-documented human failure to sample space randomly as the case study.
 
-```{=html}
-<style>/* reset */
-#fs-frm input,
-#fs-frm select,
-#fs-frm textarea,
-#fs-frm fieldset,
-#fs-frm optgroup,
-#fs-frm label,
-#fs-frm #card-element:disabled {
-  font-family: inherit;
-  font-size: 100%;
-  color: inherit;
-  border: none;
-  border-radius: 0;
-  display: block;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-#fs-frm label,
-#fs-frm legend,
-#fs-frm ::placeholder {
-  font-size: .825rem;
-  margin-bottom: .5rem;
-  padding-top: .2rem;
-  display: flex;
-  align-items: baseline;
-}
+If either direction interests you, email me with a short note about your background and what draws you to the project.
 
-/* border, padding, margin, width */
-#fs-frm input,
-#fs-frm select,
-#fs-frm textarea,
-#fs-frm #card-element {
-  border: 1px solid rgba(0,0,0,0.2);
-  background-color: rgba(255,255,255,0.9);
-  padding: .75em 1rem;
-  margin-bottom: 1.5rem;
-}
-#fs-frm input:focus,
-#fs-frm select:focus,
-#fs-frm textarea:focus {
-  background-color: white;
-  outline-style: solid;
-  outline-width: thin;
-  outline-color: gray;
-  outline-offset: -1px;
-}
-#fs-frm [type="text"],
-#fs-frm [type="email"] {
-  width: 100%;
-}
-#fs-frm [type="button"],
-#fs-frm [type="submit"],
-#fs-frm [type="reset"] {
-  width: auto;
-  cursor: pointer;
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-}
-#fs-frm [type="button"]:focus,
-#fs-frm [type="submit"]:focus,
-#fs-frm [type="reset"]:focus {
-  outline: none;
-}
-#fs-frm [type="submit"],
-#fs-frm [type="reset"] {
-  margin-bottom: 0;
-}
-#fs-frm select {
-  text-transform: none;
-}
+- **Interested in writing for the blog?** Send a short writing sample you're proud of.
+- **Interested in building learning tools?** You should have completed my BILD 5 course successfully or have comparable experience building web apps. I work mainly in Streamlit (Python) and R Shiny (R).
 
-#fs-frm [type="checkbox"] {
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-  appearance: checkbox;
-  display: inline-block;
-  width: auto;
-  margin: 0 .5em 0 0 !important;
-}
+---
 
-#fs-frm [type="radio"] {
-  -webkit-appearance: radio;
-  -moz-appearance: radio;
-  appearance: radio;
-}
+**Mailing address**
 
-/* address, locale */
-#fs-frm fieldset.locale input[name="city"],
-#fs-frm fieldset.locale select[name="state"],
-#fs-frm fieldset.locale input[name="postal-code"] {
-  display: inline;
-}
-#fs-frm fieldset.locale input[name="city"] {
-  width: 52%;
-}
-#fs-frm fieldset.locale select[name="state"],
-#fs-frm fieldset.locale input[name="postal-code"] {
-  width: 20%;
-}
-#fs-frm fieldset.locale input[name="city"],
-#fs-frm fieldset.locale select[name="state"] {
-  margin-right: 3%;
-}
-</style>
-```
-<br><br>If you are in the UCSD area or want to send me something via mail, my mailing address is:<br><br>Keefe Reuther<br>U.C. San Diego; School of Biological Sciences<br>8085 HSS Building<br>9500 Gilman Dr.<br>Mail code 0101<br>La Jolla, CA 92093
+Keefe Reuther
+UC San Diego · School of Biological Sciences
+8085 HSS Building · 9500 Gilman Dr. · Mail Code 0101
+La Jolla, CA 92093

@@ -1,23 +1,40 @@
 ---
-title: "Welcome!"
+title: "Keefe Reuther"
 about:
   id: intro
-  template: jolla
-  image: /assets/pastellogo.webp
-  image-shape: round
-  image-width: 10em
+  template: solana
+  image: /assets/keefe2.jpg
+  image-alt: "Headshot of Keefe Reuther"
+  image-shape: rounded
+  image-width: 15em
+  links:
+    - icon: orcid
+      text: ORCID
+      href: https://orcid.org/0000-0001-7638-8521
+    - icon: github
+      text: Github
+      href: https://github.com/keefereuther
+    - icon: huggingface
+      text: Hugging Face
+      href: https://huggingface.co/keefereuther
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/@TheQuestionsLab
+    - text: SABER GenAI
+      href: https://saberbio.wildapricot.org/generative-AI-SIG
 listing:
   id: news
   type: table
   fields: [title, date]
   sort: date desc
   contents:
-    - "docs/papers/*.qmd"
     - "docs/blog/posts/*/index.qmd"
+    - "docs/scholarship/papers/*.qmd"
+    - "docs/scholarship/presentations/*.qmd"
   sort-ui: false
-  max-items: 5
+  max-items: 8
   filter-ui: false
-  categories: true
+  categories: false
   feed: true
   table-hover: true
   table-striped: true
@@ -25,77 +42,36 @@ listing:
 
 ```{=html}
 <script>
-// Force scroll to top when page loads - using multiple event handlers to ensure it happens
-document.addEventListener("DOMContentLoaded", function() {
-  forceScrollToTop();
-});
-
-window.addEventListener("load", function() {
-  forceScrollToTop();
-});
-
-// Use this function to aggressively keep the page at the top
+document.addEventListener("DOMContentLoaded", function() { forceScrollToTop(); });
+window.addEventListener("load", function() { forceScrollToTop(); });
 function forceScrollToTop() {
-  // Immediately scroll to top
   window.scrollTo(0, 0);
-  
-  // Set a timer to repeatedly scroll to top for a few seconds after page load
-  // This helps override any attempts by elements (like iframes) to scroll the page
   var scrollInterval;
   var scrollAttempts = 0;
-  var maxScrollAttempts = 20; // Try for about 2 seconds
-  
   scrollInterval = setInterval(function() {
     window.scrollTo(0, 0);
     scrollAttempts++;
-    
-    if (scrollAttempts >= maxScrollAttempts) {
-      clearInterval(scrollInterval);
-    }
-  }, 100); // Check every 100ms
+    if (scrollAttempts >= 20) { clearInterval(scrollInterval); }
+  }, 100);
 }
-
-// Set scroll position immediately
-setTimeout(function() {
-  window.scrollTo(0, 0);
-}, 0);
+setTimeout(function() { window.scrollTo(0, 0); }, 0);
 </script>
 ```
 
 ::: {#intro}
-<br></br>
-
-#### We create and evaluate tools that help learners explore the intersection of biology, statistics, experimental design, generative AI, and data science.
+**I build open-source AI tools for undergraduate biology and study how students and instructors actually use them.**
 
 ------------------------------------------------------------------------
 
-If you want to check out the courses I teach, visit the [teaching](/docs/teaching/index.qmd) section. You can find my research projects and educational tools in the [scholarship](/docs/scholarship/index.qmd) section. If you would like to reach out to me, please visit the [contact me](/docs/about/contact/index.qmd) page. Finally, if you want to read about teaching, biology, science process skills, and AI, head over to my [blog](/docs/blog/index.qmd).
+Assistant Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work runs on two tracks: building generative AI tools that support active learning, and studying what actually happens when those tools land in real classrooms. I also teach experimental design, statistics, and data science — the craft of turning biological questions into rigorous answers.
+
+Start with my [AI tools](/docs/genai/tools/index.qmd), [scholarship](/docs/scholarship/index.qmd), or [blog](/docs/blog/index.qmd) — or [get in touch](/docs/about/contact/index.qmd) about a workshop, collaboration, or help setting up one of the tools in your course.
 
 ------------------------------------------------------------------------
+:::
 
-### Recent News
+## Recent Posts & Publications
 
 ::: {#news}
 :::
 
-------------------------------------------------------------------------
-
-::: <br></br>
-### An Embeddable Open Source and Customizable Chatbot
-
-It'll answer you in 10 words or less! Try it out below:
-
-[Gradio OpenAI Chatbot](https://huggingface.co/spaces/keefereuther/Gradio_Embeddable_Chatbot)
-
-```{=html}
-<iframe
-    src="https://keefereuther-gradio-embeddable-chatbot.hf.space"
-    style="border: 1px solid;"
-    width="100%"
-    height="400"
-    loading="lazy"
-></iframe>
-```
-
-This chatbot uses OpenAI's GPT-4o model and may produce errors. Always confirm its responses with reputable resources.
-:::

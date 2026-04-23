@@ -14,4 +14,6 @@ This research aims to establish a more data-driven approach to these policies us
 
 The optimized grading policies decreased the median grade difference from 5.79% to 3.07%. This highlights the potential of machine learning as a tool to address systemic inequities in education. The model will be tested on new datasets from real courses. Future study can determine evidence-based best practices for more equitable grading policies and explore implementing optimized policies in active classrooms. I am actively looking for collaborators that have experience using machine learning techniques in research as well as instructors interested in using this approach in the classroom.
 
-<embed src="Reuther SABER West 2024 ML Inequity.pdf" type="application/pdf" iframe width="100%" height="800">
+<object data="Reuther SABER West 2024 ML Inequity.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther SABER West 2024 ML Inequity.pdf">
+  <p>Your browser does not support embedded PDFs. <a href="Reuther SABER West 2024 ML Inequity.pdf">Download the PDF</a>.</p>
+</object>

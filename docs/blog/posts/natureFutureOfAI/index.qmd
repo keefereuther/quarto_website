@@ -1,0 +1,32 @@
+---
+title: "Nature's *The Future of AI*"
+date: 2025-11-25
+author: Keefe Reuther
+categories:
+  - AI
+  - Resources
+---
+
+A new immersive piece from *Nature* that might be useful for research, teaching, and personal reflection on AI:
+
+[**The Future of AI** (*Nature*, immersive)](https://www.nature.com/immersive/d41586-025-03701-5/index.html)
+
+A short video series where six people working at the forefront of AI describe what they hope the technology will do, what worries them, and how they think the public currently understands it. Interviewees include:
+
+- Mustafa Suleyman — Chief Executive, Microsoft AI
+- Pushmeet Kohli — Vice President of Research, Google DeepMind
+- Timnit Gebru — Founder and Executive Director, The Distributed AI Research Institute
+- Jared Kaplan — Co-founder and Chief Science Officer, Anthropic
+- Anima Anandkumar — Computer and Mathematical Scientist, California Institute of Technology
+- Amandeep Gill — Special Envoy for Digital and Emerging Technologies, United Nations
+
+A few discussion prompts after watching: What surprised you most? What did you disagree with, and why? Did anything shift how you think about using — or not using — AI in your classroom?
+
+---
+
+### A couple of Gemini 3 Pro experiments
+
+Also worth a look — Gemini 3 Pro is next level:
+
+- [One-prompt interactive evolution simulation](https://gemini.google.com/share/b5e6c1cbae24)
+- [One-prompt figure on sucrose hydrolysis with an auto-inserted tutor chatbot](https://gemini.google.com/share/76a962fc5de6)

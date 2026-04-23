@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Projects"
 listing:
     - id: projects
       type: grid
@@ -8,22 +8,12 @@ listing:
       image-height: 150px
       fields: [image, title, description]
       grid-columns: 2
-      contents:
-      - "projects/*.qmd"
-    - id: publications
-      type: table
-      fields: [title, date]
       sort: date desc
       contents:
-      - "papers/*.qmd"
+      - "projects/*.qmd"
 ---
 
-# Current Projects
+Ongoing and completed research projects on generative AI, active learning, and assessment in undergraduate biology.
 
 ::: {#projects}
-:::
-
-# Recent Publications and Presentations
-
-::: {#publications}
 :::

@@ -5,22 +5,741 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>The Reuther Lab</title>
-<link>https://reutherlab.netlify.app/</link>
-<atom:link href="https://reutherlab.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+<title>Keefe Reuther</title>
+<link>https://keefereuther.com/</link>
+<atom:link href="https://keefereuther.com/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://reutherlab.netlify.app/assets/logosimple.webp</url>
-<title>The Reuther Lab</title>
-<link>https://reutherlab.netlify.app/</link>
+<url>https://keefereuther.com/assets/logosimple.webp</url>
+<title>Keefe Reuther</title>
+<link>https://keefereuther.com/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Tue, 04 Feb 2025 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 24 Apr 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Teaching and Learning with AI in STEM</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/TeachingLearningAIinSTEM2026.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>Virtual Webinar · Friday, 24 April 2026 · 2:00–3:00 PM PT <a href="https://bit.ly/STEM-AI">Register: bit.ly/STEM-AI</a></p>
+<p>Presented by the Equitable AI Alliance · San Diego Community College District, UC San Diego, San Diego State University</p>
+<hr>
+<p><strong>Reuther, K.</strong> &amp; Murthy, S. (2026). <em>Teaching and Learning with AI in STEM</em>. Equitable AI Alliance Webinar. April 24, 2026.</p>
+<p>A one-hour conversation with Dr.&nbsp;Sesh Murthy (Halıcıoğlu Data Science Institute, UC San Diego) on how generative AI is reshaping STEM courses in higher education — classroom-ready tools, pedagogical approaches, and what’s actually moving the needle on student engagement and outcomes in biology, math, and beyond.</p>
+<object data="TeachingLearningAIinSTEM_Flyer.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF flyer for Teaching and Learning with AI in STEM webinar">
+<p>
+Your browser does not support embedded PDFs. <a href="TeachingLearningAIinSTEM_Flyer.pdf">Download the flyer</a>.
+</p>
+</object>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>STEM Education</category>
+  <category>Webinar</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/TeachingLearningAIinSTEM2026.html</guid>
+  <pubDate>Fri, 24 Apr 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Fake Diseases and Fake Papers</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A researcher at the University of Gothenburg invented a fake eye condition called “bixonimania,” planted two obviously bogus preprints about it (complete with shoutouts to Starfleet Academy and Sideshow Bob), and watched major AI chatbots start confidently diagnosing people with it within weeks. The kicker: the fake papers eventually got cited in peer-reviewed literature, suggesting some researchers are using AI to pull references without ever reading the actual papers.</p>
+<p><a href="https://www.nature.com/articles/d41586-026-01100-y">Read the <em>Nature</em> piece</a></p>
+<p>It also raises an interesting ethical question for the authors — whether to leave the fake preprints online. I may use this in class as a cautionary tale about information literacy.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {Fake {Diseases} and {Fake} {Papers}},
+  date = {2026-04-09},
+  url = {https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“Fake Diseases and Fake Papers.”</span>
+April 9, 2026. <a href="https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/">https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Research integrity</category>
+  <guid>https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</guid>
+  <pubDate>Thu, 09 Apr 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Are LLMs Homogenizing Our Thoughts?</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>New research from <em>Trends in Cognitive Sciences</em> with possibly the most existentially horrifying title of the year: <strong>The homogenizing effect of large language models on human expression and thought.</strong></p>
+<ul>
+<li><a href="https://www.cell.com/trends/cognitive-sciences/fulltext/S1364-6613(26)00003-3">Paper in <em>Trends in Cognitive Sciences</em></a></li>
+<li><a href="https://www.nature.com/articles/d41586-026-00781-9"><em>Nature</em> article discussing it</a></li>
+</ul>
+<p>Worth thinking about what we can specifically do in the classroom to manage this — to protect authenticity and original student voice.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {Are {LLMs} {Homogenizing} {Our} {Thoughts?}},
+  date = {2026-04-06},
+  url = {https://keefereuther.com/docs/blog/posts/llmsHomogenizing/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“Are LLMs Homogenizing Our Thoughts?”</span>
+April 6, 2026. <a href="https://keefereuther.com/docs/blog/posts/llmsHomogenizing/">https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Cognition</category>
+  <guid>https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</guid>
+  <pubDate>Mon, 06 Apr 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>AI-Enhanced Formative Assessment in Introductory Biology</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/BLC2026.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://www.pearson.com">Pearson Biology Learning Conference 2026</a></p>
+<hr>
+<p><strong>Reuther, K.</strong> (2026). <em>AI-Enhanced Formative Assessment in Introductory Biology</em>. Pearson Biology Learning Conference (BLC). March 2026.</p>
+<p>Presentation on using AI tools to deliver scalable formative feedback in large-enrollment introductory biology courses, featuring Schema Study and lessons learned from classroom research.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Assessment</category>
+  <category>Biology Education</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/BLC2026.html</guid>
+  <pubDate>Sun, 15 Mar 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>The Pro-Human AI Declaration</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A bipartisan statement on AI and human flourishing — <a href="https://humanstatement.org">humanstatement.org</a> — shared with the SABER GenAI SIG. Relevant for anyone framing classroom AI policy around human-centered use rather than prohibition or default adoption.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {The {Pro-Human} {AI} {Declaration}},
+  date = {2026-03-10},
+  url = {https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“The Pro-Human AI Declaration.”</span> March
+10, 2026. <a href="https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/">https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Policy</category>
+  <guid>https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</guid>
+  <pubDate>Tue, 10 Mar 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>AI and Authenticity — A Piece Worth Reading</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/aiAuthenticity/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A piece my partner, Lindsay Riedel Reuther, just wrote that I think this community will appreciate:</p>
+<p><a href="https://www.linkedin.com/posts/lriedel_if-youre-wondering-whether-this-was-written-activity-7429986414613696512-KZwa/">Read Lindsay’s LinkedIn post</a></p>
+<p>It’s about a tension many of us are living in right now: we’re encouraged to use generative AI (especially in professional settings), but we’re also implicitly pressured to make sure it doesn’t look like we did. Lindsay comes at it from a business/workplace lens, with a focus on trust, integrity, and what “authentic” communication even means in a human+AI world.</p>
+<p>If you’ve been thinking about how norms around AI use are shifting — and what we should actually value when we read someone’s writing — there’s a lot to chew on here.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {AI and {Authenticity} — {A} {Piece} {Worth} {Reading}},
+  date = {2026-02-27},
+  url = {https://keefereuther.com/docs/blog/posts/aiAuthenticity/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“AI and Authenticity — A Piece Worth
+Reading.”</span> February 27, 2026. <a href="https://keefereuther.com/docs/blog/posts/aiAuthenticity/">https://keefereuther.com/docs/blog/posts/aiAuthenticity/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Teaching</category>
+  <guid>https://keefereuther.com/docs/blog/posts/aiAuthenticity/</guid>
+  <pubDate>Fri, 27 Feb 2026 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Putting the AI in Active Learning: A Framework for Building AI-integrated Activities</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/EMIWorkshop2026.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://www.fulbright.org.tw">Fulbright Taiwan Foundation EMI Workshop</a></p>
+<hr>
+<p><strong>Reuther, K.</strong> (2026). <em>Putting the AI in Active Learning: A Framework for Building AI-integrated Activities</em>. Fulbright Taiwan Foundation English as a Medium of Instruction (EMI) Workshop. February 2–13, 2026. UC San Diego.</p>
+<p>An intensive workshop for Taiwanese university faculty on integrating generative AI into English-medium instruction. Participants explored frameworks for designing AI-enhanced active learning activities, with hands-on practice using tools like Schema Study and AI Personas. The workshop was hosted at UC San Diego as part of the Fulbright Taiwan Foundation EMI professional development series.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Active Learning</category>
+  <category>Workshop</category>
+  <category>International</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/EMIWorkshop2026.html</guid>
+  <pubDate>Sat, 07 Feb 2026 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry</title>
+  <link>https://keefereuther.com/docs/scholarship/papers/SchemaStudy2026.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://qubeshub.org/community/groups/coursesource">CourseSource Teaching Tools and Strategies</a></p>
+<hr>
+<p>Reuther, K., Mueller, L. O., Constantian, G., &amp; Nguyen, A. (2026). Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry. <em>CourseSource Teaching Tools and Strategies</em>.</p>
+<p>Schema Study is a free, open-source web application that converts a spreadsheet of course terms into an AI-powered study coach for biology students. Using a Socratic questioning approach, the app provides personalized formative feedback and guided inquiry without revealing direct answers. During a pilot in a 225-student introductory biology course, 72% of students reported they would reuse the tool in future courses, and each additional day per week of use more than doubled the likelihood of recommending it. Schema Study enhanced students’ AI self-efficacy and beliefs about the relevance of AI to their education and careers.</p>
+<p>The production version is freely available at <a href="https://huggingface.co/spaces/keefereuther/Schema_Study">https://huggingface.co/spaces/keefereuther/Schema_Study</a>.</p>
+
+
+
+ ]]></description>
+  <guid>https://keefereuther.com/docs/scholarship/papers/SchemaStudy2026.html</guid>
+  <pubDate>Thu, 01 Jan 2026 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Nature’s The Future of AI</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A new immersive piece from <em>Nature</em> that might be useful for research, teaching, and personal reflection on AI:</p>
+<p><a href="https://www.nature.com/immersive/d41586-025-03701-5/index.html"><strong>The Future of AI</strong> (<em>Nature</em>, immersive)</a></p>
+<p>A short video series where six people working at the forefront of AI describe what they hope the technology will do, what worries them, and how they think the public currently understands it. Interviewees include:</p>
+<ul>
+<li>Mustafa Suleyman — Chief Executive, Microsoft AI</li>
+<li>Pushmeet Kohli — Vice President of Research, Google DeepMind</li>
+<li>Timnit Gebru — Founder and Executive Director, The Distributed AI Research Institute</li>
+<li>Jared Kaplan — Co-founder and Chief Science Officer, Anthropic</li>
+<li>Anima Anandkumar — Computer and Mathematical Scientist, California Institute of Technology</li>
+<li>Amandeep Gill — Special Envoy for Digital and Emerging Technologies, United Nations</li>
+</ul>
+<p>A few discussion prompts after watching: What surprised you most? What did you disagree with, and why? Did anything shift how you think about using — or not using — AI in your classroom?</p>
+<hr>
+<section id="a-couple-of-gemini-3-pro-experiments" class="level3">
+<h3 class="anchored" data-anchor-id="a-couple-of-gemini-3-pro-experiments">A couple of Gemini 3 Pro experiments</h3>
+<p>Also worth a look — Gemini 3 Pro is next level:</p>
+<ul>
+<li><a href="https://gemini.google.com/share/b5e6c1cbae24">One-prompt interactive evolution simulation</a></li>
+<li><a href="https://gemini.google.com/share/76a962fc5de6">One-prompt figure on sucrose hydrolysis with an auto-inserted tutor chatbot</a></li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {Nature’s {*The} {Future} of {AI*}},
+  date = {2025-11-25},
+  url = {https://keefereuther.com/docs/blog/posts/natureFutureOfAI/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“Nature’s *The Future of AI*.”</span>
+November 25, 2025. <a href="https://keefereuther.com/docs/blog/posts/natureFutureOfAI/">https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Resources</category>
+  <guid>https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</guid>
+  <pubDate>Tue, 25 Nov 2025 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>The Teacher’s Paradox: Balancing Learning and Integrity in Undergraduate Biology</title>
+  <link>https://keefereuther.com/docs/scholarship/papers/TeachersParadox2025.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://journals.uc.edu/index.php/jrpct/article/view/8788">Journal for Research and Practice in College Teaching</a></p>
+<hr>
+<p>Reuther, K. (2025). The Teacher’s Paradox: Balancing Learning and Integrity in Undergraduate Biology. <em>Journal for Research and Practice in College Teaching</em>, Vol. 10, Issue 2.</p>
+<p><a href="https://journals.uc.edu/index.php/jrpct/article/view/8788">Read the article</a></p>
+<hr>
+<p>This essay examines the tension instructors face between designing assessments that promote deep learning and maintaining academic integrity—a tension made sharper by the rise of generative AI. Drawing on experiences teaching introductory biology at a large research university, the piece explores how instructors can embrace authenticity and transparency in assessment design without abandoning rigor.</p>
+
+
+
+ ]]></description>
+  <guid>https://keefereuther.com/docs/scholarship/papers/TeachersParadox2025.html</guid>
+  <pubDate>Fri, 29 Aug 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Schema Study: Student Outcomes from an LLM-Powered Formative Feedback Tool in Introductory Biology</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/SABER2025.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://saberbio.wildapricot.org">Society for the Advancement of Biology Education Research (SABER) 2025 Annual Meeting</a></p>
+<hr>
+<p><strong>Reuther, K.</strong>, Mueller, L. O., Constantian, G., &amp; Nguyen, A. (2025). <em>Schema Study: Student Outcomes from an LLM-Powered Formative Feedback Tool in Introductory Biology</em>. SABER Annual Meeting 2025.</p>
+<p>Presentation of research on Schema Study, an LLM-powered formative feedback application used in a 225-student introductory biology course. Results from pre/post surveys showed 72% of students would reuse the tool, and each additional day per week of use more than doubled the likelihood of recommending it to peers. Data on student AI self-efficacy and beliefs about AI relevance to their education were also presented.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Formative Assessment</category>
+  <category>Biology Education</category>
+  <category>SABER</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/SABER2025.html</guid>
+  <pubDate>Fri, 18 Jul 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Custom Chatbots Made Simple: A No-Code Framework for Active Learning</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/InnovationExpo2025.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://tlc.ucsd.edu">UCSD Teaching + Learning Commons Innovation Expo</a></p>
+<hr>
+<p><strong>Reuther, K.</strong>, Heinrichsen, E., &amp; Buyruk, P. (2025). <em>Custom Chatbots Made Simple: A No-Code Framework for Active Learning</em>. UCSD Teaching + Learning Commons Innovation Expo. May 21, 2025. UC San Diego.</p>
+<p>This presentation introduced educators to a no-code framework for building custom AI chatbots for active learning. Using a live demonstration of the TLCbot and other tools, we showed how instructors can create discipline-specific AI personas to support student engagement without any programming experience.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Active Learning</category>
+  <category>Chatbots</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/InnovationExpo2025.html</guid>
+  <pubDate>Wed, 21 May 2025 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A simple D3 interactive example</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/OJStest/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<hr>
+<section id="simple-interactive-circle" class="level1">
+<h1>Simple Interactive Circle</h1>
+<p>Use the slider below to control the size of the circle.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="25" data-source-offset="-0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb1-25">d3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">require</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"d3@7"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-26"></span>
+<span id="cb1-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Single Input: Slider for circle radius</span></span>
+<span id="cb1-28">viewof circleRadius <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Circle Radius"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>})<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-29"></span>
+<span id="cb1-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Single Output: An SVG circle whose radius is determined by the slider</span></span>
+<span id="cb1-31">svgCircle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-32">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">220</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-33">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">220</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-34">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> margin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">top</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">right</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">bottom</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">left</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-35">  </span>
+<span id="cb1-36">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> svgNode <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svg"</span>)</span>
+<span id="cb1-37">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"width"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width)</span>
+<span id="cb1-38">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"height"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height)</span>
+<span id="cb1-39">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"viewBox"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-40"></span>
+<span id="cb1-41">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Clear previous circle if any (important for reactivity)</span></span>
+<span id="cb1-42">  svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">selectAll</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"circle"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">remove</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-43"></span>
+<span id="cb1-44">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Draw the circle</span></span>
+<span id="cb1-45">  svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">append</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"circle"</span>)</span>
+<span id="cb1-46">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cx"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-47">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cy"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-48">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"r"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> circleRadius) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Use the value from the slider</span></span>
+<span id="cb1-49">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fill"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"steelblue"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-50"></span>
+<span id="cb1-51">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Return the SVG node for display</span></span>
+<span id="cb1-52">}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-53"></span>
+<span id="cb1-54"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Optional: Display the current radius value as text</span></span>
+<span id="cb1-55">radiusValue <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`Current Radius: **</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>circleRadius<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">**`</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="thats-it" class="level3">
+<h3 class="anchored" data-anchor-id="thats-it">That’s it!</h3>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {A Simple {D3} Interactive Example},
+  date = {2025-04-16},
+  url = {https://keefereuther.com/docs/blog/posts/OJStest/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“A Simple D3 Interactive Example.”</span>
+April 16, 2025. <a href="https://keefereuther.com/docs/blog/posts/OJStest/">https://keefereuther.com/docs/blog/posts/OJStest/</a>.
+</div></div></section></div> ]]></description>
+  <category>OJS</category>
+  <category>D3</category>
+  <category>Example</category>
+  <guid>https://keefereuther.com/docs/blog/posts/OJStest/</guid>
+  <pubDate>Wed, 16 Apr 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://keefereuther.com/docs/blog/posts/OJStest/pastellogo.webp" medium="image" type="image/webp"/>
+</item>
+<item>
+  <title>Generative AI Tools for Active Learning in Biology</title>
+  <link>https://keefereuther.com/docs/scholarship/presentations/BLC2025.html</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p><a href="https://www.pearson.com">Pearson Biology Learning Conference 2025</a></p>
+<hr>
+<p><strong>Reuther, K.</strong> (2025). <em>Generative AI Tools for Active Learning in Biology</em>. Pearson Biology Learning Conference (BLC). April 11–13, 2025.</p>
+<p>Presentation on designing and deploying generative AI tools to support active learning in undergraduate biology courses, with a focus on practical frameworks instructors can adapt for their own classrooms.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Active Learning</category>
+  <category>Biology Education</category>
+  <guid>https://keefereuther.com/docs/scholarship/presentations/BLC2025.html</guid>
+  <pubDate>Sat, 12 Apr 2025 07:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Making a better chatbot</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</link>
+  <link>https://keefereuther.com/docs/blog/posts/chatbottestapp/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -38,19 +757,33 @@
 
 </div>
 </div>
-<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
+<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code.</p>
+<p>Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
 <section id="what-is-this-app" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-app">What Is This App?</h2>
-<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as: - <strong>Language:</strong> Choose the language in which your chatbot responds. - <strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are. - <strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be. - <strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p>
+<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as:</p>
+<ul>
+<li><p><strong>Language:</strong> Choose the language in which your chatbot responds.</p></li>
+<li><p><strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are.</p></li>
+<li><p><strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be.</p></li>
+<li><p><strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p></li>
+</ul>
 <p>The app is hosted publicly on <a href="https://keefereuther-openai-chatbot-tester.hf.space">Hugging Face Spaces</a>, making it accessible to anyone interested in exploring the benefits of conversational AI in education.</p>
 </section>
 <section id="why-should-you-try-it" class="level2">
 <h2 class="anchored" data-anchor-id="why-should-you-try-it">Why Should You Try It?</h2>
-<p>Using this app, educators can: - <strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources. - <strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior. - <strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style. - <strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p>
+<p>Using this app, educators can:</p>
+<ul>
+<li><p><strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources.</p></li>
+<li><p><strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior.</p></li>
+<li><p><strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style.</p></li>
+<li><p><strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p></li>
+</ul>
 </section>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>OpenAI API Key – Obtain one from <a href="https://platform.openai.com/api-keys">OpenAI</a></p>
+<p>See this walkthrough video: <a href="https://www.youtube.com/watch?v=QiJ6cWm9Dx4&amp;t=1s">How to Set Up Your OpenAI Account &amp; API Key</a></p>
 </section>
 <section id="how-it-works-a-step-by-step-guide" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-works-a-step-by-step-guide">How It Works: A Step-by-Step Guide</h2>
@@ -90,21 +823,22 @@ Type a message in the chat box to see how your customized settings influence the
   author = {Reuther, Keefe},
   title = {Making a Better Chatbot},
   date = {2025-02-04},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/},
+  url = {https://keefereuther.com/docs/blog/posts/chatbottestapp/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
-4, 2025. <a href="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/">https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</a>.
+4, 2025. <a href="https://keefereuther.com/docs/blog/posts/chatbottestapp/">https://keefereuther.com/docs/blog/posts/chatbottestapp/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/chatbottestapp/</guid>
   <pubDate>Tue, 04 Feb 2025 08:00:00 GMT</pubDate>
 </item>
 <item>
   <title>A Brief Guide to Data Privacy and GenAI Chatbots</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</link>
+  <link>https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -155,8 +889,18 @@ Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
 <ul>
 <li><p>For <strong>ChatGPT</strong>, follow the opt-out instructions below.</p>
 <ul>
-<li><p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/privacy1.png" class="img-fluid"></p></li>
-<li><p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/privacy2.png" class="img-fluid"></p></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/privacy1.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot showing ChatGPT settings menu to opt out of data usage for model training — step 1</figcaption>
+</figure>
+</div></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/privacy2.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot showing ChatGPT data controls toggle to disable model training — step 2</figcaption>
+</figure>
+</div></li>
 </ul></li>
 <li><p>For <strong>Claude</strong>, refrain from opting in to data usage for training and avoid submitting feedback that could be used for this purpose.</p></li>
 </ul></li>
@@ -189,25 +933,26 @@ Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
   author = {Reuther, Keefe},
   title = {A {Brief} {Guide} to {Data} {Privacy} and {GenAI} {Chatbots}},
   date = {2024-10-16},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/},
+  url = {https://keefereuther.com/docs/blog/posts/aiprivacypolicy/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“A Brief Guide to Data Privacy and GenAI
-Chatbots.”</span> October 16, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/">https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</a>.
+Chatbots.”</span> October 16, 2024. <a href="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/">https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Undergraduate</category>
   <category>Instructor</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</guid>
   <pubDate>Wed, 16 Oct 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/security.webp" medium="image" type="image/webp"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/security.webp" medium="image" type="image/webp"/>
 </item>
 <item>
   <title>SABER Generative AI Special Interest Group</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/genaisig/</link>
+  <link>https://keefereuther.com/docs/blog/posts/genaisig/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -242,30 +987,36 @@ Chatbots.”</span> October 16, 2024. <a href="https://reutherlab.netlify.app/do
   author = {Reuther, Keefe},
   title = {SABER {Generative} {AI} {Special} {Interest} {Group}},
   date = {2024-02-16},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/genaisig/},
+  url = {https://keefereuther.com/docs/blog/posts/genaisig/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“SABER Generative AI Special Interest
-Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/genaisig/">https://reutherlab.netlify.app/docs/blog/posts/genaisig/</a>.
+Group.”</span> February 16, 2024. <a href="https://keefereuther.com/docs/blog/posts/genaisig/">https://keefereuther.com/docs/blog/posts/genaisig/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Instructors</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/genaisig/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/genaisig/</guid>
   <pubDate>Fri, 16 Feb 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/genaisig/saber.png" medium="image" type="image/png" height="64" width="144"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/genaisig/saber.png" medium="image" type="image/png" height="64" width="144"/>
 </item>
 <item>
   <title>The Science of Asking: How to Formulate Questions and Hypotheses in Research</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</link>
+  <link>https://keefereuther.com/docs/blog/posts/statistical_thinking/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
 
 <p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/stat_thoughts.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/statistical_thinking/stat_thoughts.png" class="img-fluid figure-img"></p>
+<figcaption>Illustration representing scientific thinking and hypothesis formulation</figcaption>
+</figure>
+</div>
 <section id="a-short-primer-connecting-scientific-questions-to-statistical-conclusions" class="level1">
 <h1>A Short Primer Connecting Scientific Questions to Statistical Conclusions</h1>
 <p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
@@ -300,7 +1051,7 @@ Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs
 <p>After running your experiment and collecting data, it’s important to evaluate the likelihood of inaccuracies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/table.png" class="img-fluid figure-img"></p>
+<p><img src="https://keefereuther.com/docs/blog/posts/statistical_thinking/table.png" class="img-fluid figure-img"></p>
 <figcaption>Table of Possibilities in Hypothesis Testing</figcaption>
 </figure>
 </div>
@@ -350,24 +1101,25 @@ Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs
   title = {The {Science} of {Asking:} {How} to {Formulate} {Questions}
     and {Hypotheses} in {Research}},
   date = {2024-01-17},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/},
+  url = {https://keefereuther.com/docs/blog/posts/statistical_thinking/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“The Science of Asking: How to Formulate
-Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/">https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</a>.
+Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https://keefereuther.com/docs/blog/posts/statistical_thinking/">https://keefereuther.com/docs/blog/posts/statistical_thinking/</a>.
 </div></div></section></div> ]]></description>
   <category>Experimental Design</category>
   <category>Statistics</category>
   <category>Undergraduates</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/statistical_thinking/</guid>
   <pubDate>Wed, 17 Jan 2024 08:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Crafting Your GenAI &amp; AI Policy Guide</title>
   <dc:creator>Keefe Reuther and Tricia Bertram-Gallant</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</link>
+  <link>https://keefereuther.com/docs/blog/posts/craftingaipolicy/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -376,8 +1128,8 @@ Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/ai_cheating.png" class="img-fluid figure-img"></p>
-<figcaption>https://academicintegrity.ucsd.edu/excel-integrity/ai-in-education.html</figcaption>
+<p><img src="https://keefereuther.com/docs/blog/posts/craftingaipolicy/ai_cheating.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot from UCSD Academic Integrity Office: AI in Education page</figcaption>
 </figure>
 </div>
 <section id="my-personal-genai-policy-template" class="level2">
@@ -418,7 +1170,11 @@ Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https
 <p><br>
 I <strong>HIGHLY</strong> recommend this guide for all instructors, regardless of what your policy will be.<br>
 <a href="https://academicintegrity.ucsd.edu/">UCSD Academic Integrity Office</a></p>
-<embed src="Crafting Your  GenAI &amp; AI Policy  Guide.pdf" type="application/pdf" iframe="" width="100%" height="800">
+<object data="Crafting Your  GenAI &amp; AI Policy  Guide.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Crafting Your GenAI and AI Policy Guide by Dr. Tricia Bertram-Gallant">
+<p>
+Your browser does not support embedded PDFs. <a href="Crafting Your  GenAI &amp; AI Policy  Guide.pdf">Download the PDF guide</a>.
+</p>
+</object>
 
 
 </section>
@@ -427,21 +1183,22 @@ I <strong>HIGHLY</strong> recommend this guide for all instructors, regardless o
   author = {Reuther and Tricia Bertram-Gallant, Keefe},
   title = {Crafting {Your} {GenAI} \&amp; {AI} {Policy} {Guide}},
   date = {2024-01-13},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/},
+  url = {https://keefereuther.com/docs/blog/posts/craftingaipolicy/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther_and_tricia_bertram-gallant2024" class="csl-entry quarto-appendix-citeas">
 Reuther and Tricia Bertram-Gallant, Keefe. 2024. <span>“Crafting Your
-GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/">https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</a>.
+GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://keefereuther.com/docs/blog/posts/craftingaipolicy/">https://keefereuther.com/docs/blog/posts/craftingaipolicy/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/craftingaipolicy/</guid>
   <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/ucsdintegrity.png" medium="image" type="image/png" height="79" width="144"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/craftingaipolicy/ucsdintegrity.png" medium="image" type="image/png" height="79" width="144"/>
 </item>
 <item>
   <title>Gathering Perspectives on Generative AI in Undergraduate Biology Education</title>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</link>
+  <link>https://keefereuther.com/docs/blog/posts/saberwestsurvey/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -449,7 +1206,11 @@ GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reuthe
 <p><a href="https://sites.google.com/uci.edu/saber-west-2024/home">SABER West Conference 2024</a></p>
 <hr>
 <p>Since the public release of ChatGPT in November 2022, generative AI has rapidly entered the college classroom. New capabilities are continually emerging that impact teaching and learning environments. In higher education broadly, there has been an influx of conferences, preprints, publications, and working groups examining implications and applications of generative AI. However, there is a need to specifically examine the role of generative AI within undergraduate biology education. The unique challenges and potential solutions in biology classrooms likely differ from other disciplines like creative writing or computer science. To explore this, I have developed a survey to distribute at SABER 2024. This survey has three aims: 1) Build a community of DBER scholars investigating generative AI applications in undergraduate biology. 2) Identify priorities for professional development on generative AI, for both SABER members and their home institutions. 3) Gather instructor and student perspectives on how generative AI is impacting teaching and learning of biology. I have drafted this survey and welcome feedback from the SABER community to improve it before implementation in the summer of 2024. Beyond gathering data, I hope this survey connects those interested in creatively harnessing the potential of generative AI in this new landscape we find ourselves in.</p>
-<embed src="Reuther SABER West 2024 Survey.pdf" type="application/pdf" iframe="" width="100%" height="800">
+<object data="Reuther SABER West 2024 Survey.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther SABER West 2024 Survey.pdf">
+<p>
+Your browser does not support embedded PDFs. <a href="Reuther SABER West 2024 Survey.pdf">Download the PDF</a>.
+</p>
+</object>
 
 
 
@@ -458,1183 +1219,18 @@ GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reuthe
   title = {Gathering {Perspectives} on {Generative} {AI} in
     {Undergraduate} {Biology} {Education}},
   date = {2024-01-13},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/},
+  url = {https://keefereuther.com/docs/blog/posts/saberwestsurvey/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas">
 <span>“Gathering Perspectives on Generative AI in Undergraduate Biology
-Education.”</span> 2024. January 13, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/">https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</a>.
+Education.”</span> 2024. January 13, 2024. <a href="https://keefereuther.com/docs/blog/posts/saberwestsurvey/">https://keefereuther.com/docs/blog/posts/saberwestsurvey/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Instructors</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/saberwestsurvey/</guid>
   <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/saber.png" medium="image" type="image/png" height="64" width="144"/>
-</item>
-<item>
-  <title>A Beginner’s Guide to Using AI to Create Canvas Quizzes</title>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/DALL·E 2023-11-02 16.39.52.png" class="img-fluid figure-img" width="400"></p>
-<figcaption>Created by DALL-E 3</figcaption>
-</figure>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<em>Bureaucracy is the death of all sound work.</em> - Albert Einstein
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<blockquote class="blockquote">
-<h2 id="the-problem" class="anchored">The Problem:</h2>
-</blockquote>
-<p>Canvas quiz creation can be an incredibly time-consuming and frustrating process. Manually writing questions in Canvas is clunky and soul-draining. While writing questions in a text editor and uploading them seems like an obvious solution, the upload format is prohibitively complicated. The end result is often spending hours awkwardly crafting quiz questions directly in Canvas or desperately trying to rework old quizzes. There has to be a better way to spend your limited prep time.</p>
-<hr>
-<blockquote class="blockquote">
-<h2 id="the-goal" class="anchored">The Goal:</h2>
-</blockquote>
-<p>Use technology to create/format assessment questions that can be imported to Canvas LMS as a Canvas quiz.</p>
-<hr>
-<blockquote class="blockquote">
-<h2 id="prerequisites" class="anchored">Prerequisites</h2>
-</blockquote>
-<ul>
-<li><p>A list of topics you want covered in your assessment OR assessment questions you have already written.</p></li>
-<li><p>A text editor (<a href="https://www.sublimetext.com/">Sublime Text</a>, <a href="https://notepad-plus-plus.org/">Notepad++</a>, or whatever came with your computer)</p></li>
-<li><p>Access to <a href="https://chat.openai.com/auth/login">ChatGPT</a> or <a href="https://claude.ai/login?returnTo=%2F">ClaudeAI</a></p></li>
-<li><p>A Canvas LMS account.</p></li>
-</ul>
-<hr>
-<blockquote class="blockquote">
-<h2 id="an-overview" class="anchored">An Overview</h2>
-</blockquote>
-<ol type="1">
-<li><p>Use Gen AI to properly format or generate assessment questions.</p></li>
-<li><p>Copy the draft into a text editor where you validate for accuracy and quality.</p></li>
-<li><p>Upload that text (.txt) file to a <a href="https://text2qti.streamlit.app/">web app</a> I created or convert it locally using the python library found <a href="https://github.com/gpoore/text2qti">here.</a> It will generate a QTI formatted zip file.</p></li>
-<li><p>Upload the QTI.zip file to Canvas.</p></li>
-</ol>
-<hr>
-<section id="a-step-by-step-walk-through" class="level1">
-<h1>A Step-by-Step Walk-Through</h1>
-<section id="part-1-using-generative-ai" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-using-generative-ai"><strong>Part 1: Using Generative AI</strong></h2>
-<section id="what-generative-ai-platform-should-you-use" class="level4">
-<h4 class="anchored" data-anchor-id="what-generative-ai-platform-should-you-use"><strong>What generative AI platform should you use?</strong></h4>
-<ul>
-<li><p><a href="https://chat.openai.com/auth/login">ChatGPT</a> is a good option if you have a pro account and have access to the GPT 4.0 model. The free 3.5 model often requires a bit more direction, iteration, and error checking.</p></li>
-<li><p><a href="https://claude.ai/login?returnTo=%2F">ClaudeAI</a> is a free option that is getting increasingly impressive for a free service. I find it works well for this project.</p></li>
-</ul>
-</section>
-<section id="using-the-prompt" class="level4">
-<h4 class="anchored" data-anchor-id="using-the-prompt"><strong>Using the Prompt</strong>:</h4>
-<ul>
-<li>Copy and paste one of the prompts provided below to the generative AI platform of your choice.</li>
-</ul>
-</section>
-<section id="option-1-you-already-have-questions" class="level4">
-<h4 class="anchored" data-anchor-id="option-1-you-already-have-questions"><u><em>Option 1: You already have questions</em></u></h4>
-<p>Option 1 is if you already have assessment questions and need them formatted for upload to Canvas. Copy and paste (and edit as needed) the prompt below into a gen AI chat.</p>
-<details>
-<summary>
-OPTION 1 PROMPT
-</summary>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode markdown wrap code-with-copy"><code class="sourceCode markdown"><span id="cb1-1">I have questions that I need properly formatted according to the style guide outlined in this prompt. </span>
-<span id="cb1-2">My questions will include the following question types:</span>
-<span id="cb1-3"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">  - </span>multiple choice questions</span>
-<span id="cb1-4"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">  - </span>multiple answer questions</span>
-<span id="cb1-5"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">  - </span>applied or conceptual essay questions </span>
-<span id="cb1-6"></span>
-<span id="cb1-7">Each question carries a point value of 1. </span>
-<span id="cb1-8"></span>
-<span id="cb1-9">Your first response should request my drafted quiz questions. You will only modify the formatting as required. Do NOT change the wording of the questions I provide.</span>
-<span id="cb1-10"></span>
-<span id="cb1-11">Questions must follow the style guide provided:</span>
-<span id="cb1-12"></span>
-<span id="cb1-13"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>Use format encapsulated within a code block.</span>
-<span id="cb1-14"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>Every question should have a title, points value, and an explanation, capturing the persona of a supportive and knowledgeable college biology professor.</span>
-<span id="cb1-15"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"</span>
-<span id="cb1-16"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>For multiple answer questions, use "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span>" for options and "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span>" for correct answers.</span>
-<span id="cb1-17"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>Essay questions should end with a new line that includes "_________". See examples below.</span>
-<span id="cb1-18"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>Begin every feedback with three dots</span>
-<span id="cb1-19"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">7. </span>Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.</span>
-<span id="cb1-20"></span>
-<span id="cb1-21">The quiz's first question should always uphold academic integrity, as shown in the example below.</span>
-<span id="cb1-22"></span>
-<span id="cb1-23"> Example format in (generate your response entirely within a code block):</span>
-<span id="cb1-24"></span>
-<span id="cb1-25">Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis</span>
-<span id="cb1-26">Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.</span>
-<span id="cb1-27"></span>
-<span id="cb1-28">Title: Learn with integrity</span>
-<span id="cb1-29">Points: 1</span>
-<span id="cb1-30"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.</span>
-<span id="cb1-31">*a) I agree</span>
-<span id="cb1-32">b) I disagree</span>
-<span id="cb1-33"></span>
-<span id="cb1-34">Title: PCR - Mechanism and Reagents</span>
-<span id="cb1-35">Points: 1</span>
-<span id="cb1-36"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>Which of the following describes the mechanism of PCR?</span>
-<span id="cb1-37">... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).</span>
-<span id="cb1-38">a) PCR breaks down proteins.</span>
-<span id="cb1-39">b) PCR translates mRNA into protein.</span>
-<span id="cb1-40">*c) PCR amplifies specific DNA segments.</span>
-<span id="cb1-41">d) PCR transcribes DNA into RNA.</span>
-<span id="cb1-42"></span>
-<span id="cb1-43">Title: Gel Electrophoresis - Expected Results and Troubleshooting</span>
-<span id="cb1-44">Points: 1</span>
-<span id="cb1-45"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?</span>
-<span id="cb1-46">... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.</span>
-<span id="cb1-47">*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.</span>
-<span id="cb1-48">b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.</span>
-<span id="cb1-49">c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.</span>
-<span id="cb1-50">d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.</span>
-<span id="cb1-51"></span>
-<span id="cb1-52">Title: DNA - Structure and Replication</span>
-<span id="cb1-53">Points: 1</span>
-<span id="cb1-54"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>What aspect of DNA is crucial for its replication in PCR and why?</span>
-<span id="cb1-55">... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.</span>
-<span id="cb1-56">*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.</span>
-<span id="cb1-57">b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.</span>
-<span id="cb1-58">c) The presence of histone proteins is crucial because they help to package the new DNA strands.</span>
-<span id="cb1-59">d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.</span>
-<span id="cb1-60"></span>
-<span id="cb1-61">Title: DNA - Complimentary Base Pairing</span>
-<span id="cb1-62">Points: 1</span>
-<span id="cb1-63"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?</span>
-<span id="cb1-64">... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.</span>
-<span id="cb1-65">a) 3'-TACGCAT-5'</span>
-<span id="cb1-66">b) 5'-ATGCGTA-3'</span>
-<span id="cb1-67">*c) 5'-TACGCAT-3'</span>
-<span id="cb1-68">d) 5'-CATGCGT-3'</span>
-<span id="cb1-69"></span>
-<span id="cb1-70">Title: PCR - Expected Results</span>
-<span id="cb1-71">Points: 1</span>
-<span id="cb1-72"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>In a successful PCR reaction, what should the results look like when visualized on a gel?</span>
-<span id="cb1-73">... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.</span>
-<span id="cb1-74">*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.</span>
-<span id="cb1-75">b) Multiple bands at various positions.</span>
-<span id="cb1-76">c) A gradient of color throughout the gel.</span>
-<span id="cb1-77">d) No visible bands.</span>
-<span id="cb1-78"></span>
-<span id="cb1-79">Title: PCR - Reagents</span>
-<span id="cb1-80">Points: 1</span>
-<span id="cb1-81"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">7. </span>In a PCR reaction, which of the following reagents are required?</span>
-<span id="cb1-82">... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.</span>
-<span id="cb1-83"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Template DNA</span>
-<span id="cb1-84"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Primers</span>
-<span id="cb1-85"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> dNTPs</span>
-<span id="cb1-86"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA Polymerase</span>
-<span id="cb1-87"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> RNA Polymerase</span>
-<span id="cb1-88"></span>
-<span id="cb1-89">Title: Gel Electrophoresis - Components</span>
-<span id="cb1-90">Points: 1</span>
-<span id="cb1-91"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">8. </span>What are the necessary components to set up a gel electrophoresis experiment?</span>
-<span id="cb1-92">... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.</span>
-<span id="cb1-93"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Agarose gel</span>
-<span id="cb1-94"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Buffer solution</span>
-<span id="cb1-95"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Power supply</span>
-<span id="cb1-96"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA ladder</span>
-<span id="cb1-97"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA samples</span>
-<span id="cb1-98"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> dNTPs</span>
-<span id="cb1-99"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Primers</span>
-<span id="cb1-100"></span>
-<span id="cb1-101">Title: Troubleshooting in PCR</span>
-<span id="cb1-102">Points: 1</span>
-<span id="cb1-103"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">9. </span>If a PCR reaction does not yield the expected product, which of the following could be possible reasons?</span>
-<span id="cb1-104">... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.</span>
-<span id="cb1-105"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Poor quality or insufficient quantity of template DNA</span>
-<span id="cb1-106"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Incorrect primer sequences</span>
-<span id="cb1-107"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Inappropriate reaction conditions</span>
-<span id="cb1-108"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Contamination in the DNA ladder</span>
-<span id="cb1-109"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Issues with the DNA polymerase</span>
-<span id="cb1-110"></span>
-<span id="cb1-111">Title: Controls in Experiments</span>
-<span id="cb1-112">Points: 1</span>
-<span id="cb1-113"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">10. </span>Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.</span>
-<span id="cb1-114">... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.</span>
-<span id="cb1-115">_________</span>
-<span id="cb1-116"></span>
-<span id="cb1-117">Title: Data Analysis in Biology</span>
-<span id="cb1-118">Points: 1</span>
-<span id="cb1-119"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">11. </span>Explain why exploratory data analysis is an essential step before diving into statistical testing.</span>
-<span id="cb1-120">... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.</span>
-<span id="cb1-121">_________ </span>
-<span id="cb1-122"></span>
-<span id="cb1-123">Title: Understanding False Positives and Negatives</span>
-<span id="cb1-124">Points: 1</span>
-<span id="cb1-125"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">12. </span>Discuss the implications of false positives and negatives in medical diagnostics.</span>
-<span id="cb1-126">... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.</span>
-<span id="cb1-127">_________ </span>
-<span id="cb1-128"></span>
-<span id="cb1-129">Title: Lab Techniques</span>
-<span id="cb1-130">Points: 1</span>
-<span id="cb1-131"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">13. </span>List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.</span>
-<span id="cb1-132">... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.</span>
-<span id="cb1-133">_________ </span></code></pre></div>
-</details></section>
-<section id="option-2-ai-generated-questions" class="level4">
-<h4 class="anchored" data-anchor-id="option-2-ai-generated-questions"><u><em>Option 2: AI generated questions</em></u></h4>
-<p>Option 2 is if you want gen AI to generate questions for you. Copy and paste (and edit as needed) the prompt below into a gen AI chat.</p>
-<details>
-<summary>
-OPTION 2 PROMPT
-</summary>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode markdown wrap code-with-copy"><code class="sourceCode markdown"><span id="cb2-1">Design a compelling online quiz tailored for an undergraduate biology course, emphasizing higher-order cognitive skills based on Bloom's taxonomy. The quiz should comprise:</span>
-<span id="cb2-2"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- </span>10 multiple choice questions</span>
-<span id="cb2-3"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- </span>10 multiple answer questions</span>
-<span id="cb2-4"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">- </span>5 applied or conceptual essay questions </span>
-<span id="cb2-5"></span>
-<span id="cb2-6">Each question carries a point value of 1. Ensure questions are not based on mere factual recall. Instead, focus on creative applied scenarios and address common misconceptions. Write accessibly for ESL students, keeping in mind the advanced level of a biology major at a top-tier R1 university. </span>
-<span id="cb2-7"></span>
-<span id="cb2-8">Your first response should request a list of topics from me in the form of a list.</span>
-<span id="cb2-9"></span>
-<span id="cb2-10">Questions must follow the style guide provided:</span>
-<span id="cb2-11"></span>
-<span id="cb2-12"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>Use format encapsulated within a code block.</span>
-<span id="cb2-13"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>Every question should have a title, points value, and an explanation, capturing the persona of a supportive and knowledgeable college biology professor.</span>
-<span id="cb2-14"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"</span>
-<span id="cb2-15"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>For multiple answer questions, use "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span>" for options and "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span>" for correct answers.</span>
-<span id="cb2-16"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>Essay questions should end with a new line that includes "_________". See examples below.</span>
-<span id="cb2-17"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>Begin every feedback with three dots</span>
-<span id="cb2-18"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">7. </span>Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.</span>
-<span id="cb2-19"></span>
-<span id="cb2-20">The quiz's first question should always uphold academic integrity, as shown in the example below.</span>
-<span id="cb2-21"></span>
-<span id="cb2-22"></span>
-<span id="cb2-23">Example format in (generate your response entirely within a code block):</span>
-<span id="cb2-24"></span>
-<span id="cb2-25">Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis</span>
-<span id="cb2-26">Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.</span>
-<span id="cb2-27"></span>
-<span id="cb2-28">Title: Learn with integrity</span>
-<span id="cb2-29">Points: 1</span>
-<span id="cb2-30"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.</span>
-<span id="cb2-31">*a) I agree</span>
-<span id="cb2-32">b) I disagree</span>
-<span id="cb2-33"></span>
-<span id="cb2-34">Title: PCR - Mechanism and Reagents</span>
-<span id="cb2-35">Points: 1</span>
-<span id="cb2-36"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>Which of the following describes the mechanism of PCR?</span>
-<span id="cb2-37">... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).</span>
-<span id="cb2-38">a) PCR breaks down proteins.</span>
-<span id="cb2-39">b) PCR translates mRNA into protein.</span>
-<span id="cb2-40">*c) PCR amplifies specific DNA segments.</span>
-<span id="cb2-41">d) PCR transcribes DNA into RNA.</span>
-<span id="cb2-42"></span>
-<span id="cb2-43">Title: Gel Electrophoresis - Expected Results and Troubleshooting</span>
-<span id="cb2-44">Points: 1</span>
-<span id="cb2-45"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?</span>
-<span id="cb2-46">... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.</span>
-<span id="cb2-47">*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.</span>
-<span id="cb2-48">b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.</span>
-<span id="cb2-49">c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.</span>
-<span id="cb2-50">d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.</span>
-<span id="cb2-51"></span>
-<span id="cb2-52">Title: DNA - Structure and Replication</span>
-<span id="cb2-53">Points: 1</span>
-<span id="cb2-54"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>What aspect of DNA is crucial for its replication in PCR and why?</span>
-<span id="cb2-55">... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.</span>
-<span id="cb2-56">*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.</span>
-<span id="cb2-57">b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.</span>
-<span id="cb2-58">c) The presence of histone proteins is crucial because they help to package the new DNA strands.</span>
-<span id="cb2-59">d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.</span>
-<span id="cb2-60"></span>
-<span id="cb2-61">Title: DNA - Complimentary Base Pairing</span>
-<span id="cb2-62">Points: 1</span>
-<span id="cb2-63"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?</span>
-<span id="cb2-64">... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.</span>
-<span id="cb2-65">a) 3'-TACGCAT-5'</span>
-<span id="cb2-66">b) 5'-ATGCGTA-3'</span>
-<span id="cb2-67">*c) 5'-TACGCAT-3'</span>
-<span id="cb2-68">d) 5'-CATGCGT-3'</span>
-<span id="cb2-69"></span>
-<span id="cb2-70">Title: PCR - Expected Results</span>
-<span id="cb2-71">Points: 1</span>
-<span id="cb2-72"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>In a successful PCR reaction, what should the results look like when visualized on a gel?</span>
-<span id="cb2-73">... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.</span>
-<span id="cb2-74">*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.</span>
-<span id="cb2-75">b) Multiple bands at various positions.</span>
-<span id="cb2-76">c) A gradient of color throughout the gel.</span>
-<span id="cb2-77">d) No visible bands.</span>
-<span id="cb2-78"></span>
-<span id="cb2-79">Title: PCR - Reagents</span>
-<span id="cb2-80">Points: 1</span>
-<span id="cb2-81"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">7. </span>In a PCR reaction, which of the following reagents are required?</span>
-<span id="cb2-82">... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.</span>
-<span id="cb2-83"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Template DNA</span>
-<span id="cb2-84"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Primers</span>
-<span id="cb2-85"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> dNTPs</span>
-<span id="cb2-86"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA Polymerase</span>
-<span id="cb2-87"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> RNA Polymerase</span>
-<span id="cb2-88"></span>
-<span id="cb2-89">Title: Gel Electrophoresis - Components</span>
-<span id="cb2-90">Points: 1</span>
-<span id="cb2-91"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">8. </span>What are the necessary components to set up a gel electrophoresis experiment?</span>
-<span id="cb2-92">... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.</span>
-<span id="cb2-93"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Agarose gel</span>
-<span id="cb2-94"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Buffer solution</span>
-<span id="cb2-95"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Power supply</span>
-<span id="cb2-96"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA ladder</span>
-<span id="cb2-97"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA samples</span>
-<span id="cb2-98"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> dNTPs</span>
-<span id="cb2-99"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Primers</span>
-<span id="cb2-100"></span>
-<span id="cb2-101">Title: Troubleshooting in PCR</span>
-<span id="cb2-102">Points: 1</span>
-<span id="cb2-103"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">9. </span>If a PCR reaction does not yield the expected product, which of the following could be possible reasons?</span>
-<span id="cb2-104">... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.</span>
-<span id="cb2-105"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Poor quality or insufficient quantity of template DNA</span>
-<span id="cb2-106"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Incorrect primer sequences</span>
-<span id="cb2-107"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Inappropriate reaction conditions</span>
-<span id="cb2-108"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Contamination in the DNA ladder</span>
-<span id="cb2-109"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Issues with the DNA polymerase</span>
-<span id="cb2-110"></span>
-<span id="cb2-111">Title: Controls in Experiments</span>
-<span id="cb2-112">Points: 1</span>
-<span id="cb2-113"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">10. </span>Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.</span>
-<span id="cb2-114">... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.</span>
-<span id="cb2-115">_________</span>
-<span id="cb2-116"></span>
-<span id="cb2-117">Title: Data Analysis in Biology</span>
-<span id="cb2-118">Points: 1</span>
-<span id="cb2-119"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">11. </span>Explain why exploratory data analysis is an essential step before diving into statistical testing.</span>
-<span id="cb2-120">... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.</span>
-<span id="cb2-121">_________ </span>
-<span id="cb2-122"></span>
-<span id="cb2-123">Title: Understanding False Positives and Negatives</span>
-<span id="cb2-124">Points: 1</span>
-<span id="cb2-125"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">12. </span>Discuss the implications of false positives and negatives in medical diagnostics.</span>
-<span id="cb2-126">... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.</span>
-<span id="cb2-127">_________ </span>
-<span id="cb2-128"></span>
-<span id="cb2-129">Title: Lab Techniques</span>
-<span id="cb2-130">Points: 1</span>
-<span id="cb2-131"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">13. </span>List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.</span>
-<span id="cb2-132">... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.</span>
-<span id="cb2-133">_________ </span></code></pre></div>
-</details>
-</section>
-<section id="option-3-the-no-ai-option" class="level4">
-<h4 class="anchored" data-anchor-id="option-3-the-no-ai-option"><u><strong><em>Option 3: The no AI option</em></strong></u></h4>
-<p>If you already have questions and only need to format them for conversion, you can do the process manually without the use of any gen AI.</p>
-<p>Conduct all of your reformatting in a text editor. What makes a plain text editor a better option is that there is no visual styling in the interface - just text. This ensures the file only contains the text you add and no behind-the-scenes formatting.</p>
-<p>Use the style guide found <a href="https://github.com/gpoore/text2qti#readme">here</a> (the more detailed option). You may also check out the example style I have created below (the simpler option)</p>
-<details>
-<summary>
-OPTION 3 STYLE GUIDE
-</summary>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode markdown wrap code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><span class="in" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">    Questions must follow the style guide provided:</span></span>
-<span id="cb3-2"></span>
-<span id="cb3-3"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>Every question should have a title, points value, and an explanation.</span>
-<span id="cb3-4"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>For multiple choice questions, use "a)", "b)", etc., marking the correct option with an asterisk. Randomly vary which option is correct. It should not always be choice "a)"</span>
-<span id="cb3-5"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>For multiple answer questions, use "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span>" for options and "<span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span>" for correct answers.</span>
-<span id="cb3-6"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>Essay questions should end with a new line that includes "_________". See examples below.</span>
-<span id="cb3-7"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>Begin every feedback with three dots</span>
-<span id="cb3-8"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>Questions should only be separated by a line break. Do not add in any extraneous formatting such as "---" between questions.</span>
-<span id="cb3-9"></span>
-<span id="cb3-10">Example format in (generate your response entirely within a code block):</span>
-<span id="cb3-11"></span>
-<span id="cb3-12">Quiz title: Learning Laboratory Techniques: DNA Extraction, PCR, and Gel Electrophoresis</span>
-<span id="cb3-13">Quiz description: Review your understanding of DNA extraction, PCR, and gel electrophoresis.</span>
-<span id="cb3-14"></span>
-<span id="cb3-15">Title: Learn with integrity</span>
-<span id="cb3-16">Points: 1</span>
-<span id="cb3-17"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">1. </span>I agree to complete this quiz without the aid of others or AI. I agree not to discuss questions and answers of the quiz until the quiz key is posted. Anything otherwise is a breach of my Academic Integrity and subject to the policies of the University.</span>
-<span id="cb3-18">*a) I agree</span>
-<span id="cb3-19">b) I disagree</span>
-<span id="cb3-20"></span>
-<span id="cb3-21">Title: PCR - Mechanism and Reagents</span>
-<span id="cb3-22">Points: 1</span>
-<span id="cb3-23"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">2. </span>Which of the following describes the mechanism of PCR?</span>
-<span id="cb3-24">... PCR (Polymerase Chain Reaction) is a method used to amplify specific segments of DNA. It relies on a cycle of denaturation, annealing, and extension. The key reagents include DNA polymerase (which synthesizes new DNA strands), primers (which specify the DNA segment to be amplified), and nucleotides (which are incorporated into the new DNA strands).</span>
-<span id="cb3-25">a) PCR breaks down proteins.</span>
-<span id="cb3-26">b) PCR translates mRNA into protein.</span>
-<span id="cb3-27">*c) PCR amplifies specific DNA segments.</span>
-<span id="cb3-28">d) PCR transcribes DNA into RNA.</span>
-<span id="cb3-29"></span>
-<span id="cb3-30">Title: Gel Electrophoresis - Expected Results and Troubleshooting</span>
-<span id="cb3-31">Points: 1</span>
-<span id="cb3-32"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">3. </span>In gel electrophoresis, what do the expected ladder results look like, and what might an issue with the DNA ladder indicate?</span>
-<span id="cb3-33">... Gel electrophoresis separates DNA fragments by size. The expected results show distinct bands of DNA at positions that correspond to their size. The DNA ladder serves as a size marker. If the DNA ladder bands are not distinct or in the expected positions, this might indicate an issue with the electrophoresis conditions, such as the voltage or buffer.</span>
-<span id="cb3-34">*a) Expected results show distinct bands of DNA; an issue with the DNA ladder might indicate a problem with the electrophoresis conditions.</span>
-<span id="cb3-35">b) Expected results show a single band of DNA; an issue with the DNA ladder might indicate a problem with the PCR reaction.</span>
-<span id="cb3-36">c) Expected results show a gradient of color; an issue with the DNA ladder might indicate a problem with the staining process.</span>
-<span id="cb3-37">d) Expected results show no visible bands; an issue with the DNA ladder might indicate a problem with the DNA extraction.</span>
-<span id="cb3-38"></span>
-<span id="cb3-39">Title: DNA - Structure and Replication</span>
-<span id="cb3-40">Points: 1</span>
-<span id="cb3-41"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">4. </span>What aspect of DNA is crucial for its replication in PCR and why?</span>
-<span id="cb3-42">... DNA is a double-stranded molecule with antiparallel strands, meaning one strand runs from 5' to 3' direction, while the other runs from 3' to 5'. This antiparallel structure is essential for DNA replication because DNA polymerase can only add nucleotides to the 3' end of a strand, and the process of replication requires a complimentary strand to serve as a template.</span>
-<span id="cb3-43">*a) The antiparallel double-stranded structure is crucial because DNA polymerase can only add nucleotides to the 3' end.</span>
-<span id="cb3-44">b) The helical structure is crucial because it allows the DNA to be unwound for replication by enzymes.</span>
-<span id="cb3-45">c) The presence of histone proteins is crucial because they help to package the new DNA strands.</span>
-<span id="cb3-46">d) The sequence of the nucleotides is crucial because it determines how negatively charged the DNA is.</span>
-<span id="cb3-47"></span>
-<span id="cb3-48">Title: DNA - Complimentary Base Pairing</span>
-<span id="cb3-49">Points: 1</span>
-<span id="cb3-50"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">5. </span>If one strand of DNA has the sequence 5'-ATGCGTA-3', what would be the sequence of the complimentary strand?</span>
-<span id="cb3-51">... In DNA, adenine (A) pairs with thymine (T), and guanine (G) pairs with cytosine (C). Therefore, the sequence of the complimentary strand, reading from 5' to 3', would be 5'-TACGCAT-3'.</span>
-<span id="cb3-52">a) 3'-TACGCAT-5'</span>
-<span id="cb3-53">b) 5'-ATGCGTA-3'</span>
-<span id="cb3-54">*c) 5'-TACGCAT-3'</span>
-<span id="cb3-55">d) 5'-CATGCGT-3'</span>
-<span id="cb3-56"></span>
-<span id="cb3-57">Title: PCR - Expected Results</span>
-<span id="cb3-58">Points: 1</span>
-<span id="cb3-59"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">6. </span>In a successful PCR reaction, what should the results look like when visualized on a gel?</span>
-<span id="cb3-60">... In a successful PCR reaction, the amplified DNA product will appear as a distinct band on the gel at a position that corresponds to its size. The exact position can be determined using a DNA ladder.</span>
-<span id="cb3-61">*a) A distinct band at a position that corresponds to the size of the amplified DNA segment.</span>
-<span id="cb3-62">b) Multiple bands at various positions.</span>
-<span id="cb3-63">c) A gradient of color throughout the gel.</span>
-<span id="cb3-64">d) No visible bands.</span>
-<span id="cb3-65"></span>
-<span id="cb3-66">Title: PCR - Reagents</span>
-<span id="cb3-67">Points: 1</span>
-<span id="cb3-68"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">7. </span>In a PCR reaction, which of the following reagents are required?</span>
-<span id="cb3-69">... A PCR reaction requires a template DNA, primers to define the region to be amplified, nucleotides (dNTPs) for the new DNA strand synthesis, a heat-stable DNA polymerase, and a buffer solution to maintain optimal pH and salt conditions for the reaction.</span>
-<span id="cb3-70"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Template DNA</span>
-<span id="cb3-71"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Primers</span>
-<span id="cb3-72"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> dNTPs</span>
-<span id="cb3-73"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA Polymerase</span>
-<span id="cb3-74"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> RNA Polymerase</span>
-<span id="cb3-75"></span>
-<span id="cb3-76">Title: Gel Electrophoresis - Components</span>
-<span id="cb3-77">Points: 1</span>
-<span id="cb3-78"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">8. </span>What are the necessary components to set up a gel electrophoresis experiment?</span>
-<span id="cb3-79">... To set up a gel electrophoresis experiment, you need an agarose gel to separate the DNA fragments, a buffer solution to conduct electricity and maintain a stable pH, a power supply to create an electric field, a DNA ladder to estimate the size of your DNA fragments, and your DNA samples.</span>
-<span id="cb3-80"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Agarose gel</span>
-<span id="cb3-81"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Buffer solution</span>
-<span id="cb3-82"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Power supply</span>
-<span id="cb3-83"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA ladder</span>
-<span id="cb3-84"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> DNA samples</span>
-<span id="cb3-85"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> dNTPs</span>
-<span id="cb3-86"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Primers</span>
-<span id="cb3-87"></span>
-<span id="cb3-88">Title: Troubleshooting in PCR</span>
-<span id="cb3-89">Points: 1</span>
-<span id="cb3-90"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">9. </span>If a PCR reaction does not yield the expected product, which of the following could be possible reasons?</span>
-<span id="cb3-91">... Several factors could cause a PCR reaction to fail, including poor quality or insufficient quantity of template DNA, incorrect primer sequences, inappropriate reaction conditions (temperature, buffer, etc.), or issues with the DNA polymerase.</span>
-<span id="cb3-92"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Poor quality or insufficient quantity of template DNA</span>
-<span id="cb3-93"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Incorrect primer sequences</span>
-<span id="cb3-94"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Inappropriate reaction conditions</span>
-<span id="cb3-95"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[ ]</span> Contamination in the DNA ladder</span>
-<span id="cb3-96"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">[</span><span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">*</span><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">]</span> Issues with the DNA polymerase</span>
-<span id="cb3-97"></span>
-<span id="cb3-98">Title: Controls in Experiments</span>
-<span id="cb3-99">Points: 1</span>
-<span id="cb3-100"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">10. </span>Discuss the importance of positive and negative controls in an experimental setup such as PCR. Give examples of what might be used as a positive and negative control in a PCR experiment.</span>
-<span id="cb3-101">... Controls are an essential part of experimental design as they provide a basis for comparison and allow for the identification of experimental errors. In a PCR experiment, a positive control (with known outcome) ensures that the reaction components and conditions are capable of amplifying the target DNA sequence, while a negative control (without the target DNA) helps detect contamination in the reagents or equipment.</span>
-<span id="cb3-102">_________</span>
-<span id="cb3-103"></span>
-<span id="cb3-104">Title: Data Analysis in Biology</span>
-<span id="cb3-105">Points: 1</span>
-<span id="cb3-106"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">11. </span>Explain why exploratory data analysis is an essential step before diving into statistical testing.</span>
-<span id="cb3-107">... Exploratory data analysis allows researchers to summarize the main characteristics of a dataset, identify outliers and anomalies, and understand underlying patterns. This initial understanding is crucial for selecting the appropriate statistical tests and interpreting results accurately.</span>
-<span id="cb3-108">_________ </span>
-<span id="cb3-109"></span>
-<span id="cb3-110">Title: Understanding False Positives and Negatives</span>
-<span id="cb3-111">Points: 1</span>
-<span id="cb3-112"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">12. </span>Discuss the implications of false positives and negatives in medical diagnostics.</span>
-<span id="cb3-113">... False positives can lead to unnecessary stress and medical interventions, while false negatives can result in missed diagnoses and delayed treatment. Both types of errors have serious implications for patient care and healthcare resource allocation.</span>
-<span id="cb3-114">_________ </span>
-<span id="cb3-115"></span>
-<span id="cb3-116">Title: Lab Techniques</span>
-<span id="cb3-117">Points: 1</span>
-<span id="cb3-118"><span class="ss" style="color: #20794D;
-background-color: null;
-font-style: inherit;">13. </span>List two techniques you learned in the lab that aided your understanding of the subject matter and explain how they did so.</span>
-<span id="cb3-119">... Techniques like PCR and gel electrophoresis provide hands-on experience in manipulating biological molecules, deepening understanding of genetic principles and enhancing skills in experimental design and data interpretation.</span>
-<span id="cb3-120">_________ </span></code></pre></div>
-</details>
-<hr>
-</section>
-</section>
-<section id="part-2-verify-verify-verify" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-verify-verify-verify"><strong>Part 2: Verify, verify, verify</strong></h2>
-<blockquote class="blockquote">
-<p><strong>ALWAYS</strong> verify the accuracy of the information produced by gen AI. It will frequently produce bad questions and false information. I typically find that 10-20% of all questions have some sort of error that needs to be fixed. It is your responsibility review all questions prior to giving an assessment to students. Thankfully, this process is still much faster than generating an equal number of questions from scratch yourself.</p>
-</blockquote>
-<ol type="1">
-<li><p>Once the questions are generated, copy and paste the results into a text editor to make any fixes or content modifications. Any text editor such as <a href="https://www.sublimetext.com/">Sublime Text</a>, <a href="https://notepad-plus-plus.org/">Notepad++</a>, or whatever came with your computer will suffice.</p>
-<ul>
-<li><em>Note: Be wary of using Microsoft Word or Google Documents. This needs to be a perfectly formatted .txt file and the more complex the software, the more likely it will add extraneous formatting</em></li>
-</ul></li>
-<li><p>Edit the document and verify the accuracy and content of the quiz. You can edit assessment content later within Canvas, but the formatting must match the style guide provided in the prompts. A more comprehensive style sheet can be found <a href="https://github.com/gpoore/text2qti#readme">here</a> if needed.</p></li>
-<li><p>You can also add any of your own original questions to the text file, as long as you format them properly.</p></li>
-<li><p>Save the document as a “.txt” file. This is what you will be converting in the next part.</p></li>
-</ol>
-<hr>
-</section>
-<section id="part-3-converting-questions-to-qti.zip-format" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-converting-questions-to-qti.zip-format"><strong>Part 3:</strong> Converting Questions to qti.zip Format</h2>
-<ol type="1">
-<li><p>This app, based on the <a href="https://github.com/gpoore/text2qti">text2qti python library</a>, will convert the markdown formatted questions into a qti.zip file compatible with Canvas LMS.</p>
-<p><a class="btn btn-primary" href="https://text2qti.streamlit.app/">Click here to visit the web app</a></p>
-<p>You may need to “wake up” the app by clicking a button. This is normal.</p></li>
-<li><p>Drag and drop or select your quiz text (.txt) file. Click to convert.</p></li>
-<li><p>If there are errors generated, see if the error indicates the line # of the formatting error.</p>
-<ul>
-<li>The most common errors include:
-<ul>
-<li>AI incorrectly formatting the order of question title, points, feedback, and question.</li>
-<li>AI not including a ‘__________’ on the line immediately after any essay questions.</li>
-<li>AI incorrectly formatting the correct answers for multiple choice, which should be ‘*b)’ with no space in-between.</li>
-<li>AI incorrectly formatting multiple answer questions. Correct options must be ‘[*]’ and incorrect options must be ‘[ ]’ with 1 space in-between the brackets.</li>
-<li>It is also helpful if the ‘.txt’ file name has no spaces in it and is short. A good example of a name could be ‘quiz_3.txt’</li>
-</ul></li>
-</ul></li>
-<li><p>If you are unable to solve the error, place the error back into your generative AI chat and ask if can identify the problem.</p></li>
-<li><p>Download the generated .zip file to your computer.</p></li>
-</ol>
-<hr>
-</section>
-<section id="part-4-uploading-the-qti.zip-file-to-canvas" class="level2">
-<h2 class="anchored" data-anchor-id="part-4-uploading-the-qti.zip-file-to-canvas"><strong>Part 4:</strong> Uploading the qti.zip file to Canvas</h2>
-<ol type="1">
-<li><p>Log in to your Canvas LMS account.</p></li>
-<li><p>Navigate to the course where you want to upload the quiz.</p></li>
-<li><p>On your ‘Home” page, select the ’Import Existing Content’ button in the upper right.</p></li>
-<li><p>In the drop-down bar, select ‘QTI .zip file’ and choose ‘Create New Question Bank’ in the drop-down and choose an appropriate name.</p></li>
-<li><p>Select ‘Import’</p></li>
-<li><p>Navigate to the ‘Quizzes’ Menu and edit and publish your new quiz as desired. You’re done!</p></li>
-</ol>
-<hr>
-</section>
-<section id="part-5-watch-the-video-walk-through" class="level2">
-<h2 class="anchored" data-anchor-id="part-5-watch-the-video-walk-through">Part 5: Watch the Video Walk-through</h2>
-<p><a href="https://youtu.be/CnOmRkzb-zA">A Beginner's Guide to Using AI to Create Canvas Quizzes</a></p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/CnOmRkzb-zA?si=5Zf0sjGmTNhdIrTj" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-<hr>
-</section>
-<section id="additional-resources" class="level2">
-<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
-<ul>
-<li><a href="chatgpt_link_here">ChatGPT Official Documentation</a></li>
-<li><a href="streamlit_link_here">Streamlit Documentation</a></li>
-<li><a href="canvas_lms_link_here">Canvas LMS Help Center</a></li>
-</ul>
-
-
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{2023,
-  author = {},
-  title = {A {Beginner’s} {Guide} to {Using} {AI} to {Create} {Canvas}
-    {Quizzes}},
-  date = {2023-10-22},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2023" class="csl-entry quarto-appendix-citeas">
-<span>“A Beginner’s Guide to Using AI to Create Canvas Quizzes.”</span>
-2023. October 22, 2023. <a href="https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/">https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</a>.
-</div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</guid>
-  <pubDate>Sun, 22 Oct 2023 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Incorporating a Mentorship Plan into Your Degree</title>
-  <dc:creator>Allison Kifer</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>While many aspects of a degree are well planned, mentorship is an aspect that is often overlooked.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Header_Image.jpg" class="img-fluid"></p>
-<section id="incorporating-a-mentorship-plan-into-your-degree" class="level2">
-<h2 class="anchored" data-anchor-id="incorporating-a-mentorship-plan-into-your-degree"><strong>Incorporating a Mentorship Plan into Your Degree</strong></h2>
-<p>It wasn’t until halfway through my master’s program at UC San Diego did I realize I needed to create an adaptive mentorship plan. In order to graduate and feel confident going into the working world outside of my master’s, I needed to receive extra support.&nbsp;</p>
-<p>I was in the expedited BS/MS program, which combined a year’s worth of research at a lab on campus in my BS with another year’s worth of research in my MS. Because it was a degree in biology, this meant that my research would culminate in a final written and oral thesis defense.&nbsp;</p>
-<p>I had comfortably stayed at my undergraduate lab for my master’s, and while my location did not change, the expectation for my work had.&nbsp;</p>
-<p>The next year of my master’s was going to be rigorous, as my experiments were longer and required more attention, and I was a bit terrified to present my research among academics. My postdoctoral mentor had also recently left the lab and with that my primary person for direct technical guidance and career advice was no longer as easily accessible.&nbsp;</p>
-<p>It was hard to admit at the time, but I was treading in deep, deep water. I was unsure how to navigate this all with less support than I had before.&nbsp;</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Image_1.jpg" class="img-fluid"></p>
-<p>Because of my experiences with mentorship in the past, I recognized that I needed extended support and some clarity within the mentorship I already had.</p>
-<section id="if-you-are-asked-to-tackle-larger-responsibilities-and-your-abilities-are-stretched-thin-your-support-system-will-need-to-step-up." class="level4">
-<h4 class="anchored" data-anchor-id="if-you-are-asked-to-tackle-larger-responsibilities-and-your-abilities-are-stretched-thin-your-support-system-will-need-to-step-up."><em>If you are asked to tackle larger responsibilities and your abilities are stretched thin, your support system will need to step up.</em></h4>
-<p>And because everyone is busy and has many responsibilities of their own, the only person that can catalyze this is you. Rather than expend your energy trying to cover all your bases, an investment into a mentorship plan will help tremendously.&nbsp;</p>
-</section>
-<section id="how-does-one-successfully-create-a-mentorship-plan" class="level3">
-<h3 class="anchored" data-anchor-id="how-does-one-successfully-create-a-mentorship-plan"><strong>How does one successfully create a mentorship plan?</strong></h3>
-<p>Firstly, it is important to differentiate a research plan from a mentorship plan. Similar to many other research-based MS programs, I submitted a research proposal during my application process. A research proposal outlines what types of experiments you will be conducting in order to answer a set of scientific questions, and how you might achieve these goals throughout your academic timeline. While it is easy for you to think your research proposal encompasses your mentorship plan, this is not the case.&nbsp;</p>
-<p>A mentorship plan recognizes the mentors that you currently have (professors, postdocs, TAs, peers etc) and what they are capable of assisting you with. From there, you may notice the gaps of support where you need it most. Much of my own anxiety from graduate school stemmed from the feeling of trying incredibly hard and still failing. This made me believe that “my best” was never going to be good enough, and that I might not complete what I had set to achieve in my master’s degree because of my own abilities.&nbsp;</p>
-<section id="although-getting-a-degree-can-feel-like-an-endeavor-that-is-meant-to-be-shouldered-by-one-person-it-is-absolutely-not-designed-to-be-done-alone." class="level4">
-<h4 class="anchored" data-anchor-id="although-getting-a-degree-can-feel-like-an-endeavor-that-is-meant-to-be-shouldered-by-one-person-it-is-absolutely-not-designed-to-be-done-alone."><em>Although getting a degree can feel like an endeavor that is meant to be shouldered by one person, it is absolutely not designed to be done alone.</em></h4>
-<p>My relationship with my master’s degree pivoted when I filled my “failures” with support from the people around me. There were two major steps I took: finding new mentors and changing my relationship with current ones.</p>
-</section>
-</section>
-<section id="finding-new-mentors" class="level3">
-<h3 class="anchored" data-anchor-id="finding-new-mentors"><strong>Finding New Mentors</strong></h3>
-<p>Personally, I lacked confidence in discussing and presenting my research to other academics and knew that I needed help preparing for my oral defense. Because I knew my current mentors were extremely busy and could only offer me certan guidance, I attempted to expand my support. I employed the use of community or mosaic mentorship, which is the concept that mentorship should utilize the expertise of many mentors rather than a sole educator. I have written a blog on the impact of mosaic mentorship, which you can find below.&nbsp;</p>
-<p>One of my professors gave our class the option to present our own research in class without the pressure of receiving a grade. I used it as an opportunity to receive feedback from my professor and my peers, as well as establish a mentor relationship with my professor. If you have similar fears as me, there are also “Grad Slams” on campus where graduate students present their work and receive useful critiques. It is a great opportunity to hear the frequently asked questions that might surface during your presentation.</p>
-<p>When picking my committee members for my thesis, which are required for most master degrees, I emphasized early on that I needed support in professional development. My second committee member was able to meet with me once a month to help craft a larger picture of life outside of my master’s. During particularly difficult sections of my program, speaking with my second committee member helped motivate me and reminded me of why I was doing my master’s in the first place.&nbsp;</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Image_2.jpg" class="img-fluid"></p>
-</section>
-<section id="changing-relationships-with-past-mentors" class="level3">
-<h3 class="anchored" data-anchor-id="changing-relationships-with-past-mentors"><strong>Changing relationships with past mentors:</strong></h3>
-<p>While finding new mentors naturally made sense to me, it was difficult to realize that I was unable to maintain the same relationship with my previous mentors. Expectations of my work had changed, and with that, I needed to reestablish where I and my direct mentor stood.<br>
-</p>
-<section id="mentorship-involves-two-sides-of-a-professional-relationship.-as-your-mentor-recognizes-new-academic-potentials-within-you-you-must-be-able-to-reflect-the-same-onto-your-mentor." class="level4">
-<h4 class="anchored" data-anchor-id="mentorship-involves-two-sides-of-a-professional-relationship.-as-your-mentor-recognizes-new-academic-potentials-within-you-you-must-be-able-to-reflect-the-same-onto-your-mentor."><em>Mentorship involves two sides of a professional relationship. As your mentor recognizes new academic potentials within you, you must be able to reflect the same onto your mentor.</em></h4>
-<p>Although your mentor can have the best of intentions by entrusting more elaborate work onto you, it is important to understand boundaries and how to assert them. This can help your relationship with your mentor grow as well as maintain a good work-life balance.</p>
-<p>What is a boundary? My therapist described a boundary as a statement and an action. A boundary is a statement that defines and protects your integrity. For example, I try to maintain work-life balance by minimizing how much I immediately reply to emails over the weekend. However, boundaries must be “I-centric”, as it defines what you will do if the other person disregards your statement. Thus a boundary is also an action.&nbsp;</p>
-</section>
-<section id="defining-your-boundaries-using-the-i-centric-model-is-both-empowering-and-realistic-as-you-are-not-telling-the-other-person-what-to-do-rather-what-you-will-do-if-that-boundary-is-crossed." class="level4">
-<h4 class="anchored" data-anchor-id="defining-your-boundaries-using-the-i-centric-model-is-both-empowering-and-realistic-as-you-are-not-telling-the-other-person-what-to-do-rather-what-you-will-do-if-that-boundary-is-crossed."><em>Defining your boundaries using the “I-centric” model is both empowering and realistic, as you are not telling the other person what to do, rather, what you will do if that boundary is crossed.</em>&nbsp;</h4>
-<p>Continuing with my email example, rather than tell my mentor to not email over the weekend, I would inform them of my boundary: I won’t respond to emails over the weekend immediately, it’s best to contact me during the week. It’s to the point, polite, and defines your stance on a topic to your mentor.&nbsp;</p>
-<p>I have found with mentors, students, friends, and family members alike, that undefined boundaries will be continually crossed over and over, many times without knowing the harm it is causing.&nbsp;</p>
-<p>There may be circumstances where your boundaries will be tested, and in some cases, crossed. It is best to find a mentor who respects your boundaries and does not seek to alter your integrity regularly, whether or not they are doing this intentionally. If you find your mentor continually doing this, restating your boundaries is necessary.&nbsp;</p>
-<p>Stating boundaries early in one’s mentorship will help your professional relationship, or in more extreme cases, signal to you that you may need to seek a different mentor.&nbsp;</p>
-</section>
-</section>
-<section id="in-summary" class="level3">
-<h3 class="anchored" data-anchor-id="in-summary"><strong>In Summary:</strong></h3>
-<p>Trusting another person with your academic and professional journey can be nerve wracking. Vulnerability gives others the ability to criticize you and your work, whether that criticism be hurtful or constructive.&nbsp;</p>
-<p>However, creating a plan that fills your academic space with mentors who recognize your vulnerability and choose to uplift you will only enhance your professional journey.</p>
-</section>
-<section id="tdlr" class="level3">
-<h3 class="anchored" data-anchor-id="tdlr"><strong>TDLR:</strong></h3>
-<ol type="1">
-<li><p>Recognizing that expectations placed on you by your mentor, program etc not only require changes within how you work to adapt, but also in your support system</p></li>
-<li><p>You can adapt to handle more responsibilities, but your support and mentorship should equally increase. A mentorship plan will help you achieve this&nbsp;</p></li>
-<li><p>A research proposal is different from a mentorship plan&nbsp;&nbsp;</p></li>
-<li><p>An important aspect of a mentorship plan is receiving guidance from different people for different areas of your growth (Feel free to read my article “Mosaic Mentorship” for more on this)&nbsp;</p></li>
-<li><p>As your academic goals develop, you may need new mentorship or current mentors to change their area of guidance&nbsp;</p></li>
-<li><p>Vulnerability, at the face of supportive mentors, will help you grow tremendously&nbsp;</p></li>
-</ol>
-
-
-</section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kifer2022,
-  author = {Kifer, Allison},
-  title = {Incorporating a {Mentorship} {Plan} into {Your} {Degree}},
-  date = {2022-10-26},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kifer2022" class="csl-entry quarto-appendix-citeas">
-Kifer, Allison. 2022. <span>“Incorporating a Mentorship Plan into Your
-Degree.”</span> October 26, 2022. <a href="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/">https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</a>.
-</div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</guid>
-  <pubDate>Wed, 26 Oct 2022 07:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Why You Need Mosaic Mentorship</title>
-  <dc:creator>Allison Kifer</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</link>
-  <description><![CDATA[ 
-
-
-
-
-<p>Finding mentors and fostering relationships can be one of the most fulfilling and productive pursuits for undergraduates, graduate students, everyone.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/priscilla-du-preez-unsplash.jpg" class="img-fluid figure-img"></p>
-<figcaption>Mentorship is a community effort.</figcaption>
-</figure>
-</div>
-<section id="figuring-it-out-by-messing-it-all-up" class="level2">
-<h2 class="anchored" data-anchor-id="figuring-it-out-by-messing-it-all-up">Figuring it out by messing it all up</h2>
-<p>In my third year at UCSD, I was thrilled to have found a professor who 1) embodied my interest in merging science and writing and 2) had genuine enthusiasm in my professional development. With the right program, he encouraged me that he would be able to support my independent research ventures. The TRELS program at UCSD was the perfect platform for me to both explore the communication of climate change and completely botch my mentorship with a professor.</p>
-<p>Although this was not my intention, the experience taught me an important lesson that I wished I understood earlier during my time at UCSD.</p>
-<p>How exactly did I achieve this? The Triton Research &amp; Experiential Learning Scholars (TRELS) program was the first platform I had been granted to express and develop my academic interests with a professor. I immediately poured all parts of myself into this project and, in doing so, asked too much of my mentor.</p>
-<p>I wanted to explore human language, to understand how the structure of words in a sentence could have an impact on how we perceive and make decisions about climate change. I wished to investigate decades of discussions surrounding global warming and how this history perpetuates misinformation we still see today. I sought to labor through dense climate reports and reference the well researched biology, chemistry, and physics that already existed.</p>
-<p>And beyond my research paper, I had an innate desire to understand who exactly I was becoming in my journey of personal and professional development. While I rejected it at the time, my identity was intricately woven between my interests.</p>
-<p>It was only after I told this story to another professor of mine did the reality of my “plan” of mentorship come crashing down. No one person would be able to appeal to all the facets of my interests and needs in my academic development. I needed a linguist, a historian, and a climate scientist at least to aid me in my research goals , and instead, I had brought these expectations into my mentorship with a single professor.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/dylan-ferreira-unsplash.jpg" class="img-fluid"></p>
-<p>I’ll admit I’m being a little hard on my third-year self, as the pursuit for mentorship is self-motivated on a large public campus such as UCSD.</p>
-<p>University is many students’ first opportunity to dictate their education. Many students are coming from high school where education is driven by obligation, and most classes, teachers, and times of instruction are assigned with little student input. Upon entering UCSD, I found myself in control of my chosen degree with the exception of a few administrative nudges in the right direction in order to graduate on time. The void of academic constraint was suddenly overflowing with choices I had to make, and after planning out the first few quarters at UCSD, I was satiated with my own involvement in my undergraduate degree. Directing my own mentorship, which would include the close involvement of PhD-holding professors, was completely absent from my mind.</p>
-<section id="however-as-i-became-more-comfortable-with-the-campus-i-realized-that-there-was-an-unavoidably-large-piece-of-my-education-missing---mentorship." class="level4">
-<h4 class="anchored" data-anchor-id="however-as-i-became-more-comfortable-with-the-campus-i-realized-that-there-was-an-unavoidably-large-piece-of-my-education-missing---mentorship."><em>However, as I became more comfortable with the campus, I realized that there was an unavoidably large piece of my education missing - mentorship.</em></h4>
-<p>By my third year, when I had finally found a professor who acknowledged my interests as something worth investing in, I didn’t know how to ask for what I needed. After months of searching for a professor to represent me and my academic growth, I came into my mentorship starstruck and unable to use critical thinking. I was looking for too much guidance in too many places, all the while not really knowing what I was looking for.</p>
-<p>Luckily, upon reflection, this problem has a dynamic solution.</p>
-</section>
-</section>
-<section id="mosaic-mentorship" class="level2">
-<h2 class="anchored" data-anchor-id="mosaic-mentorship">Mosaic mentorship</h2>
-<p>What I needed in the past was a community of mentors full of niche, yet separate, roles in my progression of research and sense of self as an academic. While relatively new, the concept of community or “mosaic” mentorship, or the incorporation of an array of diverse mentors into a student’s professional growth, has been thought to better aid mentees (Khatchikian, Chahal, and Kielar, 2021).</p>
-<p>I was able to experience the benefits of mosaic mentorship firsthand, as I incorporated a community of mentors into my master’s program. A master’s in biology at UCSD includes performing two years of lab research under the guidance of a Principal Investigator (PI) and synthesizing your findings into a written and oral thesis. In addition to your PI, you need at least two more UCSD professionals or thesis committee members in order to complete your master’s. While my PI aided me in my direct research, my committee members gave me a wide perspective of the field and how to effectively communicate science.</p>
-<p>Additionally, having two, three, four perspectives on a collection of topics allowed me to critically think about my lab PI’s advice and guidance.</p>
-<section id="while-a-professors-opinion-may-be-trying-to-steer-you-in-the-right-direction-for-their-profession-this-may-not-actually-be-where-you-are-wanting-to-take-your-development.-rather-than-become-a-parrot-of-your-mentors-advice-with-mosaic-mentorship-you-are-able-to-synthesize-collective-thought-to-become-the-researcher-you-are-aiming-to-be." class="level4">
-<h4 class="anchored" data-anchor-id="while-a-professors-opinion-may-be-trying-to-steer-you-in-the-right-direction-for-their-profession-this-may-not-actually-be-where-you-are-wanting-to-take-your-development.-rather-than-become-a-parrot-of-your-mentors-advice-with-mosaic-mentorship-you-are-able-to-synthesize-collective-thought-to-become-the-researcher-you-are-aiming-to-be."><em>While a professor’s opinion may be trying to steer you in the right direction for their profession, this may not actually be where you are wanting to take your development. Rather than become a parrot of your mentor’s advice, with mosaic mentorship you are able to synthesize collective thought to become the researcher you are aiming to be.</em></h4>
-<p>Mosaic mentorship also benefits your mentor too. All professors at UCSD do work outside of the classroom and most likely cannot offer you the complete mentorship you are looking for, even if they are enthusiastic about working with you. Mosaic mentorship respects the time of your mentors by dividing up the amount of mentorship you need to succeed.</p>
-<p>Mentorship completely enlivened my experience at UCSD. Learning facts about biology was what I came to UCSD to do, but becoming scientifically literate and fostering my own sense of professional identity was the most important part of the process. And this is not only true for me– it has been shown that students mentored in academia tended to self-identify as a scientist more than those without a mentor (Atkins <em>et al.</em>, 2020). It is difficult to feel a part of the academic community without a group of people there to champion and advocate for you.</p>
-<p>University is a place to find inspiration for your academic goals, but it is ultimately up to you to invest in your interests. I was never taught how to effectively pursue mentorship, and it took a few mistakes to finalize what I needed. You will most likely continue to make mistakes along your mentorship journey, but I can assure you that it will be worth it.</p>
-</section>
-</section>
-<section id="tldr" class="level2">
-<h2 class="anchored" data-anchor-id="tldr">TLDR</h2>
-<p>If you want the short version of this article:</p>
-<ul>
-<li><p>Mentorship is as useful, if not more, than the education you receive in class</p></li>
-<li><p>Prioritize your mentorship plan in university. Locate multiple mentors and ask for different support from each</p></li>
-<li><p>Consistently reach out to new mentors or check in with your established mentors a few times a quarter</p></li>
-</ul>
-<p>What do you look for in a mentor and how do you find one? That’s a whole article in itself. Here are a few quick places for UCSD folks looking mentorship:</p>
-<ul>
-<li><p>Mentoring for All Initiative</p></li>
-<li><p>Take some time to look through the UCSD Faculty List to find researchers who interest you</p></li>
-<li><p>Consider going to the many presentations by academics on campus or online</p></li>
-<li><p>Reach out to Assistant Professors, Post-Doctorates, Adjunct Professors at the Salk Institute, TAs and more. Mentorship can and should come from all places</p></li>
-</ul>
-<p>Continue the conversation, feel free to reach out to me.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><p><a href="https://link.springer.com/article/10.1007/s00261-021-03314-2" class="uri">https://link.springer.com/article/10.1007/s00261-021-03314-2</a></p></li>
-<li><p><a href="https://stemeducationjournal.springeropen.com/articles/10.1186/s40594-020-00242-3" class="uri">https://stemeducationjournal.springeropen.com/articles/10.1186/s40594-020-00242-3</a></p></li>
-</ul>
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kifer2022,
-  author = {Kifer, Allison},
-  title = {Why {You} {Need} {Mosaic} {Mentorship}},
-  date = {2022-10-08},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/},
-  langid = {en}
-}
-</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kifer2022" class="csl-entry quarto-appendix-citeas">
-Kifer, Allison. 2022. <span>“Why You Need Mosaic Mentorship.”</span>
-October 8, 2022. <a href="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/">https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</a>.
-</div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</guid>
-  <pubDate>Sat, 08 Oct 2022 07:00:00 GMT</pubDate>
+  <media:content url="https://keefereuther.com/docs/blog/posts/saberwestsurvey/saber.png" medium="image" type="image/png" height="64" width="144"/>
 </item>
 </channel>
 </rss>

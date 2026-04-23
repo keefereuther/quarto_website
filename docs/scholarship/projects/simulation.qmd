@@ -1,7 +1,23 @@
 ---
 title: "Using Simulation to Learn Biology"
 image: central_limit_theorem.png
-description: "We are building open-source web applications and R packages to teach quantitative concepts in ecology, evolution, genetics, biostatistics and the application of science."
+description: "Open-source web applications and interactive tools for teaching quantitative concepts in biology — including statistics, experimental design, and probability."
 ---
 
-# 
+Learning statistics is easier when you can see it in action. These tools let students and instructors explore quantitative concepts interactively, without any software installation.
+
+---
+
+## Confidence Intervals
+
+An interactive visualization for exploring how confidence intervals work. Adjust sample size and confidence level and watch the simulation update in real time. Built as a client-side Vue + Tailwind app — runs entirely in the browser.
+
+[**Launch Confidence Intervals Demo**](https://huggingface.co/spaces/keefereuther/confidence_intervals){.btn .btn-primary}
+
+---
+
+## Power Analysis Visualization
+
+An interactive D3-based tool for exploring statistical power. See how sample size, effect size, and significance threshold interact — useful for experimental design discussions in introductory biology and statistics courses.
+
+[**Launch Power Analysis**](https://keefereuther.github.io/power-analysisD3/){.btn .btn-primary}

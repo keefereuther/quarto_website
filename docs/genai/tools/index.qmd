@@ -1,0 +1,116 @@
+---
+title: "GenAI Tools & Resources"
+---
+
+I build open-source AI tools designed for undergraduate biology instructors and students. All tools are free, hosted on Hugging Face or GitHub, and can be embedded directly in your course or LMS — no coding required to use them.
+
+::: {.callout-tip appearance="simple"}
+**New to AI tools for teaching?** Start with these short tutorials before diving in:
+[How to Set Up Your OpenAI Account & API Key](https://www.youtube.com/watch?v=QiJ6cWm9Dx4&t=5s) · [Custom AI Chatbots for Educators](https://www.youtube.com/watch?v=iMlOTSYLK2k)
+:::
+
+---
+
+## Schema Study
+
+**An AI-powered study coach for biology students — no coding required to set up.**
+
+Schema Study turns your course term list into a Socratic AI tutor. Students pick a term and enter a guided conversation: the AI asks questions, pushes for reasoning, and withholds direct answers until the student works toward them. You set it up in under two hours by uploading a spreadsheet of your terms and adding your OpenAI API key — no programming needed.
+
+- **Models:** GPT-5.2 (default), GPT-5.1, or GPT-4.1 — your choice in settings
+- **Setup:** Create a free Hugging Face account → fork the Space → upload your terms CSV → add your OpenAI API key → set a class password. Full step-by-step instructions are in the User Manual (S2 below).
+- **Embed:** Paste the Space URL into an iframe in Canvas, Moodle, or any LMS, or share the direct link with students
+- **License:** GNU GPL v3.0 — free and open-source forever
+- **Research-backed:** Used by 225 students; 72% would reuse it; each additional day per week of use more than doubled the likelihood of recommending it to peers
+
+[**Launch Schema Study**](https://huggingface.co/spaces/keefereuther/Schema_Study){.btn .btn-primary}
+[**Preview Version**](https://huggingface.co/spaces/keefereuther/Schema_Study_Preview){.btn .btn-outline-secondary}
+[**Fork & Customize**](https://huggingface.co/spaces/keefereuther/Schema_Study/tree/main){.btn .btn-outline-secondary}
+
+### Downloads & Resources
+
+::: {.callout-important appearance="minimal"}
+**New to Schema Study? Start with the User Manual.**
+The S2 User Manual walks you through every step of setting up your own copy — from creating a Hugging Face account to embedding it in Canvas. Download it first.
+
+[{{< fa file-pdf >}} **S2 — User Manual (PDF)**](schema-study/S2_user_manual.pdf){.btn .btn-success download="S2_SchemaStudy_UserManual"}
+:::
+
+| | Resource | Description |
+|---|---|---|
+| [{{< fa file-pdf >}} Download](schema-study/SchemaStudy_manuscript.pdf){download="SchemaStudy_manuscript"} | **Published Paper (PDF)** | Reuther et al. (2026), *CourseSource* |
+| [{{< fa file-csv >}} Download](schema-study/S1_terms_example.csv){download="S1_terms_example"} | **S1 — Example Terms CSV** | Template spreadsheet to build your own term list |
+| [{{< fa file-pdf >}} Download](schema-study/S2_user_manual.pdf){download="S2_SchemaStudy_UserManual"} | **S2 — User Manual** | Full instructor setup guide (start here) |
+| [{{< fa file-word >}} Download](schema-study/S3_student_activities.docx){download="S3_student_activities"} | **S3 — Student Activities** | Ready-to-use classroom activities |
+| [{{< fa file-word >}} Download](schema-study/S4_student_surveys.docx){download="S4_student_surveys"} | **S4 — Student Surveys** | Pre/post survey instruments used in the research |
+| [{{< fa fa-file-powerpoint >}} Download](schema-study/S5_teaching_slides.pptx){download="S5_teaching_slides"} | **S5 — Teaching Slides** | Slides for introducing Schema Study to your class |
+| [{{< fa file-word >}} Download](schema-study/S6_workshop_surveys.docx){download="S6_workshop_surveys"} | **S6 — Workshop Surveys** | Survey instruments for instructor-facing workshops |
+
+*Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry. CourseSource Teaching Tools and Strategies.*
+
+---
+
+## Practice with Prompting: AI Personas
+
+**Pre-built AI personas for exploring how AI works — no prompt writing needed.**
+
+This tool gives students and instructors a set of ready-to-use AI conversation partners with distinct personalities and teaching styles: a Socratic Tutor, AI Coach, AI Mentor, AI Teammate, AI Simulator, and more. Students can jump straight into a conversation without knowing anything about prompts. Instructors who want to go deeper can also write their own custom system instructions to create a new persona from scratch.
+
+This is a great tool for AI literacy activities — have students talk to two or three different personas with the same question and compare the responses. What changed? Why? That discussion teaches more about how AI works than any lecture.
+
+- **Models:** GPT 5.4 Mini, GPT 5.4, GPT 4.1, and Claude Sonnet — selectable in the app
+- **Setup:** To deploy your own copy, fork the Space on Hugging Face and add your API key (OpenAI or Anthropic) to the Space secrets. No coding needed. Works just like Schema Study.
+- **Embed:** Embed via iframe in any LMS or course page, or share the Space URL directly
+- **License:** GNU GPL v3.0 — free and open-source
+- **Coming soon:** An evaluation version where users can plug in their own API key directly in the app — no forking required
+
+[**Launch AI Personas**](https://huggingface.co/spaces/keefereuther/AI_Personas){.btn .btn-primary}
+
+---
+
+## Embeddable Chatbot Template
+
+**A modular, password-protected chatbot you can customize and deploy for your course.**
+
+A flexible chatbot template built for teaching and learning. You configure everything — the AI's personality, opening message, and subject focus — by editing a single plain-text settings file. No coding required. Password-protected so only your students can use it. Works with both OpenAI (GPT) and Anthropic (Claude) models.
+
+- **Models:** GPT or Claude — your choice; set in the config file. API key goes in your Space's private settings (never visible to students)
+- **Setup:** Fork the Space on Hugging Face → edit the config file to set your prompt, model, and opening message → add your API key → set a password. Done.
+- **Embed:** Paste the Space URL into an iframe in Canvas, Moodle, or any LMS, or share the direct link
+- **License:** GNU GPL v3.0 — free and open-source
+
+[**View the Template**](https://huggingface.co/spaces/keefereuther/ST_basebot){.btn .btn-primary}
+
+::: {.callout-tip appearance="simple"}
+**New to Hugging Face or API keys?** Watch: [How to Set Up Your OpenAI Account & API Key](https://www.youtube.com/watch?v=QiJ6cWm9Dx4&t=5s) · [Custom AI Chatbots for Educators](https://www.youtube.com/watch?v=iMlOTSYLK2k)
+:::
+
+---
+
+## Confidence Intervals Interactive Demo
+
+**Click-and-explore statistics — no account, no setup, no download.**
+
+An interactive visualization for understanding confidence intervals. Adjust the sample size and confidence level and watch how the intervals change in real time. Designed for introductory biology and statistics courses. Runs entirely in your web browser — nothing to install.
+
+- **Models:** None — no AI, no API key required
+- **Setup:** None — just click the link below and start exploring
+- **Embed:** Copy the Space URL and paste it into an iframe in any LMS or course page
+- **License:** GNU GPL v3.0 — free and open-source
+
+[**Launch Confidence Intervals Demo**](https://huggingface.co/spaces/keefereuther/confidence-intervals){.btn .btn-primary}
+
+---
+
+## Power Analysis Visualization
+
+**Explore statistical power interactively — no account, no setup, no download.**
+
+An interactive tool for visualizing how sample size, effect size, and significance threshold work together to determine statistical power. Built for experimental design discussions in introductory biology and statistics courses. Runs in the browser via GitHub Pages.
+
+- **Models:** None — no AI, no API key required
+- **Setup:** None — just click the link below
+- **Embed:** Copy the URL and paste it into an iframe in any LMS or course page
+- **License:** Open-source
+
+[**Launch Power Analysis**](https://keefereuther.github.io/power-analysisD3/){.btn .btn-primary}

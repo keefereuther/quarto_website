@@ -1,0 +1,58 @@
+---
+title: "A simple D3 interactive example"
+description: 
+  This is a minimal example of an OJS D3 webapp with one input and one output.
+categories:
+  - OJS
+  - D3
+  - Example
+author: Keefe Reuther
+date: "2025-04-16"
+image: "pastellogo.webp" # Consider changing this image if it's not relevant
+format: 
+  html:
+    page-layout: full
+---
+
+------------------------------------------------------------------------
+
+# Simple Interactive Circle
+
+Use the slider below to control the size of the circle.
+
+```{ojs}
+//| echo: false
+d3 = require("d3@7");
+
+// Single Input: Slider for circle radius
+viewof circleRadius = Inputs.range([10, 100], {label: "Circle Radius", value: 30, step: 1});
+
+// Single Output: An SVG circle whose radius is determined by the slider
+svgCircle = {
+  const width = 220;
+  const height = 220;
+  const margin = {top: 10, right: 10, bottom: 10, left: 10};
+  
+  const svgNode = d3.create("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("viewBox", [0, 0, width, height]);
+
+  // Clear previous circle if any (important for reactivity)
+  svgNode.selectAll("circle").remove();
+
+  // Draw the circle
+  svgNode.append("circle")
+    .attr("cx", width / 2)
+    .attr("cy", height / 2)
+    .attr("r", circleRadius) // Use the value from the slider
+    .attr("fill", "steelblue");
+
+  return svgNode.node(); // Return the SVG node for display
+};
+
+// Optional: Display the current radius value as text
+radiusValue = `Current Radius: **${circleRadius}**`;
+```
+
+### That's it!

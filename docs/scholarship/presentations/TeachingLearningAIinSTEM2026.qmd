@@ -1,0 +1,20 @@
+---
+title: "Teaching and Learning with AI in STEM"
+date: 2026-04-24
+categories: [AI, STEM Education, Webinar]
+---
+
+Virtual Webinar · Friday, 24 April 2026 · 2:00–3:00 PM PT
+[Register: bit.ly/STEM-AI](https://bit.ly/STEM-AI)
+
+Presented by the Equitable AI Alliance · San Diego Community College District, UC San Diego, San Diego State University
+
+---
+
+**Reuther, K.** & Murthy, S. (2026). *Teaching and Learning with AI in STEM*. Equitable AI Alliance Webinar. April 24, 2026.
+
+A one-hour conversation with Dr. Sesh Murthy (Halıcıoğlu Data Science Institute, UC San Diego) on how generative AI is reshaping STEM courses in higher education — classroom-ready tools, pedagogical approaches, and what's actually moving the needle on student engagement and outcomes in biology, math, and beyond.
+
+<object data="TeachingLearningAIinSTEM_Flyer.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF flyer for Teaching and Learning with AI in STEM webinar">
+  <p>Your browser does not support embedded PDFs. <a href="TeachingLearningAIinSTEM_Flyer.pdf">Download the flyer</a>.</p>
+</object>

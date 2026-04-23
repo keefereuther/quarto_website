@@ -5,22 +5,552 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>The Reuther Lab</title>
-<link>https://reutherlab.netlify.app/docs/blog/</link>
-<atom:link href="https://reutherlab.netlify.app/docs/blog/index.xml" rel="self" type="application/rss+xml"/>
+<title>Keefe Reuther</title>
+<link>https://keefereuther.com/docs/blog/</link>
+<atom:link href="https://keefereuther.com/docs/blog/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://reutherlab.netlify.app/assets/logosimple.webp</url>
-<title>The Reuther Lab</title>
-<link>https://reutherlab.netlify.app/docs/blog/</link>
+<url>https://keefereuther.com/assets/logosimple.webp</url>
+<title>Keefe Reuther</title>
+<link>https://keefereuther.com/docs/blog/</link>
 </image>
 <generator>quarto-1.5.57</generator>
-<lastBuildDate>Tue, 04 Feb 2025 08:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 09 Apr 2026 07:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fake Diseases and Fake Papers</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A researcher at the University of Gothenburg invented a fake eye condition called “bixonimania,” planted two obviously bogus preprints about it (complete with shoutouts to Starfleet Academy and Sideshow Bob), and watched major AI chatbots start confidently diagnosing people with it within weeks. The kicker: the fake papers eventually got cited in peer-reviewed literature, suggesting some researchers are using AI to pull references without ever reading the actual papers.</p>
+<p><a href="https://www.nature.com/articles/d41586-026-01100-y">Read the <em>Nature</em> piece</a></p>
+<p>It also raises an interesting ethical question for the authors — whether to leave the fake preprints online. I may use this in class as a cautionary tale about information literacy.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {Fake {Diseases} and {Fake} {Papers}},
+  date = {2026-04-09},
+  url = {https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“Fake Diseases and Fake Papers.”</span>
+April 9, 2026. <a href="https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/">https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Research integrity</category>
+  <guid>https://keefereuther.com/docs/blog/posts/fakeDiseasesFakePapers/</guid>
+  <pubDate>Thu, 09 Apr 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Are LLMs Homogenizing Our Thoughts?</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>New research from <em>Trends in Cognitive Sciences</em> with possibly the most existentially horrifying title of the year: <strong>The homogenizing effect of large language models on human expression and thought.</strong></p>
+<ul>
+<li><a href="https://www.cell.com/trends/cognitive-sciences/fulltext/S1364-6613(26)00003-3">Paper in <em>Trends in Cognitive Sciences</em></a></li>
+<li><a href="https://www.nature.com/articles/d41586-026-00781-9"><em>Nature</em> article discussing it</a></li>
+</ul>
+<p>Worth thinking about what we can specifically do in the classroom to manage this — to protect authenticity and original student voice.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {Are {LLMs} {Homogenizing} {Our} {Thoughts?}},
+  date = {2026-04-06},
+  url = {https://keefereuther.com/docs/blog/posts/llmsHomogenizing/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“Are LLMs Homogenizing Our Thoughts?”</span>
+April 6, 2026. <a href="https://keefereuther.com/docs/blog/posts/llmsHomogenizing/">https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Cognition</category>
+  <guid>https://keefereuther.com/docs/blog/posts/llmsHomogenizing/</guid>
+  <pubDate>Mon, 06 Apr 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>The Pro-Human AI Declaration</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A bipartisan statement on AI and human flourishing — <a href="https://humanstatement.org">humanstatement.org</a> — shared with the SABER GenAI SIG. Relevant for anyone framing classroom AI policy around human-centered use rather than prohibition or default adoption.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {The {Pro-Human} {AI} {Declaration}},
+  date = {2026-03-10},
+  url = {https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“The Pro-Human AI Declaration.”</span> March
+10, 2026. <a href="https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/">https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Policy</category>
+  <guid>https://keefereuther.com/docs/blog/posts/proHumanAIDeclaration/</guid>
+  <pubDate>Tue, 10 Mar 2026 07:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>AI and Authenticity — A Piece Worth Reading</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/aiAuthenticity/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A piece my partner, Lindsay Riedel Reuther, just wrote that I think this community will appreciate:</p>
+<p><a href="https://www.linkedin.com/posts/lriedel_if-youre-wondering-whether-this-was-written-activity-7429986414613696512-KZwa/">Read Lindsay’s LinkedIn post</a></p>
+<p>It’s about a tension many of us are living in right now: we’re encouraged to use generative AI (especially in professional settings), but we’re also implicitly pressured to make sure it doesn’t look like we did. Lindsay comes at it from a business/workplace lens, with a focus on trust, integrity, and what “authentic” communication even means in a human+AI world.</p>
+<p>If you’ve been thinking about how norms around AI use are shifting — and what we should actually value when we read someone’s writing — there’s a lot to chew on here.</p>
+
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2026,
+  author = {Reuther, Keefe},
+  title = {AI and {Authenticity} — {A} {Piece} {Worth} {Reading}},
+  date = {2026-02-27},
+  url = {https://keefereuther.com/docs/blog/posts/aiAuthenticity/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2026" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2026. <span>“AI and Authenticity — A Piece Worth
+Reading.”</span> February 27, 2026. <a href="https://keefereuther.com/docs/blog/posts/aiAuthenticity/">https://keefereuther.com/docs/blog/posts/aiAuthenticity/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Teaching</category>
+  <guid>https://keefereuther.com/docs/blog/posts/aiAuthenticity/</guid>
+  <pubDate>Fri, 27 Feb 2026 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Nature’s The Future of AI</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<p>A new immersive piece from <em>Nature</em> that might be useful for research, teaching, and personal reflection on AI:</p>
+<p><a href="https://www.nature.com/immersive/d41586-025-03701-5/index.html"><strong>The Future of AI</strong> (<em>Nature</em>, immersive)</a></p>
+<p>A short video series where six people working at the forefront of AI describe what they hope the technology will do, what worries them, and how they think the public currently understands it. Interviewees include:</p>
+<ul>
+<li>Mustafa Suleyman — Chief Executive, Microsoft AI</li>
+<li>Pushmeet Kohli — Vice President of Research, Google DeepMind</li>
+<li>Timnit Gebru — Founder and Executive Director, The Distributed AI Research Institute</li>
+<li>Jared Kaplan — Co-founder and Chief Science Officer, Anthropic</li>
+<li>Anima Anandkumar — Computer and Mathematical Scientist, California Institute of Technology</li>
+<li>Amandeep Gill — Special Envoy for Digital and Emerging Technologies, United Nations</li>
+</ul>
+<p>A few discussion prompts after watching: What surprised you most? What did you disagree with, and why? Did anything shift how you think about using — or not using — AI in your classroom?</p>
+<hr>
+<section id="a-couple-of-gemini-3-pro-experiments" class="level3">
+<h3 class="anchored" data-anchor-id="a-couple-of-gemini-3-pro-experiments">A couple of Gemini 3 Pro experiments</h3>
+<p>Also worth a look — Gemini 3 Pro is next level:</p>
+<ul>
+<li><a href="https://gemini.google.com/share/b5e6c1cbae24">One-prompt interactive evolution simulation</a></li>
+<li><a href="https://gemini.google.com/share/76a962fc5de6">One-prompt figure on sucrose hydrolysis with an auto-inserted tutor chatbot</a></li>
+</ul>
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {Nature’s {*The} {Future} of {AI*}},
+  date = {2025-11-25},
+  url = {https://keefereuther.com/docs/blog/posts/natureFutureOfAI/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“Nature’s *The Future of AI*.”</span>
+November 25, 2025. <a href="https://keefereuther.com/docs/blog/posts/natureFutureOfAI/">https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</a>.
+</div></div></section></div> ]]></description>
+  <category>AI</category>
+  <category>Resources</category>
+  <guid>https://keefereuther.com/docs/blog/posts/natureFutureOfAI/</guid>
+  <pubDate>Tue, 25 Nov 2025 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>A simple D3 interactive example</title>
+  <dc:creator>Keefe Reuther</dc:creator>
+  <link>https://keefereuther.com/docs/blog/posts/OJStest/</link>
+  <description><![CDATA[ 
+Skip to main content
+
+
+
+
+<hr>
+<section id="simple-interactive-circle" class="level1">
+<h1>Simple Interactive Circle</h1>
+<p>Use the slider below to control the size of the circle.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="25" data-source-offset="-0" style="background: #f1f3f5;"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb1-25">d3 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="pp" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">require</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"d3@7"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-26"></span>
+<span id="cb1-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Single Input: Slider for circle radius</span></span>
+<span id="cb1-28">viewof circleRadius <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Inputs<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">range</span>([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">label</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Circle Radius"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">value</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">step</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>})<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-29"></span>
+<span id="cb1-30"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Single Output: An SVG circle whose radius is determined by the slider</span></span>
+<span id="cb1-31">svgCircle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb1-32">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">220</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-33">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">220</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-34">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> margin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">top</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">right</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">bottom</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">left</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-35">  </span>
+<span id="cb1-36">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">const</span> svgNode <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> d3<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">create</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"svg"</span>)</span>
+<span id="cb1-37">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"width"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width)</span>
+<span id="cb1-38">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"height"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height)</span>
+<span id="cb1-39">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"viewBox"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height])<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-40"></span>
+<span id="cb1-41">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Clear previous circle if any (important for reactivity)</span></span>
+<span id="cb1-42">  svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">selectAll</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"circle"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">remove</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-43"></span>
+<span id="cb1-44">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Draw the circle</span></span>
+<span id="cb1-45">  svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">append</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"circle"</span>)</span>
+<span id="cb1-46">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cx"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> width <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-47">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cy"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> height <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb1-48">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"r"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> circleRadius) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Use the value from the slider</span></span>
+<span id="cb1-49">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">attr</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"fill"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">,</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"steelblue"</span>)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-50"></span>
+<span id="cb1-51">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> svgNode<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">.</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">node</span>()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Return the SVG node for display</span></span>
+<span id="cb1-52">}<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span>
+<span id="cb1-53"></span>
+<span id="cb1-54"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">// Optional: Display the current radius value as text</span></span>
+<span id="cb1-55">radiusValue <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`Current Radius: **</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">${</span>circleRadius<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="vs" style="color: #20794D;
+background-color: null;
+font-style: inherit;">**`</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">;</span></span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="thats-it" class="level3">
+<h3 class="anchored" data-anchor-id="thats-it">That’s it!</h3>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{reuther2025,
+  author = {Reuther, Keefe},
+  title = {A Simple {D3} Interactive Example},
+  date = {2025-04-16},
+  url = {https://keefereuther.com/docs/blog/posts/OJStest/},
+  langid = {en}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
+Reuther, Keefe. 2025. <span>“A Simple D3 Interactive Example.”</span>
+April 16, 2025. <a href="https://keefereuther.com/docs/blog/posts/OJStest/">https://keefereuther.com/docs/blog/posts/OJStest/</a>.
+</div></div></section></div> ]]></description>
+  <category>OJS</category>
+  <category>D3</category>
+  <category>Example</category>
+  <guid>https://keefereuther.com/docs/blog/posts/OJStest/</guid>
+  <pubDate>Wed, 16 Apr 2025 07:00:00 GMT</pubDate>
+  <media:content url="https://keefereuther.com/docs/blog/posts/OJStest/pastellogo.webp" medium="image" type="image/webp"/>
+</item>
 <item>
   <title>Making a better chatbot</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</link>
+  <link>https://keefereuther.com/docs/blog/posts/chatbottestapp/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -38,19 +568,33 @@
 
 </div>
 </div>
-<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
+<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code.</p>
+<p>Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
 <section id="what-is-this-app" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-app">What Is This App?</h2>
-<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as: - <strong>Language:</strong> Choose the language in which your chatbot responds. - <strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are. - <strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be. - <strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p>
+<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as:</p>
+<ul>
+<li><p><strong>Language:</strong> Choose the language in which your chatbot responds.</p></li>
+<li><p><strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are.</p></li>
+<li><p><strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be.</p></li>
+<li><p><strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p></li>
+</ul>
 <p>The app is hosted publicly on <a href="https://keefereuther-openai-chatbot-tester.hf.space">Hugging Face Spaces</a>, making it accessible to anyone interested in exploring the benefits of conversational AI in education.</p>
 </section>
 <section id="why-should-you-try-it" class="level2">
 <h2 class="anchored" data-anchor-id="why-should-you-try-it">Why Should You Try It?</h2>
-<p>Using this app, educators can: - <strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources. - <strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior. - <strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style. - <strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p>
+<p>Using this app, educators can:</p>
+<ul>
+<li><p><strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources.</p></li>
+<li><p><strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior.</p></li>
+<li><p><strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style.</p></li>
+<li><p><strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p></li>
+</ul>
 </section>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>OpenAI API Key – Obtain one from <a href="https://platform.openai.com/api-keys">OpenAI</a></p>
+<p>See this walkthrough video: <a href="https://www.youtube.com/watch?v=QiJ6cWm9Dx4&amp;t=1s">How to Set Up Your OpenAI Account &amp; API Key</a></p>
 </section>
 <section id="how-it-works-a-step-by-step-guide" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-works-a-step-by-step-guide">How It Works: A Step-by-Step Guide</h2>
@@ -90,21 +634,22 @@ Type a message in the chat box to see how your customized settings influence the
   author = {Reuther, Keefe},
   title = {Making a Better Chatbot},
   date = {2025-02-04},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/},
+  url = {https://keefereuther.com/docs/blog/posts/chatbottestapp/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
-4, 2025. <a href="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/">https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</a>.
+4, 2025. <a href="https://keefereuther.com/docs/blog/posts/chatbottestapp/">https://keefereuther.com/docs/blog/posts/chatbottestapp/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/chatbottestapp/</guid>
   <pubDate>Tue, 04 Feb 2025 08:00:00 GMT</pubDate>
 </item>
 <item>
   <title>A Brief Guide to Data Privacy and GenAI Chatbots</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</link>
+  <link>https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -155,8 +700,18 @@ Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
 <ul>
 <li><p>For <strong>ChatGPT</strong>, follow the opt-out instructions below.</p>
 <ul>
-<li><p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/privacy1.png" class="img-fluid"></p></li>
-<li><p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/privacy2.png" class="img-fluid"></p></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/privacy1.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot showing ChatGPT settings menu to opt out of data usage for model training — step 1</figcaption>
+</figure>
+</div></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/privacy2.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot showing ChatGPT data controls toggle to disable model training — step 2</figcaption>
+</figure>
+</div></li>
 </ul></li>
 <li><p>For <strong>Claude</strong>, refrain from opting in to data usage for training and avoid submitting feedback that could be used for this purpose.</p></li>
 </ul></li>
@@ -189,25 +744,26 @@ Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
   author = {Reuther, Keefe},
   title = {A {Brief} {Guide} to {Data} {Privacy} and {GenAI} {Chatbots}},
   date = {2024-10-16},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/},
+  url = {https://keefereuther.com/docs/blog/posts/aiprivacypolicy/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“A Brief Guide to Data Privacy and GenAI
-Chatbots.”</span> October 16, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/">https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</a>.
+Chatbots.”</span> October 16, 2024. <a href="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/">https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Undergraduate</category>
   <category>Instructor</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/aiprivacypolicy/</guid>
   <pubDate>Wed, 16 Oct 2024 07:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/aiprivacypolicy/security.webp" medium="image" type="image/webp"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/aiprivacypolicy/security.webp" medium="image" type="image/webp"/>
 </item>
 <item>
   <title>SABER Generative AI Special Interest Group</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/genaisig/</link>
+  <link>https://keefereuther.com/docs/blog/posts/genaisig/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -242,30 +798,36 @@ Chatbots.”</span> October 16, 2024. <a href="https://reutherlab.netlify.app/do
   author = {Reuther, Keefe},
   title = {SABER {Generative} {AI} {Special} {Interest} {Group}},
   date = {2024-02-16},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/genaisig/},
+  url = {https://keefereuther.com/docs/blog/posts/genaisig/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“SABER Generative AI Special Interest
-Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/genaisig/">https://reutherlab.netlify.app/docs/blog/posts/genaisig/</a>.
+Group.”</span> February 16, 2024. <a href="https://keefereuther.com/docs/blog/posts/genaisig/">https://keefereuther.com/docs/blog/posts/genaisig/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Instructors</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/genaisig/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/genaisig/</guid>
   <pubDate>Fri, 16 Feb 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/genaisig/saber.png" medium="image" type="image/png" height="64" width="144"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/genaisig/saber.png" medium="image" type="image/png" height="64" width="144"/>
 </item>
 <item>
   <title>The Science of Asking: How to Formulate Questions and Hypotheses in Research</title>
   <dc:creator>Keefe Reuther</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</link>
+  <link>https://keefereuther.com/docs/blog/posts/statistical_thinking/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
 
 <p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/stat_thoughts.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/statistical_thinking/stat_thoughts.png" class="img-fluid figure-img"></p>
+<figcaption>Illustration representing scientific thinking and hypothesis formulation</figcaption>
+</figure>
+</div>
 <section id="a-short-primer-connecting-scientific-questions-to-statistical-conclusions" class="level1">
 <h1>A Short Primer Connecting Scientific Questions to Statistical Conclusions</h1>
 <p>Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it’s a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.</p>
@@ -300,7 +862,7 @@ Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs
 <p>After running your experiment and collecting data, it’s important to evaluate the likelihood of inaccuracies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/table.png" class="img-fluid figure-img"></p>
+<p><img src="https://keefereuther.com/docs/blog/posts/statistical_thinking/table.png" class="img-fluid figure-img"></p>
 <figcaption>Table of Possibilities in Hypothesis Testing</figcaption>
 </figure>
 </div>
@@ -350,24 +912,25 @@ Group.”</span> February 16, 2024. <a href="https://reutherlab.netlify.app/docs
   title = {The {Science} of {Asking:} {How} to {Formulate} {Questions}
     and {Hypotheses} in {Research}},
   date = {2024-01-17},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/},
+  url = {https://keefereuther.com/docs/blog/posts/statistical_thinking/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2024" class="csl-entry quarto-appendix-citeas">
 Reuther, Keefe. 2024. <span>“The Science of Asking: How to Formulate
-Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/">https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</a>.
+Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https://keefereuther.com/docs/blog/posts/statistical_thinking/">https://keefereuther.com/docs/blog/posts/statistical_thinking/</a>.
 </div></div></section></div> ]]></description>
   <category>Experimental Design</category>
   <category>Statistics</category>
   <category>Undergraduates</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/statistical_thinking/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/statistical_thinking/</guid>
   <pubDate>Wed, 17 Jan 2024 08:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Crafting Your GenAI &amp; AI Policy Guide</title>
   <dc:creator>Keefe Reuther and Tricia Bertram-Gallant</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</link>
+  <link>https://keefereuther.com/docs/blog/posts/craftingaipolicy/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -376,8 +939,8 @@ Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https
 <hr>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/ai_cheating.png" class="img-fluid figure-img"></p>
-<figcaption>https://academicintegrity.ucsd.edu/excel-integrity/ai-in-education.html</figcaption>
+<p><img src="https://keefereuther.com/docs/blog/posts/craftingaipolicy/ai_cheating.png" class="img-fluid figure-img"></p>
+<figcaption>Screenshot from UCSD Academic Integrity Office: AI in Education page</figcaption>
 </figure>
 </div>
 <section id="my-personal-genai-policy-template" class="level2">
@@ -418,7 +981,11 @@ Questions and Hypotheses in Research.”</span> January 17, 2024. <a href="https
 <p><br>
 I <strong>HIGHLY</strong> recommend this guide for all instructors, regardless of what your policy will be.<br>
 <a href="https://academicintegrity.ucsd.edu/">UCSD Academic Integrity Office</a></p>
-<embed src="Crafting Your  GenAI &amp; AI Policy  Guide.pdf" type="application/pdf" iframe="" width="100%" height="800">
+<object data="Crafting Your  GenAI &amp; AI Policy  Guide.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Crafting Your GenAI and AI Policy Guide by Dr. Tricia Bertram-Gallant">
+<p>
+Your browser does not support embedded PDFs. <a href="Crafting Your  GenAI &amp; AI Policy  Guide.pdf">Download the PDF guide</a>.
+</p>
+</object>
 
 
 </section>
@@ -427,21 +994,22 @@ I <strong>HIGHLY</strong> recommend this guide for all instructors, regardless o
   author = {Reuther and Tricia Bertram-Gallant, Keefe},
   title = {Crafting {Your} {GenAI} \&amp; {AI} {Policy} {Guide}},
   date = {2024-01-13},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/},
+  url = {https://keefereuther.com/docs/blog/posts/craftingaipolicy/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther_and_tricia_bertram-gallant2024" class="csl-entry quarto-appendix-citeas">
 Reuther and Tricia Bertram-Gallant, Keefe. 2024. <span>“Crafting Your
-GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/">https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</a>.
+GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://keefereuther.com/docs/blog/posts/craftingaipolicy/">https://keefereuther.com/docs/blog/posts/craftingaipolicy/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/craftingaipolicy/</guid>
   <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/craftingaipolicy/ucsdintegrity.png" medium="image" type="image/png" height="79" width="144"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/craftingaipolicy/ucsdintegrity.png" medium="image" type="image/png" height="79" width="144"/>
 </item>
 <item>
   <title>Gathering Perspectives on Generative AI in Undergraduate Biology Education</title>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</link>
+  <link>https://keefereuther.com/docs/blog/posts/saberwestsurvey/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -449,7 +1017,11 @@ GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reuthe
 <p><a href="https://sites.google.com/uci.edu/saber-west-2024/home">SABER West Conference 2024</a></p>
 <hr>
 <p>Since the public release of ChatGPT in November 2022, generative AI has rapidly entered the college classroom. New capabilities are continually emerging that impact teaching and learning environments. In higher education broadly, there has been an influx of conferences, preprints, publications, and working groups examining implications and applications of generative AI. However, there is a need to specifically examine the role of generative AI within undergraduate biology education. The unique challenges and potential solutions in biology classrooms likely differ from other disciplines like creative writing or computer science. To explore this, I have developed a survey to distribute at SABER 2024. This survey has three aims: 1) Build a community of DBER scholars investigating generative AI applications in undergraduate biology. 2) Identify priorities for professional development on generative AI, for both SABER members and their home institutions. 3) Gather instructor and student perspectives on how generative AI is impacting teaching and learning of biology. I have drafted this survey and welcome feedback from the SABER community to improve it before implementation in the summer of 2024. Beyond gathering data, I hope this survey connects those interested in creatively harnessing the potential of generative AI in this new landscape we find ourselves in.</p>
-<embed src="Reuther SABER West 2024 Survey.pdf" type="application/pdf" iframe="" width="100%" height="800">
+<object data="Reuther SABER West 2024 Survey.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther SABER West 2024 Survey.pdf">
+<p>
+Your browser does not support embedded PDFs. <a href="Reuther SABER West 2024 Survey.pdf">Download the PDF</a>.
+</p>
+</object>
 
 
 
@@ -458,30 +1030,31 @@ GenAI &amp; AI Policy Guide.”</span> January 13, 2024. <a href="https://reuthe
   title = {Gathering {Perspectives} on {Generative} {AI} in
     {Undergraduate} {Biology} {Education}},
   date = {2024-01-13},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/},
+  url = {https://keefereuther.com/docs/blog/posts/saberwestsurvey/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2024" class="csl-entry quarto-appendix-citeas">
 <span>“Gathering Perspectives on Generative AI in Undergraduate Biology
-Education.”</span> 2024. January 13, 2024. <a href="https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/">https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</a>.
+Education.”</span> 2024. January 13, 2024. <a href="https://keefereuther.com/docs/blog/posts/saberwestsurvey/">https://keefereuther.com/docs/blog/posts/saberwestsurvey/</a>.
 </div></div></section></div> ]]></description>
   <category>AI</category>
   <category>Instructors</category>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/saberwestsurvey/</guid>
   <pubDate>Sat, 13 Jan 2024 08:00:00 GMT</pubDate>
-  <media:content url="https://reutherlab.netlify.app/docs/blog/posts/saberwestsurvey/saber.png" medium="image" type="image/png" height="64" width="144"/>
+  <media:content url="https://keefereuther.com/docs/blog/posts/saberwestsurvey/saber.png" medium="image" type="image/png" height="64" width="144"/>
 </item>
 <item>
   <title>A Beginner’s Guide to Using AI to Create Canvas Quizzes</title>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</link>
+  <link>https://keefereuther.com/docs/blog/posts/aiquiz2canvas/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
 
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/DALL·E 2023-11-02 16.39.52.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="https://keefereuther.com/docs/blog/posts/aiquiz2canvas/DALL·E 2023-11-02 16.39.52.png" class="img-fluid figure-img" width="400"></p>
 <figcaption>Created by DALL-E 3</figcaption>
 </figure>
 </div>
@@ -1449,27 +2022,33 @@ font-style: inherit;">13. </span>List two techniques you learned in the lab that
   title = {A {Beginner’s} {Guide} to {Using} {AI} to {Create} {Canvas}
     {Quizzes}},
   date = {2023-10-22},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/},
+  url = {https://keefereuther.com/docs/blog/posts/aiquiz2canvas/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-2023" class="csl-entry quarto-appendix-citeas">
 <span>“A Beginner’s Guide to Using AI to Create Canvas Quizzes.”</span>
-2023. October 22, 2023. <a href="https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/">https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</a>.
+2023. October 22, 2023. <a href="https://keefereuther.com/docs/blog/posts/aiquiz2canvas/">https://keefereuther.com/docs/blog/posts/aiquiz2canvas/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/aiquiz2canvas/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/aiquiz2canvas/</guid>
   <pubDate>Sun, 22 Oct 2023 07:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Incorporating a Mentorship Plan into Your Degree</title>
   <dc:creator>Allison Kifer</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</link>
+  <link>https://keefereuther.com/docs/blog/posts/mentormosaic2/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
 
 <p>While many aspects of a degree are well planned, mentorship is an aspect that is often overlooked.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Header_Image.jpg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/mentormosaic2/Header_Image.jpg" class="img-fluid figure-img"></p>
+<figcaption>Header image for article on creating a mentorship plan</figcaption>
+</figure>
+</div>
 <section id="incorporating-a-mentorship-plan-into-your-degree" class="level2">
 <h2 class="anchored" data-anchor-id="incorporating-a-mentorship-plan-into-your-degree"><strong>Incorporating a Mentorship Plan into Your Degree</strong></h2>
 <p>It wasn’t until halfway through my master’s program at UC San Diego did I realize I needed to create an adaptive mentorship plan. In order to graduate and feel confident going into the working world outside of my master’s, I needed to receive extra support.&nbsp;</p>
@@ -1477,7 +2056,12 @@ font-style: inherit;">13. </span>List two techniques you learned in the lab that
 <p>I had comfortably stayed at my undergraduate lab for my master’s, and while my location did not change, the expectation for my work had.&nbsp;</p>
 <p>The next year of my master’s was going to be rigorous, as my experiments were longer and required more attention, and I was a bit terrified to present my research among academics. My postdoctoral mentor had also recently left the lab and with that my primary person for direct technical guidance and career advice was no longer as easily accessible.&nbsp;</p>
 <p>It was hard to admit at the time, but I was treading in deep, deep water. I was unsure how to navigate this all with less support than I had before.&nbsp;</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Image_1.jpg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/mentormosaic2/Image_1.jpg" class="img-fluid figure-img"></p>
+<figcaption>Illustration representing the challenge of navigating graduate school with limited support</figcaption>
+</figure>
+</div>
 <p>Because of my experiences with mentorship in the past, I recognized that I needed extended support and some clarity within the mentorship I already had.</p>
 <section id="if-you-are-asked-to-tackle-larger-responsibilities-and-your-abilities-are-stretched-thin-your-support-system-will-need-to-step-up." class="level4">
 <h4 class="anchored" data-anchor-id="if-you-are-asked-to-tackle-larger-responsibilities-and-your-abilities-are-stretched-thin-your-support-system-will-need-to-step-up."><em>If you are asked to tackle larger responsibilities and your abilities are stretched thin, your support system will need to step up.</em></h4>
@@ -1497,7 +2081,12 @@ font-style: inherit;">13. </span>List two techniques you learned in the lab that
 <p>Personally, I lacked confidence in discussing and presenting my research to other academics and knew that I needed help preparing for my oral defense. Because I knew my current mentors were extremely busy and could only offer me certan guidance, I attempted to expand my support. I employed the use of community or mosaic mentorship, which is the concept that mentorship should utilize the expertise of many mentors rather than a sole educator. I have written a blog on the impact of mosaic mentorship, which you can find below.&nbsp;</p>
 <p>One of my professors gave our class the option to present our own research in class without the pressure of receiving a grade. I used it as an opportunity to receive feedback from my professor and my peers, as well as establish a mentor relationship with my professor. If you have similar fears as me, there are also “Grad Slams” on campus where graduate students present their work and receive useful critiques. It is a great opportunity to hear the frequently asked questions that might surface during your presentation.</p>
 <p>When picking my committee members for my thesis, which are required for most master degrees, I emphasized early on that I needed support in professional development. My second committee member was able to meet with me once a month to help craft a larger picture of life outside of my master’s. During particularly difficult sections of my program, speaking with my second committee member helped motivate me and reminded me of why I was doing my master’s in the first place.&nbsp;</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/Image_2.jpg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://keefereuther.com/docs/blog/posts/mentormosaic2/Image_2.jpg" class="img-fluid figure-img"></p>
+<figcaption>Illustration representing building a broader mentorship network</figcaption>
+</figure>
+</div>
 </section>
 <section id="changing-relationships-with-past-mentors" class="level3">
 <h3 class="anchored" data-anchor-id="changing-relationships-with-past-mentors"><strong>Changing relationships with past mentors:</strong></h3>
@@ -1540,21 +2129,22 @@ font-style: inherit;">13. </span>List two techniques you learned in the lab that
   author = {Kifer, Allison},
   title = {Incorporating a {Mentorship} {Plan} into {Your} {Degree}},
   date = {2022-10-26},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/},
+  url = {https://keefereuther.com/docs/blog/posts/mentormosaic2/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kifer2022" class="csl-entry quarto-appendix-citeas">
 Kifer, Allison. 2022. <span>“Incorporating a Mentorship Plan into Your
-Degree.”</span> October 26, 2022. <a href="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/">https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</a>.
+Degree.”</span> October 26, 2022. <a href="https://keefereuther.com/docs/blog/posts/mentormosaic2/">https://keefereuther.com/docs/blog/posts/mentormosaic2/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic2/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/mentormosaic2/</guid>
   <pubDate>Wed, 26 Oct 2022 07:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Why You Need Mosaic Mentorship</title>
   <dc:creator>Allison Kifer</dc:creator>
-  <link>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</link>
+  <link>https://keefereuther.com/docs/blog/posts/mentormosaic/</link>
   <description><![CDATA[ 
+Skip to main content
 
 
 
@@ -1562,7 +2152,7 @@ Degree.”</span> October 26, 2022. <a href="https://reutherlab.netlify.app/docs
 <p>Finding mentors and fostering relationships can be one of the most fulfilling and productive pursuits for undergraduates, graduate students, everyone.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/priscilla-du-preez-unsplash.jpg" class="img-fluid figure-img"></p>
+<p><img src="https://keefereuther.com/docs/blog/posts/mentormosaic/priscilla-du-preez-unsplash.jpg" class="img-fluid figure-img"></p>
 <figcaption>Mentorship is a community effort.</figcaption>
 </figure>
 </div>
@@ -1574,7 +2164,7 @@ Degree.”</span> October 26, 2022. <a href="https://reutherlab.netlify.app/docs
 <p>I wanted to explore human language, to understand how the structure of words in a sentence could have an impact on how we perceive and make decisions about climate change. I wished to investigate decades of discussions surrounding global warming and how this history perpetuates misinformation we still see today. I sought to labor through dense climate reports and reference the well researched biology, chemistry, and physics that already existed.</p>
 <p>And beyond my research paper, I had an innate desire to understand who exactly I was becoming in my journey of personal and professional development. While I rejected it at the time, my identity was intricately woven between my interests.</p>
 <p>It was only after I told this story to another professor of mine did the reality of my “plan” of mentorship come crashing down. No one person would be able to appeal to all the facets of my interests and needs in my academic development. I needed a linguist, a historian, and a climate scientist at least to aid me in my research goals , and instead, I had brought these expectations into my mentorship with a single professor.</p>
-<p><img src="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/dylan-ferreira-unsplash.jpg" class="img-fluid"></p>
+<p><img src="https://keefereuther.com/docs/blog/posts/mentormosaic/dylan-ferreira-unsplash.jpg" class="img-fluid"></p>
 <p>I’ll admit I’m being a little hard on my third-year self, as the pursuit for mentorship is self-motivated on a large public campus such as UCSD.</p>
 <p>University is many students’ first opportunity to dictate their education. Many students are coming from high school where education is driven by obligation, and most classes, teachers, and times of instruction are assigned with little student input. Upon entering UCSD, I found myself in control of my chosen degree with the exception of a few administrative nudges in the right direction in order to graduate on time. The void of academic constraint was suddenly overflowing with choices I had to make, and after planning out the first few quarters at UCSD, I was satiated with my own involvement in my undergraduate degree. Directing my own mentorship, which would include the close involvement of PhD-holding professors, was completely absent from my mind.</p>
 <section id="however-as-i-became-more-comfortable-with-the-campus-i-realized-that-there-was-an-unavoidably-large-piece-of-my-education-missing---mentorship." class="level4">
@@ -1626,14 +2216,14 @@ Degree.”</span> October 26, 2022. <a href="https://reutherlab.netlify.app/docs
   author = {Kifer, Allison},
   title = {Why {You} {Need} {Mosaic} {Mentorship}},
   date = {2022-10-08},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/},
+  url = {https://keefereuther.com/docs/blog/posts/mentormosaic/},
   langid = {en}
 }
 </code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kifer2022" class="csl-entry quarto-appendix-citeas">
 Kifer, Allison. 2022. <span>“Why You Need Mosaic Mentorship.”</span>
-October 8, 2022. <a href="https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/">https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</a>.
+October 8, 2022. <a href="https://keefereuther.com/docs/blog/posts/mentormosaic/">https://keefereuther.com/docs/blog/posts/mentormosaic/</a>.
 </div></div></section></div> ]]></description>
-  <guid>https://reutherlab.netlify.app/docs/blog/posts/mentormosaic/</guid>
+  <guid>https://keefereuther.com/docs/blog/posts/mentormosaic/</guid>
   <pubDate>Sat, 08 Oct 2022 07:00:00 GMT</pubDate>
 </item>
 </channel>

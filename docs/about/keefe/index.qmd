@@ -2,7 +2,8 @@
 title: "Keefe Reuther"
 about:
   template: trestles
-  image: keefe2.jpg
+  image: /assets/keefe2.jpg
+  image-alt: "Photo of Keefe Reuther, Assistant Teaching Professor at UC San Diego"
   image-shape: rounded
   links:
     - icon: orcid
@@ -14,30 +15,39 @@ about:
     - icon: huggingface
       text: Hugging Face
       href: https://huggingface.co/keefereuther
+    - icon: youtube
+      text: YouTube
+      href: https://www.youtube.com/@TheQuestionsLab
+    - text: SABER GenAI
+      href: https://saberbio.wildapricot.org/generative-AI-SIG
 ---
 
-I am an educator and biologist interested in helping others learn practical science skills while fostering their curiosity. Currently, I am developing tools and curricula that leverage **generative AI** to teach **experimental design**, **statistics**, and **computer programming** to undergraduate biologists.
+I am an Assistant Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work sits at the intersection of **generative AI** and **undergraduate biology education** — I build open-source AI tools, study how students and instructors engage with them, and teach others how to design and evaluate their own.
 
-[**Curriculum Vitae**](KeefeReutherCV.pdf)
+My flagship tool, [Schema Study](https://huggingface.co/spaces/keefereuther/Schema_Study), is a no-code LLM application for asynchronous student learning. It was published in *CourseSource* in 2026 and piloted with over 200 students. I also co-founded the [SABER Generative AI Special Interest Group](https://saberbio.wildapricot.org/generative-AI-SIG) and co-organized the UC San Diego Generative AI Faculty Learning Community — communities that connect educators thinking carefully about AI in higher education.
+
+I'm also a biologist. I teach BILD 5 (*Data Analysis & Design for Biologists*), a course centered on experimental design, statistics, and R programming, as well as courses in ecology and evolutionary biology.
+
+[**Curriculum Vitae**](../../assets/KeefeReutherCV.pdf)
 
 <a href="mailto:kdreuther@ucsd.edu">Send Email</a>
 
 ## Education
 
-Saint Louis University \| St. Louis, MO Ph.D. in Biology \| August 2004 - May 2009
+Saint Louis University | St. Louis, MO
+Ph.D. in Biology | August 2004 - May 2009
 
-University of California, Berkeley \| Berkeley, CA B.A's in Biology and Geology \| Sept 1998 - May 2003
+University of California, Berkeley | Berkeley, CA
+B.A.'s in Biology and Geology | Sept 1998 - May 2003
 
 ## Experience
 
-UC San Diego \| Assistant Teaching Professor \| July 2020 - present
+UC San Diego | Assistant Teaching Professor | July 2020 - present
 
-UC San Diego \| Continuing Lecturer \| July 2009 - June 2020
+UC San Diego | Continuing Lecturer | July 2009 - June 2020
 
 ## Past teaching experience at:
 
--   City College (San Diego Community College District)
-
--   Mesa College (San Diego Community College District)
-
--   National University (San Diego)
+- City College (San Diego Community College District)
+- Mesa College (San Diego Community College District)
+- National University (San Diego)

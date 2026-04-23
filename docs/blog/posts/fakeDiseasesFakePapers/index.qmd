@@ -1,0 +1,14 @@
+---
+title: "Fake Diseases and Fake Papers"
+date: 2026-04-09
+author: Keefe Reuther
+categories:
+  - AI
+  - Research integrity
+---
+
+A researcher at the University of Gothenburg invented a fake eye condition called "bixonimania," planted two obviously bogus preprints about it (complete with shoutouts to Starfleet Academy and Sideshow Bob), and watched major AI chatbots start confidently diagnosing people with it within weeks. The kicker: the fake papers eventually got cited in peer-reviewed literature, suggesting some researchers are using AI to pull references without ever reading the actual papers.
+
+[Read the *Nature* piece](https://www.nature.com/articles/d41586-026-01100-y)
+
+It also raises an interesting ethical question for the authors — whether to leave the fake preprints online. I may use this in class as a cautionary tale about information literacy.

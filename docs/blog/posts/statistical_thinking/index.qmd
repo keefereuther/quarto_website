@@ -10,7 +10,7 @@ categories:
 
 Asking questions and testing them scientifically is a skill that requires both simplicity in approach and intentional practice. Despite often feeling intuitive, it's a challenging skill to master. Here, we explore a structured approach to formulate questions and test hypotheses while minimizing bias.
 
-![](stat_thoughts.png)
+![Illustration representing scientific thinking and hypothesis formulation](stat_thoughts.png)
 
 # A Short Primer Connecting Scientific Questions to Statistical Conclusions
 

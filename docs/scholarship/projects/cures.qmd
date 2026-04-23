@@ -2,6 +2,7 @@
 title: "Best Practices in Course-based Undergradate Research Experiences (CUREs)"
 image: cures.jpg
 description: "Exploring best practices in designing CUREs that both maximize learning and provide a useable research product."
+draft: true
 ---
 
 ---------------------------------------------------------------------------------

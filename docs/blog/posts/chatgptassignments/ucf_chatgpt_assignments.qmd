@@ -7,4 +7,6 @@ date: 2023-11-03
 
 ------------------------------------------------------------------------
 
-<embed src="ChatGPT Assignments to Use in Your Classroom Today.pdf" type="application/pdf" iframe width="100%" height="800">
+<object data="ChatGPT Assignments to Use in Your Classroom Today.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: ChatGPT Assignments to Use in Your Classroom Today.pdf">
+  <p>Your browser does not support embedded PDFs. <a href="ChatGPT Assignments to Use in Your Classroom Today.pdf">Download the PDF</a>.</p>
+</object>

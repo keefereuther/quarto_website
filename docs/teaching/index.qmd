@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Courses"
 listing:
     - id: classes
       type: grid
@@ -8,10 +8,25 @@ listing:
       grid-item-border: false
       grid-columns: 3
       contents:
-      - "classes/*.qmd"
+      - "classes/BILD_3.qmd"
+      - "classes/BILD_4.qmd"
+      - "classes/BICD_100.qmd"
+      - "classes/BISP_194.qmd"
 ---
 
-# Courses
+Courses I currently teach or have taught at UC San Diego, covering experimental design, statistics, data science, and foundational biology.
+
+## Featured: BILD 5 — Data Analysis and Design for Biologists
+
+::: {.callout-note appearance="simple" icon=false}
+**A required course for all UC San Diego biology majors**, co-developed with [Liam O'Connor Mueller](https://biology.ucsd.edu/research/faculty/lomueller).
+
+BILD 5 is a four-credit introduction to information literacy, experimental design, and quantitative analysis in R. It is designed for students with no prior coding, math, or lab experience. The course includes a scaffolded term project, a browser-based coding environment that runs on any device, and a generative AI policy built around transparent use on assignments and closed-book assessments for exams.
+
+[**Read about the course and view the syllabus →**](classes/BILD_5.qmd)
+:::
+
+## Other courses
 
 ::: {#classes}
 :::

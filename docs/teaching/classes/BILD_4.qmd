@@ -11,4 +11,6 @@ BILD 4 is designed to be a collaborative environment for everyone to learn toget
 
 ## Syllabus:
 
-<embed src="Reuther_BILD_4_syllabus_SP21.pdf" type="application/pdf" iframe width="100%" height="800">
+<object data="Reuther_BILD_4_syllabus_SP21.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther_BILD_4_syllabus_SP21.pdf">
+  <p>Your browser does not support embedded PDFs. <a href="Reuther_BILD_4_syllabus_SP21.pdf">Download the PDF</a>.</p>
+</object>

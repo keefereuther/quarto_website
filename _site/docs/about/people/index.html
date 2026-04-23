@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – The Reuther Lab</title>
+<title>People – Keefe Reuther</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,34 +74,6 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-current .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-image','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-current'] = new List('listing-current', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-past .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -160,12 +132,9 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="– The Reuther Lab">
-<meta property="og:image" content="https://reutherlab.netlify.app/docs/about/people/assets/logosimple.webp">
-<meta property="og:site_name" content="The Reuther Lab">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -176,7 +145,7 @@ window.Quarto = {
     <img src="../../../assets/logosimple.webp" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">The Reuther Lab</span>
+    <span class="navbar-title">Keefe Reuther</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -195,10 +164,6 @@ window.Quarto = {
  <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../docs/about/people/index.html">
- <span class="dropdown-text">People</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../../../docs/about/contact/index.html">
  <span class="dropdown-text">Contact Us</span></a>
   </li>  
@@ -208,10 +173,40 @@ window.Quarto = {
     <a class="nav-link" href="../../../docs/teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/scholarship/index.html"> 
-<span class="menu-text">Scholarship</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scholarship" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Scholarship</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scholarship">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/publications.html">
+ <span class="dropdown-text">Publications</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/presentations.html">
+ <span class="dropdown-text">Presentations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/index.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-genai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">GenAI</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-genai">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/genai/tools/index.html">
+ <span class="dropdown-text">Tools &amp; Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/genai/community/index.html">
+ <span class="dropdown-text">Community</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
@@ -233,33 +228,30 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#current-members" id="toc-current-members" class="nav-link active" data-scroll-target="#current-members">Current Members</a></li>
-  <li><a href="#past-members" id="toc-past-members" class="nav-link" data-scroll-target="#past-members">Past Members</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
+<a class="skip-link" href="#quarto-document-content">Skip to main content</a>
 
-
-
-
-<section id="current-members" class="level1">
-<h1>Current Members</h1>
-<div id="listing-current" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-2">
-
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">People</h1>
 </div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="past-members" class="level1">
 <h1>Past Members</h1>
 <div id="listing-past" class="quarto-listing quarto-listing-container-grid">
@@ -579,7 +571,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/reutherlab\.netlify\.app");
+      var filterRegex = new RegExp("https:\/\/keefereuther\.com");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

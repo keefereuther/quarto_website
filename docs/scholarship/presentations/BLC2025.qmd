@@ -1,0 +1,13 @@
+---
+title: "Generative AI Tools for Active Learning in Biology"
+date: 2025-04-12
+categories: [AI, Active Learning, Biology Education]
+---
+
+[Pearson Biology Learning Conference 2025](https://www.pearson.com)
+
+---
+
+**Reuther, K.** (2025). *Generative AI Tools for Active Learning in Biology*. Pearson Biology Learning Conference (BLC). April 11–13, 2025.
+
+Presentation on designing and deploying generative AI tools to support active learning in undergraduate biology courses, with a focus on practical frameworks instructors can adapt for their own classrooms.

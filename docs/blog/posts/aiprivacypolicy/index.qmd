@@ -43,9 +43,9 @@ format:
 -   **Opt Out of Data Usage for Training**:
     -   For **ChatGPT**, follow the opt-out instructions below.
 
-        -   ![](privacy1.png)
+        -   ![Screenshot showing ChatGPT settings menu to opt out of data usage for model training — step 1](privacy1.png)
 
-        -   ![](privacy2.png)
+        -   ![Screenshot showing ChatGPT data controls toggle to disable model training — step 2](privacy2.png)
 
     -   For **Claude**, refrain from opting in to data usage for training and avoid submitting feedback that could be used for this purpose.
 -   **Delete Unnecessary Conversations**:

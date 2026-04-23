@@ -11,4 +11,6 @@ This course deals with the living world at the level of whole organisms, populat
 
 ## Syllabus:
 
-<embed src="Reuther_BILD_3_syllabus_F22.pdf" type="application/pdf" iframe width="100%" height="800">
+<object data="Reuther_BILD_3_syllabus_F22.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther_BILD_3_syllabus_F22.pdf">
+  <p>Your browser does not support embedded PDFs. <a href="Reuther_BILD_3_syllabus_F22.pdf">Download the PDF</a>.</p>
+</object>

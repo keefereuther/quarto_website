@@ -1,0 +1,10 @@
+---
+title: "The Pro-Human AI Declaration"
+date: 2026-03-10
+author: Keefe Reuther
+categories:
+  - AI
+  - Policy
+---
+
+A bipartisan statement on AI and human flourishing — [humanstatement.org](https://humanstatement.org) — shared with the SABER GenAI SIG. Relevant for anyone framing classroom AI policy around human-centered use rather than prohibition or default adoption.

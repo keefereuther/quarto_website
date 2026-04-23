@@ -1,31 +1,47 @@
+lang: en
+
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!CLAUDE.md"
+    - "!README.md"
 
 website:
-  title: "The Reuther Lab"
+  title: "Keefe Reuther"
   image: "assets/logosimple.webp"
   reader-mode: true
-  open-graph: true
+  open-graph: false
   favicon: "assets/logosimple.webp"
-  site-url: https://reutherlab.netlify.app
+  site-url: https://keefereuther.com
   repo-url: https://github.com/keefereuther/quarto_website
-  page-navigation: true
-  bread-crumbs: true
+  page-navigation: false
+  bread-crumbs: false
   navbar:
     logo: assets/logosimple.webp
     right:
       - text: "About"
-        menu: 
+        menu:
           - href: docs/about/keefe/index.qmd
             text: Keefe Reuther
-          - href: docs/about/people/index.qmd
-            text: People
           - href: docs/about/contact/index.qmd
             text: Contact Us
       - href: docs/teaching/index.qmd
         text: Teaching
-      - href: docs/scholarship/index.qmd
-        text: Scholarship
+      - text: "Scholarship"
+        menu:
+          - href: docs/scholarship/publications.qmd
+            text: Publications
+          - href: docs/scholarship/presentations.qmd
+            text: Presentations
+          - href: docs/scholarship/index.qmd
+            text: Projects
+      - text: "GenAI"
+        menu:
+          - href: docs/genai/tools/index.qmd
+            text: Tools & Resources
+          - href: docs/genai/community/index.qmd
+            text: Community
       - href: docs/blog/index.qmd
         text: Blog
 
@@ -46,12 +62,17 @@ website:
 format:
   html:
     page-layout: article
+    include-before-body: _includes/skip-nav.html
     theme:
       light: minty
       dark: quartz
     css: styles.css
-    toc: true
+    toc: false
     fontsize: 1.2em
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
 
 editor: visual
 

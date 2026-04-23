@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2025-02-04">
 <meta name="description" content="A new platform for creating and testing your own active learning activities using AI - without needing any coding experience!">
 
-<title>Making a better chatbot – The Reuther Lab</title>
+<title>Making a better chatbot – Keefe Reuther</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,10 +75,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="Making a better chatbot – The Reuther Lab">
-<meta property="og:description" content="A new platform for creating and testing your own active learning activities using AI - without needing any coding experience!">
-<meta property="og:image" content="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/assets/logosimple.webp">
-<meta property="og:site_name" content="The Reuther Lab">
 </head>
 
 <body class="floating nav-fixed">
@@ -92,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
     <img src="../../../../assets/logosimple.webp" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../../../index.html">
-    <span class="navbar-title">The Reuther Lab</span>
+    <span class="navbar-title">Keefe Reuther</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -111,10 +107,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../../docs/about/people/index.html">
- <span class="dropdown-text">People</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../../../../docs/about/contact/index.html">
  <span class="dropdown-text">Contact Us</span></a>
   </li>  
@@ -124,10 +116,40 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../../../docs/teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/scholarship/index.html"> 
-<span class="menu-text">Scholarship</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scholarship" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Scholarship</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scholarship">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/scholarship/publications.html">
+ <span class="dropdown-text">Publications</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/scholarship/presentations.html">
+ <span class="dropdown-text">Presentations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/scholarship/index.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-genai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">GenAI</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-genai">    
+        <li>
+    <a class="dropdown-item" href="../../../../docs/genai/tools/index.html">
+ <span class="dropdown-text">Tools &amp; Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../docs/genai/community/index.html">
+ <span class="dropdown-text">Community</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
@@ -168,6 +190,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
+<a class="skip-link" href="#quarto-document-content">Skip to main content</a>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -218,19 +241,33 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
-<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code. Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
+<p>Are you an instructor looking to bring a fresh, interactive element to your classroom? Imagine having your own personalized chatbot that can answer questions, provide extra resources, and even engage in conversation in multiple languages—all without needing to write a single line of code.</p>
+<p>Welcome to the <strong>OpenAI Chatbot Prompt and Parameter Tester</strong>, a user-friendly tool designed specifically help you test how varying instructions and model parameters impact the chatbot experience of your students.</p>
 <section id="what-is-this-app" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-app">What Is This App?</h2>
-<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as: - <strong>Language:</strong> Choose the language in which your chatbot responds. - <strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are. - <strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be. - <strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p>
+<p>This web-based application allows you to experiment with different chatbot settings and parameters so you can build a customized, embeddable chatbot for your courses. You can adjust options such as:</p>
+<ul>
+<li><p><strong>Language:</strong> Choose the language in which your chatbot responds.</p></li>
+<li><p><strong>Creativity:</strong> Modify the temperature setting to control how creative or predictable the responses are.</p></li>
+<li><p><strong>Response Length:</strong> Set the maximum tokens to control how long the chatbot’s responses can be.</p></li>
+<li><p><strong>Prompt Customization:</strong> Edit the system instructions to tailor the chatbot’s behavior to your specific teaching needs.</p></li>
+</ul>
 <p>The app is hosted publicly on <a href="https://keefereuther-openai-chatbot-tester.hf.space">Hugging Face Spaces</a>, making it accessible to anyone interested in exploring the benefits of conversational AI in education.</p>
 </section>
 <section id="why-should-you-try-it" class="level2">
 <h2 class="anchored" data-anchor-id="why-should-you-try-it">Why Should You Try It?</h2>
-<p>Using this app, educators can: - <strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources. - <strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior. - <strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style. - <strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p>
+<p>Using this app, educators can:</p>
+<ul>
+<li><p><strong>Engage Students:</strong> Create an interactive tool that serves as a teaching assistant, answers frequently asked questions, or provides additional learning resources.</p></li>
+<li><p><strong>Experiment Easily:</strong> Adjust simple controls like dropdown menus and sliders to see real-time changes in chatbot behavior.</p></li>
+<li><p><strong>Customize to Your Needs:</strong> Tailor the chatbot’s tone, language, and complexity to match your course content and teaching style.</p></li>
+<li><p><strong>Enhance Accessibility:</strong> Offer assistance in multiple languages, catering to diverse student populations.</p></li>
+</ul>
 </section>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
 <p>OpenAI API Key – Obtain one from <a href="https://platform.openai.com/api-keys">OpenAI</a></p>
+<p>See this walkthrough video: <a href="https://www.youtube.com/watch?v=QiJ6cWm9Dx4&amp;t=1s">How to Set Up Your OpenAI Account &amp; API Key</a></p>
 </section>
 <section id="how-it-works-a-step-by-step-guide" class="level2">
 <h2 class="anchored" data-anchor-id="how-it-works-a-step-by-step-guide">How It Works: A Step-by-Step Guide</h2>
@@ -270,12 +307,12 @@ Type a message in the chat box to see how your customized settings influence the
   author = {Reuther, Keefe},
   title = {Making a Better Chatbot},
   date = {2025-02-04},
-  url = {https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/},
+  url = {https://keefereuther.com/docs/blog/posts/chatbottestapp/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-reuther2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Reuther, Keefe. 2025. <span>“Making a Better Chatbot.”</span> February
-4, 2025. <a href="https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/">https://reutherlab.netlify.app/docs/blog/posts/chatbottestapp/</a>.
+4, 2025. <a href="https://keefereuther.com/docs/blog/posts/chatbottestapp/">https://keefereuther.com/docs/blog/posts/chatbottestapp/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -513,7 +550,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/reutherlab\.netlify\.app");
+      var filterRegex = new RegExp("https:\/\/keefereuther\.com");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

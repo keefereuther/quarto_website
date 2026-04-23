@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2023-01-13">
 
-<title>Fake data, real learning: A new R package to use synthesized data in the classroom – The Reuther Lab</title>
+<title>Fake data, real learning: A new R package to use synthesized data in the classroom – Keefe Reuther</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,15 +73,9 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Fake data, real learning: A new R package to use synthesized data in the classroom – The Reuther Lab">
-<meta property="og:description" content="">
-<meta property="og:image" content="https://reutherlab.netlify.app/docs/scholarship/papers/saber.png">
-<meta property="og:site_name" content="The Reuther Lab">
-<meta property="og:image:height" content="356">
-<meta property="og:image:width" content="798">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -92,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
     <img src="../../../assets/logosimple.webp" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../../index.html">
-    <span class="navbar-title">The Reuther Lab</span>
+    <span class="navbar-title">Keefe Reuther</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -111,10 +105,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Keefe Reuther</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../docs/about/people/index.html">
- <span class="dropdown-text">People</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="../../../docs/about/contact/index.html">
  <span class="dropdown-text">Contact Us</span></a>
   </li>  
@@ -124,10 +114,40 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../../../docs/teaching/index.html"> 
 <span class="menu-text">Teaching</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../docs/scholarship/index.html"> 
-<span class="menu-text">Scholarship</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-scholarship" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Scholarship</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-scholarship">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/publications.html">
+ <span class="dropdown-text">Publications</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/presentations.html">
+ <span class="dropdown-text">Presentations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/scholarship/index.html">
+ <span class="dropdown-text">Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-genai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">GenAI</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-genai">    
+        <li>
+    <a class="dropdown-item" href="../../../docs/genai/tools/index.html">
+ <span class="dropdown-text">Tools &amp; Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../docs/genai/community/index.html">
+ <span class="dropdown-text">Community</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../../../docs/blog/index.html"> 
 <span class="menu-text">Blog</span></a>
@@ -149,11 +169,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
+<a class="skip-link" href="#quarto-document-content">Skip to main content</a>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -190,7 +209,11 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Deviations from the assumptions of a statistical test, especially deviations from normality, can be difficult to determine in natural data. With synthesized data, instructors can set very specific data issues like skew, kurtosis, and outliers. Having a known problem with the data also makes assessment easier on graders, who themselves might not have the statistical acumen to grade challenging data decisions.</p></li>
 <li><p>In classes that use real data, instructors must put in considerable time in developing grading keys for IAs. This R package will automatically generate grading keys for instructors.</p></li>
 </ol>
-<embed src="Mueller and Reuther Saber West final.pdf" type="application/pdf" iframe="" width="100%" height="800">
+<object data="Mueller and Reuther Saber West final.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Mueller and Reuther Saber West final.pdf">
+<p>
+Your browser does not support embedded PDFs. <a href="Mueller and Reuther Saber West final.pdf">Download the PDF</a>.
+</p>
+</object>
 
 
 
@@ -431,7 +454,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/reutherlab\.netlify\.app");
+      var filterRegex = new RegExp("https:\/\/keefereuther\.com");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

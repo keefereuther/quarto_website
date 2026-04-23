@@ -9,7 +9,7 @@ Find my personal GenAI syllabus policy and a comprehensive guide authored by Dr.
 
 ------------------------------------------------------------------------
 
-![https://academicintegrity.ucsd.edu/excel-integrity/ai-in-education.html](ai_cheating.png)
+![Screenshot from UCSD Academic Integrity Office: AI in Education page](ai_cheating.png)
 
 ## My personal GenAI policy template
 
@@ -56,4 +56,6 @@ Find my personal GenAI syllabus policy and a comprehensive guide authored by Dr.
 I **HIGHLY** recommend this guide for all instructors, regardless of what your policy will be.\
 [UCSD Academic Integrity Office](https://academicintegrity.ucsd.edu/)
 
-<embed src="Crafting Your  GenAI & AI Policy  Guide.pdf" type="application/pdf" iframe width="100%" height="800">
+<object data="Crafting Your  GenAI & AI Policy  Guide.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Crafting Your GenAI and AI Policy Guide by Dr. Tricia Bertram-Gallant">
+  <p>Your browser does not support embedded PDFs. <a href="Crafting Your  GenAI & AI Policy  Guide.pdf">Download the PDF guide</a>.</p>
+</object>

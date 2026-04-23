@@ -1,0 +1,45 @@
+---
+title: "GenAI News & Community"
+---
+
+I help build and sustain communities of practice around generative AI in higher education — connecting educators who are thinking carefully about how to use these tools well.
+
+---
+
+## SABER Generative AI Special Interest Group (GenAI SIG)
+
+**A community of biology education researchers focused on generative AI.**
+
+I co-founded the SABER GenAI SIG with Jennifer Vaughn (UC Davis) to build a scholarly home for biology education researchers investigating the role of generative AI in undergraduate biology. The SIG runs a Google Group listserv and monthly Zoom coffee chats where members share work-in-progress, resources, and questions.
+
+- **Who:** Biology education researchers, instructors, and graduate students in DBER
+- **Format:** Google Group listserv + monthly Zoom coffee chats
+- **Focus:** Research, pedagogy, and equity implications of generative AI in biology education
+
+[**Join the GenAI SIG Google Group**](mailto:genai-saber-sig+subscribe@googlegroups.com){.btn .btn-primary}
+
+---
+
+## UCSD GenAI Faculty Learning Community (FLC)
+
+**A faculty development community at UC San Diego.**
+
+I co-organized the UC San Diego Generative AI Faculty Learning Community, a cross-disciplinary group of UCSD instructors exploring practical and scholarly approaches to generative AI in the classroom. The FLC brought together faculty across departments to share experiences, develop shared resources, and discuss the pedagogical and ethical dimensions of AI in higher education.
+
+---
+
+## Recent GenAI Discussions & Reflections
+
+Short posts and reflections from my ongoing engagement with the GenAI in education community — including highlights from SABER GenAI SIG discussions, conference takeaways, and evolving thoughts on AI in undergraduate biology.
+
+```{=html}
+<a href="/docs/blog/index.html" class="btn btn-outline-primary">Browse All Posts</a>
+```
+
+---
+
+## Featured Talk: Enriching Learning Ecologies with Generative AI
+
+{{< video https://www.youtube.com/embed/6UXuxebnMQg?si=Z4kuk3DK3wEbjKC- >}}
+
+Recorded April 4, 2025 for the Professional Development in Experimental Teaching (PDET) SABER seminar. [Watch on YouTube](https://www.youtube.com/watch?v=6UXuxebnMQg).

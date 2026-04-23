@@ -1,15 +1,6 @@
 ---
-title: ""
+title: "People"
 listing:
-    - id: current
-      type: grid
-      image-height: 350px
-      grid-item-border: false
-      grid-item-align: center
-      fields: [image, title, subtitle]
-      grid-columns: 2
-      contents:
-      - "current_members/*.qmd"
     - id: past
       type: grid
       image-height: 350px
@@ -20,11 +11,6 @@ listing:
       contents:
       - "past_members/*.qmd"
 ---
-
-# Current Members
-
-::: {#current}
-:::
 
 # Past Members
 

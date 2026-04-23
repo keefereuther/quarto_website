@@ -1,0 +1,24 @@
+---
+title: "Presentations"
+listing:
+  - id: presentations
+    type: table
+    fields: [title, date]
+    field-display-names:
+      date: "Year"
+    sort: date desc
+    date-format: "YYYY"
+    contents:
+    - "presentations/*.qmd"
+    - "papers/TeachingAI2023.qmd"
+    - "papers/saberwestsurvey.qmd"
+    - "papers/saberwestML.qmd"
+    - "papers/saberwest2023reuther.qmd"
+    - "papers/saberwest2023gruber.qmd"
+    - "papers/saberwest2023mueller.qmd"
+---
+
+Invited talks, conference presentations, and workshops on generative AI in biology education, assessment design, and curricular innovation.
+
+::: {#presentations}
+:::

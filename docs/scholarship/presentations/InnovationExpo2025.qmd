@@ -1,0 +1,13 @@
+---
+title: "Custom Chatbots Made Simple: A No-Code Framework for Active Learning"
+date: 2025-05-21
+categories: [AI, Active Learning, Chatbots]
+---
+
+[UCSD Teaching + Learning Commons Innovation Expo](https://tlc.ucsd.edu)
+
+---
+
+**Reuther, K.**, Heinrichsen, E., & Buyruk, P. (2025). *Custom Chatbots Made Simple: A No-Code Framework for Active Learning*. UCSD Teaching + Learning Commons Innovation Expo. May 21, 2025. UC San Diego.
+
+This presentation introduced educators to a no-code framework for building custom AI chatbots for active learning. Using a live demonstration of the TLCbot and other tools, we showed how instructors can create discipline-specific AI personas to support student engagement without any programming experience.

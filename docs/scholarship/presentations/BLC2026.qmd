@@ -1,0 +1,13 @@
+---
+title: "AI-Enhanced Formative Assessment in Introductory Biology"
+date: 2026-03-15
+categories: [AI, Assessment, Biology Education]
+---
+
+[Pearson Biology Learning Conference 2026](https://www.pearson.com)
+
+---
+
+**Reuther, K.** (2026). *AI-Enhanced Formative Assessment in Introductory Biology*. Pearson Biology Learning Conference (BLC). March 2026.
+
+Presentation on using AI tools to deliver scalable formative feedback in large-enrollment introductory biology courses, featuring Schema Study and lessons learned from classroom research.

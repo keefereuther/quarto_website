@@ -1,0 +1,13 @@
+---
+title: "Schema Study: Student Outcomes from an LLM-Powered Formative Feedback Tool in Introductory Biology"
+date: 2025-07-18
+categories: [AI, Formative Assessment, Biology Education, SABER]
+---
+
+[Society for the Advancement of Biology Education Research (SABER) 2025 Annual Meeting](https://saberbio.wildapricot.org)
+
+---
+
+**Reuther, K.**, Mueller, L. O., Constantian, G., & Nguyen, A. (2025). *Schema Study: Student Outcomes from an LLM-Powered Formative Feedback Tool in Introductory Biology*. SABER Annual Meeting 2025.
+
+Presentation of research on Schema Study, an LLM-powered formative feedback application used in a 225-student introductory biology course. Results from pre/post surveys showed 72% of students would reuse the tool, and each additional day per week of use more than doubled the likelihood of recommending it to peers. Data on student AI self-efficacy and beliefs about AI relevance to their education were also presented.

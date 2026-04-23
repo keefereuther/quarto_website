@@ -1,0 +1,20 @@
+---
+title: "Publications"
+listing:
+  - id: publications
+    type: table
+    fields: [title, date]
+    field-display-names:
+      date: "Year"
+    sort: date desc
+    date-format: "YYYY"
+    contents:
+    - "papers/ConvertingBIMM101.qmd"
+    - "papers/SchemaStudy2026.qmd"
+    - "papers/TeachersParadox2025.qmd"
+---
+
+Peer-reviewed work on generative AI in undergraduate biology education, active learning, and evidence-based course design.
+
+::: {#publications}
+:::

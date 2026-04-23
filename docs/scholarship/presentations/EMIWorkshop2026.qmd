@@ -1,0 +1,13 @@
+---
+title: "Putting the AI in Active Learning: A Framework for Building AI-integrated Activities"
+date: 2026-02-07
+categories: [AI, Active Learning, Workshop, International]
+---
+
+[Fulbright Taiwan Foundation EMI Workshop](https://www.fulbright.org.tw)
+
+---
+
+**Reuther, K.** (2026). *Putting the AI in Active Learning: A Framework for Building AI-integrated Activities*. Fulbright Taiwan Foundation English as a Medium of Instruction (EMI) Workshop. February 2–13, 2026. UC San Diego.
+
+An intensive workshop for Taiwanese university faculty on integrating generative AI into English-medium instruction. Participants explored frameworks for designing AI-enhanced active learning activities, with hands-on practice using tools like Schema Study and AI Personas. The workshop was hosted at UC San Diego as part of the Fulbright Taiwan Foundation EMI professional development series.

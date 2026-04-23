@@ -1,17 +1,73 @@
 [
   {
-    "listing": "/docs/teaching/index.html",
+    "listing": "/index.html",
     "items": [
-      "/docs/teaching/classes/BICD_100.html",
-      "/docs/teaching/classes/BILD_3.html",
-      "/docs/teaching/classes/BILD_4.html",
-      "/docs/teaching/classes/BILD_5.html",
-      "/docs/teaching/classes/BISP_194.html"
+      "/docs/scholarship/presentations/TeachingLearningAIinSTEM2026.html",
+      "/docs/blog/posts/fakeDiseasesFakePapers/index.html",
+      "/docs/blog/posts/llmsHomogenizing/index.html",
+      "/docs/scholarship/presentations/BLC2026.html",
+      "/docs/blog/posts/proHumanAIDeclaration/index.html",
+      "/docs/blog/posts/aiAuthenticity/index.html",
+      "/docs/scholarship/presentations/EMIWorkshop2026.html",
+      "/docs/scholarship/papers/SchemaStudy2026.html",
+      "/docs/blog/posts/natureFutureOfAI/index.html",
+      "/docs/scholarship/papers/TeachersParadox2025.html",
+      "/docs/scholarship/presentations/SABER2025.html",
+      "/docs/scholarship/presentations/InnovationExpo2025.html",
+      "/docs/blog/posts/OJStest/index.html",
+      "/docs/scholarship/presentations/BLC2025.html",
+      "/docs/blog/posts/chatbottestapp/index.html",
+      "/docs/blog/posts/aiprivacypolicy/index.html",
+      "/docs/blog/posts/genaisig/index.html",
+      "/docs/blog/posts/statistical_thinking/index.html",
+      "/docs/blog/posts/craftingaipolicy/index.html",
+      "/docs/blog/posts/saberwestsurvey/index.html",
+      "/docs/scholarship/papers/saberwestML.html",
+      "/docs/scholarship/papers/saberwestsurvey.html",
+      "/docs/blog/posts/aiquiz2canvas/index.html",
+      "/docs/scholarship/papers/TeachingAI2023.html",
+      "/docs/scholarship/papers/saberwest2023gruber.html",
+      "/docs/scholarship/papers/saberwest2023mueller.html",
+      "/docs/scholarship/papers/saberwest2023reuther.html",
+      "/docs/blog/posts/mentormosaic2/index.html",
+      "/docs/blog/posts/mentormosaic/index.html",
+      "/docs/scholarship/papers/ConvertingBIMM101.html"
+    ]
+  },
+  {
+    "listing": "/docs/scholarship/presentations.html",
+    "items": [
+      "/docs/scholarship/presentations/TeachingLearningAIinSTEM2026.html",
+      "/docs/scholarship/presentations/BLC2026.html",
+      "/docs/scholarship/presentations/EMIWorkshop2026.html",
+      "/docs/scholarship/presentations/SABER2025.html",
+      "/docs/scholarship/presentations/InnovationExpo2025.html",
+      "/docs/scholarship/presentations/BLC2025.html",
+      "/docs/scholarship/papers/saberwestsurvey.html",
+      "/docs/scholarship/papers/saberwestML.html",
+      "/docs/scholarship/papers/TeachingAI2023.html",
+      "/docs/scholarship/papers/saberwest2023reuther.html",
+      "/docs/scholarship/papers/saberwest2023gruber.html",
+      "/docs/scholarship/papers/saberwest2023mueller.html"
+    ]
+  },
+  {
+    "listing": "/docs/scholarship/index.html",
+    "items": [
+      "/docs/scholarship/projects/assessment.html",
+      "/docs/scholarship/projects/genaischolarship.html",
+      "/docs/scholarship/projects/simulation.html"
     ]
   },
   {
     "listing": "/docs/blog/index.html",
     "items": [
+      "/docs/blog/posts/fakeDiseasesFakePapers/index.html",
+      "/docs/blog/posts/llmsHomogenizing/index.html",
+      "/docs/blog/posts/proHumanAIDeclaration/index.html",
+      "/docs/blog/posts/aiAuthenticity/index.html",
+      "/docs/blog/posts/natureFutureOfAI/index.html",
+      "/docs/blog/posts/OJStest/index.html",
       "/docs/blog/posts/chatbottestapp/index.html",
       "/docs/blog/posts/aiprivacypolicy/index.html",
       "/docs/blog/posts/genaisig/index.html",
@@ -33,33 +89,20 @@
     ]
   },
   {
-    "listing": "/docs/scholarship/index.html",
+    "listing": "/docs/scholarship/publications.html",
     "items": [
-      "/docs/scholarship/projects/assessment.html",
-      "/docs/scholarship/projects/cures.html",
-      "/docs/scholarship/projects/genaischolarship.html",
-      "/docs/scholarship/projects/simulation.html",
-      "/docs/scholarship/papers/saberwestML.html",
-      "/docs/scholarship/papers/saberwestsurvey.html",
-      "/docs/scholarship/papers/TeachingAI2023.html",
-      "/docs/scholarship/papers/saberwest2023gruber.html",
-      "/docs/scholarship/papers/saberwest2023mueller.html",
-      "/docs/scholarship/papers/saberwest2023reuther.html",
+      "/docs/scholarship/papers/SchemaStudy2026.html",
+      "/docs/scholarship/papers/TeachersParadox2025.html",
       "/docs/scholarship/papers/ConvertingBIMM101.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/docs/teaching/index.html",
     "items": [
-      "/docs/blog/posts/chatbottestapp/index.html",
-      "/docs/blog/posts/aiprivacypolicy/index.html",
-      "/docs/blog/posts/genaisig/index.html",
-      "/docs/blog/posts/statistical_thinking/index.html",
-      "/docs/blog/posts/craftingaipolicy/index.html",
-      "/docs/blog/posts/saberwestsurvey/index.html",
-      "/docs/blog/posts/aiquiz2canvas/index.html",
-      "/docs/blog/posts/mentormosaic2/index.html",
-      "/docs/blog/posts/mentormosaic/index.html"
+      "/docs/teaching/classes/BICD_100.html",
+      "/docs/teaching/classes/BILD_3.html",
+      "/docs/teaching/classes/BILD_4.html",
+      "/docs/teaching/classes/BISP_194.html"
     ]
   }
 ]
