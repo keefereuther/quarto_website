@@ -35,7 +35,7 @@ I also have **side projects that I'm actively looking for undergraduates to lead
 If either direction interests you, email me with a short note about your background and what draws you to the project.
 
 - **Interested in writing for the blog?** Send a short writing sample you're proud of.
-- **Interested in building learning tools?** You should have completed my BILD 5 course successfully or have comparable experience building web apps. I work mainly in Streamlit (Python) and R Shiny (R).
+- **Interested in building learning tools?** Most of my current work is in Python with a range of LLMs, and most of my web apps are in Streamlit — but I use whatever the project calls for, including JavaScript or R Shiny. What I care about isn't the stack; it's whether you can work fluently across tools. You should have solid AI literacy and be comfortable designing simple web apps and picking up new frameworks on your own. A good proof point: you've already built a small web app that's useful to you, figured out how to test it, and pushed it live using some combination of AI assistance, your own coding, and open-source tools.
 
 ---
 
