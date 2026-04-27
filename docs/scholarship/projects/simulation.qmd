@@ -20,4 +20,4 @@ An interactive visualization for exploring how confidence intervals work. Adjust
 
 An interactive D3-based tool for exploring statistical power. See how sample size, effect size, and significance threshold interact — useful for experimental design discussions in introductory biology and statistics courses.
 
-[**Launch Power Analysis**](https://keefereuther.github.io/power-analysisD3/){.btn .btn-primary}
+[**Launch Power Analysis**](https://huggingface.co/spaces/keefereuther/power-analysis){.btn .btn-primary}

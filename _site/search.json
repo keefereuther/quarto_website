@@ -662,7 +662,7 @@
     "href": "docs/genai/tools/index.html#power-analysis-visualization",
     "title": "GenAI Tools & Resources",
     "section": "Power Analysis Visualization",
-    "text": "Power Analysis Visualization\nExplore statistical power interactively — no account, no setup, no download.\nAn interactive tool for visualizing how sample size, effect size, and significance threshold work together to determine statistical power. Built for experimental design discussions in introductory biology and statistics courses. Runs in the browser via GitHub Pages.\n\nModels: None — no AI, no API key required\nSetup: None — just click the link below\nEmbed: Copy the URL and paste it into an iframe in any LMS or course page\nLicense: Open-source\n\nLaunch Power Analysis"
+    "text": "Power Analysis Visualization\nExplore statistical power interactively — no account, no setup, no download.\nAn interactive tool for visualizing how sample size, effect size, and significance threshold work together to determine statistical power. Built for experimental design discussions in introductory biology and statistics courses. Runs in the browser via Hugging Face Spaces.\n\nModels: None — no AI, no API key required\nSetup: None — just click the link below\nEmbed: Copy the URL and paste it into an iframe in any LMS or course page\nLicense: Open-source\n\nLaunch Power Analysis"
   },
   {
     "objectID": "docs/scholarship/papers/ConvertingBIMM101.html",
