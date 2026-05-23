@@ -4,6 +4,7 @@ date: 2026-01-01
 ---
 
 [Read the paper on QUBESHub](https://qubeshub.org/community/groups/coursesource/publications?id=5776){.btn .btn-primary}
+[Socratic Tutor System Instructions](../../genai/tools/schema-study/socratic-tutor-prompt.qmd){.btn .btn-outline-secondary}
 
 ---
 

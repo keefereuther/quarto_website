@@ -26,6 +26,7 @@ Schema Study turns your course term list into a Socratic AI tutor. Students pick
 [**Launch Schema Study**](https://huggingface.co/spaces/keefereuther/Schema_Study){.btn .btn-primary}
 [**Preview Version**](https://huggingface.co/spaces/keefereuther/Schema_Study_Preview){.btn .btn-outline-secondary}
 [**Fork & Customize**](https://huggingface.co/spaces/keefereuther/Schema_Study/tree/main){.btn .btn-outline-secondary}
+[**Socratic Tutor Instructions**](schema-study/socratic-tutor-prompt.qmd){.btn .btn-outline-secondary}
 
 ### Downloads & Resources
 
@@ -39,6 +40,7 @@ The S2 User Manual walks you through every step of setting up your own copy — 
 | | Resource | Description |
 |---|---|---|
 | [{{< fa external-link-alt >}} Read online](https://qubeshub.org/community/groups/coursesource/publications?id=5776) | **Published Paper** | Reuther et al. (2026), *CourseSource* — open access on QUBESHub |
+| [{{< fa robot >}} View](schema-study/socratic-tutor-prompt.qmd) | **Socratic Tutor System Instructions** | Full system prompt for Pliny, Schema Study's Socratic AI tutor |
 | [{{< fa file-csv >}} Download](schema-study/S1_terms_example.csv){download="S1_terms_example"} | **S1 — Example Terms CSV** | Template spreadsheet to build your own term list |
 | [{{< fa file-pdf >}} Download](schema-study/S2_user_manual.pdf){download="S2_SchemaStudy_UserManual"} | **S2 — User Manual** | Full instructor setup guide (start here) |
 | [{{< fa file-word >}} Download](schema-study/S3_student_activities.docx){download="S3_student_activities"} | **S3 — Student Activities** | Ready-to-use classroom activities |

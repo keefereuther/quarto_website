@@ -35,3 +35,11 @@ button:focus-visible,
   outline-offset: 3px;
 }
 
+/* Soft-wrap long prompt text blocks (e.g. Schema Study system instructions) */
+#full-system-prompt pre,
+#full-system-prompt pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
