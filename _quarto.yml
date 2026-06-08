@@ -1,6 +1,9 @@
 lang: en
 bibliography: references.bib
 
+execute:
+  enabled: false
+
 project:
   type: website
   render:
