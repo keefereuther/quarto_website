@@ -4,6 +4,7 @@
 .Ruserdata
 
 /.quarto/
+/_freeze/
 _site/
 
 # Local Netlify folder

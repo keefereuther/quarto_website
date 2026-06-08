@@ -1,6 +1,7 @@
 lang: en
 bibliography: references.bib
 
+# Static site only — no Jupyter kernels or code execution on build.
 execute:
   enabled: false
 
