@@ -1,5 +1,5 @@
 [build]
-  command = "curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && sudo apt-get install -y ./quarto-linux-amd64.deb && quarto render ."
+  command = 'curl -sL https://quarto.org/download/latest/quarto-linux-amd64.tar.gz | tar -xz && export PATH="$PWD/$(ls -d quarto-*/bin | head -1):$PATH" && quarto render .'
   publish = "_site/"
 
 [[redirects]]
