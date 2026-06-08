@@ -19,8 +19,8 @@ $body-bg: $page-bg;
 $body-color: $text-primary;
 $headings-color: $text-primary;
 $text-muted: $color-text-muted;
-$link-color: lighten($brand-teal, 12%);
-$link-hover-color: lighten($brand-teal, 20%);
+$link-color: $brand-gold;
+$link-hover-color: lighten($brand-gold, 12%);
 
 // Bootstrap theme colors
 $primary: $brand-teal;
@@ -81,8 +81,8 @@ body {
   --bs-tertiary-color: #{$color-text-muted};
   --bs-tertiary-bg: #{$card-bg};
   --bs-border-color: #{$border-color};
-  --bs-link-color: #{lighten($brand-teal, 12%)};
-  --bs-link-hover-color: #{lighten($brand-teal, 20%)};
+  --bs-link-color: #{$brand-gold};
+  --bs-link-hover-color: #{lighten($brand-gold, 12%)};
 }
 
 .navbar[data-bs-theme="dark"] {

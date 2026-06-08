@@ -9,6 +9,10 @@
   --border-color: #E2D9C8;
   --brand-teal: #0E8FA3;
   --brand-teal-hover: #076878;
+  --brand-gold: #F5B800;
+  --brand-gold-hover: #FFD24D;
+  --link-accent: var(--brand-teal);
+  --link-accent-hover: var(--brand-teal-hover);
 }
 
 .quarto-dark {
@@ -19,6 +23,8 @@
   --text-primary: #FAF7F2;
   --text-secondary: #E2D9C8;
   --border-color: rgba(226, 217, 200, 0.25);
+  --link-accent: var(--brand-gold);
+  --link-accent-hover: var(--brand-gold-hover);
 }
 
 /* Remove quartz dark-mode body gradient */
@@ -50,7 +56,7 @@
 
 /* Keyboard focus indicators — visible outline on all interactive elements */
 *:focus-visible {
-  outline: 3px solid var(--brand-teal);
+  outline: 3px solid var(--link-accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -60,7 +66,7 @@
 .nav-link:focus-visible,
 button:focus-visible,
 .btn:focus-visible {
-  outline: 3px solid var(--brand-teal);
+  outline: 3px solid var(--link-accent);
   outline-offset: 3px;
 }
 
@@ -188,7 +194,12 @@ button:focus-visible,
 .navbar .dropdown-item:hover,
 .navbar .dropdown-item:focus {
   background-color: var(--teal-tint);
-  color: var(--brand-teal);
+  color: var(--link-accent);
+}
+
+.quarto-dark .navbar .dropdown-item:hover,
+.quarto-dark .navbar .dropdown-item:focus {
+  background-color: var(--gold-tint);
 }
 
 /* Homepage: hero is the only page title */
@@ -251,13 +262,13 @@ main:has(.lab-hero) {
 }
 
 .lab-affiliation a {
-  color: var(--brand-teal);
+  color: var(--link-accent);
   text-decoration: none;
 }
 
 .lab-affiliation a:hover,
 .lab-affiliation a:focus {
-  color: var(--brand-teal-hover);
+  color: var(--link-accent-hover);
   text-decoration: underline;
 }
 
@@ -282,7 +293,7 @@ main:has(.lab-hero) {
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--border-color);
   border-radius: 0.375rem;
-  color: var(--brand-teal);
+  color: var(--link-accent);
   text-decoration: none;
   font-size: 0.9rem;
   text-align: center;
@@ -291,9 +302,9 @@ main:has(.lab-hero) {
 
 .lab-link:hover,
 .lab-link:focus {
-  border-color: var(--brand-teal);
+  border-color: var(--link-accent);
   background-color: var(--teal-tint);
-  color: var(--brand-teal-hover);
+  color: var(--link-accent-hover);
   text-decoration: none;
 }
 
@@ -322,16 +333,23 @@ main:has(.lab-hero) {
 
 .lab-nav-card:hover,
 .lab-nav-card:focus {
-  border-color: var(--brand-teal);
+  border-color: var(--link-accent);
   background-color: var(--teal-tint);
   text-decoration: none;
   color: var(--text-primary);
 }
 
+.quarto-dark .lab-nav-card:hover,
+.quarto-dark .lab-nav-card:focus,
+.quarto-dark .lab-link:hover,
+.quarto-dark .lab-link:focus {
+  background-color: var(--gold-tint);
+}
+
 .lab-nav-card-title {
   font-weight: 600;
   font-size: 1.05rem;
-  color: var(--brand-teal);
+  color: var(--link-accent);
 }
 
 .lab-nav-card-desc {
