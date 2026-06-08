@@ -1,1 +1,15 @@
-<a class="skip-link" href="#quarto-document-content">Skip to main content</a>
+<script>
+(function () {
+  function insertSkipLink() {
+    if (document.getElementById("skip-to-main")) return;
+    var skip = document.createElement("a");
+    skip.id = "skip-to-main";
+    skip.className = "skip-link";
+    skip.href = "#quarto-document-content";
+    skip.textContent = "Skip to main content";
+    document.body.insertBefore(skip, document.body.firstChild);
+  }
+  if (document.body) insertSkipLink();
+  else document.addEventListener("DOMContentLoaded", insertSkipLink);
+})();
+</script>

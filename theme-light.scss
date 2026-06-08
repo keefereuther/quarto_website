@@ -1,0 +1,87 @@
+/*-- scss:defaults --*/
+
+// Semantic palette tokens
+$page-bg: #FAF7F2;
+$card-bg: #FFFFFF;
+$teal-tint: #E8F6F8;
+$gold-tint: #FEF9EC;
+$text-primary: #1A0F06;
+$text-secondary: #3D2B1A;
+$color-text-muted: #6B6B6B;
+$brand-teal: #0E8FA3;
+$brand-teal-hover: #076878;
+$brand-gold: #F5B800;
+$brand-coral: #D95C2A;
+$border-color: #E2D9C8;
+
+// Global document colors
+$body-bg: $page-bg;
+$body-color: $text-primary;
+$headings-color: $text-primary;
+$text-muted: $color-text-muted;
+$link-color: $brand-teal;
+$link-hover-color: $brand-teal-hover;
+
+// Bootstrap theme colors
+$primary: $brand-teal;
+$secondary: $color-text-muted;
+$success: $brand-teal-hover;
+$info: lighten($brand-teal, 10%);
+$warning: $brand-gold;
+$danger: $brand-coral;
+$light: $card-bg;
+$dark: $text-primary;
+
+// Navigation (teal bar in light mode — Quarto renders navbar with data-bs-theme="dark")
+$navbar-bg: $brand-teal;
+$navbar-dark-color: $page-bg;
+$navbar-dark-hover-color: #ffffff;
+$navbar-dark-active-color: #ffffff;
+$navbar-dark-disabled-color: rgba($page-bg, 0.55);
+$navbar-dark-toggler-border-color: rgba($page-bg, 0.35);
+$navbar-dark-brand-color: $page-bg;
+$navbar-dark-brand-hover-color: #ffffff;
+
+// Footer
+$footer-bg: $page-bg;
+$footer-fg: $text-primary;
+
+// Tables and listings
+$table-bg: transparent;
+$table-striped-bg: $teal-tint;
+$table-hover-bg: darken($teal-tint, 3%);
+$table-border-color: $border-color;
+
+// Callouts
+$callout-color-note: $brand-teal;
+$callout-color-tip: $brand-gold;
+$callout-color-important: $brand-coral;
+$callout-color-caution: $brand-coral;
+$callout-color-warning: $brand-gold;
+
+// Code blocks
+$code-block-bg: $teal-tint;
+$code-block-border-left-color: $brand-teal;
+
+/*-- scss:rules --*/
+
+// Quarto renders the navbar with data-bs-theme="dark"; override quartz defaults.
+.navbar[data-bs-theme="dark"] {
+  --bs-body-bg: #{$brand-teal};
+  --bs-body-color: #{$page-bg};
+  --bs-emphasis-color: #ffffff;
+  --bs-secondary-color: rgba(250, 247, 242, 0.85);
+  --bs-secondary-bg: #{$brand-teal-hover};
+  --bs-tertiary-color: rgba(250, 247, 242, 0.65);
+  --bs-tertiary-bg: #{$brand-teal-hover};
+  --bs-border-color: rgba(250, 247, 242, 0.25);
+  --bs-link-color: #ffffff;
+  --bs-link-hover-color: #{$page-bg};
+}
+
+.btn-primary {
+  --bs-btn-hover-bg: #{$brand-teal-hover};
+  --bs-btn-hover-border-color: #{$brand-teal-hover};
+  --bs-btn-active-bg: #{$brand-teal-hover};
+  --bs-btn-active-border-color: #{$brand-teal-hover};
+}

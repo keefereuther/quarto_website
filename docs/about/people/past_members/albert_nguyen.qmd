@@ -1,7 +1,8 @@
 ---
-title: ""
-subtitle: ""
+title: "Albert Nguyen"
+subtitle: "Research Data Analyst"
 image: albert.png
+image-alt: "Portrait of Albert Nguyen"
 ---
 
 # Albert Nguyen

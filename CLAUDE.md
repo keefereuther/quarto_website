@@ -1,6 +1,6 @@
 # Claude notes for this project
 
-Quarto academic website (keefereuther.com) deployed to Netlify. Bootstrap `minty`/`quartz` theme. Work from the content files in `docs/` and `index.qmd`; `_site/` is build output, do not hand-edit.
+Quarto academic website (keefereuther.com) deployed to Netlify. Bootstrap `minty`/`quartz` theme. Work from the content files in `docs/` and `index.qmd`; `_site/` is build output (gitignored) — Netlify runs `quarto render` per `netlify.toml`.
 
 ## Quarto documentation — fetch directly
 
@@ -22,7 +22,8 @@ When the answer isn't in these pages, search `https://quarto.org/docs/` first be
 
 ## Project-specific gotchas discovered this session
 
-- The homepage uses `about: template: solana`. Everything inside `::: {#intro} ::: ` gets rendered in the about template's column layout. Content *after* that block is rendered inside a `<section class="page-columns page-full">` — which is a CSS grid, and unclassed `<aside>` elements get placed in the narrow margin-note column. Fix: use `<div class="column-body">` (or a `::: {.column-body}` fenced div) for any full-width block after the about card.
+- The homepage (`index.qmd`) uses a custom HTML hero inside a `{=html}` block wrapped in `<div class="column-body">`. Content after that block must stay inside `.column-body` to avoid Quarto's page-grid placing unclassed elements in the margin column.
+- PDF embeds use the `{{< pdf-embed >}}` shortcode from `_extensions/pdf-embed/` (accessible `<object>` + fallback). Shared Schema Study copy lives in `_includes/schema-study-*.md`.
 - Quarto listings collapse to `_site/listing.json` at build time; if a listing appears empty after adding a new `.qmd`, re-render the full site, not just the page.
 - Font Awesome shortcodes (`{{< fa icon-name >}}`) require `_extensions/quarto-ext/fontawesome` — already installed.
 - Raw HTML blocks (` ```{=html} ... ``` `) work, but Quarto-specific classes like `.column-body` should be added directly to the root element inside the block.
@@ -31,7 +32,7 @@ When the answer isn't in these pages, search `https://quarto.org/docs/` first be
 
 WCAG 2.1 AA has already been applied to this site:
 - `lang: en` in `_quarto.yml`
-- Skip-nav link in `_includes/skip-nav.html`
+- Skip-nav link injected at start of `<body>` via `_includes/skip-nav.html` (in `include-in-header`)
 - Focus-visible outlines in `styles.css`
 - All PDFs embedded with `<object>` + text fallback (never bare `<embed>`)
 - Iframes require `title="..."`
@@ -44,4 +45,4 @@ Preserve these when editing.
 - **Render everything:** `quarto render` from project root
 - **Render a single page:** `quarto render path/to/file.qmd` (much faster during iteration)
 - **Local preview:** `quarto preview` — serves on port 4242 by default
-- **Publish:** site is built to `_site/` and deployed by Netlify on push; do not run `quarto publish` without confirming with the user
+- **Publish:** Netlify builds with `quarto render` and publishes `_site/`; do not run `quarto publish` without confirming with the user

@@ -1,7 +1,8 @@
 ---
-title: ""
+title: "Allison Kifer"
 subtitle: "Research Data Analyst"
 image: kifer.jpg
+image-alt: "Portrait of Allison Kifer"
 ---
 
 # Allison Kifer
@@ -14,8 +15,8 @@ Allison Kifer received her M.S. in Biology from UC San Diego where she studied v
 
 ### Contributions
 
-[Why You Need Mosaic Mentorship](../posts/undergrads/mentormosaic/)
+[Why You Need Mosaic Mentorship](../../../blog/posts/mentormosaic/index.qmd)
 
-[Incorporating a Mentorship Plan into Your Degree](../posts/undergrads/mentormosaic2/)
+[Incorporating a Mentorship Plan into Your Degree](../../../blog/posts/mentormosaic2/index.qmd)
 
 ### Projects

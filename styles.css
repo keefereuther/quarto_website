@@ -1,3 +1,32 @@
+/* Brand palette custom properties */
+:root {
+  --page-bg: #FAF7F2;
+  --card-bg: #FFFFFF;
+  --teal-tint: #E8F6F8;
+  --gold-tint: #FEF9EC;
+  --text-primary: #1A0F06;
+  --text-secondary: #3D2B1A;
+  --border-color: #E2D9C8;
+  --brand-teal: #0E8FA3;
+  --brand-teal-hover: #076878;
+}
+
+.quarto-dark {
+  --page-bg: #1A0F06;
+  --card-bg: #2A2118;
+  --teal-tint: rgba(14, 143, 163, 0.15);
+  --gold-tint: rgba(245, 184, 0, 0.12);
+  --text-primary: #FAF7F2;
+  --text-secondary: #E2D9C8;
+  --border-color: rgba(226, 217, 200, 0.25);
+}
+
+/* Remove quartz dark-mode body gradient */
+.quarto-dark body {
+  background-image: none !important;
+  background-color: var(--page-bg) !important;
+}
+
 /* Skip navigation link — visually hidden until focused */
 .skip-link {
   position: absolute;
@@ -21,7 +50,7 @@
 
 /* Keyboard focus indicators — visible outline on all interactive elements */
 *:focus-visible {
-  outline: 3px solid #0d6efd;
+  outline: 3px solid var(--brand-teal);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -31,8 +60,387 @@
 .nav-link:focus-visible,
 button:focus-visible,
 .btn:focus-visible {
-  outline: 3px solid #0d6efd;
+  outline: 3px solid var(--brand-teal);
   outline-offset: 3px;
+}
+
+/* Navbar */
+.navbar {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.quarto-light .navbar {
+  background-color: var(--brand-teal) !important;
+  border-bottom-color: var(--brand-teal-hover);
+}
+
+.quarto-light .navbar .navbar-brand,
+.quarto-light .navbar .navbar-title,
+.quarto-light .navbar .nav-link {
+  color: var(--page-bg);
+}
+
+.quarto-light .navbar .nav-link:hover,
+.quarto-light .navbar .nav-link:focus,
+.quarto-light .navbar .navbar-brand:hover {
+  color: #ffffff;
+}
+
+.quarto-light .navbar .navbar-toggler {
+  border-color: rgba(250, 247, 242, 0.45);
+}
+
+.quarto-light .navbar a:focus-visible,
+.quarto-light .navbar .nav-link:focus-visible {
+  outline-color: #ffffff;
+}
+
+.quarto-dark .navbar {
+  background-color: var(--brand-teal) !important;
+  border-bottom-color: var(--brand-teal-hover);
+}
+
+.quarto-dark .navbar .navbar-brand,
+.quarto-dark .navbar .navbar-title,
+.quarto-dark .navbar .nav-link {
+  color: var(--text-primary);
+}
+
+.quarto-dark .navbar .nav-link:hover,
+.quarto-dark .navbar .nav-link:focus,
+.quarto-dark .navbar .navbar-brand:hover {
+  color: #ffffff;
+}
+
+.quarto-dark .navbar .navbar-toggler {
+  border-color: rgba(250, 247, 242, 0.45);
+}
+
+.quarto-dark .navbar a:focus-visible,
+.quarto-dark .navbar .nav-link:focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Navbar tools: color-scheme and reader toggles on teal bar */
+.navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: var(--text-primary);
+}
+
+.quarto-light .navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: #FAF7F2;
+}
+
+.quarto-light .navbar .quarto-navbar-tools .quarto-navigation-tool:hover,
+.quarto-dark .navbar .quarto-navbar-tools .quarto-navigation-tool:hover {
+  color: #ffffff;
+}
+
+/* Override legacy minty/quartz toggle SVG fills */
+.navbar .quarto-color-scheme-toggle .bi::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FAF7F2' viewBox='0 0 16 16'%3E%3Cpath d='M11 4a4 4 0 0 1 0 8H8a4.992 4.992 0 0 0 2-4 4.992 4.992 0 0 0-2-4H11zm-5 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8z'/%3E%3C/svg%3E") !important;
+}
+
+.navbar .quarto-color-scheme-toggle.alternate .bi::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFFFFF' viewBox='0 0 16 16'%3E%3Cpath d='M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10H5zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8z'/%3E%3C/svg%3E") !important;
+}
+
+.navbar .quarto-reader-toggle:not(.reader) .bi::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FAF7F2' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm12-1a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2z'/%3E%3Cpath d='M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E") !important;
+}
+
+.navbar .quarto-reader-toggle.reader .bi::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23FFFFFF' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm12-1a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2z'/%3E%3Cpath d='M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E") !important;
+}
+
+.navbar .quarto-reader-toggle.reader .quarto-reader-toggle-btn {
+  background-color: var(--brand-teal-hover) !important;
+  border-radius: 3px;
+}
+
+/* Navbar dropdown menus */
+.navbar .dropdown-menu {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.quarto-light .navbar .dropdown-menu {
+  background-color: #FFFFFF;
+  border-color: #E2D9C8;
+}
+
+.quarto-dark .navbar .dropdown-menu {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.navbar .dropdown-item {
+  color: var(--text-primary);
+}
+
+.quarto-light .navbar .dropdown-item {
+  color: #1A0F06;
+}
+
+.quarto-dark .navbar .dropdown-item {
+  color: #FAF7F2;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background-color: var(--teal-tint);
+  color: var(--brand-teal);
+}
+
+/* Homepage: hero is the only page title */
+main:has(.lab-hero) #title-block-header {
+  display: none;
+}
+
+main:has(.lab-hero) {
+  padding-top: 0.75rem;
+}
+
+/* Homepage lab hero */
+.lab-hero {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 2.25rem;
+  margin-bottom: 2.25rem;
+}
+
+.lab-hero-main {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.lab-logo {
+  flex-shrink: 0;
+  width: 11rem;
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(26, 15, 6, 0.12));
+}
+
+.lab-hero-copy {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+}
+
+.lab-title {
+  margin: 0 0 0.75rem;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.lab-affiliation {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.lab-affiliation-line {
+  display: block;
+}
+
+.lab-affiliation-line + .lab-affiliation-line {
+  margin-top: 0.2rem;
+}
+
+.lab-affiliation a {
+  color: var(--brand-teal);
+  text-decoration: none;
+}
+
+.lab-affiliation a:hover,
+.lab-affiliation a:focus {
+  color: var(--brand-teal-hover);
+  text-decoration: underline;
+}
+
+.lab-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.lab-link {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 7.5rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  color: var(--brand-teal);
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.lab-link:hover,
+.lab-link:focus {
+  border-color: var(--brand-teal);
+  background-color: var(--teal-tint);
+  color: var(--brand-teal-hover);
+  text-decoration: none;
+}
+
+.lab-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.25rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.lab-nav-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.lab-nav-card:hover,
+.lab-nav-card:focus {
+  border-color: var(--brand-teal);
+  background-color: var(--teal-tint);
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.lab-nav-card-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--brand-teal);
+}
+
+.lab-nav-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.lab-intro {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.lab-intro p {
+  color: var(--text-primary);
+  line-height: 1.65;
+  margin-bottom: 1.25em;
+  text-align: left;
+}
+
+.lab-intro p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .lab-links {
+    justify-content: center;
+  }
+
+  .lab-link {
+    flex: 1 1 calc(33.333% - 0.75rem);
+  }
+}
+
+@media (max-width: 575px) {
+  .lab-hero-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lab-hero-copy {
+    text-align: left;
+    width: 100%;
+  }
+
+  .lab-logo {
+    width: 9rem;
+  }
+
+  .lab-title {
+    font-size: 1.85rem;
+  }
+
+  .lab-nav-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-link {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 0;
+  }
+}
+
+/* Secondary / muted text helpers */
+.text-secondary,
+.quarto-title-meta,
+.listing-description {
+  color: var(--text-secondary);
+}
+
+/* Callout tinted backgrounds */
+.callout-note .callout-body-container {
+  background-color: var(--teal-tint);
+}
+
+.callout-tip .callout-body-container,
+.callout-warning .callout-body-container {
+  background-color: var(--gold-tint);
+}
+
+.callout-important .callout-body-container,
+.callout-caution .callout-body-container {
+  background-color: var(--card-bg);
+}
+
+/* Primary button hover */
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--brand-teal-hover) !important;
+  border-color: var(--brand-teal-hover) !important;
+}
+
+/* Listing table borders */
+.quarto-listing-table {
+  border-color: var(--border-color);
+}
+
+.quarto-listing-table th,
+.quarto-listing-table td {
+  border-color: var(--border-color);
+}
+
+/* Navbar logo sizing for circular patch badge */
+.navbar-logo {
+  height: 2.25rem;
+  width: auto;
+  padding: 0.1rem 0;
 }
 
 /* Soft-wrap long prompt text blocks (e.g. Schema Study system instructions) */
@@ -42,4 +450,3 @@ button:focus-visible,
   overflow-wrap: anywhere;
   word-break: break-word;
 }
-

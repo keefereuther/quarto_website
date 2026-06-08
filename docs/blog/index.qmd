@@ -6,7 +6,9 @@ title-block-banner: true
 title-block-banner-color: body
 listing:
   sort: "date desc"
-  contents: "posts/*/index.qmd"
+  contents:
+    - "posts/*/index.qmd"
+    - "posts/chatgptassignments/*.qmd"
   sort-ui: false
   filter-ui: false
   categories: true

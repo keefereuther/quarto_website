@@ -2,7 +2,7 @@
 title: "Keefe Reuther"
 about:
   template: trestles
-  image: /assets/keefe2.jpg
+  image: ../../../assets/keefe2.jpg
   image-alt: "Photo of Keefe Reuther, Assistant Teaching Professor at UC San Diego"
   image-shape: rounded
   links:
@@ -34,11 +34,11 @@ I'm also a biologist. I teach BILD 5 (*Data Analysis & Design for Biologists*), 
 
 ## Education
 
-Saint Louis University | St. Louis, MO
-Ph.D. in Biology | August 2004 - May 2009
+**Saint Louis University** | St. Louis, MO  
+Ph.D. in Biology | August 2004 – May 2009
 
-University of California, Berkeley | Berkeley, CA
-B.A.'s in Biology and Geology | Sept 1998 - May 2003
+**University of California, Berkeley** | Berkeley, CA  
+B.A.'s in Biology and Geology | Sept 1998 – May 2003
 
 ## Experience
 

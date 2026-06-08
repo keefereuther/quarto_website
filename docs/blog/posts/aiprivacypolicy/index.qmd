@@ -9,6 +9,7 @@ categories:
 author: Keefe Reuther
 date: "2024-10-16"
 image: "security.webp"
+image-alt: "Padlock icon representing data security and privacy"
 format: 
   html:
     page-layout: full

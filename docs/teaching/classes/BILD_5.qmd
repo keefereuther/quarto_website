@@ -1,6 +1,7 @@
 ---
 title: "BILD 5 — Data Analysis and Design for Biologists"
 image: floppy.png
+image-alt: "Floppy disk icon representing data and computing"
 categories: [Featured, R, Statistics, Experimental Design]
 ---
 
@@ -29,6 +30,4 @@ Coding is done in R using RStudio on the UC San Diego DataHub, a browser-based e
 
 ## Syllabus (Spring 2025)
 
-<object data="BILD_5_Syllabus_SP25.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: BILD 5 Spring 2025 Syllabus">
-  <p>Your browser does not support embedded PDFs. <a href="BILD_5_Syllabus_SP25.pdf">Download the syllabus (PDF)</a>.</p>
-</object>
+{{< pdf-embed "BILD_5_Syllabus_SP25.pdf" label="PDF: BILD 5 Spring 2025 Syllabus" >}}

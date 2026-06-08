@@ -1,6 +1,7 @@
 ---
 title: "Fake data, real learning: A new R package to use synthesized data in the classroom"
 image: saber.png
+image-alt: "SABER West conference poster thumbnail"
 date: 2023-01-13
 ---
 
@@ -22,6 +23,4 @@ Given the short timeframe of the college course, it can be difficult to have stu
 4.	In classes that use real data, instructors must put in considerable time in developing grading keys for IAs. This R package will automatically generate grading keys for instructors. 
 
 
-<object data="Mueller and Reuther Saber West final.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Mueller and Reuther Saber West final.pdf">
-  <p>Your browser does not support embedded PDFs. <a href="Mueller and Reuther Saber West final.pdf">Download the PDF</a>.</p>
-</object>
+{{< pdf-embed "Mueller and Reuther Saber West final.pdf" >}}

@@ -43,7 +43,7 @@ To set up the website locally, follow these steps:
    ```bash
    cd quarto_website
    ```
-3. Install the required dependencies (if any).
+3. Install [Quarto](https://quarto.org/docs/get-started/) (required to render the site).
 
 ## Usage
 
@@ -59,7 +59,7 @@ Contributions are welcome! If you have suggestions or improvements, please fork 
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the GNU General Public License v3.0. See [license.qmd](license.qmd) for the full text.
 
 ## Additional Information
 

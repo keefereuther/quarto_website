@@ -3,8 +3,6 @@ title: "Contact"
 format:
   html:
     toc: true
-    html-math-method: katex
-self-contained: true
 ---
 
 The best way to reach me is by email: **[kdreuther@ucsd.edu](mailto:kdreuther@ucsd.edu)**. A short note about what you're working on and what you need is plenty.

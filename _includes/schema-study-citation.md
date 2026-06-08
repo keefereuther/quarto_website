@@ -1,0 +1,1 @@
+*Reuther, K., Mueller, L. O., Constantian, G., & Nguyen, A. (2026). [Schema Study: A Large Language Model (LLM) Application for Asynchronous Student Learning and Inquiry](https://qubeshub.org/community/groups/coursesource/publications?id=5776). CourseSource Teaching Tools and Strategies.*

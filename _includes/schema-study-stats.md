@@ -1,0 +1,3 @@
+- 72% of students would reuse Schema Study in a future biology course
+- Each additional day per week of use more than doubled the likelihood of recommending it to peers
+- Increased student AI self-efficacy and beliefs about AI relevance to their education and careers

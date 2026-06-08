@@ -1,8 +1,26 @@
-# example netlify.toml
 [build]
-  command = "echo 'default context'"
-  # functions = "netlify/functions"
+  command = "curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb && sudo apt-get install -y ./quarto-linux-amd64.deb && quarto render ."
   publish = "_site/"
+
+[[redirects]]
+  from = "/docs/scholarship/index.html"
+  to = "/docs/scholarship/publications.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/scholarship/projects/simulation.html"
+  to = "/docs/genai/tools/index.html#using-simulation-to-learn-biology"
+  status = 301
+
+[[redirects]]
+  from = "/docs/scholarship/projects/genaischolarship.html"
+  to = "/docs/genai/tools/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/scholarship/projects/assessment.html"
+  to = "/docs/scholarship/papers/saberwest2023reuther.html"
+  status = 301
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.

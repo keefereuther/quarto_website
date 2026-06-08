@@ -1,27 +1,6 @@
 ---
-title: "Keefe Reuther"
-about:
-  id: intro
-  template: solana
-  image: /assets/keefe2.jpg
-  image-alt: "Headshot of Keefe Reuther"
-  image-shape: rounded
-  image-width: 15em
-  links:
-    - icon: orcid
-      text: ORCID
-      href: https://orcid.org/0000-0001-7638-8521
-    - icon: github
-      text: Github
-      href: https://github.com/keefereuther
-    - icon: huggingface
-      text: Hugging Face
-      href: https://huggingface.co/keefereuther
-    - icon: youtube
-      text: YouTube
-      href: https://www.youtube.com/@TheQuestionsLab
-    - text: SABER GenAI
-      href: https://saberbio.wildapricot.org/generative-AI-SIG
+title: "The Reuther Lab"
+hide-title: true
 listing:
   id: news
   type: table
@@ -41,37 +20,72 @@ listing:
 ---
 
 ```{=html}
-<script>
-document.addEventListener("DOMContentLoaded", function() { forceScrollToTop(); });
-window.addEventListener("load", function() { forceScrollToTop(); });
-function forceScrollToTop() {
-  window.scrollTo(0, 0);
-  var scrollInterval;
-  var scrollAttempts = 0;
-  scrollInterval = setInterval(function() {
-    window.scrollTo(0, 0);
-    scrollAttempts++;
-    if (scrollAttempts >= 20) { clearInterval(scrollInterval); }
-  }, 100);
-}
-setTimeout(function() { window.scrollTo(0, 0); }, 0);
-</script>
+<div class="column-body">
+  <section class="lab-hero" aria-label="Lab introduction">
+    <div class="lab-hero-main">
+      <img
+        src="/assets/logokeefe/logokeefe-social-256.webp"
+        alt="The Reuther Lab logo: embroidered patch with a lightbulb and question mark"
+        class="lab-logo"
+        width="180"
+        height="180"
+      >
+      <div class="lab-hero-copy">
+        <h1 class="lab-title">The Reuther Lab</h1>
+        <p class="lab-affiliation">
+          <span class="lab-affiliation-line"><a href="https://biology.ucsd.edu/research/faculty/kdreuther">Keefe Reuther</a></span>
+          <span class="lab-affiliation-line">Assistant Teaching Professor</span>
+          <span class="lab-affiliation-line"><a href="https://biology.ucsd.edu/research/academic-departments/ebe/">Department of Ecology, Behavior &amp; Evolution</a></span>
+          <span class="lab-affiliation-line">UC San Diego</span>
+        </p>
+      </div>
+    </div>
+    <div class="lab-links">
+      <a href="https://orcid.org/0000-0001-7638-8521" class="lab-link">
+        <i class="bi bi-orcid" aria-hidden="true"></i>
+        <span>ORCID</span>
+      </a>
+      <a href="https://github.com/keefereuther" class="lab-link">
+        <i class="bi bi-github" aria-hidden="true"></i>
+        <span>GitHub</span>
+      </a>
+      <a href="https://huggingface.co/keefereuther" class="lab-link">
+        <i class="bi bi-huggingface" aria-hidden="true"></i>
+        <span>Hugging Face</span>
+      </a>
+      <a href="https://www.youtube.com/@TheQuestionsLab" class="lab-link">
+        <i class="bi bi-youtube" aria-hidden="true"></i>
+        <span>YouTube</span>
+      </a>
+      <a href="https://saberbio.wildapricot.org/generative-AI-SIG" class="lab-link">
+        <span>SABER GenAI</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="lab-intro">
+    <p><strong>We build open-source AI tools for undergraduate biology and study how students and instructors actually use them.</strong></p>
+    <p>Our work runs on two tracks: building generative AI tools that support active learning, and studying what actually happens when those tools land in real classrooms. We also teach experimental design, statistics, and data science — the craft of turning biological questions into rigorous answers. Explore the <a href="/docs/blog/index.html">blog</a> for recent writing, or <a href="/docs/about/contact/index.html">get in touch</a> about a workshop, collaboration, or help setting up one of the tools in your course.</p>
+  </div>
+
+  <nav class="lab-nav-grid" aria-label="Site sections">
+    <a href="/docs/genai/tools/index.html" class="lab-nav-card">
+      <span class="lab-nav-card-title">AI Tools and Curricular Design</span>
+      <span class="lab-nav-card-desc">Resources for instructors interested in AI literacy</span>
+    </a>
+    <a href="/docs/teaching/index.html" class="lab-nav-card">
+      <span class="lab-nav-card-title">Teaching</span>
+      <span class="lab-nav-card-desc">Courses and materials</span>
+    </a>
+    <a href="/docs/about/contact/index.html" class="lab-nav-card">
+      <span class="lab-nav-card-title">Contact</span>
+      <span class="lab-nav-card-desc">Workshops and collaboration</span>
+    </a>
+  </nav>
+</div>
 ```
-
-::: {#intro}
-**I build open-source AI tools for undergraduate biology and study how students and instructors actually use them.**
-
-------------------------------------------------------------------------
-
-Assistant Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work runs on two tracks: building generative AI tools that support active learning, and studying what actually happens when those tools land in real classrooms. I also teach experimental design, statistics, and data science — the craft of turning biological questions into rigorous answers.
-
-Start with my [AI tools](/docs/genai/tools/index.qmd), [scholarship](/docs/scholarship/index.qmd), or [blog](/docs/blog/index.qmd) — or [get in touch](/docs/about/contact/index.qmd) about a workshop, collaboration, or help setting up one of the tools in your course.
-
-------------------------------------------------------------------------
-:::
 
 ## Recent Posts & Publications
 
 ::: {#news}
 :::
-

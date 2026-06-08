@@ -1,24 +1,29 @@
 lang: en
+bibliography: references.bib
 
 project:
   type: website
   render:
-    - "*.qmd"
-    - "!CLAUDE.md"
-    - "!README.md"
+    - index.qmd
+    - license.qmd
+    - docs/
 
 website:
-  title: "Keefe Reuther"
-  image: "assets/logosimple.webp"
+  title: "The Reuther Lab"
+  image: "assets/logokeefe/logokeefe-social-256.webp"
   reader-mode: true
-  open-graph: false
-  favicon: "assets/logosimple.webp"
+  open-graph: true
+  twitter-card: true
+  favicon: "assets/logokeefe/logokeefe-favicon-48.png"
   site-url: https://keefereuther.com
   repo-url: https://github.com/keefereuther/quarto_website
   page-navigation: false
   bread-crumbs: false
   navbar:
-    logo: assets/logosimple.webp
+    logo: assets/logokeefe/logokeefe-navbar-144.webp
+    logo-alt: "Keefe Reuther logo: lightbulb with question mark"
+    background: "#0E8FA3"
+    foreground: "#FAF7F2"
     right:
       - text: "About"
         menu:
@@ -26,6 +31,8 @@ website:
             text: Keefe Reuther
           - href: docs/about/contact/index.qmd
             text: Contact Us
+          - href: docs/about/people/index.qmd
+            text: People
       - href: docs/teaching/index.qmd
         text: Teaching
       - text: "Scholarship"
@@ -34,14 +41,10 @@ website:
             text: Publications
           - href: docs/scholarship/presentations.qmd
             text: Presentations
-          - href: docs/scholarship/index.qmd
-            text: Projects
-      - text: "GenAI"
-        menu:
           - href: docs/genai/tools/index.qmd
-            text: Tools & Resources
+            text: AI Tools
           - href: docs/genai/community/index.qmd
-            text: Community
+            text: AI Community
       - href: docs/blog/index.qmd
         text: Blog
 
@@ -52,7 +55,7 @@ website:
       [![](/assets/ebewebbug.png){fig-alt="UCSD EBE" width=100px}](https://biology.ucsd.edu/research/academic-departments/ebe/)
       [![](/assets/UCSanDiegoLogo-BlueGold.png){fig-alt="UCSD" width=100px}](https://ucsd.edu)
     right:
-      - text: "This site combines my original content with GAI-aided portions from tools like ChatGPT. All content is curated and verified by me, Keefe Reuther."
+      - text: "Some portions of this site use generative AI to assist with creation and maintenance. All content is authored, reviewed, and verified by the Reuther Lab. We take full responsibility for everything published here."
       - icon: github
         href: https://github.com/keefereuther
         aria-label: Keefe Reuther GitHub
@@ -62,10 +65,11 @@ website:
 format:
   html:
     page-layout: article
-    include-before-body: _includes/skip-nav.html
+    math: false
+    include-in-header: _includes/skip-nav.html
     theme:
-      light: minty
-      dark: quartz
+      light: [minty, theme-light.scss]
+      dark: [quartz, theme-dark.scss]
     css: styles.css
     toc: false
     fontsize: 1.2em

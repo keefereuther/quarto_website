@@ -1,0 +1,106 @@
+/*-- scss:defaults --*/
+
+// Semantic palette tokens (derived dark mode)
+$page-bg: #1A0F06;
+$card-bg: #2A2118;
+$teal-tint: rgba(14, 143, 163, 0.15);
+$gold-tint: rgba(245, 184, 0, 0.12);
+$text-primary: #FAF7F2;
+$text-secondary: #E2D9C8;
+$color-text-muted: #6B6B6B;
+$brand-teal: #0E8FA3;
+$brand-teal-hover: #076878;
+$brand-gold: #F5B800;
+$brand-coral: #D95C2A;
+$border-color: rgba(226, 217, 200, 0.25);
+
+// Global document colors
+$body-bg: $page-bg;
+$body-color: $text-primary;
+$headings-color: $text-primary;
+$text-muted: $color-text-muted;
+$link-color: lighten($brand-teal, 12%);
+$link-hover-color: lighten($brand-teal, 20%);
+
+// Bootstrap theme colors
+$primary: $brand-teal;
+$secondary: $color-text-muted;
+$success: lighten($brand-teal, 8%);
+$info: lighten($brand-teal, 15%);
+$warning: $brand-gold;
+$danger: $brand-coral;
+$light: $card-bg;
+$dark: $page-bg;
+
+// Navigation (teal bar, matching light mode)
+$navbar-bg: $brand-teal;
+$navbar-dark-color: $text-primary;
+$navbar-dark-hover-color: #ffffff;
+$navbar-dark-active-color: #ffffff;
+$navbar-dark-disabled-color: rgba($text-primary, 0.55);
+$navbar-dark-toggler-border-color: rgba($text-primary, 0.35);
+$navbar-dark-brand-color: $text-primary;
+$navbar-dark-brand-hover-color: #ffffff;
+
+// Footer
+$footer-bg: $page-bg;
+$footer-fg: $text-primary;
+
+// Tables and listings
+$table-bg: transparent;
+$table-striped-bg: $teal-tint;
+$table-hover-bg: rgba(14, 143, 163, 0.22);
+$table-border-color: $border-color;
+
+// Callouts
+$callout-color-note: lighten($brand-teal, 10%);
+$callout-color-tip: $brand-gold;
+$callout-color-important: $brand-coral;
+$callout-color-caution: $brand-coral;
+$callout-color-warning: $brand-gold;
+
+// Code blocks
+$code-block-bg: $teal-tint;
+$code-block-border-left-color: $brand-teal;
+
+/*-- scss:rules --*/
+
+// Remove quartz body gradient (blue → purple → pink).
+body {
+  background-image: none !important;
+  background-color: $page-bg !important;
+}
+
+// Replace inherited quartz [data-bs-theme=dark] grays with palette tokens.
+[data-bs-theme="dark"] {
+  --bs-body-bg: #{$page-bg};
+  --bs-body-color: #{$text-primary};
+  --bs-emphasis-color: #{$text-primary};
+  --bs-secondary-color: #{$text-secondary};
+  --bs-secondary-bg: #{$card-bg};
+  --bs-tertiary-color: #{$color-text-muted};
+  --bs-tertiary-bg: #{$card-bg};
+  --bs-border-color: #{$border-color};
+  --bs-link-color: #{lighten($brand-teal, 12%)};
+  --bs-link-hover-color: #{lighten($brand-teal, 20%)};
+}
+
+.navbar[data-bs-theme="dark"] {
+  --bs-body-bg: #{$brand-teal};
+  --bs-body-color: #{$text-primary};
+  --bs-emphasis-color: #ffffff;
+  --bs-secondary-color: rgba(250, 247, 242, 0.85);
+  --bs-secondary-bg: #{$brand-teal-hover};
+  --bs-tertiary-color: rgba(250, 247, 242, 0.65);
+  --bs-tertiary-bg: #{$brand-teal-hover};
+  --bs-border-color: rgba(250, 247, 242, 0.25);
+  --bs-link-color: #ffffff;
+  --bs-link-hover-color: #{$text-primary};
+}
+
+.btn-primary {
+  --bs-btn-hover-bg: #{$brand-teal-hover};
+  --bs-btn-hover-border-color: #{$brand-teal-hover};
+  --bs-btn-active-bg: #{$brand-teal-hover};
+  --bs-btn-active-border-color: #{$brand-teal-hover};
+}

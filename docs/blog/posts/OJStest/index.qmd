@@ -1,5 +1,6 @@
 ---
 title: "A simple D3 interactive example"
+draft: true
 description: 
   This is a minimal example of an OJS D3 webapp with one input and one output.
 categories:
@@ -8,7 +9,8 @@ categories:
   - Example
 author: Keefe Reuther
 date: "2025-04-16"
-image: "pastellogo.webp" # Consider changing this image if it's not relevant
+image: "pastellogo.webp"
+image-alt: "Pastel logo placeholder for OJS test post"
 format: 
   html:
     page-layout: full

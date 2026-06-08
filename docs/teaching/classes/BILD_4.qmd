@@ -1,9 +1,8 @@
 ---
-title: ""
+title: "BILD 4 - Introductory Biology Laboratory"
 image: petri.png
+image-alt: "Petri dish with bacterial colonies"
 ---
-
-# BILD 4 - Introductory Biology Laboratory
 
 ## Course Description:
 
@@ -11,6 +10,4 @@ BILD 4 is designed to be a collaborative environment for everyone to learn toget
 
 ## Syllabus:
 
-<object data="Reuther_BILD_4_syllabus_SP21.pdf" type="application/pdf" width="100%" height="800" aria-label="PDF: Reuther_BILD_4_syllabus_SP21.pdf">
-  <p>Your browser does not support embedded PDFs. <a href="Reuther_BILD_4_syllabus_SP21.pdf">Download the PDF</a>.</p>
-</object>
+{{< pdf-embed "Reuther_BILD_4_syllabus_SP21.pdf" >}}

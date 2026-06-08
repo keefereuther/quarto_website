@@ -40,6 +40,6 @@ Short posts and reflections from my ongoing engagement with the GenAI in educati
 
 ## Featured Talk: Enriching Learning Ecologies with Generative AI
 
-{{< video https://www.youtube.com/embed/6UXuxebnMQg?si=Z4kuk3DK3wEbjKC- >}}
+{{< video https://www.youtube.com/embed/6UXuxebnMQg?si=Z4kuk3DK3wEbjKC- title="SABER Generative AI Special Interest Group introduction" >}}
 
 Recorded April 4, 2025 for the Professional Development in Experimental Teaching (PDET) SABER seminar. [Watch on YouTube](https://www.youtube.com/watch?v=6UXuxebnMQg).

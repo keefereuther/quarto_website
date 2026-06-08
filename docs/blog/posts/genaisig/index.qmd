@@ -1,6 +1,7 @@
 ---
 title: "SABER Generative AI Special Interest Group"
 image: saber.png
+image-alt: "SABER society logo"
 date: 2024-02-16
 author: Keefe Reuther
 categories:

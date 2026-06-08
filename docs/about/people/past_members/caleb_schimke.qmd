@@ -1,7 +1,8 @@
 ---
-title: ""
+title: "Caleb Schimke"
 subtitle: "Research Data Analyst"
 image: Caleb_Schimke.png
+image-alt: "Portrait of Caleb Schimke"
 ---
 
 # Caleb Schimke

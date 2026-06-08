@@ -1,5 +1,10 @@
+---
+title: "License"
+---
+
 GNU General Public License v3.0
-Copyright (c) 2024 Keefe Reuther
+
+Copyright (c) 2026 Keefe Reuther
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

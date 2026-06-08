@@ -1,7 +1,8 @@
 ---
-title: ""
-subtitle: ""
+title: "Grace Constantian"
+subtitle: "Research Data Analyst"
 image: grace.png
+image-alt: "Portrait of Grace Constantian"
 ---
 
 # Grace Constantian

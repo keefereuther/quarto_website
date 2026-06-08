@@ -4,6 +4,7 @@
 .Ruserdata
 
 /.quarto/
+_site/
 
 # Local Netlify folder
 .netlify
@@ -11,3 +12,5 @@
 # macOS
 .DS_Store
 **/.DS_Store
+
+/.luarc.json
