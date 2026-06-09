@@ -32,35 +32,9 @@ listing:
       >
       <div class="lab-hero-copy">
         <h1 class="lab-title">The Reuther Lab</h1>
-        <p class="lab-affiliation">
-          <span class="lab-affiliation-line"><a href="https://biology.ucsd.edu/research/faculty/kdreuther">Keefe Reuther</a></span>
-          <span class="lab-affiliation-line">Assistant Teaching Professor</span>
-          <span class="lab-affiliation-line"><a href="https://biology.ucsd.edu/research/academic-departments/ebe/">Department of Ecology, Behavior &amp; Evolution</a></span>
-          <span class="lab-affiliation-line">UC San Diego</span>
-        </p>
       </div>
     </div>
-    <div class="lab-links">
-      <a href="https://orcid.org/0000-0001-7638-8521" class="lab-link">
-        <i class="bi bi-orcid" aria-hidden="true"></i>
-        <span>ORCID</span>
-      </a>
-      <a href="https://github.com/keefereuther" class="lab-link">
-        <i class="bi bi-github" aria-hidden="true"></i>
-        <span>GitHub</span>
-      </a>
-      <a href="https://huggingface.co/keefereuther" class="lab-link">
-        <i class="bi bi-huggingface" aria-hidden="true"></i>
-        <span>Hugging Face</span>
-      </a>
-      <a href="https://www.youtube.com/@TheQuestionsLab" class="lab-link">
-        <i class="bi bi-youtube" aria-hidden="true"></i>
-        <span>YouTube</span>
-      </a>
-      <a href="https://saberbio.wildapricot.org/generative-AI-SIG" class="lab-link">
-        <span>SABER GenAI</span>
-      </a>
-    </div>
+    <p class="lab-hero-credit">Photo by Aniket Deole on <a href="https://unsplash.com/photos/T-tOgjWZ0fQ?utm_source=keefereuther&amp;utm_medium=referral">Unsplash</a></p>
   </section>
 
   <div class="lab-intro">
