@@ -1,5 +1,6 @@
 ---
 title: "BILD 5 — Data Analysis and Design for Biologists"
+sidebar: bild-5-activities
 image: floppy.png
 image-alt: "Floppy disk icon representing data and computing"
 categories: [Featured, R, Statistics, Experimental Design]

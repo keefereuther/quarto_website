@@ -22,6 +22,11 @@
   to = "/docs/scholarship/papers/saberwest2023reuther.html"
   status = 301
 
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5/index.html"
+  to = "/docs/teaching/classes/bild_5/01-run-your-first-line-of-code.html"
+  status = 301
+
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
   #[[redirects]]

@@ -52,6 +52,18 @@ website:
       - href: docs/blog/index.qmd
         text: Blog
 
+  sidebar:
+    - id: bild-5-activities
+      title: "In-class code activities"
+      style: floating
+      contents:
+        - text: "Course overview"
+          href: docs/teaching/classes/BILD_5.qmd
+        - section: "Activities"
+          contents:
+            - text: "1 — Run Your First Line of Code"
+              href: docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
+
   page-footer:
     border: true
     left: |
