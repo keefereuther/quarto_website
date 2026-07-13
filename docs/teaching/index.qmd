@@ -19,7 +19,7 @@ Courses I currently teach or have taught at UC San Diego, covering experimental 
 ## Featured: BILD 5 — Data Analysis and Design for Biologists
 
 ::: {.callout-note appearance="simple" icon=false}
-![Floppy disk icon representing data and computing](classes/floppy.png){fig-alt="Floppy disk icon representing data and computing" width=120px}
+![](classes/floppy.png){fig-alt="Floppy disk icon representing data and computing" width=120px}
 
 **A required course for all UC San Diego biology majors**, co-developed with [Liam O'Connor Mueller](https://biology.ucsd.edu/research/faculty/lomueller).
 
