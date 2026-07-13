@@ -9,16 +9,16 @@ Cursor. Read the **Deploy gotcha** section before your first push — it prevent
 
 - `_extensions/r-wasm/live/` — the Quarto Live extension, vendored (same as `quarto add r-wasm/quarto-live`, v0.2.0). Must stay committed.
 - `docs/teaching/classes/BILD_5.qmd` — course hub (syllabus, overview). Uses the `bild-5-activities` sidebar.
-- `docs/teaching/classes/bild_5/NN-slug.qmd` — numbered activity pages (flat files, not `index.qmd`).
-- `docs/teaching/classes/bild_5/_metadata.yml` — applies the activity sidebar to every page in this folder.
-- `docs/teaching/classes/bild_5/_dev-notes.md` — this file (the leading `_` means Quarto never publishes it).
+- `docs/teaching/classes/bild_5-labs/NN-slug.qmd` — numbered activity pages (flat files, not `index.qmd`).
+- `docs/teaching/classes/bild_5-labs/_metadata.yml` — applies the activity sidebar to every page in this folder.
+- `docs/teaching/classes/bild_5-labs/_dev-notes.md` — this file (the leading `_` means Quarto never publishes it).
 
 ### Activity file naming
 
 Use zero-padded numbers and kebab-case slugs:
 
 ```
-docs/teaching/classes/bild_5/
+docs/teaching/classes/bild_5-labs/
   01-run-your-first-line-of-code.qmd
   02-<slug>.qmd
   03-<slug>.qmd
@@ -30,9 +30,9 @@ docs/teaching/classes/bild_5/
 
 | Step | Action |
 |------|--------|
-| 1 | Create `docs/teaching/classes/bild_5/NN-short-slug.qmd` (copy front matter from activity 1) |
+| 1 | Create `docs/teaching/classes/bild_5-labs/NN-short-slug.qmd` (copy front matter from activity 1) |
 | 2 | Add `N — Page Title` to the `bild-5-activities` sidebar in `_quarto.yml` |
-| 3 | `quarto render docs/teaching/classes/bild_5/NN-short-slug.qmd` locally |
+| 3 | `quarto render docs/teaching/classes/bild_5-labs/NN-short-slug.qmd` locally |
 | 4 | Commit the `.qmd`, matching `_freeze/` path, and `_quarto.yml` sidebar entry |
 | 5 | Push to `main` (Netlify has no R) |
 
@@ -61,7 +61,7 @@ Open the repo folder in Cursor, then in the integrated terminal (``Ctrl+` ``):
 quarto preview
 
 # Faster while iterating on one activity:
-quarto preview docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
 ```
 
 Preview live-reloads as you save. First load of the page in the browser pulls webR
@@ -78,9 +78,9 @@ in each activity's front matter does.
 **Every time you edit an activity**, before pushing:
 
 ```bash
-quarto render docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
+quarto render docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
 
-git add docs/teaching/classes/bild_5/ _extensions/r-wasm/ _freeze/ _quarto.yml
+git add docs/teaching/classes/bild_5-labs/ _extensions/r-wasm/ _freeze/ _quarto.yml
 git commit -m "BILD 5: update activity 1"
 git push
 ```
@@ -95,8 +95,8 @@ and the Netlify build will try to run R and fail.
 
 ```bash
 quarto check
-quarto preview docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
-quarto render  docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
+quarto render  docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
 ```
 
 Never run `quarto publish` — Netlify deploys on git push.
@@ -104,5 +104,5 @@ Never run `quarto publish` — Netlify deploys on git push.
 ## Live URLs
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
-- Activity 1: `/docs/teaching/classes/bild_5/01-run-your-first-line-of-code.html`
-- Old activity URL redirects: `/docs/teaching/classes/bild_5/index.html` → activity 1 (301 in `netlify.toml`)
+- Activity 1: `/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html`
+- Old activity URLs under `/bild_5/` redirect to `bild_5-labs/` (301 in `netlify.toml`)

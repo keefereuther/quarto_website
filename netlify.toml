@@ -24,7 +24,12 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5/index.html"
-  to = "/docs/teaching/classes/bild_5/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
   status = 301
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.

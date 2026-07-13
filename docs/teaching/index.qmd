@@ -25,7 +25,7 @@ Courses I currently teach or have taught at UC San Diego, covering experimental 
 
 BILD 5 is a four-credit introduction to information literacy, experimental design, and quantitative analysis in R. It is designed for students with no prior coding, math, or lab experience. The course includes a scaffolded term project, a browser-based coding environment that runs on any device, and a generative AI policy built around transparent use on assignments and closed-book assessments for exams.
 
-[{{< fa book-open >}} **Go to BILD 5 — course page & syllabus**](classes/BILD_5.qmd){.btn .btn-primary .btn-lg}
+[{{< fa book-open >}} **Go to BILD 5 — course page & syllabus**](/docs/teaching/classes/BILD_5.html){.btn .btn-primary .btn-lg}
 :::
 
 ## Other courses

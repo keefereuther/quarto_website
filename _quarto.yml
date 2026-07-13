@@ -62,7 +62,7 @@ website:
         - section: "Activities"
           contents:
             - text: "1 — Run Your First Line of Code"
-              href: docs/teaching/classes/bild_5/01-run-your-first-line-of-code.qmd
+              href: docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
 
   page-footer:
     border: true
