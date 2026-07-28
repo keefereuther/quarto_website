@@ -1,0 +1,57 @@
+---
+title: "Annotate a Paper: The Human Challenge Study"
+subtitle: "Read a real primary research article and mark it up alongside your classmates"
+---
+
+This activity uses a real paper: a study in which healthy young adults were deliberately infected with SARS-CoV-2 under medical supervision, so researchers could watch an infection unfold from the very first hour.
+
+You will read it in an annotating PDF viewer. When you select text, a note panel opens and you can leave a comment or a question that the rest of the class can see and reply to.
+
+::: {.callout-note}
+## What you are being asked to do
+
+1. Leave **at least three annotations** on the paper. At least one should be a genuine question about something you did not follow.
+2. **Reply to at least one classmate.** Reading someone else's confusion is often the fastest way to resolve your own.
+3. Tag anything about study design with the tag `design`, and anything about the data or figures with `data`.
+
+You are not expected to understand every sentence. Confusion, stated clearly and specifically, is the point.
+:::
+
+## Before you start: one-time setup
+
+You need a free Hypothesis account, and you need to join our class group so your annotations go to the class and not to the public internet.
+
+1. Create an account at [hypothes.is/signup](https://hypothes.is/signup).
+2. Join the class group using the invite link posted in Canvas.
+3. Open the reading below and sign in using the panel on the right.
+
+::: {.callout-important}
+## Check the group selector before you annotate
+
+At the top of the annotation panel there is a dropdown that controls **who sees your note**. It should read **BILD 5**.
+
+If it reads **Public**, switch it to BILD 5 before you post — Public means the whole internet can read it. If you post to Public by mistake, delete the annotation and post it again in the group.
+:::
+
+## The reading
+
+[Open the paper and annotate it](/annotate/viewer/web/viewer.html?file=%2Fpapers%2Fkillingley-2022.pdf){.btn .btn-primary target="_blank"}
+
+Opens in a new tab. Give it a moment on first load: it is a large file.
+
+If the annotation panel does not appear, or you cannot get signed in, you can still read the paper on its own: [download the plain PDF](/papers/killingley-2022.pdf). Bring your notes to class and we will get the tool working with you.
+
+## Citation
+
+Killingley, B., Mann, A.J., Kalinova, M. *et al.* Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults. *Nature Medicine* **28**, 1031–1041 (2022). <https://doi.org/10.1038/s41591-022-01780-9>
+
+Published open access under a Creative Commons Attribution licence.
+
+## Questions to hold onto while you read
+
+You do not need to answer these in writing. They are worth annotating when you hit them.
+
+- **The sample.** Thirty-six people, all healthy, all 18 to 30, none previously infected or vaccinated. What can a study like this tell us, and what can it *not* tell us?
+- **Why deliberately infect anyone?** What does this design let researchers observe that studying naturally infected patients cannot? What are the ethical conditions that would have to be met first?
+- **Reading the figures.** Several figures track viral load over time. What is on each axis, and what units? Where does the signal first become detectable?
+- **Symptoms versus infectiousness.** Look for where these two come apart in time. Why would that gap matter for public health advice?

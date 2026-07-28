@@ -11,6 +11,11 @@ project:
     - index.qmd
     - license.qmd
     - docs/
+  # Static passthrough. Neither directory contains Quarto input formats, so
+  # these are copied to _site/ verbatim rather than rendered.
+  resources:
+    - annotate/**
+    - papers/**
 
 website:
   title: "The Reuther Lab"
@@ -54,7 +59,7 @@ website:
 
   sidebar:
     - id: bild-5-activities
-      title: "In-class code activities"
+      title: "In-class activities"
       style: floating
       contents:
         - text: "Course overview"
@@ -63,6 +68,8 @@ website:
           contents:
             - text: "1 — Run Your First Line of Code"
               href: docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
+            - text: "2 — Annotate a Paper: Human Challenge Study"
+              href: docs/teaching/classes/bild_5-labs/02-annotate-killingley-2022.qmd
 
   page-footer:
     border: true

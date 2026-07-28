@@ -1,6 +1,31 @@
 [build]
-  command = 'curl -sL https://quarto.org/download/latest/quarto-linux-amd64.tar.gz | tar -xz && export PATH="$PWD/$(ls -d quarto-*/bin | head -1):$PATH" && quarto render .'
+  command = 'curl -sL https://quarto.org/download/latest/quarto-linux-amd64.tar.gz | tar -xz && export PATH="$PWD/$(ls -d quarto-*/bin | head -1):$PATH" && quarto render . && mkdir -p _site/annotate _site/papers && cp -R annotate/. _site/annotate/ && cp -R papers/. _site/papers/'
   publish = "_site/"
+
+# Short reading URLs: /read/killingley-2022 -> the annotating PDF viewer.
+# Must be 302 and not a 200 rewrite: a rewrite keeps the browser URL at
+# /read/<slug> with no query string, so PDF.js would never see ?file=.
+[[redirects]]
+  from = "/read/*"
+  to = "/annotate/viewer/web/viewer.html?file=/papers/:splat.pdf"
+  status = 302
+  force = true
+
+# The activities folder has no index page by convention (see _dev-notes.md).
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/"
+  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  status = 301
+
+[[headers]]
+  for = "/papers/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/annotate/viewer/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
   from = "/docs/scholarship/index.html"
