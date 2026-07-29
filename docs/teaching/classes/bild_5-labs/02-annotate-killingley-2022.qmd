@@ -10,9 +10,8 @@ You will read it in an annotating PDF viewer. When you select text, a note panel
 ::: {.callout-note}
 ## What you are being asked to do
 
-1. Leave **at least three annotations** on the paper. At least one should be a genuine question about something you did not follow.
-2. **Reply to at least one classmate.** Reading someone else's confusion is often the fastest way to resolve your own.
-3. Tag anything about study design with the tag `design`, and anything about the data or figures with `data`.
+1. Leave **at least three annotations**, each one naming something you do not know or do not understand. Be specific about what is confusing rather than marking a passage as generally hard.
+2. **Reply to at least two classmates.** Choose a question someone else asked and answer it in plain, simple language. Linking a source that helped you is welcome, but the explanation itself should be in your own words.
 
 You are not expected to understand every sentence. Confusion, stated clearly and specifically, is the point.
 :::
@@ -46,12 +45,3 @@ If the annotation panel does not appear, or you cannot get signed in, you can st
 Killingley, B., Mann, A.J., Kalinova, M. *et al.* Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults. *Nature Medicine* **28**, 1031–1041 (2022). <https://doi.org/10.1038/s41591-022-01780-9>
 
 Published open access under a Creative Commons Attribution licence.
-
-## Questions to hold onto while you read
-
-You do not need to answer these in writing. They are worth annotating when you hit them.
-
-- **The sample.** Thirty-six people, all healthy, all 18 to 30, none previously infected or vaccinated. What can a study like this tell us, and what can it *not* tell us?
-- **Why deliberately infect anyone?** What does this design let researchers observe that studying naturally infected patients cannot? What are the ethical conditions that would have to be met first?
-- **Reading the figures.** Several figures track viral load over time. What is on each axis, and what units? Where does the signal first become detectable?
-- **Symptoms versus infectiousness.** Look for where these two come apart in time. Why would that gap matter for public health advice?
