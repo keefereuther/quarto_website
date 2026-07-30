@@ -1,0 +1,154 @@
+---
+title: "Find a Question, Build a Bibliography"
+subtitle: "Browse the science news, search the literature, and assemble five real papers you will read later"
+---
+
+Today you pick something you are actually curious about and find five real research papers about it. You will come back to this bibliography in later activities to practice reading and understanding papers, so the link you produce today matters beyond today.
+
+::: {.callout-note}
+## What you are being asked to do
+
+1. **Choose a topic or question** you want to explore — something from lecture, your own life, or a science news story that caught your attention.
+2. **Find at least five primary research articles** using the search routes below. Use each route at least once.
+3. **Build an APA bibliography** in [ZoteroBib](https://zbib.org/) and publish it with **Link to this version**.
+4. **Post to the Canvas discussion:** your topic, the ZoteroBib link, and one line per source naming which search route found it.
+
+This counts toward the paper annotation portion of the syllabus.
+:::
+
+## 1. Find something worth asking about
+
+Good research questions rarely start in a database. They start with something that made you stop and wonder.
+
+**Where to look for inspiration:**
+
+- A lecture topic that stuck with you after class ended
+- Something in your own body, diet, or environment you have always wondered about
+- A claim you have heard repeated — on social media, in a podcast, from a friend — and never checked
+
+**Browse science news for ten minutes.** Pick one story and read it carefully. Good starting points:
+
+- [Science Daily](https://www.sciencedaily.com/)
+- [Nature Briefing](https://www.nature.com/briefing) (free email digest of recent research)
+- [EurekAlert!](https://www.eurekalert.org/) (press releases from universities and journals)
+- [Quanta Magazine](https://www.quantamagazine.org/) (longer, well-written science journalism)
+
+For whichever story you pick, answer these two questions in writing:
+
+1. **What specific claim is the story making, and who did the work?** Name the researchers or institution if the article mentions them.
+2. **Does the story link to the actual paper?** If yes, follow the link and note the title. If not, what would you have to search for to find the original research?
+
+::: {.callout-note appearance="simple"}
+A news story is someone else's summary of the research — a **secondary source**. Your five bibliography entries must be the research itself: **primary sources** (journal articles reporting original data or experiments).
+:::
+
+## 2. Search the literature
+
+Once you have a topic, you need to find the papers. Different tools are good at different jobs. Use all of them at least once while assembling your five sources, and note which route found which paper.
+
+### Keywords first
+
+Before you open any database, write down the nouns that describe your topic — not a full sentence.
+
+- **Use nouns, not questions.** Search `gut microbiome sleep`, not "Does the gut microbiome affect sleep?"
+- **List synonyms before you search.** The same idea goes by many names: `microbiome`, `gut bacteria`, `gut flora`, `intestinal microbiota`.
+- **Quotes for exact phrases:** `"human challenge study"` finds that phrase together.
+- **AND narrows, OR broadens:** `microbiome AND sleep` requires both; `microbiome OR gut bacteria` accepts either.
+- **Asterisk for word stems:** `microbi*` catches microbiome, microbiota, microbial.
+- **Filter by year** when you want recent work — most databases and Google Scholar let you set a date range.
+
+### UCSD Library
+
+The library pays for access to journals you cannot reach for free. Start with these guides:
+
+- [Biology research guide](https://ucsd.libguides.com/biology) — the first stop for biology resources
+- [Find Journal Articles (Biology)](https://ucsd.libguides.com/c.php?g=90753&p=583926) — selected databases with short descriptions
+- [A–Z Databases](https://ucsd.libguides.com/az/databases) — the full searchable list
+
+**PubMed** is the best free index of biomedical literature. Reach it *through the library link* on the Biology guide so **UC e-Links** appear next to each result — those links route you to full text the library already pays for. Off campus, you may need to sign in with your UCSD credentials first.
+
+If you get stuck, **Ask a Librarian** (linked from the library homepage) is free and fast. That is what they are there for.
+
+### Google Scholar
+
+[Google Scholar](https://scholar.google.com/) searches across journals, preprints, theses, and books. It is broad — sometimes too broad — but an excellent starting point.
+
+1. Open Scholar and go to **Settings → Library links**.
+2. Search for **University of California San Diego** and check the box.
+3. Save. You should now see **UC eLinks** or **Get it at UC** next to results when the library has access.
+
+Useful buttons on each result:
+
+- **Cited by** — who built on this paper later? Good for finding newer work.
+- **Related articles** — sideways moves to papers on the same topic.
+
+### Semantic Scholar
+
+[Semantic Scholar](https://www.semanticscholar.org/) is another free search engine, tuned for science papers. It adds **TLDR** one-line summaries on many results and separates **References** (what the paper cites) from **Citations** (who cited it). Use those panels to trace a conversation: start with one good paper and walk backward and forward through the literature.
+
+### Generative AI search
+
+Tools like ChatGPT, Gemini, or Perplexity can help you **brainstorm keywords**, **rephrase a vague question**, or **suggest search angles** you had not considered. That is a legitimate use.
+
+They are **not** a citation source. AI tools routinely invent plausible-looking papers — real-sounding authors, real journals, fake DOIs. If a tool suggests a paper, you must **confirm it exists** by finding its DOI in Google Scholar, PubMed, or the library before it goes in your bibliography.
+
+If you use AI on this activity, **disclose the tool and how you used it**, per the course generative AI policy in the syllabus.
+
+::: {.callout-important}
+## Every source must be real
+
+Before adding any paper to ZoteroBib, find its DOI or PubMed ID and paste *that* into the search bar. If you cannot find a DOI, the paper may not exist — do not add it.
+:::
+
+## 3. Build your bibliography in ZoteroBib
+
+Go to [zbib.org](https://zbib.org/). No account, no install.
+
+1. **Set the citation style to APA (7th edition)** before you add anything. Use the style dropdown at the top of the page.
+2. **Add each paper by DOI or PubMed ID**, not by pasting a news-story URL. Paste the identifier into the search bar at the top and press Enter. ZoteroBib pulls the metadata automatically.
+3. **Check every entry.** Click it open and confirm the authors, year, journal, and title are correct. Fix anything that looks wrong.
+4. Build a bibliography of **at least five primary research articles** — all on your topic, all real.
+
+::: {.callout-important}
+## APA sentence case
+
+APA formats article titles in sentence case, so ZoteroBib will lower-case proper nouns (`Twitter` becomes `twitter`). You must fix these by hand: click the entry, edit the title, and capitalize names and abbreviations that APA expects capitalized.
+:::
+
+### Publish your bibliography
+
+When you are satisfied:
+
+1. Click **Link to this version** near the top of the page.
+2. ZoteroBib uploads your bibliography and gives you a **permanent URL**. Copy it.
+3. Save that URL somewhere you will find it — paste it into the Canvas discussion and keep a copy in your notes.
+
+::: {.callout-note appearance="simple"}
+Your bibliography lives in your browser's local storage until you use **Link to this version**. If you edit the bibliography later, click **Link to this version** again — it generates a new URL. Uploaded versions are kept for at least six months.
+:::
+
+## Turn it in
+
+Post to the **Canvas discussion board** for this activity:
+
+1. Your **topic or question** in one or two sentences.
+2. The **ZoteroBib link** from **Link to this version**.
+3. **One line per source** naming which search route found it (library, Google Scholar, Semantic Scholar, or AI-assisted search).
+
+Example format:
+
+> **Topic:** How does sleep deprivation affect the gut microbiome in college students?
+>
+> **Bibliography:** https://zbib.org/example-link
+>
+> 1. Smith et al. 2023 — found via Google Scholar
+> 2. Jones et al. 2022 — found via PubMed (library)
+> 3. …
+
+## Keep this for later
+
+You will return to these papers in upcoming activities to practice reading and annotating primary literature. Keep your ZoteroBib link somewhere safe.
+
+::: {.callout-tip appearance="simple"}
+**Try this with a partner.** Trade topics and try to find one paper the other person missed. Different search tools surface different results — comparing notes is one of the fastest ways to learn what each tool is good at.
+:::

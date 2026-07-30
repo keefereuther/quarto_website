@@ -6,6 +6,10 @@
 /.quarto/
 _site/
 
+# Quarto render artifacts that sometimes land next to .qmd files (esp. on Synology Drive)
+**/*_files/
+docs/**/*.html
+
 # Local Netlify folder
 .netlify
 

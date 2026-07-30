@@ -68,8 +68,10 @@ website:
           contents:
             - text: "1 — Run Your First Line of Code"
               href: docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
-            - text: "2 — Annotate a Paper: Human Challenge Study"
-              href: docs/teaching/classes/bild_5-labs/02-annotate-killingley-2022.qmd
+            - text: "2 — Find a Question, Build a Bibliography"
+              href: docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
+            - text: "3 — Annotate a Paper: Human Challenge Study"
+              href: docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.qmd
 
   page-footer:
     border: true

@@ -29,6 +29,8 @@ Coding is done in R using RStudio on the UC San Diego DataHub, a browser-based e
 
 ---
 
-## Syllabus (Spring 2025)
+## Syllabus
 
-{{< pdf-embed "BILD_5_Syllabus_SP25.pdf" label="PDF: BILD 5 Spring 2025 Syllabus" >}}
+```{=html}
+<iframe src="https://docs.google.com/document/d/e/2PACX-1vRG-NsqFB_KwKfqKdmicG7y9oe8RvFy1CZNaFr-h-HaFYDYC-LCB7B5Z0f7XmXsrWq_iuzWu5YpVj5z/pub?embedded=true" title="BILD 5 syllabus" width="100%" height="800" style="border: none;"></iframe>
+```

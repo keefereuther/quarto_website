@@ -60,7 +60,7 @@ docs/teaching/classes/bild_5-labs/
 | Step | Action |
 |------|--------|
 | 1 | Put the PDF in `papers/` as `kebab-case-slug.pdf` |
-| 2 | Copy `02-annotate-killingley-2022.qmd` to the next number; change title, slug, citation, and reading questions |
+| 2 | Copy `03-annotate-killingley-2022.qmd` to the next number; change title, slug, citation, and reading questions |
 | 3 | Add `N — Page Title` to the `bild-5-activities` sidebar in `_quarto.yml` |
 | 4 | `quarto render` (full site) and check the page |
 | 5 | Commit and push. `/read/<slug>` works immediately — no per-paper Netlify config |
@@ -88,6 +88,10 @@ You almost certainly have these (the repo is an `.Rproj`), but confirm:
 
 You do **not** need to install webR — that downloads into the student's browser at runtime.
 
+### webR packages (activity 1 and beyond)
+
+If an activity needs data or code from an CRAN package (e.g. `palmerpenguins`), declare it under `format: live-html: webr: packages:` in that page's YAML. webR pre-installs listed packages from `repo.r-wasm.org` when the page loads in the browser — no build-time R dependency beyond the usual knitr render. Only packages with prebuilt WASM binaries on that repo will work; check `https://repo.r-wasm.org/bin/emscripten/contrib/4.4/PACKAGES` before adding one.
+
 ---
 
 ## Preview locally in Cursor
@@ -105,6 +109,23 @@ quarto preview docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.
 
 Preview live-reloads as you save. First load of the page in the browser pulls webR
 (a few seconds, one time). Leave preview running while you edit.
+
+### Synology Drive / rename error
+
+If preview fails with a message like `rename '.../docs/.../*.html' -> '.../_site/.../*.html'`
+or `stat '.../*_files'`, Synology Drive likely interrupted Quarto's intermediate files.
+Recovery:
+
+```bash
+# Stop any running preview (Ctrl+C), then:
+mkdir -p _site/docs/teaching/classes/bild_5-labs
+rm -rf docs/teaching/classes/bild_5-labs/*_files docs/teaching/classes/bild_5-labs/*.html
+quarto render docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
+quarto preview docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
+```
+
+Prose activities (2, 3, …) do not need `_freeze/`. Only re-render and commit `_freeze/` after
+editing activity 1 or other webR pages.
 
 ---
 
@@ -144,7 +165,8 @@ Never run `quarto publish` — Netlify deploys on git push.
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
 - Activity 1: `/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html`
-- Activity 2: `/docs/teaching/classes/bild_5-labs/02-annotate-killingley-2022.html`
+- Activity 2: `/docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.html`
+- Activity 3: `/docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.html`
 - Bare `/docs/teaching/classes/bild_5-labs/` 301s to activity 1 (there is no `index.qmd` here by design)
 - Old activity URLs under `/bild_5/` redirect to `bild_5-labs/` (301 in `netlify.toml`)
 

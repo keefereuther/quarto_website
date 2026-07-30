@@ -1,6 +1,6 @@
 ---
 title: "Run Your First Line of Code"
-subtitle: "Look at a real dataset, pull out a column, and make your first plot, right in your browser"
+subtitle: "Make your own objects, explore real data, and plot your first histogram — all in your browser"
 format:
   live-html:
     theme:
@@ -17,6 +17,8 @@ format:
       body-width: 1000px
       margin-width: 200px
     webr:
+      packages:
+        - palmerpenguins
       cell-options:
         min-lines: 4
         caption: "R code block"
@@ -122,45 +124,342 @@ sqrt(x)     # same idea: sqrt takes x (which is 9) and returns 3
 That is the whole game: you store things in **objects**, and you act on them with **functions**. Everything below is practice with those two moves.
 :::
 
-## 1. Look at the data
+## 1. Make three objects of your own
 
-R comes with `iris` built in: measurements of 150 iris flowers from three species. Each flower has four measurements (sepal length and width, petal length and width) plus its species.
-
-Click **Run Code** to see the first few rows.
+Fill in the editor with **your own** object names and values. Make two numbers and one sentence (text in quotes).
 
 ```{webr}
-head(iris)
+#| envir: own_objects
+#| exercise: make_three_objects
+# a number object:
+
+# another number object:
+
+# a sentence object (use quotes):
 ```
 
-Every row is one flower. Every column is one kind of measurement. `head()` is a *function*: it shows the top of the data so you are not flooded with all 150 rows at once.
+::: {.callout-note appearance="simple"}
+Object names cannot begin with a digit or contain spaces. R is case-sensitive: `MyVar` and `myvar` are different names.
+:::
 
-## 2. Grab a single column
+::: {.hint exercise="make_three_objects"}
+::: {.callout-note collapse="false"}
+## Hint
 
-You pull one column out of a dataset with a dollar sign: `iris$Petal.Length` means "the `Petal.Length` column from `iris`." Run this to see all 150 petal-length values.
+Pick any names you like (for example `score_a`, `score_b`, `motto`) and any values. Numbers go in without quotes; sentences need quotes:
+
+```r
+score_a <- 42
+score_b <- 7
+motto <- "Science is cool."
+```
+:::
+:::
+
+::: {.solution exercise="make_three_objects"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+Any valid answer works as long as the names and values are yours. For example:
+
+```r
+score_a <- 42
+score_b <- 7
+motto <- "Science is cool."
+```
+
+Nothing prints when you assign — that is expected. The values are stored quietly until you use them.
+:::
+:::
 
 ```{webr}
-iris$Petal.Length
+#| envir: own_objects
+#| exercise: make_three_objects
+#| check: true
+objs <- mget(ls(envir = .envir_result), envir = .envir_result)
+nums <- Filter(function(v) is.numeric(v) && length(v) == 1, objs)
+chrs <- Filter(function(v) is.character(v) && length(v) == 1, objs)
+example_names <- c("number1", "number2", "sentence1")
+example_nums <- c(3.14, 11)
+example_sentence <- "This is a sentence."
+used_example_names <- any(names(objs) %in% example_names)
+used_example_vals <- any(vapply(nums, function(v) v %in% example_nums, logical(1))) ||
+  any(vapply(chrs, function(v) identical(v, example_sentence), logical(1)))
+if (length(nums) < 2) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "I need at least two objects that hold single numbers. Replace the comment prompts with assignments like `score_a <- 42`."
+  )
+} else if (length(chrs) < 1) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Almost there — add a sentence object too. Put the text inside double quotes so R treats it as character data, not a number."
+  )
+} else if (used_example_names || used_example_vals) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Pick your own object names and values — do not reuse the assignment examples (`number1`, `number2`, `sentence1`, `3.14`, `11`, or `\"This is a sentence.\"`)."
+  )
+} else {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0(
+      "Nice. You created ",
+      length(nums),
+      " number object(s) and ",
+      length(chrs),
+      " sentence object(s). They stay in memory for the next steps."
+    )
+  )
+}
 ```
 
-That is a lot of numbers. It would be much easier to work with if it had a short name of its own. That is what an object is for.
+## 2. Add your two numbers
 
-## 3. Store the column in an object
+Use the **names you chose** in Part 1. Add your two number objects together with `+`, then click **Run Code**.
 
-An **object** is a named box that holds a value, made with the assignment arrow `<-`. Store the petal-length column in an object named `petal_length` by filling in the column name, then click **Run Code**.
+```{webr}
+#| envir: own_objects
+#| exercise: add_two_numbers
+# Add your two number objects (use the names from Part 1):
+```
+
+::: {.hint exercise="add_two_numbers"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Type the names of your two number objects with a plus sign between them. If you named them `score_a` and `score_b`:
+
+```r
+score_a + score_b
+```
+:::
+:::
+
+::: {.solution exercise="add_two_numbers"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+Use whatever names you picked in Part 1:
+
+```r
+score_a + score_b
+```
+
+R looks up each name, finds the numbers stored there, and returns their sum.
+:::
+:::
+
+```{webr}
+#| envir: own_objects
+#| exercise: add_two_numbers
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+objs <- mget(ls(envir = .envir_result), envir = .envir_result)
+nums <- Filter(function(v) is.numeric(v) && length(v) == 1, objs)
+if (length(nums) < 2) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Go back to Part 1 and create two number objects first."
+  )
+} else if (!grepl("\\+", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `+` to add your two number objects together — type their names, not the raw numbers."
+  )
+} else {
+  expected <- sum(unlist(nums))
+  got <- .last_value
+  if (is.numeric(got) && length(got) == 1 && !is.na(got) && abs(got - expected) < 1e-9) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("That's ", got, ". R looked up your two objects and added the values stored in them.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Make sure you are adding the two number objects you created in Part 1, using their names."
+    )
+  }
+}
+```
+
+## 3. Break it on purpose
+
+Now try adding **both numbers and your sentence object** in one line. Run it and read the error message.
+
+```{webr}
+#| envir: own_objects
+#| exercise: mix_types_error
+# Add both numbers and your sentence object:
+```
+
+::: {.hint exercise="mix_types_error"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use the same three object names from Part 1, joined with `+`:
+
+```r
+score_a + score_b + motto
+```
+:::
+:::
+
+::: {.solution exercise="mix_types_error"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+score_a + score_b + motto
+```
+
+You should see an error like `non-numeric argument to binary operator`. That is the point — R knows how to add numbers, but it will not silently combine a number with a sentence.
+:::
+:::
+
+::: {.callout-note collapse="true"}
+## Why did this happen?
+
+`+` is defined for numbers: R adds the values. A sentence in quotes is **character** data, not a number. When R hits `number + "text"`, it stops and tells you the second argument is not numeric. Errors are information, not failure — read the message and adjust.
+:::
+
+## 4. Print your sentence
+
+In R, typing an object's name by itself and running the line shows what is stored there — for a sentence object, you will see the text in the output (often with `[1]` in front, which just means "first item"). That works, but here we want you to practice calling a **function**: put your sentence object's name inside `print()`.
+
+```{webr}
+#| envir: own_objects
+#| exercise: print_sentence
+print()
+```
+
+::: {.hint exercise="print_sentence"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Typing the object name alone (for example `motto`) also shows the sentence — try it if you like. For this step, use `print()` with the name inside the parentheses:
+
+```r
+print(motto)
+```
+:::
+:::
+
+::: {.solution exercise="print_sentence"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+print(motto)
+```
+
+`print()` is a function that takes an object and shows it in the output panel. Typing the name alone does the same thing here; `print()` is just the explicit, named way to ask R to display a value.
+:::
+:::
+
+```{webr}
+#| envir: own_objects
+#| exercise: print_sentence
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+objs <- mget(ls(envir = .envir_result), envir = .envir_result)
+chrs <- Filter(function(v) is.character(v) && length(v) == 1, objs)
+if (length(chrs) < 1) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Go back to Part 1 and create a sentence object first."
+  )
+} else if (!grepl("print\\s*\\(", code)) {
+  if (is.character(.last_value) && length(.last_value) == 1) {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = paste0(
+        "You got the right text — typing an object name alone shows what is stored (here, \"",
+        .last_value,
+        "\"). For this step, wrap that name in `print(...)`, for example `print(yo)`."
+      )
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "error",
+      message = "Type your sentence object's name inside `print(...)`, for example `print(motto)`. (Typing the name alone also shows the value — but here we are practicing the function.)"
+    )
+  }
+} else if (is.character(.last_value) && length(.last_value) == 1) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0("There it is: \"", .last_value, "\". You called a function on an object you made yourself.")
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Use `print()` with the name of your sentence object from Part 1."
+  )
+}
+```
+
+## 5. Load a package, meet the penguins
+
+Real datasets often live in **packages** — bundles of code and data other people wrote. `library()` switches a package on. Run this to load `palmerpenguins` and peek at the data.
+
+```{webr}
+library(palmerpenguins)
+head(penguins)
+```
+
+Every row is one penguin. Every column is one measurement or label. `head()` is a *function* that shows the first few rows so you are not flooded with all 344 at once.
+
+## 6. Inspect the structure
+
+`str()` is a function that summarizes a dataset: how many rows, how many columns, and the type of each column. Run it on `penguins`.
+
+```{webr}
+str(penguins)
+```
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+From the `str()` output, answer these in your head (or jot them down):
+
+1. How many **rows** (penguins) are in the dataset?
+2. How many **columns** (variables) does it have?
+3. What **type** is the `species` column?
+
+**Answers:** 344 rows; 8 columns; `species` is a `Factor` (R's way of storing categories like Adelie, Chinstrap, and Gentoo).
+:::
+
+## 7. Pull a column into an object
+
+You pull one column out of a dataset with a dollar sign: `penguins$body_mass_g` means "the `body_mass_g` column from `penguins`." Store it in an object named `body_mass` by typing the column name after the `$`.
 
 ```{webr}
 #| exercise: make_column_object
-petal_length <- iris$______
+body_mass <- penguins$
 ```
 
 ::: {.hint exercise="make_column_object"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-The column is called `Petal.Length` (capital P, capital L, with a dot). It goes right after the dollar sign:
+The column is called `body_mass_g`. It goes right after the dollar sign:
 
 ```r
-petal_length <- iris$Petal.Length
+body_mass <- penguins$body_mass_g
 ```
 :::
 :::
@@ -170,85 +469,153 @@ petal_length <- iris$Petal.Length
 ## Solution
 
 ```r
-petal_length <- iris$Petal.Length
+body_mass <- penguins$body_mass_g
 ```
 
-Now the name `petal_length` refers to all 150 petal-length values. Nothing prints, and that is expected: assigning a value stores it quietly.
+Now `body_mass` holds all 344 body-mass values (grams). Some are `NA`, meaning that penguin was never weighed — we will deal with that next.
 :::
 :::
 
 ```{webr}
 #| exercise: make_column_object
 #| check: true
-if (!exists("petal_length", envir = .envir_result, inherits = FALSE)) {
+if (!exists("body_mass", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "I don't see an object called `petal_length` yet. Fill the blank with the column name so the line reads `petal_length <- iris$Petal.Length`."
+    message = "I don't see an object called `body_mass` yet. Type `body_mass_g` after the `$` so the line reads `body_mass <- penguins$body_mass_g`."
   )
 } else {
-  v <- get("petal_length", envir = .envir_result)
-  if (identical(v, iris$Petal.Length)) {
+  v <- get("body_mass", envir = .envir_result)
+  ref <- if (exists("penguins", envir = .envir_result)) {
+    get("penguins", envir = .envir_result)$body_mass_g
+  } else {
+    NULL
+  }
+  if (!is.null(ref) && identical(v, ref)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "That's it. `petal_length` now holds all 150 petal-length measurements, ready to use by name."
+      message = "That's it. `body_mass` now holds all 344 body-mass measurements, ready to use by name."
     )
-  } else if (is.numeric(v) && length(v) == 150) {
+  } else if (is.numeric(v) && length(v) == 344) {
     list(
       correct = FALSE,
       type = "info",
-      message = "That's a real column from iris, but not the one we're after. Use `Petal.Length` (capital P, capital L, with a dot)."
+      message = "That's a real column from penguins, but not the one we're after. Use `body_mass_g`."
     )
   } else {
     list(
       correct = FALSE,
       type = "error",
-      message = "Not quite. Take the `Petal.Length` column out of `iris` with a dollar sign: `petal_length <- iris$Petal.Length`."
+      message = "Not quite. Take the `body_mass_g` column out of `penguins` with a dollar sign: `body_mass <- penguins$body_mass_g`."
     )
   }
 }
 ```
 
-## 4. Use a function to summarize it
+## 8. Summarize with `mean()` — and the `NA` surprise
 
-A **function** takes an input and hands back a result. You already used `head()` above. Here is `mean()`, which returns the average of all the values in your object.
-
-Run this as-is. Then click at the end of the last line, press **Return**, and add a line or two of your own. Some functions worth trying: `median(petal_length)` for the middle value, `sd(petal_length)` for the standard deviation, `max(petal_length)` and `min(petal_length)` for the extremes. Functions can even wrap each other, like `sqrt(mean(petal_length))`.
+`mean()` returns the average. Run this as-is and notice what comes back.
 
 ```{webr}
-petal_length <- iris$Petal.Length
-
-# The mean (average) petal length:
-mean(petal_length)
-
-# Your turn: press Return at the end of a line and try another function,
-# for example median(petal_length) or sd(petal_length)
+body_mass <- penguins$body_mass_g
+mean(body_mass)
 ```
 
-## 5. Turn your object into a plot
+`NA` means "missing." Two penguins in this dataset were never weighed, so R refuses to average around a hole unless you tell it otherwise. Add `na.rm = TRUE` (read: "remove NAs") to skip missing values.
 
-Now visualize it. `hist()` is a function that draws a **histogram**, a picture of how often each range of values shows up. Put your object inside `hist()`, then click **Run Code**.
+```{webr}
+#| setup: true
+#| exercise: mean_with_na
+body_mass <- penguins$body_mass_g
+```
+
+```{webr}
+#| exercise: mean_with_na
+mean(body_mass, na.rm = )
+```
+
+::: {.hint exercise="mean_with_na"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Type `TRUE` after `na.rm =`:
+
+```r
+mean(body_mass, na.rm = TRUE)
+```
+:::
+:::
+
+::: {.solution exercise="mean_with_na"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean(body_mass, na.rm = TRUE)
+```
+
+You should see a real number — the average body mass in grams, ignoring the two missing penguins.
+:::
+:::
+
+```{webr}
+#| exercise: mean_with_na
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Type `TRUE` after `na.rm =` so the line reads `mean(body_mass, na.rm = TRUE)`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0(
+      "Average body mass: ",
+      round(.last_value, 1),
+      " g. R skipped the missing values and computed the mean of the rest."
+    )
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Make sure `body_mass` is loaded and you set `na.rm = TRUE`."
+  )
+}
+```
+
+## 9. Turn your object into a labeled plot
+
+`hist()` draws a **histogram** — a picture of how often each range of values shows up. Add a title and axis label inside the quotes.
 
 ```{webr}
 #| setup: true
 #| exercise: plot_column
-petal_length <- iris$Petal.Length
+body_mass <- penguins$body_mass_g
 ```
 
 ```{webr}
 #| exercise: plot_column
-hist(______)
+hist(body_mass,
+     main = "",
+     xlab = "")
 ```
 
 ::: {.hint exercise="plot_column"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Put the object you just made, `petal_length`, inside the parentheses:
+Any descriptive title and label work. For example:
 
 ```r
-hist(petal_length)
+hist(body_mass,
+     main = "Penguin body mass",
+     xlab = "g")
 ```
 :::
 :::
@@ -258,10 +625,12 @@ hist(petal_length)
 ## Solution
 
 ```r
-hist(petal_length)
+hist(body_mass,
+     main = "Penguin body mass",
+     xlab = "g")
 ```
 
-You should see two clumps of flowers: one group with short petals and one with long petals. That gap is a real biological signal, the short-petaled setosa flowers standing apart from the other two species.
+Most penguins cluster around 3,000–4,500 g, with a long tail toward heavier birds.
 :::
 :::
 
@@ -270,41 +639,73 @@ You should see two clumps of flowers: one group with short petals and one with l
 #| check: true
 code <- paste(.user_code, collapse = "\n")
 made_hist <- grepl("hist\\s*\\(", code)
-used_obj  <- grepl("petal_length", code)
-if (made_hist && used_obj) {
+used_obj  <- grepl("body_mass", code)
+has_main  <- grepl("main\\s*=", code)
+has_xlab  <- grepl("xlab\\s*=", code)
+if (made_hist && used_obj && has_main && has_xlab) {
   list(
     correct = TRUE,
     type = "success",
-    message = "Beautiful. You just turned a column of numbers into a picture. That histogram shows how petal length is distributed across all 150 flowers."
+    message = "Beautiful. You turned a column of numbers into a labeled picture — title, axis, and all."
+  )
+} else if (made_hist && used_obj && (!has_main || !has_xlab)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Add both `main = \"...\"` (plot title) and `xlab = \"...\"` (x-axis label) inside `hist(...)`."
   )
 } else if (made_hist && !used_obj) {
   list(
     correct = FALSE,
     type = "info",
-    message = "You've got `hist()`. Now put your object `petal_length` inside the parentheses so you're plotting the column you made."
+    message = "Plot `body_mass` inside `hist(...)`."
   )
 } else {
   list(
     correct = FALSE,
     type = "error",
-    message = "Replace the blank with `petal_length`, keeping it inside `hist(...)`, so the line reads `hist(petal_length)`."
+    message = "Use `hist(body_mass, main = \"...\", xlab = \"...\")` with your own title and label text."
   )
 }
 ```
 
-## Keep playing
+## 10. Recap — you already wrote the whole script
 
-No grading here, and no wrong answer. Try making a different column into an object and plotting it. What does sepal length look like?
+If you ran every step above in order, you already executed the core of Coding Assignment 1. Here is the full five-line script from the assignment, using `penguin_data` instead of `data` (both work; `data` is also a built-in R function name, so many people avoid it):
 
-```{webr}
-sepal_length <- iris$Sepal.Length
-hist(sepal_length)
+```r
+library(palmerpenguins)
+penguin_data <- penguins
+str(penguin_data)
+mean(penguin_data$body_mass_g, na.rm = TRUE)
+hist(penguin_data$body_mass_g, main = "Penguin body mass", xlab = "g")
 ```
 
-Curious how two measurements relate? This draws one flower per point, petal length against petal width:
+::: {.callout-note collapse="true"}
+## What does each line do?
+
+1. **`library(palmerpenguins)`** — Loads the package so the `penguins` dataset becomes available.
+2. **`penguin_data <- penguins`** — Copies the dataset into a shorter object name you can reuse.
+3. **`str(penguin_data)`** — Prints the structure: 344 rows, 8 columns, and the type of each column.
+4. **`mean(..., na.rm = TRUE)`** — Computes the average body mass in grams, skipping penguins with missing weights.
+5. **`hist(...)`** — Draws a histogram of body mass with a title and x-axis label.
+
+If you can explain each line in your own words, you are ready for the graded assignment on Canvas.
+:::
+
+## Keep playing
+
+No grading here, and no wrong answer. Try making a different column into an object and plotting it. What does flipper length look like?
 
 ```{webr}
-plot(iris$Petal.Length, iris$Petal.Width)
+flipper_length <- penguins$flipper_length_mm
+hist(flipper_length, main = "Flipper length", xlab = "mm")
+```
+
+Curious how two measurements relate? This draws one penguin per point, flipper length against body mass:
+
+```{webr}
+plot(penguins$flipper_length_mm, penguins$body_mass_g)
 ```
 
 ::: {.callout-tip appearance="simple"}
