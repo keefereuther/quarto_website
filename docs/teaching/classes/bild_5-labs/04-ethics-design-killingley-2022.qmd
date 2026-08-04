@@ -1,0 +1,48 @@
+---
+title: "Ethics and Design of a Human Challenge Study"
+subtitle: "Identify permissions, ethical stakes, and how the experiment was built"
+---
+
+This activity uses the same paper from the human challenge study: healthy young adults were deliberately infected with SARS-CoV-2 under medical supervision so researchers could watch an infection unfold from the very first hour. You already practiced reading a primary paper in activity 3. Here the goal is different — to identify what had to be approved, what ethical issues the study raises, and how the experiment was designed.
+
+You will read it in the same annotating PDF viewer. When you select text, a note panel opens and you can leave a comment that the rest of the class can see and reply to.
+
+::: {.callout-note}
+## What you are being asked to do
+
+1. Annotate **at least two ethical issues or permission/oversight requirements** you find in the paper. Look for language about consent, risk, isolation, who could enroll, ethics board review, or other safeguards. Name the specific passage and explain why it matters.
+2. Annotate **at least three experimental-design choices** the authors made. Examples include the challenge dose or route, inclusion and exclusion criteria, endpoints, monitoring schedule, controls or comparisons, and how outcomes were measured.
+3. **Reply to at least one classmate** on either ethics or design. Build on their note or offer a different reading of the same passage.
+
+Be specific about what you are pointing to in the paper. A vague note like "this seems risky" is less useful than naming the risk, who bears it, and what the authors say about managing it.
+:::
+
+## Before you start
+
+You should already have a Hypothesis account and be in the **BILD 5** class group from activity 3. If not:
+
+1. Create an account at [hypothes.is/signup](https://hypothes.is/signup).
+2. Join the class group using the invite link posted in Canvas.
+3. Open the reading below and sign in using the panel on the right.
+
+::: {.callout-important}
+## Check the group selector before you annotate
+
+At the top of the annotation panel there is a dropdown that controls **who sees your note**. It should read **BILD 5**.
+
+If it reads **Public**, switch it to BILD 5 before you post — Public means the whole internet can read it. If you post to Public by mistake, delete the annotation and post it again in the group.
+:::
+
+## The reading
+
+[Open the paper and annotate it](/annotate/viewer/web/viewer.html?file=%2Fpapers%2Fkillingley-2022.pdf){.btn .btn-primary target="_blank"}
+
+Opens in a new tab. Give it a moment on first load: it is a large file.
+
+If the annotation panel does not appear, or you cannot get signed in, you can still read the paper on its own: [download the plain PDF](/papers/killingley-2022.pdf). Bring your notes to class and we will get the tool working with you.
+
+## Citation
+
+Killingley, B., Mann, A.J., Kalinova, M. *et al.* Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults. *Nature Medicine* **28**, 1031–1041 (2022). <https://doi.org/10.1038/s41591-022-01780-9>
+
+Published open access under a Creative Commons Attribution licence.

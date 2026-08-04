@@ -60,7 +60,7 @@ docs/teaching/classes/bild_5-labs/
 | Step | Action |
 |------|--------|
 | 1 | Put the PDF in `papers/` as `kebab-case-slug.pdf` |
-| 2 | Copy `03-annotate-killingley-2022.qmd` to the next number; change title, slug, citation, and reading questions |
+| 2 | Copy `03-annotate-bramante-2026.qmd` to the next number; change title, slug, citation, and reading questions |
 | 3 | Add `N — Page Title` to the `bild-5-activities` sidebar in `_quarto.yml` |
 | 4 | `quarto render` (full site) and check the page |
 | 5 | Commit and push. `/read/<slug>` works immediately — no per-paper Netlify config |
@@ -166,7 +166,8 @@ Never run `quarto publish` — Netlify deploys on git push.
 - Course hub: `/docs/teaching/classes/BILD_5.html`
 - Activity 1: `/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html`
 - Activity 2: `/docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.html`
-- Activity 3: `/docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.html`
+- Activity 3: `/docs/teaching/classes/bild_5-labs/03-annotate-bramante-2026.html`
+- Activity 4: `/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html`
 - Bare `/docs/teaching/classes/bild_5-labs/` 301s to activity 1 (there is no `index.qmd` here by design)
 - Old activity URLs under `/bild_5/` redirect to `bild_5-labs/` (301 in `netlify.toml`)
 

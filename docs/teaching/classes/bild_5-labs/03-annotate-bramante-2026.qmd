@@ -1,9 +1,9 @@
 ---
-title: "Annotate a Paper: The Human Challenge Study"
+title: "Annotate a Paper: Metformin and Long COVID"
 subtitle: "Read a real primary research article and mark it up alongside your classmates"
 ---
 
-This activity uses a real paper: a study in which healthy young adults were deliberately infected with SARS-CoV-2 under medical supervision, so researchers could watch an infection unfold from the very first hour.
+This activity uses a real paper: a randomized clinical trial that tested whether metformin, given soon after a SARS-CoV-2 infection, could reduce long COVID symptoms six months later. The study was part of ACTIV-6, a platform that evaluated repurposed medications for mild to moderate COVID-19 in outpatient adults.
 
 You will read it in an annotating PDF viewer. When you select text, a note panel opens and you can leave a comment or a question that the rest of the class can see and reply to.
 
@@ -34,14 +34,14 @@ If it reads **Public**, switch it to BILD 5 before you post — Public means the
 
 ## The reading
 
-[Open the paper and annotate it](/annotate/viewer/web/viewer.html?file=%2Fpapers%2Fkillingley-2022.pdf){.btn .btn-primary target="_blank"}
+[Open the paper and annotate it](/annotate/viewer/web/viewer.html?file=%2Fpapers%2Fbramante-2026-metformin.pdf){.btn .btn-primary target="_blank"}
 
-Opens in a new tab. Give it a moment on first load: it is a large file.
+Opens in a new tab. Give it a moment on first load.
 
-If the annotation panel does not appear, or you cannot get signed in, you can still read the paper on its own: [download the plain PDF](/papers/killingley-2022.pdf). Bring your notes to class and we will get the tool working with you.
+If the annotation panel does not appear, or you cannot get signed in, you can still read the paper on its own: [download the plain PDF](/papers/bramante-2026-metformin.pdf). Bring your notes to class and we will get the tool working with you.
 
 ## Citation
 
-Killingley, B., Mann, A.J., Kalinova, M. *et al.* Safety, tolerability and viral kinetics during SARS-CoV-2 human challenge in young adults. *Nature Medicine* **28**, 1031–1041 (2022). <https://doi.org/10.1038/s41591-022-01780-9>
+Bramante, C.T., Stewart, T.G., Boulware, D.R. *et al.* Metformin on the Presence of COVID-19 Symptoms 6 Months After Infection: The ACTIV-6 Randomized Clinical Trial. *Clinical Infectious Diseases* (2026). <https://doi.org/10.1093/cid/ciag335>
 
-Published open access under a Creative Commons Attribution licence.
+Published open access under a Creative Commons Attribution-NonCommercial-NoDerivatives licence.

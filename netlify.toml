@@ -59,7 +59,12 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/02-annotate-killingley-2022.html"
-  to = "/docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.html"
+  to = "/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.html"
+  to = "/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html"
   status = 301
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
