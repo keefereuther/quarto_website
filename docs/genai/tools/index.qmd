@@ -17,14 +17,15 @@ I build open-source AI tools designed for undergraduate biology instructors and 
 
 Schema Study turns your course term list into a Socratic AI tutor. Students pick a term and enter a guided conversation: the AI asks questions, pushes for reasoning, and withholds direct answers until the student works toward them. You set it up in under two hours by uploading a spreadsheet of your terms and adding your OpenAI API key — no programming needed.
 
-- **Models:** GPT-5.2 (default), GPT-5.1, or GPT-4.1 — your choice in settings
+- **Models:** Any OpenAI model — choose in settings. Recent options include GPT-5.4, GPT-5.4 mini, GPT-5.2, and GPT-4.1
+- **UCSD / TritonAI:** If you're affiliated with UCSD and want to use TritonAI's protected models, email [kdreuther@ucsd.edu](mailto:kdreuther@ucsd.edu) separately and I can help build it that way
 - **Setup:** Create a free Hugging Face account → fork the Space → upload your terms CSV → add your OpenAI API key → set a class password. Full step-by-step instructions are in the User Manual (S2 below).
 - **Embed:** Paste the Space URL into an iframe in Canvas, Moodle, or any LMS, or share the direct link with students
 - **License:** GNU GPL v3.0 — free and open-source forever
 - **Research-backed:** Used by 225 students; see published findings below
 
-[**Launch Schema Study**](https://huggingface.co/spaces/keefereuther/Schema_Study){.btn .btn-primary}
-[**Preview Version**](https://huggingface.co/spaces/keefereuther/Schema_Study_Preview){.btn .btn-outline-secondary}
+[**Launch Schema Study (password protected)**](https://huggingface.co/spaces/keefereuther/Schema_Study){.btn .btn-outline-secondary}
+[**Preview Version**](https://huggingface.co/spaces/keefereuther/Schema_Study_Preview){.btn .btn-primary}
 [**Fork & Customize**](https://huggingface.co/spaces/keefereuther/Schema_Study/tree/main){.btn .btn-outline-secondary}
 [**Socratic Tutor Instructions**](schema-study/socratic-tutor-prompt.qmd){.btn .btn-outline-secondary}
 
