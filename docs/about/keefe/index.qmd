@@ -28,6 +28,11 @@ My flagship tool, [Schema Study](https://huggingface.co/spaces/keefereuther/Sche
 
 I'm also a biologist. I teach BILD 5 (*Data Analysis & Design for Biologists*), a course centered on experimental design, statistics, and R programming, as well as courses in ecology and evolutionary biology.
 
+## In the media
+
+- [Biology Teaching Professor Develops Cutting-Edge AI Tutor](https://biology.ucsd.edu/about/news/2026/article-072326a.html) — UC San Diego School of Biological Sciences (August 2026)
+- [Into the Mindset of Biology](https://sqonline.ucsd.edu/2023/01/into-the-mindset-of-biology-with-dr-keefe-reuther/) — *SQ Online* (2023)
+
 [**Curriculum Vitae**](../../assets/KeefeReutherCV.pdf)
 
 <a href="mailto:kdreuther@ucsd.edu">Send Email</a>

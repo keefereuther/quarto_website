@@ -1,0 +1,20 @@
+---
+title: "Biology Teaching Professor Develops Cutting-Edge AI Tutor"
+date: 2026-08-06
+author: Keefe Reuther
+categories:
+  - AI
+  - Instructors
+---
+
+The [School of Biological Sciences](https://biology.ucsd.edu/) published a Q&A on [Schema Study](https://huggingface.co/spaces/keefereuther/Schema_Study) — how it started, why Socratic dialogue beats answer-dumping, what we learned from classroom use, and where the tool is headed next.
+
+[**Read the interview on the School of Biological Sciences site**](https://biology.ucsd.edu/about/news/2026/article-072326a.html){.btn .btn-primary}
+
+Highlights from the piece:
+
+- Schema Study is built for **formative practice** — students explain, fumble, get questioned, and revise — not for spoon-feeding quick answers from a general chatbot
+- The app is **free, open-source, and no-code** — instructors upload a spreadsheet of course terms and context; the full institutional cost in our pilot was about **$177 for roughly 300 students** over 11 weeks
+- **72% of students** in the published pilot said they would reuse Schema Study in another biology course
+
+Instructors who want to set up their own copy can start on the [Schema Study tools page](/docs/genai/tools/index.html).
