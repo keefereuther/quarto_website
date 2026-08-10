@@ -12,6 +12,7 @@ You will read it in an annotating PDF viewer. When you select text, a note panel
 
 1. Leave **at least three annotations**, each one naming something you do not know or do not understand. Be specific about what is confusing rather than marking a passage as generally hard.
 2. **Reply to at least two classmates.** Choose a question someone else asked and answer it in plain, simple language. Linking a source that helped you is welcome, but the explanation itself should be in your own words.
+3. **Post separately to the Canvas discussion board** for this reading. In that post, state the paper's **primary research question** in your own words, and list the **variables the authors manipulated and/or measured**. Manipulated variables are what the researchers assigned or changed (for example, which treatment a participant received). Measured variables are what they recorded as outcomes or observations.
 
 You are not expected to understand every sentence. Confusion, stated clearly and specifically, is the point.
 :::

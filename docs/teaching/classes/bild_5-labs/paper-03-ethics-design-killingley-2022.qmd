@@ -3,7 +3,7 @@ title: "Ethics and Design of a Human Challenge Study"
 subtitle: "Identify permissions, ethical stakes, and how the experiment was built"
 ---
 
-This activity uses the same paper from the human challenge study: healthy young adults were deliberately infected with SARS-CoV-2 under medical supervision so researchers could watch an infection unfold from the very first hour. You already practiced reading a primary paper in activity 3. Here the goal is different — to identify what had to be approved, what ethical issues the study raises, and how the experiment was designed.
+This activity uses the same paper from the human challenge study: healthy young adults were deliberately infected with SARS-CoV-2 under medical supervision so researchers could watch an infection unfold from the very first hour. You already practiced reading a primary paper in Paper Activity 2. Here the goal is different — to identify what had to be approved, what ethical issues the study raises, and how the experiment was designed.
 
 You will read it in the same annotating PDF viewer. When you select text, a note panel opens and you can leave a comment that the rest of the class can see and reply to.
 
@@ -19,7 +19,7 @@ Be specific about what you are pointing to in the paper. A vague note like "this
 
 ## Before you start
 
-You should already have a Hypothesis account and be in the **BILD 5** class group from activity 3. If not:
+You should already have a Hypothesis account and be in the **BILD 5** class group from Paper Activity 2. If not:
 
 1. Create an account at [hypothes.is/signup](https://hypothes.is/signup).
 2. Join the class group using the invite link posted in Canvas.

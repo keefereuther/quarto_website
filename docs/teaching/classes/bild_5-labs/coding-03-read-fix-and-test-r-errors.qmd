@@ -1,0 +1,670 @@
+---
+title: "Read, Fix, and Test R Errors"
+subtitle: "Learn to read error messages, fix common bugs, verify your code, and know when to ask for help"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - palmerpenguins
+        - dplyr
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. **Errors are normal.** When R stops with red text, it is telling you something specific went wrong. Your job is to read that message, fix the line, and check that the fix worked.
+
+The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
+
+::: {.callout-note}
+## How to read an error message
+
+R prints errors from the **inside out**:
+
+1. **Start at the bottom line** — that is usually what went wrong (`object 'x' not found`, `could not find function`, and so on).
+2. **Read upward** for the **line number** and **function name** where R got stuck.
+3. **Fix one thing**, run again, and see whether the message changes.
+
+Errors are information, not failure. Every experienced programmer sees them all day.
+:::
+
+## 1. Object not found
+
+### See the error
+
+Someone tried to compute the mean body mass of penguins. Run their code below.
+
+```{webr}
+#| envir: debug_lab
+mean(body_mass)
+```
+
+Read the bottom line of the error: **`object 'body_mass' not found`**. R is telling you that name was never created in memory — but **what should `body_mass` have been?**
+
+### Inspect the data
+
+Before you fix anything, load the penguins dataset and see which columns are available. Run **`library(palmerpenguins)`** and **`glimpse(penguins)`** below. Look for a body-mass column measured in grams.
+
+```{webr}
+#| envir: debug_lab
+library(palmerpenguins)
+library(dplyr)
+glimpse(penguins)
+```
+
+### Fix the code
+
+Now write code that creates `body_mass` from the right column and computes its mean in grams.
+
+```{webr}
+#| envir: debug_lab
+#| setup: true
+#| exercise: fix_object_not_found
+library(dplyr)
+library(palmerpenguins)
+```
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_object_not_found
+mean(body_mass)
+```
+
+::: {.hint exercise="fix_object_not_found"}
+::: {.callout-note collapse="false"}
+## Hint
+
+R looks up object names in memory. If you see `object '...' not found`, create the object with `<-` before you use it.
+
+From your `glimpse(penguins)` output, find the body-mass column measured in grams — its name ends in `_g`.
+
+Example with `mtcars`:
+
+```r
+mpg_vals <- mtcars$mpg
+mean(mpg_vals, na.rm = TRUE)
+```
+
+Apply the same two-step pattern: assign that column from `penguins`, then call `mean()` on it.
+:::
+:::
+
+::: {.solution exercise="fix_object_not_found"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+body_mass <- penguins$body_mass_g
+mean(body_mass, na.rm = TRUE)
+```
+
+R looks up names in memory. If `body_mass` was never assigned, R cannot find it.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_object_not_found
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("body_mass\\s*<-", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Create `body_mass` first with `<-` before you call `mean()` on it."
+  )
+} else if (!grepl("body_mass_g", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Pull the column from `penguins` with `penguins$body_mass_g`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0("Fixed. Mean body mass: ", round(.last_value, 1), " g.")
+  )
+} else if (is.numeric(.last_value) && is.na(.last_value)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "You got `NA` because two penguins have missing weights. Add `na.rm = TRUE` inside `mean()`."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Assign `body_mass <- penguins$body_mass_g`, then call `mean(body_mass, na.rm = TRUE)`."
+  )
+}
+```
+
+## 2. Wrong column name
+
+This line fails because the column name is slightly wrong. Fix it and run `head()` on the result to confirm you have numbers.
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_column_name
+body_mass <- penguins$body_mass
+head(body_mass)
+```
+
+::: {.hint exercise="fix_column_name"}
+::: {.callout-note collapse="false"}
+## Hint
+
+The `$` operator pulls one column from a data frame. Column names must match **exactly** — run `?Extract` or inspect names first:
+
+```r
+glimpse(mtcars)
+head(mtcars$mpg)
+```
+
+If `$` returns `NULL`, the name is wrong. Use `glimpse()` on `penguins` to find the correct body-mass column name.
+:::
+:::
+
+::: {.solution exercise="fix_column_name"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+body_mass <- penguins$body_mass_g
+head(body_mass)
+```
+
+`$` returns `NULL` when the column name does not match exactly — R is case-sensitive and picky about spelling.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_column_name
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("body_mass_g", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "The correct column name is `body_mass_g`, not `body_mass`."
+  )
+} else if (exists("body_mass", envir = .envir_result, inherits = FALSE)) {
+  bm <- get("body_mass", envir = .envir_result)
+  if (is.numeric(bm) && length(bm) == 344) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "Column name fixed — 344 numeric values, as expected."
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Use `penguins$body_mass_g` to get the full numeric column."
+    )
+  }
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Assign `body_mass <- penguins$body_mass_g` and run `head(body_mass)`."
+  )
+}
+```
+
+## 3. Function typo
+
+`filtr` is not a real function. Fix the typo, keep only Adelie penguins, and run the line.
+
+```{webr}
+#| envir: debug_lab
+#| setup: true
+#| exercise: fix_function_typo
+library(dplyr)
+```
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_function_typo
+adelie <- filtr(penguins, species == "Adelie")
+adelie
+```
+
+::: {.hint exercise="fix_function_typo"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`could not find function "..."` usually means a typo in the function name. From `?filter`: `filter(.data, ..., .preserve = FALSE)`.
+
+Correct spelling example:
+
+```r
+filter(mtcars, cyl == 4)
+```
+
+Compare your function name letter by letter with the dplyr verb for keeping rows.
+:::
+:::
+
+::: {.solution exercise="fix_function_typo"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+adelie <- filter(penguins, species == "Adelie")
+adelie
+```
+
+`could not find function "filtr"` means R has no function with that exact name — often a one-letter typo.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_function_typo
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("filtr\\s*\\(", code) && !grepl("filter\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Change `filtr` to `filter`."
+  )
+} else if (!grepl("filter\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `filter()` to keep rows where `species == \"Adelie\"`."
+  )
+} else if (exists("adelie", envir = .envir_result, inherits = FALSE)) {
+  ad <- get("adelie", envir = .envir_result)
+  if (is.data.frame(ad) && nrow(ad) > 100 && all(ad$species == "Adelie")) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("Fixed. ", nrow(ad), " Adelie penguins — filter worked.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Filter to Adelie with `filter(penguins, species == \"Adelie\")`."
+    )
+  }
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Save the result as `adelie` and display it."
+  )
+}
+```
+
+## 4. Type mismatch
+
+Run this broken line on purpose. Read the error, then fix it so R averages a **numeric column**, not text in quotes.
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_type_mismatch
+mean("3500")
+```
+
+::: {.hint exercise="fix_type_mismatch"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mean`: the first argument must be **numeric**. Text in quotes is character, not a number.
+
+Broken vs. fixed pattern:
+
+```r
+mean("20")                      # character — wrong type
+mean(mtcars$mpg, na.rm = TRUE)  # numeric column — correct type
+```
+
+Pass a numeric column from `penguins`, not a quoted string.
+:::
+:::
+
+::: {.solution exercise="fix_type_mismatch"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean(penguins$body_mass_g, na.rm = TRUE)
+```
+
+`non-numeric argument to binary operator` (or similar) means R expected a number and got something else — often quotes around a value that should be numeric.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_type_mismatch
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl('mean\\s*\\(\\s*"', code) || grepl("mean\\s*\\(\\s*'", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Remove the quotes — pass a numeric column, not a text string."
+  )
+} else if (grepl("body_mass_g", code) && grepl("mean\\s*\\(", code)) {
+  if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "Numeric mean computed — type mismatch resolved."
+    )
+  } else if (is.numeric(.last_value) && is.na(.last_value)) {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Add `na.rm = TRUE` so missing weights are skipped."
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Run `mean(penguins$body_mass_g, na.rm = TRUE)`."
+    )
+  }
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Use `mean()` on `penguins$body_mass_g`, not on quoted text."
+  )
+}
+```
+
+## 5. Missing `na.rm = TRUE`
+
+This runs without crashing but returns `NA`. Fix it so R skips missing values and returns the actual average.
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_na_rm
+mean(penguins$body_mass_g)
+```
+
+::: {.hint exercise="fix_na_rm"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mean`: `mean(x, na.rm = FALSE)` — when `na.rm = FALSE` (the default), any missing value makes the whole result `NA`.
+
+Example:
+
+```r
+mean(mtcars$mpg, na.rm = TRUE)
+```
+
+Add `na.rm = TRUE` to your `mean()` call on the penguin body-mass column.
+:::
+:::
+
+::: {.solution exercise="fix_na_rm"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean(penguins$body_mass_g, na.rm = TRUE)
+```
+
+Two penguins have missing body mass. Without `na.rm = TRUE`, `mean()` returns `NA` rather than guessing.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: fix_na_rm
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Add `na.rm = TRUE` inside `mean()`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0("Average: ", round(.last_value, 1), " g — missing values skipped.")
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Use `mean(penguins$body_mass_g, na.rm = TRUE)`."
+  )
+}
+```
+
+## 6. Test that your fix worked
+
+Fixing a line is not the end. **Verify** before you move on:
+
+- Re-run the line that failed
+- Use `glimpse()` or `str()` to confirm structure
+- After a `filter()`, check `nrow()` — did you keep the rows you expected?
+- Use `print()` or `head()` when output looks suspicious
+
+Below is a working filter that drops penguins with missing body mass. Add a line that prints **how many rows** remain. You should see **342**.
+
+```{webr}
+#| envir: debug_lab
+#| setup: true
+#| exercise: verify_nrow
+library(dplyr)
+penguins_clean <- penguins |>
+  filter(!is.na(body_mass_g))
+```
+
+```{webr}
+#| envir: debug_lab
+#| exercise: verify_nrow
+# Check how many rows remain:
+
+```
+
+::: {.hint exercise="verify_nrow"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?nrow`: `nrow(x)` returns the number of rows in a data frame — a quick check after `filter()`.
+
+Example:
+
+```r
+mtcars |>
+  filter(cyl == 4) |>
+  nrow()
+```
+
+Count rows in the filtered penguin object named in the exercise.
+:::
+:::
+
+::: {.solution exercise="verify_nrow"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+nrow(penguins_clean)
+```
+
+342 rows — two penguins with missing body mass were removed. Row counts are a fast sanity check after every filter or join.
+:::
+:::
+
+```{webr}
+#| envir: debug_lab
+#| exercise: verify_nrow
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("nrow\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `nrow(penguins_clean)` to count rows."
+  )
+} else if (is.numeric(.last_value) && .last_value == 342) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "342 rows — filter worked as expected. Good verification habit."
+  )
+} else if (is.numeric(.last_value)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = paste0("Got ", .last_value, " rows — expected 342 after dropping missing body mass.")
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run `nrow(penguins_clean)` and confirm the count."
+  )
+}
+```
+
+## 7. Where to get help (without AI)
+
+When you are stuck after reading the error and trying a fix:
+
+- **Read the error again** — bottom line first, then line number
+- **Help pages:** `?mean`, `?filter` (dense, but official)
+- **Web search:** paste the **exact error text** in quotes
+- **Compare** your line to a working example from lecture, an activity, or a classmate
+- **Ask a human:** office hours, discussion board, instructor, or TA
+
+::: {.callout-tip appearance="simple"}
+**Try this with a partner.** One person reads the error message aloud slowly; the other suggests what to try first. Swap roles. Saying the error out loud often makes the fix obvious.
+:::
+
+## 8. Using generative AI to debug
+
+Generative AI can explain errors in plain language — if you give it enough context. Copy a prompt like this into ChatGPT, Claude, or another tool (when your syllabus allows it):
+
+> I am a beginner learning R in an introductory biology course. Here is the code I ran, the full error message, and what I was trying to do: \[paste code\], \[paste error\], \[one sentence goal\]. Please explain the error in plain language, suggest one fix, and show a corrected example using the Palmer Penguins dataset. Do not write my graded assignment for me.
+
+**Rules that keep AI useful and honest:**
+
+- Paste **your** code and the **full** error — not just "it doesn't work"
+- **Run** the suggested fix yourself before submitting anything graded
+- **Disclose** AI use on assignments when the syllabus requires it
+
+## 9. Course tools you can use
+
+BILD 5 offers several AI-related resources. Names only — your instructor or Canvas will show you where to find each one:
+
+| Tool | What it is for |
+|------|----------------|
+| **BILD5 bug checker chatbot** | Course-specific help with R error messages and debugging steps |
+| **Schema Study** | Socratic study coach for biology concepts — good for understanding *what* you are analyzing, not for pasting quiz or exam questions |
+| **Triton GPT** | UC San Diego's campus AI assistant — general help; still verify any code yourself and follow the course AI policy |
+
+None of these replace running and testing your own code. They supplement the read → fix → verify workflow you practiced above.
+
+## 10. Recap
+
+::: {.callout-note collapse="true"}
+## The debug workflow
+
+1. **Read** the error (bottom line, then line number)
+2. **Fix** one thing at a time
+3. **Test** — re-run, check `nrow()`, `glimpse()`, or `head()`
+4. **Ask for help** — human, help page, search, or AI with full context
+
+If you can do this on your own with Palmer penguins, you can do it on Coding Assignments and in DataHub.
+:::
+
+## Keep playing
+
+Intentionally break a line, read the error, and fix it without looking at the hints. For example, typo a column name or forget `na.rm = TRUE`.
+
+```{webr}
+#| envir: debug_lab
+# Break this on purpose, then fix it:
+mean(penguins$flipper_lenght_mm, na.rm = TRUE)
+```
+
+::: {.callout-tip appearance="simple"}
+The column is `flipper_length_mm` — not `flipper_lenght_mm`. Practice the full loop: run, read, fix, verify.
+:::

@@ -9,7 +9,7 @@ Cursor. Read the **Deploy gotcha** section before your first push — it prevent
 
 - `_extensions/r-wasm/live/` — the Quarto Live extension, vendored (same as `quarto add r-wasm/quarto-live`, v0.2.0). Must stay committed.
 - `docs/teaching/classes/BILD_5.qmd` — course hub (syllabus, overview). Uses the `bild-5-activities` sidebar.
-- `docs/teaching/classes/bild_5-labs/NN-slug.qmd` — numbered activity pages (flat files, not `index.qmd`).
+- `docs/teaching/classes/bild_5-labs/{coding|paper}-NN-slug.qmd` — activity pages (flat files, not `index.qmd`).
 - `docs/teaching/classes/bild_5-labs/_metadata.yml` — applies the activity sidebar to every page in this folder.
 - `docs/teaching/classes/bild_5-labs/_dev-notes.md` — this file (the leading `_` means Quarto never publishes it).
 - `annotate/` — vendored [Hypothesis PDF.js viewer](https://github.com/hypothesis/pdf.js-hypothes.is). Static passthrough, copied to `_site/` via `project: resources:`.
@@ -17,13 +17,13 @@ Cursor. Read the **Deploy gotcha** section before your first push — it prevent
 
 ## Two kinds of activity
 
-Activities are numbered in one interleaved sequence regardless of type, but the two
-types have **different front matter requirements**:
+Activities are numbered **within each track** (Coding 1, 2, 3 … and Paper 1, 2, 3 …).
+The two types have **different front matter requirements**:
 
 | Type | Front matter | Needs R locally? | Commit `_freeze/`? |
 |------|--------------|------------------|--------------------|
 | Coding (webR) | `format: live-html`, `engine: knitr`, `execute: freeze: auto` | Yes | Yes |
-| Paper annotation | `title` and `subtitle` only | No | No |
+| Paper (bibliography or annotation) | `title` and `subtitle` only | No | No |
 
 **Do not copy a coding activity's front matter onto an annotation activity.** The
 `live-html`/`knitr`/`freeze` block exists only because Quarto Live's `_knitr.qmd`
@@ -34,34 +34,35 @@ build. Annotation pages inherit their theme from `_quarto.yml` and their sidebar
 
 ### Activity file naming
 
-Use zero-padded numbers and kebab-case slugs:
+Use track prefix, zero-padded number, and kebab-case slug:
 
 ```
 docs/teaching/classes/bild_5-labs/
-  01-run-your-first-line-of-code.qmd
-  02-<slug>.qmd
-  03-<slug>.qmd
+  coding-01-run-your-first-line-of-code.qmd
+  coding-02-wrangle-and-visualize-penguins.qmd
+  paper-01-find-a-question-build-a-bibliography.qmd
+  paper-02-annotate-bramante-2026.qmd
 ```
 
-**Do not** use `index.qmd` for activities.
+**Do not** use `index.qmd` for activities. **Do not** mix tracks in one numbering sequence.
 
 ### Adding a new coding activity
 
 | Step | Action |
 |------|--------|
-| 1 | Create `docs/teaching/classes/bild_5-labs/NN-short-slug.qmd` (copy front matter from activity 1) |
-| 2 | Add `N — Page Title` to the `bild-5-activities` sidebar in `_quarto.yml` |
-| 3 | `quarto render docs/teaching/classes/bild_5-labs/NN-short-slug.qmd` locally |
+| 1 | Create `docs/teaching/classes/bild_5-labs/coding-NN-short-slug.qmd` (copy front matter from coding-01) |
+| 2 | Add `Coding N — Page Title` under **Coding activities** in `_quarto.yml` and link from `BILD_5.qmd` |
+| 3 | `quarto render docs/teaching/classes/bild_5-labs/coding-NN-short-slug.qmd` locally |
 | 4 | Commit the `.qmd`, matching `_freeze/` path, and `_quarto.yml` sidebar entry |
 | 5 | Push to `main` (Netlify has no R) |
 
-### Adding a new paper annotation activity
+### Adding a new paper activity
 
 | Step | Action |
 |------|--------|
-| 1 | Put the PDF in `papers/` as `kebab-case-slug.pdf` |
-| 2 | Copy `03-annotate-bramante-2026.qmd` to the next number; change title, slug, citation, and reading questions |
-| 3 | Add `N — Page Title` to the `bild-5-activities` sidebar in `_quarto.yml` |
+| 1 | Put the PDF in `papers/` as `kebab-case-slug.pdf` (if annotation activity) |
+| 2 | Copy `paper-02-annotate-bramante-2026.qmd` (or `paper-01-…` for bibliography-style) to the next paper number; change title, slug, citation, and reading questions |
+| 3 | Add `Paper N — Page Title` under **Paper activities** in `_quarto.yml` and link from `BILD_5.qmd` |
 | 4 | `quarto render` (full site) and check the page |
 | 5 | Commit and push. `/read/<slug>` works immediately — no per-paper Netlify config |
 
@@ -88,7 +89,7 @@ You almost certainly have these (the repo is an `.Rproj`), but confirm:
 
 You do **not** need to install webR — that downloads into the student's browser at runtime.
 
-### webR packages (activity 1 and beyond)
+### webR packages (coding activities)
 
 If an activity needs data or code from an CRAN package (e.g. `palmerpenguins`), declare it under `format: live-html: webr: packages:` in that page's YAML. webR pre-installs listed packages from `repo.r-wasm.org` when the page loads in the browser — no build-time R dependency beyond the usual knitr render. Only packages with prebuilt WASM binaries on that repo will work; check `https://repo.r-wasm.org/bin/emscripten/contrib/4.4/PACKAGES` before adding one.
 
@@ -104,7 +105,7 @@ Open the repo folder in Cursor, then in the integrated terminal (``Ctrl+` ``):
 quarto preview
 
 # Faster while iterating on one activity:
-quarto preview docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
 ```
 
 Preview live-reloads as you save. First load of the page in the browser pulls webR
@@ -120,12 +121,12 @@ Recovery:
 # Stop any running preview (Ctrl+C), then:
 mkdir -p _site/docs/teaching/classes/bild_5-labs
 rm -rf docs/teaching/classes/bild_5-labs/*_files docs/teaching/classes/bild_5-labs/*.html
-quarto render docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
-quarto preview docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
+quarto render docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.qmd
+quarto preview docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.qmd
 ```
 
-Prose activities (2, 3, …) do not need `_freeze/`. Only re-render and commit `_freeze/` after
-editing activity 1 or other webR pages.
+Prose paper activities do not need `_freeze/`. Only re-render and commit `_freeze/` after
+editing coding activities (webR pages).
 
 ---
 
@@ -138,10 +139,10 @@ in each activity's front matter does.
 **Every time you edit an activity**, before pushing:
 
 ```bash
-quarto render docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
+quarto render docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
 
 git add docs/teaching/classes/bild_5-labs/ _extensions/r-wasm/ _freeze/ _quarto.yml
-git commit -m "BILD 5: update activity 1"
+git commit -m "BILD 5: update coding activity"
 git push
 ```
 
@@ -155,8 +156,8 @@ and the Netlify build will try to run R and fail.
 
 ```bash
 quarto check
-quarto preview docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
-quarto render  docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
+quarto render  docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
 ```
 
 Never run `quarto publish` — Netlify deploys on git push.
@@ -164,11 +165,14 @@ Never run `quarto publish` — Netlify deploys on git push.
 ## Live URLs
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
-- Activity 1: `/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html`
-- Activity 2: `/docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.html`
-- Activity 3: `/docs/teaching/classes/bild_5-labs/03-annotate-bramante-2026.html`
-- Activity 4: `/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html`
-- Bare `/docs/teaching/classes/bild_5-labs/` 301s to activity 1 (there is no `index.qmd` here by design)
+- Coding 1: `/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html`
+- Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html`
+- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html`
+- Paper 1: `/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html`
+- Paper 2: `/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html`
+- Paper 3: `/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html`
+- Bare `/docs/teaching/classes/bild_5-labs/` 301s to Coding 1 (there is no `index.qmd` here by design)
+- Old numbered URLs (`01-…` through `06-…`) 301 to the matching `coding-NN-` / `paper-NN-` paths (`netlify.toml`)
 - Old activity URLs under `/bild_5/` redirect to `bild_5-labs/` (301 in `netlify.toml`)
 
 ## Annotation viewer

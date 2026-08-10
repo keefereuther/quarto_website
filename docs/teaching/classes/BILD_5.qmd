@@ -29,6 +29,24 @@ Coding is done in R using RStudio on the UC San Diego DataHub, a browser-based e
 
 ---
 
+## In-class activities
+
+Activities run in your browser or in the PDF annotator — no installs required for the coding labs. Each track has its own numbering.
+
+### Coding activities
+
+1. [Run Your First Line of Code](bild_5-labs/coding-01-run-your-first-line-of-code.qmd)
+2. [Wrangle and Visualize Penguins](bild_5-labs/coding-02-wrangle-and-visualize-penguins.qmd)
+3. [Read, Fix, and Test R Errors](bild_5-labs/coding-03-read-fix-and-test-r-errors.qmd)
+
+### Paper activities
+
+1. [Find a Question, Build a Bibliography](bild_5-labs/paper-01-find-a-question-build-a-bibliography.qmd)
+2. [Annotate a Paper: Metformin and Long COVID](bild_5-labs/paper-02-annotate-bramante-2026.qmd)
+3. [Ethics and Design of a Human Challenge Study](bild_5-labs/paper-03-ethics-design-killingley-2022.qmd)
+
+---
+
 ## Syllabus
 
 ```{=html}

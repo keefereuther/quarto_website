@@ -64,16 +64,22 @@ website:
       contents:
         - text: "Course overview"
           href: docs/teaching/classes/BILD_5.qmd
-        - section: "Activities"
+        - section: "Coding activities"
           contents:
-            - text: "1 — Run Your First Line of Code"
-              href: docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.qmd
-            - text: "2 — Find a Question, Build a Bibliography"
-              href: docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.qmd
-            - text: "3 — Annotate a Paper: Metformin and Long COVID"
-              href: docs/teaching/classes/bild_5-labs/03-annotate-bramante-2026.qmd
-            - text: "4 — Ethics and Design of a Human Challenge Study"
-              href: docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.qmd
+            - text: "Coding 1 — Run Your First Line of Code"
+              href: docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
+            - text: "Coding 2 — Wrangle and Visualize Penguins"
+              href: docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.qmd
+            - text: "Coding 3 — Read, Fix, and Test R Errors"
+              href: docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.qmd
+        - section: "Paper activities"
+          contents:
+            - text: "Paper 1 — Find a Question, Build a Bibliography"
+              href: docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.qmd
+            - text: "Paper 2 — Annotate a Paper: Metformin and Long COVID"
+              href: docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.qmd
+            - text: "Paper 3 — Ethics and Design of a Human Challenge Study"
+              href: docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.qmd
 
   page-footer:
     border: true

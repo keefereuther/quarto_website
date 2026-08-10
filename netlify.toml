@@ -14,7 +14,7 @@
 # The activities folder has no index page by convention (see _dev-notes.md).
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/"
-  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html"
   status = 301
 
 [[headers]]
@@ -49,22 +49,52 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5/index.html"
-  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5/01-run-your-first-line-of-code.html"
-  to = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/01-run-your-first-line-of-code.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/02-find-a-question-build-a-bibliography.html"
+  to = "/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/03-annotate-bramante-2026.html"
+  to = "/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html"
+  to = "/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/05-wrangle-and-visualize-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/06-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/02-annotate-killingley-2022.html"
-  to = "/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html"
+  to = "/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/03-annotate-killingley-2022.html"
-  to = "/docs/teaching/classes/bild_5-labs/04-ethics-design-killingley-2022.html"
+  to = "/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html"
   status = 301
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
