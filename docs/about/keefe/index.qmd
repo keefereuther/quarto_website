@@ -3,7 +3,7 @@ title: "Keefe Reuther"
 about:
   template: trestles
   image: ../../../assets/keefe2.jpg
-  image-alt: "Photo of Keefe Reuther, Assistant Teaching Professor at UC San Diego"
+  image-alt: "Photo of Keefe Reuther, Associate Teaching Professor at UC San Diego"
   image-shape: rounded
   links:
     - icon: orcid
@@ -22,7 +22,7 @@ about:
       href: https://saberbio.wildapricot.org/generative-AI-SIG
 ---
 
-I am an Assistant Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work sits at the intersection of **generative AI** and **undergraduate biology education** — I build open-source AI tools, study how students and instructors engage with them, and teach others how to design and evaluate their own.
+I am an Associate Teaching Professor in the [Department of Ecology, Behavior & Evolution](https://biology.ucsd.edu/research/academic-departments/ebe/) at UC San Diego. My work sits at the intersection of **generative AI** and **undergraduate biology education** — I build open-source AI tools, study how students and instructors engage with them, and teach others how to design and evaluate their own.
 
 My flagship tool, [Schema Study](https://huggingface.co/spaces/keefereuther/Schema_Study), is a no-code LLM application for asynchronous student learning. It was [published in *CourseSource*](https://qubeshub.org/community/groups/coursesource/publications?id=5776) in 2026 and piloted with over 200 students. I also co-founded the [SABER Generative AI Special Interest Group](https://saberbio.wildapricot.org/generative-AI-SIG) and co-organized the UC San Diego Generative AI Faculty Learning Community — communities that connect educators thinking carefully about AI in higher education.
 
@@ -47,7 +47,9 @@ B.A.'s in Biology and Geology | Sept 1998 – May 2003
 
 ## Experience
 
-UC San Diego | Assistant Teaching Professor | July 2020 - present
+UC San Diego | Associate Teaching Professor | July 2026 - present
+
+UC San Diego | Assistant Teaching Professor | July 2020 - June 2026
 
 UC San Diego | Continuing Lecturer | July 2009 - June 2020
 
