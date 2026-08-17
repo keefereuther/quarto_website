@@ -86,13 +86,14 @@ Welcome back. Everything on this page runs real R in your browser — same setup
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
-## 1. Load the tidyverse
+## 1. Load packages
 
-Coding Assignment 3 starts the same way. Run `library(tidyverse)` to load dplyr, ggplot2, and friends. A conflicts message afterward is expected, not an error.
+Coding Assignment 3 starts with the tidyverse; this activity also needs the Palmer Penguins dataset. Run `library(tidyverse)` and `library(palmerpenguins)`. A conflicts message after tidyverse is expected, not an error.
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: load_tidyverse
+library()
 library()
 ```
 
@@ -100,9 +101,14 @@ library()
 ::: {.callout-note collapse="false"}
 ## Hint
 
-From `?library`: `library(package, ...)` attaches a package so its functions become available. Replace `package` with the name of the collection you need.
+From `?library`: `library(package, ...)` attaches a package so its functions become available.
 
-Try `?library` in R for the full help page.
+```r
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Load both packages — tidyverse for dplyr and ggplot2, palmerpenguins for the `penguins` dataset.
 :::
 :::
 
@@ -112,9 +118,10 @@ Try `?library` in R for the full help page.
 
 ```r
 library(tidyverse)
+library(palmerpenguins)
 ```
 
-On DataHub and in your graded assignment you will type exactly this.
+On DataHub you will load tidyverse for the graded assignment; here you also need palmerpenguins for practice data.
 :::
 :::
 
@@ -129,58 +136,62 @@ if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
     type = "error",
     message = "Load the tidyverse with `library(tidyverse)`."
   )
+} else if (!grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Also load Palmer Penguins with `library(palmerpenguins)`."
+  )
 } else {
   list(
     correct = TRUE,
     type = "success",
-    message = "Tidyverse loaded. dplyr and ggplot2 are ready."
+    message = "Tidyverse and palmerpenguins loaded — dplyr, ggplot2, and `penguins` are ready."
   )
 }
 ```
 
 ## 2. Build the study group
 
-A one-sample *t*-test compares one group to a reference value — so you need a **single species**, not the whole dataset mixed together. Filter to **Adelie** penguins measured in **2007**, then create a new column `bill_area` as the product of bill length and bill depth (mm²). Save the result as `bill_data`.
+A one-sample *t*-test compares one group to a reference value — so you need a **single species**, not the whole dataset mixed together. Filter to **Adelie** penguins measured in **2007** and save the result as `penguin_data`. You will test assumptions on **`bill_depth_mm`**, a real measurement already in the dataset (bill depth in millimeters).
 
 ```{webr}
 #| envir: assumptions_lab
 #| setup: true
-#| exercise: build_bill_data
+#| exercise: build_penguin_data
 library(tidyverse)
 library(palmerpenguins)
 ```
 
 ```{webr}
 #| envir: assumptions_lab
-#| exercise: build_bill_data
-bill_data <- penguins |>
+#| exercise: build_penguin_data
+penguin_data <- penguins |>
   
 ```
 
-::: {.hint exercise="build_bill_data"}
+::: {.hint exercise="build_penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-From `?filter`: keep rows where conditions are TRUE. From `?mutate`: add or change columns.
+From `?filter`: keep rows where conditions are TRUE.
 
 ```r
 penguins |>
-  filter(species == "Gentoo") |>
-  mutate(ratio = bill_length_mm / bill_depth_mm)
+  filter(species == "Gentoo")
 ```
 
-Filter to Adelie and year 2007, then multiply the two bill columns.
+Filter to Adelie and year 2007. No new columns needed — `bill_depth_mm` is already there.
 :::
 :::
 
-::: {.solution exercise="build_bill_data"}
+::: {.solution exercise="build_penguin_data"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ```r
-bill_data <- penguins |>
-  filter(species == "Adelie", year == 2007) |>
-  mutate(bill_area = bill_length_mm * bill_depth_mm)
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
 ```
 
 You should have 50 rows — one Adelie cohort from a single field season.
@@ -189,30 +200,29 @@ You should have 50 rows — one Adelie cohort from a single field season.
 
 ```{webr}
 #| envir: assumptions_lab
-#| exercise: build_bill_data
+#| exercise: build_penguin_data
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("bill_data", envir = .envir_result, inherits = FALSE)) {
+if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the filtered table as `bill_data`."
+    message = "Save the filtered table as `penguin_data`."
   )
 } else {
-  bd <- get("bill_data", envir = .envir_result)
+  bd <- get("penguin_data", envir = .envir_result)
   has_filter <- grepl("filter\\s*\\(", code) && grepl("Adelie", code) && grepl("2007", code)
-  has_mutate <- grepl("mutate\\s*\\(", code) && grepl("bill_area", code)
-  if (is.data.frame(bd) && nrow(bd) == 50 && "bill_area" %in% names(bd) && has_filter && has_mutate) {
+  if (is.data.frame(bd) && nrow(bd) == 50 && "bill_depth_mm" %in% names(bd) && has_filter) {
     list(
       correct = TRUE,
       type = "success",
-      message = "50 Adelie penguins from 2007 with a `bill_area` column — ready for a one-sample check."
+      message = "50 Adelie penguins from 2007 — ready for a one-sample check on `bill_depth_mm`."
     )
-  } else if (!has_filter || !has_mutate) {
+  } else if (!has_filter) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `filter(species == \"Adelie\", year == 2007)` and `mutate(bill_area = bill_length_mm * bill_depth_mm)`."
+      message = "Use `filter(species == \"Adelie\", year == 2007)`."
     )
   } else {
     list(
@@ -226,15 +236,15 @@ if (!exists("bill_data", envir = .envir_result, inherits = FALSE)) {
 
 ## 3. Glimpse the data
 
-Run `glimpse()` on `bill_data` to see row count, column names, and types.
+Run `glimpse()` on `penguin_data` to see row count, column names, and types.
 
 ```{webr}
 #| envir: assumptions_lab
-#| exercise: glimpse_bill_data
+#| exercise: glimpse_penguin_data
 
 ```
 
-::: {.hint exercise="glimpse_bill_data"}
+::: {.hint exercise="glimpse_penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
@@ -248,41 +258,41 @@ Apply it to the dataset you just built.
 :::
 :::
 
-::: {.solution exercise="glimpse_bill_data"}
+::: {.solution exercise="glimpse_penguin_data"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ```r
-glimpse(bill_data)
+glimpse(penguin_data)
 ```
 
-You should see 50 rows. `bill_area` is `<dbl>` — and one penguin has missing bill measurements, so some rows will show `NA` for area.
+You should see 50 rows. `bill_depth_mm` is `<dbl>` — and one penguin has a missing bill measurement.
 :::
 :::
 
 ```{webr}
 #| envir: assumptions_lab
-#| exercise: glimpse_bill_data
+#| exercise: glimpse_penguin_data
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (grepl("glimpse\\s*\\(", code) && grepl("bill_data", code)) {
+if (grepl("glimpse\\s*\\(", code) && grepl("penguin_data", code)) {
   list(
     correct = TRUE,
     type = "success",
-    message = "50 rows — bill area with one missing measurement to handle later."
+    message = "50 rows — bill depth with one missing measurement to handle later."
   )
 } else {
   list(
     correct = FALSE,
     type = "error",
-    message = "Call `glimpse(bill_data)`."
+    message = "Call `glimpse(penguin_data)`."
   )
 }
 ```
 
 ## 4. Warm-up — what does "normal enough" look like?
 
-Before working with `bill_area`, practice on **bill length** in the same birds — a single measurement that already looks fairly symmetric. Make a histogram of `bill_length_mm` with `ggplot()` and `geom_histogram()`.
+Before working with `bill_depth_mm`, practice on **bill length** in the same birds — a single measurement that already looks fairly symmetric. Make a histogram of `bill_length_mm` with `ggplot()` and `geom_histogram()`.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -290,15 +300,14 @@ Before working with `bill_area`, practice on **bill length** in the same birds �
 #| exercise: warmup_histogram
 library(tidyverse)
 library(palmerpenguins)
-bill_data <- penguins |>
-  filter(species == "Adelie", year == 2007) |>
-  mutate(bill_area = bill_length_mm * bill_depth_mm)
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
 ```
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: warmup_histogram
-ggplot(bill_data, aes(x = bill_length_mm)) +
+ggplot(penguin_data, aes(x = bill_length_mm)) +
   
 ```
 
@@ -322,7 +331,7 @@ Map bill length to the x-axis and add `geom_histogram()`.
 ## Solution
 
 ```r
-ggplot(bill_data, aes(x = bill_length_mm)) +
+ggplot(penguin_data, aes(x = bill_length_mm)) +
   geom_histogram()
 ```
 
@@ -345,14 +354,14 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
   list(
     correct = FALSE,
     type = "error",
-    message = "Use `ggplot(bill_data, aes(x = bill_length_mm)) + geom_histogram()`."
+    message = "Use `ggplot(penguin_data, aes(x = bill_length_mm)) + geom_histogram()`."
   )
 }
 ```
 
 ## 5. Run Shapiro-Wilk on bill length
 
-Run `shapiro.test()` on the non-missing bill-length values in `bill_data`. Save the result as `shapiro_length` and print it.
+Run `shapiro.test()` on the non-missing bill-length values in `penguin_data`. Save the result as `shapiro_length` and print it.
 
 ::: {.callout-note appearance="simple"}
 ## Reading Shapiro-Wilk output
@@ -377,7 +386,7 @@ From `?shapiro.test`: pass a numeric vector directly.
 shapiro.test(mtcars$mpg)
 ```
 
-Use the bill-length column from `bill_data`.
+Use the bill-length column from `penguin_data`.
 :::
 :::
 
@@ -386,7 +395,7 @@ Use the bill-length column from `bill_data`.
 ## Solution
 
 ```r
-shapiro_length <- shapiro.test(bill_data$bill_length_mm)
+shapiro_length <- shapiro.test(penguin_data$bill_length_mm)
 shapiro_length
 ```
 
@@ -429,9 +438,9 @@ if (!grepl("shapiro\\.test\\s*\\(", code)) {
 }
 ```
 
-## 6. Mean bill area with missing values
+## 6. Mean bill depth with missing values
 
-A published survey of a neighboring Adelie population reported a mean bill area of **700 mm²**. Calculate the mean `bill_area` across all penguins in your sample and save it as `mean_raw`. Use `na.rm = TRUE`. Print the result and compare it to the reference value.
+A published survey of a neighboring Adelie population reported a mean bill depth of **18 mm**. Calculate the mean `bill_depth_mm` across all penguins in your sample and save it as `mean_raw`. Use `na.rm = TRUE`. Print the result and compare it to the reference value.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -450,7 +459,7 @@ From `?mean`: `mean(x, na.rm = FALSE)` — set `na.rm = TRUE` to skip missing va
 mean(mtcars$mpg, na.rm = TRUE)
 ```
 
-Apply to `bill_data$bill_area`.
+Apply to `penguin_data$bill_depth_mm`.
 :::
 :::
 
@@ -459,11 +468,11 @@ Apply to `bill_data$bill_area`.
 ## Solution
 
 ```r
-mean_raw <- mean(bill_data$bill_area, na.rm = TRUE)
+mean_raw <- mean(penguin_data$bill_depth_mm, na.rm = TRUE)
 mean_raw
 ```
 
-You should see about 729.6 mm² — a bit above the reference value of 700.
+You should see about 18.8 mm — a bit above the reference value of 18.
 :::
 :::
 
@@ -476,7 +485,7 @@ if (!grepl("mean\\s*\\(", code)) {
   list(
     correct = FALSE,
     type = "error",
-    message = "Use `mean()` on `bill_data$bill_area`."
+    message = "Use `mean()` on `penguin_data$bill_depth_mm`."
   )
 } else if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
   list(
@@ -492,17 +501,17 @@ if (!grepl("mean\\s*\\(", code)) {
   )
 } else {
   mr <- get("mean_raw", envir = .envir_result)
-  if (is.numeric(mr) && length(mr) == 1 && !is.na(mr) && mr > 720 && mr < 740) {
+  if (is.numeric(mr) && length(mr) == 1 && !is.na(mr) && mr > 18.5 && mr < 19.2) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("Mean ≈ ", round(mr, 1), " mm² — above the reference of 700.")
+      message = paste0("Mean ≈ ", round(mr, 2), " mm — above the reference of 18.")
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Compute `mean_raw <- mean(bill_data$bill_area, na.rm = TRUE)`."
+      message = "Compute `mean_raw <- mean(penguin_data$bill_depth_mm, na.rm = TRUE)`."
     )
   }
 }
@@ -510,20 +519,20 @@ if (!grepl("mean\\s*\\(", code)) {
 
 ## 7. Trim impossible values
 
-**Step 1 — trim impossible values.** Bill area cannot be negative. Remove rows where `bill_area` is negative (a sign error). **Keep** rows where `bill_area` is missing. Save the result as `bill_clean`.
+**Step 1 — trim impossible values.** Bill depth cannot be negative. Remove rows where `bill_depth_mm` is negative (a sign error). **Keep** rows where `bill_depth_mm` is missing. Save the result as `penguin_clean`.
 
 ::: {.callout-note appearance="simple"}
 ## `|` means "or"
 
-Inside `filter()`, the vertical bar **`|`** means **"or"**. The condition `is.na(bill_area) | bill_area >= 0` keeps a row if **either** the area is missing **or** it is zero or positive.
+Inside `filter()`, the vertical bar **`|`** means **"or"**. The condition `is.na(bill_depth_mm) | bill_depth_mm >= 0` keeps a row if **either** the depth is missing **or** it is zero or positive.
 
-Writing `filter(bill_area >= 0)` alone silently **drops the missing rows** — because `NA >= 0` evaluates to `NA`, not `TRUE`.
+Writing `filter(bill_depth_mm >= 0)` alone silently **drops the missing rows** — because `NA >= 0` evaluates to `NA`, not `TRUE`.
 :::
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: trim_impossible
-bill_clean <- bill_data |>
+penguin_clean <- penguin_data |>
   
 ```
 
@@ -538,7 +547,7 @@ mtcars |>
   filter(is.na(mpg) | mpg >= 0)
 ```
 
-Keep missing bill areas **or** non-negative areas.
+Keep missing bill depths **or** non-negative depths.
 :::
 :::
 
@@ -547,8 +556,8 @@ Keep missing bill areas **or** non-negative areas.
 ## Solution
 
 ```r
-bill_clean <- bill_data |>
-  filter(is.na(bill_area) | bill_area >= 0)
+penguin_clean <- penguin_data |>
+  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
 ```
 
 50 rows — no negative values in this dataset, so nothing was removed. The one missing measurement is still there. **Confirming there are no impossible values is itself a reportable result.**
@@ -560,18 +569,18 @@ bill_clean <- bill_data |>
 #| exercise: trim_impossible
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("bill_clean", envir = .envir_result, inherits = FALSE)) {
+if (!exists("penguin_clean", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the filtered table as `bill_clean`."
+    message = "Save the filtered table as `penguin_clean`."
   )
 } else {
-  bc <- get("bill_clean", envir = .envir_result)
+  bc <- get("penguin_clean", envir = .envir_result)
   n <- nrow(bc)
-  n_na <- sum(is.na(bc$bill_area))
-  n_neg <- sum(!is.na(bc$bill_area) & bc$bill_area < 0)
-  used_or <- grepl("is\\.na\\s*\\(\\s*bill_area\\s*\\)", code) && grepl("\\|", code)
+  n_na <- sum(is.na(bc$bill_depth_mm))
+  n_neg <- sum(!is.na(bc$bill_depth_mm) & bc$bill_depth_mm < 0)
+  used_or <- grepl("is\\.na\\s*\\(\\s*bill_depth_mm\\s*\\)", code) && grepl("\\|", code)
   if (n == 50 && n_na == 1 && n_neg == 0) {
     list(
       correct = TRUE,
@@ -582,19 +591,19 @@ if (!exists("bill_clean", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = FALSE,
       type = "error",
-      message = "`filter(bill_area >= 0)` alone drops missing rows. Use `is.na(bill_area) | bill_area >= 0`."
+      message = "`filter(bill_depth_mm >= 0)` alone drops missing rows. Use `is.na(bill_depth_mm) | bill_depth_mm >= 0`."
     )
   } else if (!used_or) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `filter(is.na(bill_area) | bill_area >= 0)` so missing rows stay."
+      message = "Use `filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)` so missing rows stay."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Filter with `is.na(bill_area) | bill_area >= 0` and save as `bill_clean`."
+      message = "Filter with `is.na(bill_depth_mm) | bill_depth_mm >= 0` and save as `penguin_clean`."
     )
   }
 }
@@ -602,7 +611,7 @@ if (!exists("bill_clean", envir = .envir_result, inherits = FALSE)) {
 
 ## 8. Flag distributional outliers
 
-**Step 2 — flag outliers.** Using only the non-missing bill areas in `bill_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill areas exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
+**Step 2 — flag outliers.** Using only the non-missing bill depths in `penguin_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill depths exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -610,11 +619,10 @@ if (!exists("bill_clean", envir = .envir_result, inherits = FALSE)) {
 #| exercise: upper_fence
 library(tidyverse)
 library(palmerpenguins)
-bill_data <- penguins |>
-  filter(species == "Adelie", year == 2007) |>
-  mutate(bill_area = bill_length_mm * bill_depth_mm)
-bill_clean <- bill_data |>
-  filter(is.na(bill_area) | bill_area >= 0)
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
+penguin_clean <- penguin_data |>
+  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
 ```
 
 ```{webr}
@@ -636,7 +644,7 @@ fence <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
 n_out <- sum(mtcars$mpg > fence, na.rm = TRUE)
 ```
 
-Use the 75th percentile and IQR of non-missing bill areas, then count values above the fence.
+Use the 75th percentile and IQR of non-missing bill depths, then count values above the fence.
 :::
 :::
 
@@ -645,14 +653,14 @@ Use the 75th percentile and IQR of non-missing bill areas, then count values abo
 ## Solution
 
 ```r
-upper_fence <- quantile(bill_clean$bill_area, 0.75, na.rm = TRUE) +
-  1.5 * IQR(bill_clean$bill_area, na.rm = TRUE)
-n_raw_outliers <- sum(bill_clean$bill_area > upper_fence, na.rm = TRUE)
+upper_fence <- quantile(penguin_clean$bill_depth_mm, 0.75, na.rm = TRUE) +
+  1.5 * IQR(penguin_clean$bill_depth_mm, na.rm = TRUE)
+n_raw_outliers <- sum(penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)
 upper_fence
 n_raw_outliers
 ```
 
-The upper fence is about 920 mm² — one penguin has a bill area above it.
+The upper fence is about 21.4 mm — one penguin has a bill depth above it.
 :::
 :::
 
@@ -675,23 +683,23 @@ if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
   n_out <- if (exists("n_raw_outliers", envir = .envir_result, inherits = FALSE)) {
     get("n_raw_outliers", envir = .envir_result)
   } else NA
-  if (length(uf) == 1 && abs(uf - 919.76) < 1 && has_q && has_iqr && !is.na(n_out) && n_out == 1) {
+  if (length(uf) == 1 && abs(uf - 21.4) < 0.5 && has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
       correct = TRUE,
       type = "success",
-      message = "Upper fence ≈ 920 mm². One bill area sits above it — flag it, do not delete it yet."
+      message = "Upper fence ≈ 21.4 mm. One bill depth sits above it — flag it, do not delete it yet."
     )
   } else if (has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("Upper fence ≈ ", round(uf, 1), " mm² with ", n_out, " outlier. Good.")
+      message = paste0("Upper fence ≈ ", round(uf, 1), " mm with ", n_out, " outlier. Good.")
     )
   } else if (!has_count) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Also count outliers: `n_raw_outliers <- sum(bill_clean$bill_area > upper_fence, na.rm = TRUE)`."
+      message = "Also count outliers: `n_raw_outliers <- sum(penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)`."
     )
   } else {
     list(
@@ -705,12 +713,12 @@ if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
 
 ## 9. Histogram on the raw scale
 
-**Step 3 — assess normality.** Make a histogram of the non-missing bill areas in `bill_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
+**Step 3 — assess normality.** Make a histogram of the non-missing bill depths in `penguin_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: hist_raw
-hist_raw <- ggplot(bill_clean, aes(x = bill_area)) +
+hist_raw <- ggplot(penguin_clean, aes(x = bill_depth_mm)) +
   
 ```
 
@@ -726,7 +734,7 @@ hist_raw <- ggplot(mtcars, aes(x = mpg)) +
 hist_raw
 ```
 
-Map `bill_area` to the x-axis and assign the whole plot to `hist_raw`.
+Map `bill_depth_mm` to the x-axis and assign the whole plot to `hist_raw`.
 :::
 :::
 
@@ -735,12 +743,12 @@ Map `bill_area` to the x-axis and assign the whole plot to `hist_raw`.
 ## Solution
 
 ```r
-hist_raw <- ggplot(bill_clean, aes(x = bill_area)) +
+hist_raw <- ggplot(penguin_clean, aes(x = bill_depth_mm)) +
   geom_histogram()
 hist_raw
 ```
 
-The distribution is right-skewed — a long tail toward large bill areas.
+The distribution is right-skewed — a long tail toward deep bills.
 :::
 :::
 
@@ -759,14 +767,14 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
   list(
     correct = FALSE,
     type = "error",
-    message = "Assign `hist_raw <- ggplot(bill_clean, aes(x = bill_area)) + geom_histogram()` and display it."
+    message = "Assign `hist_raw <- ggplot(penguin_clean, aes(x = bill_depth_mm)) + geom_histogram()` and display it."
   )
 }
 ```
 
 ## 10. Shapiro-Wilk on the raw scale
 
-Run `shapiro.test()` on the non-missing bill areas in `bill_clean`. Save the result as `shapiro_raw` and print it.
+Run `shapiro.test()` on the non-missing bill depths in `penguin_clean`. Save the result as `shapiro_raw` and print it.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -779,13 +787,13 @@ shapiro_raw <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Pass the bill-area vector directly.
+Pass the bill-depth vector directly.
 
 ```r
 shapiro.test(mtcars$mpg)
 ```
 
-Use non-missing values from `bill_clean$bill_area`.
+Use non-missing values from `penguin_clean$bill_depth_mm`.
 :::
 :::
 
@@ -794,11 +802,11 @@ Use non-missing values from `bill_clean$bill_area`.
 ## Solution
 
 ```r
-shapiro_raw <- shapiro.test(bill_clean$bill_area)
+shapiro_raw <- shapiro.test(penguin_clean$bill_depth_mm)
 shapiro_raw
 ```
 
-p ≈ 0.008 — strong evidence against normality on the raw scale.
+p ≈ 0.029 — evidence against normality on the raw scale.
 :::
 :::
 
@@ -811,7 +819,7 @@ if (!grepl("shapiro\\.test\\s*\\(", code)) {
   list(
     correct = FALSE,
     type = "error",
-    message = "Call `shapiro.test()` on bill areas."
+    message = "Call `shapiro.test()` on bill depths."
   )
 } else if (!exists("shapiro_raw", envir = .envir_result, inherits = FALSE)) {
   list(
@@ -825,13 +833,13 @@ if (!grepl("shapiro\\.test\\s*\\(", code)) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("p = ", signif(sr$p.value, 3), " — raw bill areas fail the normality check.")
+      message = paste0("p = ", signif(sr$p.value, 3), " — raw bill depths fail the normality check.")
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Run `shapiro_raw <- shapiro.test(bill_clean$bill_area)` on non-missing values."
+      message = "Run `shapiro_raw <- shapiro.test(penguin_clean$bill_depth_mm)` on non-missing values."
     )
   }
 }
@@ -839,12 +847,12 @@ if (!grepl("shapiro\\.test\\s*\\(", code)) {
 
 ## 11. Square-root transform
 
-The raw areas are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_area` equal to the square root of `bill_area`. Save the result as `bill_transformed` and display the first few rows with `head()`.
+The raw depths are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_depth` equal to the square root of `bill_depth_mm`. Save the result as `penguin_transformed` and display the first few rows with `head()`.
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: mutate_sqrt
-bill_transformed <- bill_clean |>
+penguin_transformed <- penguin_clean |>
   
 ```
 
@@ -859,7 +867,7 @@ mtcars |>
   mutate(sqrt_mpg = sqrt(mpg))
 ```
 
-Add `sqrt_area = sqrt(bill_area)` to `bill_clean`.
+Add `sqrt_depth = sqrt(bill_depth_mm)` to `penguin_clean`.
 :::
 :::
 
@@ -868,12 +876,12 @@ Add `sqrt_area = sqrt(bill_area)` to `bill_clean`.
 ## Solution
 
 ```r
-bill_transformed <- bill_clean |>
-  mutate(sqrt_area = sqrt(bill_area))
-head(bill_transformed)
+penguin_transformed <- penguin_clean |>
+  mutate(sqrt_depth = sqrt(bill_depth_mm))
+head(penguin_transformed)
 ```
 
-Missing bill areas stay missing; negative rows were never present.
+Missing bill depths stay missing; negative rows were never present.
 :::
 :::
 
@@ -882,25 +890,25 @@ Missing bill areas stay missing; negative rows were never present.
 #| exercise: mutate_sqrt
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("bill_transformed", envir = .envir_result, inherits = FALSE)) {
+if (!exists("penguin_transformed", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the result as `bill_transformed`."
+    message = "Save the result as `penguin_transformed`."
   )
 } else {
-  bt <- get("bill_transformed", envir = .envir_result)
-  if (is.data.frame(bt) && "sqrt_area" %in% names(bt)) {
+  bt <- get("penguin_transformed", envir = .envir_result)
+  if (is.data.frame(bt) && "sqrt_depth" %in% names(bt)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "New column `sqrt_area` added — ready to re-check normality."
+      message = "New column `sqrt_depth` added — ready to re-check normality."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `mutate(sqrt_area = sqrt(bill_area))` inside the pipe."
+      message = "Use `mutate(sqrt_depth = sqrt(bill_depth_mm))` inside the pipe."
     )
   }
 }
@@ -908,12 +916,12 @@ if (!exists("bill_transformed", envir = .envir_result, inherits = FALSE)) {
 
 ## 12. Histogram on the square-root scale
 
-Make a histogram of `sqrt_area` from `bill_transformed`, using only non-missing values. Save the plot as `hist_sqrt` and display it.
+Make a histogram of `sqrt_depth` from `penguin_transformed`, using only non-missing values. Save the plot as `hist_sqrt` and display it.
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: hist_sqrt
-hist_sqrt <- ggplot(bill_transformed, aes(x = sqrt_area)) +
+hist_sqrt <- ggplot(penguin_transformed, aes(x = sqrt_depth)) +
   
 ```
 
@@ -936,7 +944,7 @@ hist_sqrt
 ## Solution
 
 ```r
-hist_sqrt <- ggplot(bill_transformed, aes(x = sqrt_area)) +
+hist_sqrt <- ggplot(penguin_transformed, aes(x = sqrt_depth)) +
   geom_histogram()
 hist_sqrt
 ```
@@ -950,7 +958,7 @@ The histogram may look a bit more symmetric, but the skew has not fully disappea
 #| exercise: hist_sqrt
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("sqrt_area", code)) {
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("sqrt_depth", code)) {
   list(
     correct = TRUE,
     type = "success",
@@ -960,14 +968,14 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
   list(
     correct = FALSE,
     type = "error",
-    message = "Plot `sqrt_area` with `ggplot(...) + geom_histogram()` and save as `hist_sqrt`."
+    message = "Plot `sqrt_depth` with `ggplot(...) + geom_histogram()` and save as `hist_sqrt`."
   )
 }
 ```
 
 ## 13. Shapiro-Wilk on the square-root scale
 
-Run `shapiro.test()` on the non-missing `sqrt_area` values in `bill_transformed`. Save the result as `shapiro_sqrt` and print it.
+Run `shapiro.test()` on the non-missing `sqrt_depth` values in `penguin_transformed`. Save the result as `shapiro_sqrt` and print it.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -983,7 +991,7 @@ shapiro_sqrt <-
 Same function as before — pass the transformed column.
 
 ```r
-shapiro_sqrt <- shapiro.test(bill_transformed$sqrt_area)
+shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)
 shapiro_sqrt
 ```
 :::
@@ -994,11 +1002,11 @@ shapiro_sqrt
 ## Solution
 
 ```r
-shapiro_sqrt <- shapiro.test(bill_transformed$sqrt_area)
+shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)
 shapiro_sqrt
 ```
 
-p ≈ 0.030 — better than the raw scale, but still below 0.05. Square root did not rescue this variable.
+p ≈ 0.050 — slightly better than the raw scale, but still at or below 0.05. Square root did not rescue this variable.
 :::
 :::
 
@@ -1019,13 +1027,13 @@ if (!exists("shapiro_sqrt", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("p = ", signif(ss$p.value, 3), " — square-root areas still fail the normality check.")
+      message = paste0("p = ", signif(ss$p.value, 3), " — square-root depths still fail the normality check.")
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Run `shapiro_sqrt <- shapiro.test(bill_transformed$sqrt_area)`."
+      message = "Run `shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)`."
     )
   }
 }
@@ -1033,7 +1041,7 @@ if (!exists("shapiro_sqrt", envir = .envir_result, inherits = FALSE)) {
 
 ## 14. Make the call on square root
 
-Based on your histogram and Shapiro-Wilk result for the square-root data, are the transformed bill areas normally distributed enough for a parametric test? Assign `sqrt_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
+Based on your histogram and Shapiro-Wilk result for the square-root data, are the transformed bill depths normally distributed enough for a parametric test? Assign `sqrt_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1062,7 +1070,7 @@ sqrt_is_normal <- FALSE
 sqrt_is_normal <- FALSE
 ```
 
-p ≈ 0.030 — still below 0.05, so square root alone is not enough.
+p ≈ 0.050 — at or below 0.05, so square root alone is not enough.
 :::
 :::
 
@@ -1075,7 +1083,7 @@ if (grepl("sqrt_is_normal\\s*<-\\s*FALSE", code)) {
   list(
     correct = TRUE,
     type = "success",
-    message = "FALSE — the square-root transform did not bring bill area in line with the normality assumption."
+    message = "FALSE — the square-root transform did not bring bill depth in line with the normality assumption."
   )
 } else if (grepl("sqrt_is_normal\\s*<-\\s*TRUE", code)) {
   list(
@@ -1095,14 +1103,14 @@ if (grepl("sqrt_is_normal\\s*<-\\s*FALSE", code)) {
 ::: {.callout-note collapse="true"}
 ## Why did square root fail here?
 
-Square root is the standard transform for **right-skewed counts** — parasite loads, cell counts, tick burdens. **Bill area is not a count.** It is the **product** of two measurements (length × depth), and products tend to follow a **log-normal** distribution. Over the narrow range of real penguin bills, square root barely changes the shape — so it cannot fix the skew the way it would for worm counts.
+Square root is the standard transform for **right-skewed counts** — parasite loads, cell counts, tick burdens. **Bill depth is a continuous measurement**, not a count. It improved the Shapiro-Wilk p-value but not enough to pass 0.05. When square root is not enough for a right-skewed continuous variable, a **log** transform is the next thing to try.
 
 On **Coding Assignment 3**, worm counts **are** counts, and square root is the right first transform there. Do not mechanically apply log to that assignment.
 :::
 
 ## 15. Log transform
 
-Because bill area is a product, try a **log** transformation instead. Use `mutate()` to add a column called `log_area` equal to the natural log of `bill_area`. Save the updated table as `bill_transformed` and display the first few rows with `head()`.
+Because square root did not pass, try a **log** transformation next. Use `mutate()` to add a column called `log_depth` equal to the natural log of `bill_depth_mm`. Save the updated table as `penguin_transformed` and display the first few rows with `head()`.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1110,19 +1118,18 @@ Because bill area is a product, try a **log** transformation instead. Use `mutat
 #| exercise: mutate_log
 library(tidyverse)
 library(palmerpenguins)
-bill_data <- penguins |>
-  filter(species == "Adelie", year == 2007) |>
-  mutate(bill_area = bill_length_mm * bill_depth_mm)
-bill_clean <- bill_data |>
-  filter(is.na(bill_area) | bill_area >= 0)
-bill_transformed <- bill_clean |>
-  mutate(sqrt_area = sqrt(bill_area))
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
+penguin_clean <- penguin_data |>
+  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+penguin_transformed <- penguin_clean |>
+  mutate(sqrt_depth = sqrt(bill_depth_mm))
 ```
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: mutate_log
-bill_transformed <- bill_transformed |>
+penguin_transformed <- penguin_transformed |>
   
 ```
 
@@ -1137,7 +1144,7 @@ mtcars |>
   mutate(log_mpg = log(mpg))
 ```
 
-Add `log_area = log(bill_area)` to the table that already has `sqrt_area`.
+Add `log_depth = log(bill_depth_mm)` to the table that already has `sqrt_depth`.
 :::
 :::
 
@@ -1146,9 +1153,9 @@ Add `log_area = log(bill_area)` to the table that already has `sqrt_area`.
 ## Solution
 
 ```r
-bill_transformed <- bill_transformed |>
-  mutate(log_area = log(bill_area))
-head(bill_transformed)
+penguin_transformed <- penguin_transformed |>
+  mutate(log_depth = log(bill_depth_mm))
+head(penguin_transformed)
 ```
 
 Both transformed columns now live in the same table.
@@ -1160,25 +1167,25 @@ Both transformed columns now live in the same table.
 #| exercise: mutate_log
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("bill_transformed", envir = .envir_result, inherits = FALSE)) {
+if (!exists("penguin_transformed", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the result as `bill_transformed`."
+    message = "Save the result as `penguin_transformed`."
   )
 } else {
-  bt <- get("bill_transformed", envir = .envir_result)
-  if (is.data.frame(bt) && "log_area" %in% names(bt)) {
+  bt <- get("penguin_transformed", envir = .envir_result)
+  if (is.data.frame(bt) && "log_depth" %in% names(bt)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "New column `log_area` added — ready to re-check normality on the log scale."
+      message = "New column `log_depth` added — ready to re-check normality on the log scale."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `mutate(log_area = log(bill_area))` inside the pipe."
+      message = "Use `mutate(log_depth = log(bill_depth_mm))` inside the pipe."
     )
   }
 }
@@ -1186,12 +1193,12 @@ if (!exists("bill_transformed", envir = .envir_result, inherits = FALSE)) {
 
 ## 16. Histogram on the log scale
 
-Make a histogram of `log_area` from `bill_transformed`, using only non-missing values. Save the plot as `hist_log` and display it.
+Make a histogram of `log_depth` from `penguin_transformed`, using only non-missing values. Save the plot as `hist_log` and display it.
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: hist_log
-hist_log <- ggplot(bill_transformed, aes(x = log_area)) +
+hist_log <- ggplot(penguin_transformed, aes(x = log_depth)) +
   
 ```
 
@@ -1199,7 +1206,7 @@ hist_log <- ggplot(bill_transformed, aes(x = log_area)) +
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Same pattern as the earlier histograms — map `log_area` to `x`.
+Same pattern as the earlier histograms — map `log_depth` to `x`.
 
 ```r
 hist_log <- ggplot(mtcars, aes(x = log(mpg))) +
@@ -1214,7 +1221,7 @@ hist_log
 ## Solution
 
 ```r
-hist_log <- ggplot(bill_transformed, aes(x = log_area)) +
+hist_log <- ggplot(penguin_transformed, aes(x = log_depth)) +
   geom_histogram()
 hist_log
 ```
@@ -1228,7 +1235,7 @@ The distribution looks much more symmetric after the log transform.
 #| exercise: hist_log
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("log_area", code)) {
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("log_depth", code)) {
   list(
     correct = TRUE,
     type = "success",
@@ -1238,14 +1245,14 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
   list(
     correct = FALSE,
     type = "error",
-    message = "Plot `log_area` with `ggplot(...) + geom_histogram()` and save as `hist_log`."
+    message = "Plot `log_depth` with `ggplot(...) + geom_histogram()` and save as `hist_log`."
   )
 }
 ```
 
 ## 17. Shapiro-Wilk on the log scale
 
-Run `shapiro.test()` on the non-missing `log_area` values in `bill_transformed`. Save the result as `shapiro_log` and print it.
+Run `shapiro.test()` on the non-missing `log_depth` values in `penguin_transformed`. Save the result as `shapiro_log` and print it.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1261,7 +1268,7 @@ shapiro_log <-
 Same function as before — pass the log column.
 
 ```r
-shapiro_log <- shapiro.test(bill_transformed$log_area)
+shapiro_log <- shapiro.test(penguin_transformed$log_depth)
 shapiro_log
 ```
 :::
@@ -1272,7 +1279,7 @@ shapiro_log
 ## Solution
 
 ```r
-shapiro_log <- shapiro.test(bill_transformed$log_area)
+shapiro_log <- shapiro.test(penguin_transformed$log_depth)
 shapiro_log
 ```
 
@@ -1297,13 +1304,13 @@ if (!exists("shapiro_log", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("p = ", signif(sl$p.value, 3), " — log-transformed areas look normal enough.")
+      message = paste0("p = ", signif(sl$p.value, 3), " — log-transformed depths look normal enough.")
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Run `shapiro_log <- shapiro.test(bill_transformed$log_area)`."
+      message = "Run `shapiro_log <- shapiro.test(penguin_transformed$log_depth)`."
     )
   }
 }
@@ -1311,7 +1318,7 @@ if (!exists("shapiro_log", envir = .envir_result, inherits = FALSE)) {
 
 ## 18. Make the call on log
 
-Based on your histogram and Shapiro-Wilk result for the log-transformed data, are the log bill areas normally distributed enough for a parametric test? Assign `log_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
+Based on your histogram and Shapiro-Wilk result for the log-transformed data, are the log bill depths normally distributed enough for a parametric test? Assign `log_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1353,7 +1360,7 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
   list(
     correct = TRUE,
     type = "success",
-    message = "TRUE — the log transform brought bill area in line with the normality assumption."
+    message = "TRUE — the log transform brought bill depth in line with the normality assumption."
   )
 } else if (grepl("log_is_normal\\s*<-\\s*FALSE", code)) {
   list(
@@ -1372,7 +1379,7 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
 
 ## 19. Re-flag outliers after transformation
 
-**Step 4 — re-flag outliers after transformation.** Using only the non-missing `log_area` values in `bill_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_area` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
+**Step 4 — re-flag outliers after transformation.** Using only the non-missing `log_depth` values in `penguin_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_depth` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1385,12 +1392,12 @@ upper_fence_log <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Apply the same Q3 + 1.5 × IQR formula to `log_area` instead of `bill_area`.
+Apply the same Q3 + 1.5 × IQR formula to `log_depth` instead of `bill_depth_mm`.
 
 ```r
-upper_fence_log <- quantile(bill_transformed$log_area, 0.75, na.rm = TRUE) +
-  1.5 * IQR(bill_transformed$log_area, na.rm = TRUE)
-n_log_outliers <- sum(bill_transformed$log_area > upper_fence_log, na.rm = TRUE)
+upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
+  1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
+n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
 ```
 :::
 :::
@@ -1400,14 +1407,14 @@ n_log_outliers <- sum(bill_transformed$log_area > upper_fence_log, na.rm = TRUE)
 ## Solution
 
 ```r
-upper_fence_log <- quantile(bill_transformed$log_area, 0.75, na.rm = TRUE) +
-  1.5 * IQR(bill_transformed$log_area, na.rm = TRUE)
-n_log_outliers <- sum(bill_transformed$log_area > upper_fence_log, na.rm = TRUE)
+upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
+  1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
+n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
 upper_fence_log
 n_log_outliers
 ```
 
-One penguin still sits above the log-scale fence — the same Torgersen male with the large bill.
+Zero penguins sit above the log-scale fence — the one raw outlier was pulled inside the fence by the transformation.
 :::
 :::
 
@@ -1430,29 +1437,35 @@ if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE)) {
   n_out <- if (exists("n_log_outliers", envir = .envir_result, inherits = FALSE)) {
     get("n_log_outliers", envir = .envir_result)
   } else NA
-  if (length(ufl) == 1 && abs(ufl - 6.856) < 0.05 && has_q && has_iqr && !is.na(n_out) && n_out == 1) {
+  if (length(ufl) == 1 && abs(ufl - 3.073) < 0.05 && has_q && has_iqr && !is.na(n_out) && n_out == 0) {
     list(
       correct = TRUE,
       type = "success",
-      message = "One log-scale outlier remains — decide whether to keep or remove it."
+      message = "Zero log-scale outliers — the transform pulled the raw outlier inside the fence."
+    )
+  } else if (has_q && has_iqr && !is.na(n_out) && n_out == 0) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("Upper log fence ≈ ", round(ufl, 3), " with ", n_out, " outliers. Good.")
     )
   } else if (has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
-      correct = TRUE,
-      type = "success",
-      message = paste0("Upper log fence ≈ ", round(ufl, 3), " with ", n_out, " outlier. Good.")
+      correct = FALSE,
+      type = "info",
+      message = "Re-check your count — after the log transform, zero values should exceed the fence."
     )
   } else if (!has_count) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Also count outliers: `n_log_outliers <- sum(bill_transformed$log_area > upper_fence_log, na.rm = TRUE)`."
+      message = "Also count outliers: `n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)`."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Apply the IQR fence formula to `log_area` and count values above it."
+      message = "Apply the IQR fence formula to `log_depth` and count values above it."
     )
   }
 }
@@ -1473,7 +1486,7 @@ remove_outliers <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-The one outlier is a Torgersen male with a 46.0 × 21.5 mm bill (989 mm²). That is a **large but biologically plausible** bill — not a data-entry error like a negative count.
+The raw outlier was a Torgersen male with a **21.5 mm** bill depth — large but biologically plausible. After the log transform, `n_log_outliers` is **0**, so there is nothing left to filter out.
 
 ```r
 remove_outliers <- FALSE
@@ -1489,7 +1502,7 @@ remove_outliers <- FALSE
 remove_outliers <- FALSE
 ```
 
-Keep the bird. Extreme but real observations belong in the dataset unless you have a biological reason to exclude them.
+Keep all rows. The one bird flagged on the raw scale is no longer an outlier after transformation, and it was never an impossible value like a negative count.
 :::
 :::
 
@@ -1502,13 +1515,13 @@ if (grepl("remove_outliers\\s*<-\\s*FALSE", code)) {
   list(
     correct = TRUE,
     type = "success",
-    message = "FALSE — the outlier is extreme but plausible; keep it in the dataset."
+    message = "FALSE — zero log-scale outliers remain, so there is nothing to remove."
   )
 } else if (grepl("remove_outliers\\s*<-\\s*TRUE", code)) {
   list(
     correct = FALSE,
     type = "info",
-    message = "Reconsider — the flagged bird has a large but real bill, not an impossible value."
+    message = "Reconsider — after the log transform, `n_log_outliers` should be 0."
   )
 } else {
   list(
@@ -1522,11 +1535,11 @@ if (grepl("remove_outliers\\s*<-\\s*FALSE", code)) {
 ## 21. Impossible vs. extreme
 
 ::: {.callout-note collapse="true"}
-## Why keep the large bill?
+## Why keep the deep bill?
 
-One Adelie penguin had a bill area of **989 mm²** (46.0 mm long × 21.5 mm deep) — above the IQR fence on every scale we checked. That value is **extreme but biologically plausible**. Large-billed individuals occur in wild populations. It is not a data-entry error the way a **negative** area would be.
+One Adelie penguin had a bill depth of **21.5 mm** — above the raw-scale IQR fence. That value is **extreme but biologically plausible**. Large-billed individuals occur in wild populations. It is not a data-entry error the way a **negative** depth would be.
 
-The log transformation **compressed the right tail** of the skewed raw areas, making the distribution much more symmetric and bringing the Shapiro-Wilk test in line with the normality assumption — without throwing away real observations.
+The log transformation **compressed the right tail** of the skewed raw depths, making the distribution much more symmetric, bringing the Shapiro-Wilk test in line with the normality assumption, and pulling that bird inside the transformed-scale fence — without throwing away real observations.
 
 On **Coding Assignment 3** you will explain this same distinction in prose for worm counts in deer mice.
 :::
@@ -1543,8 +1556,9 @@ On **Coding Assignment 3** you will explain this same distinction in prose for w
 | Function | Role |
 |----------|------|
 | `library(tidyverse)` | Loads dplyr, ggplot2, and related packages |
+| `library(palmerpenguins)` | Loads the `penguins` dataset |
 | `filter()` | Keeps rows matching a condition (`species == "Adelie"`, `is.na(...) \| ... >= 0`) |
-| `mutate()` | Adds or changes columns (`bill_area`, `sqrt_area`, `log_area`) |
+| `mutate()` | Adds transformed columns (`sqrt_depth`, `log_depth`) |
 | `glimpse()` | Quick look at rows, columns, and types |
 | `mean(..., na.rm = TRUE)` | Average of a numeric column, skipping missing values |
 | `quantile(..., 0.75, na.rm = TRUE)` | 75th percentile for the IQR fence |
@@ -1553,7 +1567,7 @@ On **Coding Assignment 3** you will explain this same distinction in prose for w
 | `ggplot()` + `geom_histogram()` | Visual check of distribution shape |
 | `shapiro.test()` | Formal test of normality (H₀: data are normal) |
 | `sqrt()` | Square-root transformation (for right-skewed **counts**) |
-| `log()` | Natural-log transformation (for **products** and multiplicative skew) |
+| `log()` | Natural-log transformation (when sqrt is not enough for right-skewed data) |
 
 If you can explain each row in your own words, you have covered the core of **Coding Assignment 3**.
 :::
@@ -1573,7 +1587,7 @@ On Canvas you will repeat this pipeline with **deer-mouse parasite** data from `
 9. Re-flag on the transformed scale → `upper_fence_sqrt` and `n_sqrt_outliers`
 10. Assign `remove_outliers` and write a short prose answer about retaining outliers
 
-Same functions, different biological story — intestinal nematodes instead of penguin bills. **Worm counts are counts**, so square root is the correct transform there. Do not apply log just because this lab used it for bill area.
+Same functions, different biological story — intestinal nematodes instead of penguin bill depth. **Worm counts are counts**, so square root is the correct transform there. Do not apply log just because this lab needed it for bill depth.
 
 ## Keep playing
 
