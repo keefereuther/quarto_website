@@ -1,0 +1,521 @@
+---
+title: "Visualize Penguins with ggplot2"
+subtitle: "Build layered figures — histograms, scatterplots, and boxplots — all in your browser"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - tidyverse
+        - palmerpenguins
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 1. You already plotted with base R's `hist()`; today you will **build figures in layers** with ggplot2.
+
+The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
+
+::: {.callout-note}
+## The grammar of graphs
+
+Every ggplot2 figure has three essential pieces:
+
+1. **data** — the dataset (for example `penguins`)
+2. **aes** — aesthetic mappings: which column goes on which axis, or which color
+3. **geom** — the geometric object: points, boxes, bars, histogram bins
+
+You add layers with `+`. We will practice all three today.
+:::
+
+## 1. Load the tidyverse
+
+Coding Assignment 2 starts the same way. Run `library(tidyverse)` to load ggplot2 and friends. A conflicts message afterward is expected, not an error.
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: load_tidyverse
+library()
+```
+
+::: {.hint exercise="load_tidyverse"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?library`: `library(package, ...)` attaches a package so its functions become available. Replace `package` with the name of the collection you need (ggplot2 ships inside the tidyverse bundle).
+
+Try `?library` in R for the full help page.
+:::
+:::
+
+::: {.solution exercise="load_tidyverse"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+library(tidyverse)
+```
+
+On DataHub and in your graded assignment you will type exactly this.
+:::
+:::
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: load_tidyverse
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Load the tidyverse with `library(tidyverse)`."
+  )
+} else {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Tidyverse loaded. ggplot2 is ready to use."
+  )
+}
+```
+
+## 2. Glimpse the penguins
+
+`glimpse()` is a tidyverse way to inspect a dataset: rows, columns, and column types. Run it on `penguins` from the `palmerpenguins` package so you know which columns to map to axes and colors.
+
+```{webr}
+#| envir: visualize_penguins
+#| setup: true
+#| exercise: glimpse_penguins
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: glimpse_penguins
+
+```
+
+::: {.hint exercise="glimpse_penguins"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?glimpse`: `glimpse(x)` — print a compact summary of a data frame (rows, columns, types).
+
+Example with a built-in dataset:
+
+```r
+glimpse(mtcars)
+```
+
+Apply the same function to the dataset named in the exercise prompt.
+:::
+:::
+
+::: {.solution exercise="glimpse_penguins"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+glimpse(penguins)
+```
+
+You should see 344 rows and 8 columns. `species` and `island` are `<fct>` (categories); measurements like `body_mass_g` are `<dbl>` (numbers).
+:::
+:::
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: glimpse_penguins
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("glimpse\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call `glimpse(penguins)` to inspect the dataset."
+  )
+} else if (!grepl("penguins", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Pass `penguins` into `glimpse()`."
+  )
+} else {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "344 rows, 8 columns — ready to map columns to a figure."
+  )
+}
+```
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+From the `glimpse()` output:
+
+1. How many **rows** are there?
+2. What **type** is `body_mass_g`?
+3. Which column tells you **which island** each penguin was sampled on?
+
+**Answers:** 344 rows; `body_mass_g` is `<dbl>`; `island`.
+:::
+
+## 3. Histogram with ggplot2
+
+Start a figure with `ggplot()`, map `body_mass_g` to the x-axis, and add `geom_histogram()`. Use the `penguins` dataset directly — an upgrade from Coding Activity 1's `hist()`. Add a title with `labs(title = "...")`.
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_histogram
+ggplot(penguins, aes(x = body_mass_g)) +
+  
+```
+
+::: {.hint exercise="ggplot_histogram"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?ggplot`: `ggplot(data = NULL, mapping = aes(), ...)` — then add a layer with `+`.
+
+From `?geom_histogram`: bins one continuous variable.
+
+Example:
+
+```r
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram() +
+  labs(title = "Car fuel economy")
+```
+
+Map the x-axis to one continuous column from `penguins` and add your own title.
+:::
+:::
+
+::: {.solution exercise="ggplot_histogram"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram() +
+  labs(title = "Penguin body mass")
+```
+
+A histogram shows how **one continuous variable** is distributed — how many penguins fall in each weight range. ggplot2 may warn about two rows with missing body mass; that is normal.
+:::
+:::
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_histogram
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+has_ggplot <- grepl("ggplot\\s*\\(", code)
+has_hist <- grepl("geom_histogram\\s*\\(", code)
+has_labs <- grepl("labs\\s*\\(", code)
+if (has_ggplot && has_hist && has_labs) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Histogram with a title — distribution of one continuous variable."
+  )
+} else if (has_ggplot && has_hist) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Add `labs(title = \"...\")` with your own title."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `ggplot(...) + geom_histogram() + labs(title = \"...\")`."
+  )
+}
+```
+
+## 4. Scatterplot — two continuous variables
+
+Build a **scatterplot**: flipper length on the x-axis, body mass on the y-axis. Map `species` to **color** so each species gets its own hue. Use `geom_point()`.
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_scatter
+ggplot(penguins, aes(
+  x = flipper_length_mm,
+  y = body_mass_g,
+  color = species
+)) +
+  
+```
+
+::: {.hint exercise="ggplot_scatter"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?geom_point`: scatterplot of two continuous variables. Map a third variable to `color` inside `aes()`.
+
+Example:
+
+```r
+ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point()
+```
+
+Use flipper length and body mass on the axes and map species to color on the penguin data.
+:::
+:::
+
+::: {.solution exercise="ggplot_scatter"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+ggplot(penguins, aes(
+  x = flipper_length_mm,
+  y = body_mass_g,
+  color = species
+)) +
+  geom_point()
+```
+
+Scatterplots relate **two continuous measurements**. Color adds a **third variable** — here, species — so you can see clusters.
+:::
+:::
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_scatter
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_point\\s*\\(", code) && grepl("color\\s*=\\s*species", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Scatterplot with species as color — two continuous vars plus a grouping."
+  )
+} else if (grepl("geom_point\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Map `color = species` inside `aes()`."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `geom_point()` with flipper length, body mass, and `color = species`."
+  )
+}
+```
+
+## 5. Boxplot — compare groups
+
+Coding Assignment 2 builds a boxplot **one layer at a time**. Here is the core pattern:
+
+- Put **island** on the x-axis, **body_mass_g** on the y-axis
+- Add `geom_boxplot()` with `fill` mapped to island
+- Add `theme_minimal()` and readable `labs()`
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_boxplot
+ggplot(penguins, aes(
+  x = island,
+  y = body_mass_g,
+  fill = island
+)) +
+  
+```
+
+::: {.hint exercise="ggplot_boxplot"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?geom_boxplot`: compare a numeric variable across groups.
+
+Example pattern:
+
+```r
+ggplot(mtcars, aes(
+  x = factor(cyl),
+  y = mpg,
+  fill = factor(cyl)
+)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "MPG by cylinder count", x = "Cylinders", y = "MPG")
+```
+
+Apply the same layering — boxplot, fill, `theme_minimal()`, `labs()` — to islands and body mass.
+:::
+:::
+
+::: {.solution exercise="ggplot_boxplot"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+ggplot(penguins, aes(
+  x = island,
+  y = body_mass_g,
+  fill = island
+)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(
+    title = "Body mass by island",
+    x = "Island",
+    y = "Body mass (g)"
+  )
+```
+
+Boxplots compare a **continuous variable** across **groups**. On your graded assignment you will add `reorder()` to sort groups by elevation after you join that metadata in Coding Activity 3.
+:::
+:::
+
+```{webr}
+#| envir: visualize_penguins
+#| exercise: ggplot_boxplot
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+has_box <- grepl("geom_boxplot\\s*\\(", code)
+has_theme <- grepl("theme_minimal\\s*\\(", code)
+has_labs <- grepl("labs\\s*\\(", code)
+if (has_box && has_theme && has_labs) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Layered boxplot with fill, theme, and labels — Assignment 2 ready."
+  )
+} else if (has_box) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Add `theme_minimal()` and `labs(title = ..., x = ..., y = ...)`."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Include `geom_boxplot()`, `theme_minimal()`, and `labs()`."
+  )
+}
+```
+
+## 6. Recap — ggplot verbs you practiced
+
+::: {.callout-note collapse="true"}
+## What does each function do?
+
+| Function | Role |
+|----------|------|
+| `library(tidyverse)` | Loads ggplot2 and related packages |
+| `glimpse()` | Quick look at rows, columns, and types |
+| `ggplot()` + `aes()` | Starts a figure and maps columns to axes, color, or fill |
+| `geom_histogram()` | Distribution of one continuous variable |
+| `geom_point()` | Relationship between two continuous variables |
+| `geom_boxplot()` | Compare a continuous variable across groups |
+| `theme_minimal()` + `labs()` | Cleans appearance and adds titles/labels |
+
+If you can explain each row in your own words, you have covered the figure-building core of **Coding Assignment 2**.
+:::
+
+## 7. Transfer to Coding Assignment 2
+
+On Canvas you will build figures step by step with **hemoglobin** measurements and **population elevation** data:
+
+1. `library(tidyverse)` and read your dataset
+2. Build a boxplot one layer at a time with `ggplot()`, `geom_boxplot()`, `fill`, `theme_minimal()`, and `labs()`
+
+You practiced the layering here. Coding Activity 3 covers the wrangling steps — filtering, reshaping, and joining — that prepare the table for those plots.
+
+## Keep playing
+
+No grading here. Try swapping geoms, mapping a different column to color, or predicting what a plot will look like before you run it.
+
+```{webr}
+#| envir: visualize_penguins
+ggplot(penguins, aes(x = species, y = bill_length_mm, fill = species)) +
+  geom_boxplot(show.legend = FALSE) +
+  theme_minimal() +
+  labs(title = "Bill length by species", x = NULL, y = "Bill length (mm)")
+```
+
+::: {.callout-tip appearance="simple"}
+**Try this with a partner.** One of you predicts the figure; the other runs the code. Swap roles. Saying your prediction out loud first is one of the fastest ways to learn.
+:::

@@ -68,10 +68,14 @@ website:
           contents:
             - text: "Coding 1 — Run Your First Line of Code"
               href: docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
-            - text: "Coding 2 — Wrangle and Visualize Penguins"
-              href: docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.qmd
-            - text: "Coding 3 — Read, Fix, and Test R Errors"
-              href: docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.qmd
+            - text: "Coding 2 — Visualize Penguins with ggplot2"
+              href: docs/teaching/classes/bild_5-labs/coding-02-visualize-penguins.qmd
+            - text: "Coding 3 — Wrangle Penguins with dplyr"
+              href: docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.qmd
+            - text: "Coding 4 — Read, Fix, and Test R Errors"
+              href: docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.qmd
+            - text: "Coding 5 — Check Assumptions Before a Parametric Test"
+              href: docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.qmd
         - section: "Paper activities"
           contents:
             - text: "Paper 1 — Find a Question, Build a Bibliography"

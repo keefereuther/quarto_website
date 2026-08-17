@@ -1,0 +1,1102 @@
+---
+title: "Check Assumptions Before a Parametric Test"
+subtitle: "Clean data, flag outliers, assess normality, and transform skewed counts — all in your browser"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - tidyverse
+        - palmerpenguins
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run a parametric test like a *t*-test, you need to ask whether your data meet the test's assumptions — especially **normality**. Today you will walk through the assumption-checking pipeline from lecture: handle missing values, remove impossible entries, flag distributional outliers, assess normality with a histogram and Shapiro-Wilk test, and apply a square-root transformation if needed. You will **not** run the *t*-test itself.
+
+The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
+
+## 1. Load the tidyverse
+
+Coding Assignment 3 starts the same way. Run `library(tidyverse)` to load dplyr, ggplot2, and friends. A conflicts message afterward is expected, not an error.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: load_tidyverse
+library()
+```
+
+::: {.hint exercise="load_tidyverse"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?library`: `library(package, ...)` attaches a package so its functions become available. Replace `package` with the name of the collection you need.
+
+Try `?library` in R for the full help page.
+:::
+:::
+
+::: {.solution exercise="load_tidyverse"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+library(tidyverse)
+```
+
+On DataHub and in your graded assignment you will type exactly this.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: load_tidyverse
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Load the tidyverse with `library(tidyverse)`."
+  )
+} else {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Tidyverse loaded. dplyr and ggplot2 are ready."
+  )
+}
+```
+
+## 2. Warm-up — what does "normal enough" look like?
+
+Before working with messy counts, practice on a variable that already looks fairly symmetric. Filter to **Chinstrap** penguins, then make a histogram of `body_mass_g` with `ggplot()` and `geom_histogram()`.
+
+```{webr}
+#| envir: assumptions_lab
+#| setup: true
+#| exercise: warmup_histogram
+library(tidyverse)
+library(palmerpenguins)
+chinstrap <- penguins |>
+  filter(species == "Chinstrap")
+```
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: warmup_histogram
+ggplot(chinstrap, aes(x = body_mass_g)) +
+  
+```
+
+::: {.hint exercise="warmup_histogram"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?filter`: keep rows where a condition is TRUE. From `?ggplot`: add a layer with `+`.
+
+Example:
+
+```r
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram()
+```
+
+Filter to one species, then map body mass to the x-axis and add `geom_histogram()`.
+:::
+:::
+
+::: {.solution exercise="warmup_histogram"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+ggplot(chinstrap, aes(x = body_mass_g)) +
+  geom_histogram()
+```
+
+The distribution looks roughly bell-shaped — a good starting point for a normality check.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: warmup_histogram
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("body_mass_g", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Histogram of Chinstrap body mass — a fairly symmetric distribution."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `ggplot(..., aes(x = body_mass_g)) + geom_histogram()` on Chinstrap penguins."
+  )
+}
+```
+
+## 3. Run Shapiro-Wilk on body mass
+
+Run `shapiro.test()` on the non-missing Chinstrap body-mass values. Save the result as `shapiro_mass` and print it.
+
+::: {.callout-note appearance="simple"}
+## Reading Shapiro-Wilk output
+
+The null hypothesis is **normality**. A **small p-value** (conventionally below 0.05) means the data look **inconsistent with** a normal distribution. A **large p-value** means you do **not** have evidence against normality — not proof that the data are perfectly normal.
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: warmup_shapiro
+shapiro_mass <- 
+  
+```
+
+::: {.hint exercise="warmup_shapiro"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?shapiro.test`: pass a numeric vector directly. Drop missing values first:
+
+```r
+shapiro.test(mtcars$mpg)
+```
+
+Use the body-mass column from `chinstrap`, skipping NAs.
+:::
+:::
+
+::: {.solution exercise="warmup_shapiro"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+shapiro_mass <- shapiro.test(chinstrap$body_mass_g)
+shapiro_mass
+```
+
+You should see p ≈ 0.56 — no evidence against normality for body mass.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: warmup_shapiro
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("shapiro\\.test\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call `shapiro.test()` on Chinstrap body mass."
+  )
+} else if (!exists("shapiro_mass", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `shapiro_mass`."
+  )
+} else {
+  sm <- get("shapiro_mass", envir = .envir_result)
+  if (!is.null(sm$p.value) && sm$p.value > 0.05) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("p = ", signif(sm$p.value, 3), " — no evidence against normality. Good warm-up.")
+    )
+  } else {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "Shapiro-Wilk ran. Compare your p-value to 0.05."
+    )
+  }
+}
+```
+
+## 4. Meet the tick data
+
+Ecologists counted **ticks** on each Chinstrap penguin in our sample. Run the cell below to build `tick_data`, then `glimpse()` it.
+
+```{webr}
+#| envir: assumptions_lab
+#| setup: true
+#| exercise: build_tick_data
+library(tidyverse)
+library(palmerpenguins)
+chinstrap <- penguins |>
+  filter(species == "Chinstrap")
+```
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: build_tick_data
+tick_counts <- c(
+  11, 17, 21, 9, 10, 4, 12, NA, 30, 20, 15, 10, -1, 10, 11, 19, 13, 21,
+  7, 12, 20, 18, 8, 26, 6, 10, 6, 7, 14, 7, NA, 3, 12, 13, 5, 10, 19, 24,
+  10, 14, 14, -3, 8, 17, 16, 7, 14, 2, 9, 10, 10, 13, 12, 16, NA, 15, 33,
+  11, 13, 14, 5, 15, 27, 15, 18, 10, 30, 6
+)
+tick_data <- chinstrap |>
+  mutate(
+    penguin_id = paste0("CS", sprintf("%03d", row_number())),
+    tick_count = tick_counts
+  )
+
+```
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: glimpse_tick_data
+
+```
+
+::: {.callout-note collapse="true"}
+## Practice data vs. graded assignment
+
+The tick counts here are **invented for practice** and attached to real Chinstrap rows. On **Coding Assignment 3** you will read `RodentParasiteLoad.csv` with `read.csv()` — same column shape (`host_id`, `sex`, count column), different biological story (intestinal worms in deer mice).
+:::
+
+::: {.hint exercise="glimpse_tick_data"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?glimpse`: `glimpse(x)` prints rows, columns, and types.
+
+```r
+glimpse(mtcars)
+```
+
+Apply it to the dataset you just built.
+:::
+:::
+
+::: {.solution exercise="glimpse_tick_data"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+glimpse(tick_data)
+```
+
+You should see 68 rows. `tick_count` is `<dbl>` — some values are missing, and two are negative sign errors.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: glimpse_tick_data
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("glimpse\\s*\\(", code) && grepl("tick_data", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "68 rows — tick counts with some missing and impossible values."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call `glimpse(tick_data)`."
+  )
+}
+```
+
+## 5. Mean tick count with missing values
+
+Calculate the mean `tick_count` across all penguins and save it as `mean_raw`. Use `na.rm = TRUE`. Print the result and compare it to a reference mean of **13** ticks per penguin.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: mean_raw
+mean_raw <- 
+  
+```
+
+::: {.hint exercise="mean_raw"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mean`: `mean(x, na.rm = FALSE)` — set `na.rm = TRUE` to skip missing values.
+
+```r
+mean(mtcars$mpg, na.rm = TRUE)
+```
+
+Apply to `tick_data$tick_count`.
+:::
+:::
+
+::: {.solution exercise="mean_raw"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean_raw <- mean(tick_data$tick_count, na.rm = TRUE)
+mean_raw
+```
+
+You should see about 12.9 — close to the reference value of 13.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: mean_raw
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("mean\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `mean()` on `tick_data$tick_count`."
+  )
+} else if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Include `na.rm = TRUE` inside `mean()`."
+  )
+} else if (!exists("mean_raw", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `mean_raw`."
+  )
+} else {
+  mr <- get("mean_raw", envir = .envir_result)
+  if (is.numeric(mr) && length(mr) == 1 && !is.na(mr) && mr > 12 && mr < 14) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("Mean ≈ ", round(mr, 2), " ticks — close to the reference of 13.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Compute `mean_raw <- mean(tick_data$tick_count, na.rm = TRUE)`."
+    )
+  }
+}
+```
+
+## 6. Trim impossible values
+
+**Step 1 — trim impossible values.** Remove rows where `tick_count` is negative (a sign error). **Keep** rows where `tick_count` is missing. Save the result as `tick_clean`.
+
+::: {.callout-note appearance="simple"}
+## `|` means "or"
+
+Inside `filter()`, the vertical bar **`|`** means **"or"**. The condition `is.na(tick_count) | tick_count >= 0` keeps a row if **either** the count is missing **or** it is zero or positive.
+
+Writing `filter(tick_count >= 0)` alone silently **drops the missing rows** — because `NA >= 0` evaluates to `NA`, not `TRUE`.
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: trim_impossible
+tick_clean <- tick_data |>
+  
+```
+
+::: {.hint exercise="trim_impossible"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?filter`: keep rows where conditions are TRUE.
+
+```r
+mtcars |>
+  filter(is.na(mpg) | mpg >= 0)
+```
+
+Keep missing tick counts **or** non-negative counts.
+:::
+:::
+
+::: {.solution exercise="trim_impossible"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+tick_clean <- tick_data |>
+  filter(is.na(tick_count) | tick_count >= 0)
+```
+
+66 rows — two negative sign errors removed, three missing values kept.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: trim_impossible
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("tick_clean", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the filtered table as `tick_clean`."
+  )
+} else {
+  tc <- get("tick_clean", envir = .envir_result)
+  n <- nrow(tc)
+  n_na <- sum(is.na(tc$tick_count))
+  n_neg <- sum(!is.na(tc$tick_count) & tc$tick_count < 0)
+  used_or <- grepl("is\\.na\\s*\\(\\s*tick_count\\s*\\)", code) && grepl("\\|", code)
+  if (n == 66 && n_na == 3 && n_neg == 0) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "66 rows — negatives gone, missing values kept."
+    )
+  } else if (n == 63 && n_na == 0) {
+    list(
+      correct = FALSE,
+      type = "error",
+      message = "`filter(tick_count >= 0)` alone drops missing rows. Use `is.na(tick_count) | tick_count >= 0`."
+    )
+  } else if (!used_or) {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Use `filter(is.na(tick_count) | tick_count >= 0)` so missing rows stay."
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Filter with `is.na(tick_count) | tick_count >= 0` and save as `tick_clean`."
+    )
+  }
+}
+```
+
+## 7. Flag distributional outliers
+
+**Step 2 — flag outliers.** Using only the non-missing tick counts in `tick_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Do not remove any rows.
+
+```{webr}
+#| envir: assumptions_lab
+#| setup: true
+#| exercise: upper_fence
+library(tidyverse)
+library(palmerpenguins)
+chinstrap <- penguins |> filter(species == "Chinstrap")
+tick_counts <- c(
+  11, 17, 21, 9, 10, 4, 12, NA, 30, 20, 15, 10, -1, 10, 11, 19, 13, 21,
+  7, 12, 20, 18, 8, 26, 6, 10, 6, 7, 14, 7, NA, 3, 12, 13, 5, 10, 19, 24,
+  10, 14, 14, -3, 8, 17, 16, 7, 14, 2, 9, 10, 10, 13, 12, 16, NA, 15, 33,
+  11, 13, 14, 5, 15, 27, 15, 18, 10, 30, 6
+)
+tick_data <- chinstrap |>
+  mutate(penguin_id = paste0("CS", sprintf("%03d", row_number())), tick_count = tick_counts)
+tick_clean <- tick_data |>
+  filter(is.na(tick_count) | tick_count >= 0)
+```
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: upper_fence
+upper_fence <- 
+  
+```
+
+::: {.hint exercise="upper_fence"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?quantile`: `quantile(x, probs, na.rm = FALSE)`. From `?IQR`: `IQR(x, na.rm = FALSE)`.
+
+```r
+q3 <- quantile(mtcars$mpg, 0.75, na.rm = TRUE)
+fence <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
+```
+
+Use the 75th percentile and IQR of non-missing tick counts.
+:::
+:::
+
+::: {.solution exercise="upper_fence"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+upper_fence <- quantile(tick_clean$tick_count, 0.75, na.rm = TRUE) +
+  1.5 * IQR(tick_clean$tick_count, na.rm = TRUE)
+upper_fence
+```
+
+The upper fence is 27 — three penguins have tick counts above it.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: upper_fence
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `upper_fence`."
+  )
+} else {
+  uf <- as.numeric(get("upper_fence", envir = .envir_result))
+  has_q <- grepl("quantile\\s*\\(", code)
+  has_iqr <- grepl("IQR\\s*\\(", code)
+  if (length(uf) == 1 && abs(uf - 27) < 0.5 && has_q && has_iqr) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "Upper fence = 27. Three counts sit above it — flag them, do not delete them yet."
+    )
+  } else if (has_q && has_iqr) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("Upper fence ≈ ", round(uf, 1), ". Check how many counts exceed it.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Use `quantile(..., 0.75, na.rm = TRUE) + 1.5 * IQR(..., na.rm = TRUE)`."
+    )
+  }
+}
+```
+
+## 8. Histogram on the raw scale
+
+**Step 3 — assess normality.** Make a histogram of the non-missing tick counts in `tick_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: hist_raw
+hist_raw <- ggplot(tick_clean, aes(x = tick_count)) +
+  
+```
+
+::: {.hint exercise="hist_raw"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?ggplot`: add a layer with `+`.
+
+```r
+hist_raw <- ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram()
+hist_raw
+```
+
+Map `tick_count` to the x-axis and assign the whole plot to `hist_raw`.
+:::
+:::
+
+::: {.solution exercise="hist_raw"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+hist_raw <- ggplot(tick_clean, aes(x = tick_count)) +
+  geom_histogram()
+hist_raw
+```
+
+The distribution is right-skewed — a long tail toward high tick counts.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: hist_raw
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("hist_raw", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Raw histogram saved as `hist_raw` — notice the right skew."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Assign `hist_raw <- ggplot(tick_clean, aes(x = tick_count)) + geom_histogram()` and display it."
+  )
+}
+```
+
+## 9. Shapiro-Wilk on the raw scale
+
+Run `shapiro.test()` on the non-missing tick counts in `tick_clean`. Save the result as `shapiro_raw` and print it.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: shapiro_raw
+shapiro_raw <- 
+  
+```
+
+::: {.hint exercise="shapiro_raw"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Pass the tick-count vector directly — Shapiro-Wilk ignores NAs if you subset first, or you can pass the column (NAs are dropped automatically in recent R for this test on vectors with NA... actually shapiro.test doesn't accept NA - need to drop them).
+
+```r
+shapiro.test(mtcars$mpg)
+```
+
+Use non-missing values from `tick_clean$tick_count`.
+:::
+:::
+
+::: {.solution exercise="shapiro_raw"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+shapiro_raw <- shapiro.test(tick_clean$tick_count)
+shapiro_raw
+```
+
+p ≈ 0.004 — strong evidence against normality on the raw scale.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: shapiro_raw
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("shapiro\\.test\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call `shapiro.test()` on tick counts."
+  )
+} else if (!exists("shapiro_raw", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `shapiro_raw`."
+  )
+} else {
+  sr <- get("shapiro_raw", envir = .envir_result)
+  if (!is.null(sr$p.value) && sr$p.value < 0.05) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("p = ", signif(sr$p.value, 3), " — raw counts fail the normality check.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Run `shapiro_raw <- shapiro.test(tick_clean$tick_count)` on non-missing values."
+    )
+  }
+}
+```
+
+## 10. Square-root transform
+
+The raw counts are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_ticks` equal to the square root of `tick_count`. Save the result as `tick_transformed` and display the first few rows with `head()`.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: mutate_sqrt
+tick_transformed <- tick_clean |>
+  
+```
+
+::: {.hint exercise="mutate_sqrt"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mutate`: `mutate(.data, ...)` adds or changes columns.
+
+```r
+mtcars |>
+  mutate(sqrt_mpg = sqrt(mpg))
+```
+
+Add `sqrt_ticks = sqrt(tick_count)` to `tick_clean`.
+:::
+:::
+
+::: {.solution exercise="mutate_sqrt"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+tick_transformed <- tick_clean |>
+  mutate(sqrt_ticks = sqrt(tick_count))
+head(tick_transformed)
+```
+
+Missing tick counts stay missing; negative rows were already removed.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: mutate_sqrt
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("tick_transformed", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `tick_transformed`."
+  )
+} else {
+  tt <- get("tick_transformed", envir = .envir_result)
+  if (is.data.frame(tt) && "sqrt_ticks" %in% names(tt)) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "New column `sqrt_ticks` added — ready to re-check normality."
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Use `mutate(sqrt_ticks = sqrt(tick_count))` inside the pipe."
+    )
+  }
+}
+```
+
+## 11. Histogram on the transformed scale
+
+Make a histogram of `sqrt_ticks` from `tick_transformed`, using only non-missing values. Save the plot as `hist_sqrt` and display it.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: hist_sqrt
+hist_sqrt <- ggplot(tick_transformed, aes(x = sqrt_ticks)) +
+  
+```
+
+::: {.hint exercise="hist_sqrt"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Same pattern as the raw histogram — map the transformed column to `x`.
+
+```r
+hist_sqrt <- ggplot(mtcars, aes(x = sqrt(mpg))) +
+  geom_histogram()
+hist_sqrt
+```
+:::
+:::
+
+::: {.solution exercise="hist_sqrt"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+hist_sqrt <- ggplot(tick_transformed, aes(x = sqrt_ticks)) +
+  geom_histogram()
+hist_sqrt
+```
+
+The distribution looks much more symmetric after the square-root transform.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: hist_sqrt
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("sqrt_ticks", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Transformed histogram — much more bell-shaped than the raw counts."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Plot `sqrt_ticks` with `ggplot(...) + geom_histogram()` and save as `hist_sqrt`."
+  )
+}
+```
+
+## 12. Shapiro-Wilk on the transformed scale
+
+Run `shapiro.test()` on the non-missing `sqrt_ticks` values in `tick_transformed`. Save the result as `shapiro_sqrt` and print it.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: shapiro_sqrt
+shapiro_sqrt <- 
+  
+```
+
+::: {.hint exercise="shapiro_sqrt"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Same function as before — pass the transformed column.
+
+```r
+shapiro_sqrt <- shapiro.test(tick_transformed$sqrt_ticks)
+shapiro_sqrt
+```
+:::
+:::
+
+::: {.solution exercise="shapiro_sqrt"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+shapiro_sqrt <- shapiro.test(tick_transformed$sqrt_ticks)
+shapiro_sqrt
+```
+
+p ≈ 0.76 — no evidence against normality after transformation.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: shapiro_sqrt
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("shapiro_sqrt", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `shapiro_sqrt`."
+  )
+} else {
+  ss <- get("shapiro_sqrt", envir = .envir_result)
+  if (!is.null(ss$p.value) && ss$p.value > 0.05) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("p = ", signif(ss$p.value, 3), " — transformed counts look normal enough.")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Run `shapiro_sqrt <- shapiro.test(tick_transformed$sqrt_ticks)`."
+    )
+  }
+}
+```
+
+## 13. Make the call
+
+Based on your histogram and Shapiro-Wilk result for the transformed data, are the square-root tick counts normally distributed enough for a parametric test? Assign `sqrt_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: sqrt_is_normal
+sqrt_is_normal <- 
+  
+```
+
+::: {.hint exercise="sqrt_is_normal"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Look at `shapiro_sqrt$p.value`. Is it above or below 0.05?
+
+```r
+sqrt_is_normal <- TRUE
+```
+:::
+:::
+
+::: {.solution exercise="sqrt_is_normal"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+sqrt_is_normal <- TRUE
+```
+
+p ≈ 0.76 — no evidence against normality on the transformed scale.
+:::
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: sqrt_is_normal
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("sqrt_is_normal\\s*<-\\s*TRUE", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "TRUE — the square-root transform brought the data in line with the normality assumption."
+  )
+} else if (grepl("sqrt_is_normal\\s*<-\\s*FALSE", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Re-check `shapiro_sqrt$p.value` — on the sqrt scale, p is well above 0.05."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Assign `sqrt_is_normal <- TRUE` or `FALSE` based on your Shapiro-Wilk result."
+  )
+}
+```
+
+## 14. Impossible vs. extreme
+
+::: {.callout-note collapse="true"}
+## Why keep the high tick counts?
+
+Three penguins had tick counts **above the upper fence** (30, 33, 30), yet we kept them in the dataset. Those values are **extreme but biologically plausible** — heavily parasitized hosts happen in nature. They are not data-entry errors like the **negative** counts we removed in step 1.
+
+The square-root transformation **compressed the right tail** of the skewed raw counts, making the distribution much more symmetric and bringing the Shapiro-Wilk test in line with the normality assumption — without throwing away real observations.
+
+On **Coding Assignment 3** you will explain this same distinction in prose for worm counts in deer mice.
+:::
+
+::: {.callout-tip appearance="simple"}
+**Try this with a partner.** One of you explains why negative counts get removed but high counts stay; the other explains what the square-root transform did to the histogram shape. Swap roles.
+:::
+
+## 15. Recap — verbs you practiced
+
+::: {.callout-note collapse="true"}
+## What does each function do?
+
+| Function | Role |
+|----------|------|
+| `library(tidyverse)` | Loads dplyr, ggplot2, and related packages |
+| `glimpse()` | Quick look at rows, columns, and types |
+| `mean(..., na.rm = TRUE)` | Average of a numeric column, skipping missing values |
+| `filter()` | Keeps rows matching a condition (`is.na(...) \| ... >= 0`) |
+| `quantile(..., 0.75, na.rm = TRUE)` | 75th percentile for the IQR fence |
+| `IQR(..., na.rm = TRUE)` | Interquartile range for the 1.5×IQR rule |
+| `ggplot()` + `geom_histogram()` | Visual check of distribution shape |
+| `shapiro.test()` | Formal test of normality (H₀: data are normal) |
+| `mutate(sqrt_ticks = sqrt(...))` | Square-root transformation of a skewed count |
+
+If you can explain each row in your own words, you have covered the core of **Coding Assignment 3**.
+:::
+
+## 16. Transfer to Coding Assignment 3
+
+On Canvas you will repeat this pipeline with **deer-mouse parasite** data from `RodentParasiteLoad.csv`:
+
+1. `library(tidyverse)` and `read.csv("RodentParasiteLoad.csv")` → `parasite_data`
+2. `mean(..., na.rm = TRUE)` → `mean_raw`, compared to a reference mean of 12 worms
+3. `filter(is.na(worm_count) | worm_count >= 0)` → `parasite_clean`
+4. Upper fence with `quantile()` and `IQR()` → `upper_fence`
+5. Raw histogram → `hist_raw`; raw Shapiro-Wilk → `shapiro_raw`
+6. `mutate(sqrt_worms = sqrt(worm_count))` → `parasite_transformed`
+7. Transformed histogram → `hist_sqrt`; transformed Shapiro-Wilk → `shapiro_sqrt`
+8. Assign `sqrt_is_normal` and write a short prose answer about retaining outliers
+
+Same functions, different biological story — intestinal nematodes instead of penguin ticks. You already practiced every step here.
+
+## Keep playing
+
+Compare two variables side by side: Chinstrap **flipper length** (roughly normal) vs. **bill depth** (often skewed). Run `shapiro.test()` on each and see which would need a transform before a parametric test.
+
+```{webr}
+#| envir: assumptions_lab
+library(tidyverse)
+library(palmerpenguins)
+chin <- penguins |> filter(species == "Chinstrap")
+shapiro.test(chin$flipper_length_mm)
+shapiro.test(chin$bill_depth_mm)
+```
+
+::: {.callout-tip appearance="simple"}
+Flipper length usually passes; bill depth often fails. Predict which will have the smaller p-value before you run the second line.
+:::

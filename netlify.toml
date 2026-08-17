@@ -79,12 +79,22 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/05-wrangle-and-visualize-penguins.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/06-read-fix-and-test-r-errors.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
   status = 301
 
 [[redirects]]

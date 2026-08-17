@@ -1,6 +1,6 @@
 ---
-title: "Wrangle and Visualize Penguins"
-subtitle: "Filter rows, reshape tables, join metadata, and build layered ggplot2 figures — all in your browser"
+title: "Wrangle Penguins with dplyr"
+subtitle: "Filter rows, chain steps with pipes, reshape tables, and join metadata — all in your browser"
 format:
   live-html:
     theme:
@@ -82,28 +82,16 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 1. You already know **objects** and **functions**; today you will **reshape tables** with dplyr and tidyr, then **build figures in layers** with ggplot2.
+Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activities 1 and 2. You already know **ggplot2** from Activity 2; today you will **reshape tables** with dplyr and tidyr — filter rows, chain steps with pipes, and join metadata.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
-::: {.callout-note}
-## The grammar of graphs (preview)
-
-Every ggplot2 figure has three essential pieces:
-
-1. **data** — the dataset (for example `penguins`)
-2. **aes** — aesthetic mappings: which column goes on which axis, or which color
-3. **geom** — the geometric object: points, boxes, bars, histogram bins
-
-You add layers with `+`. We will practice all three today.
-:::
-
 ## 1. Load the tidyverse
 
-Coding Assignment 2 starts the same way. Run `library(tidyverse)` to load dplyr, ggplot2, tidyr, and friends. A conflicts message afterward is expected, not an error.
+Coding Assignment 2 starts the same way. Run `library(tidyverse)` to load dplyr, tidyr, and friends. A conflicts message afterward is expected, not an error.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: load_tidyverse
 library()
 ```
@@ -112,7 +100,7 @@ library()
 ::: {.callout-note collapse="false"}
 ## Hint
 
-From `?library`: `library(package, ...)` attaches a package so its functions become available. Replace `package` with the name of the collection you need (dplyr, ggplot2, tidyr, and others ship together in one bundle).
+From `?library`: `library(package, ...)` attaches a package so its functions become available. Replace `package` with the name of the collection you need (dplyr, tidyr, and others ship together in one bundle).
 
 Try `?library` in R for the full help page.
 :::
@@ -131,7 +119,7 @@ On DataHub and in your graded assignment you will type exactly this. The tidyver
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: load_tidyverse
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -145,17 +133,17 @@ if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
   list(
     correct = TRUE,
     type = "success",
-    message = "Tidyverse loaded. dplyr, ggplot2, and tidyr are ready to use."
+    message = "Tidyverse loaded. dplyr and tidyr are ready to use."
   )
 }
 ```
 
 ## 2. Glimpse the penguins
 
-`glimpse()` is a tidyverse way to inspect a dataset: rows, columns, and column types. Run it on `penguins` from the `palmerpenguins` package (loaded automatically with tidyverse in webR).
+`glimpse()` is a tidyverse way to inspect a dataset: rows, columns, and column types. Run it on `penguins` from the `palmerpenguins` package.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| setup: true
 #| exercise: glimpse_penguins
 library(tidyverse)
@@ -163,7 +151,7 @@ library(palmerpenguins)
 ```
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: glimpse_penguins
 
 ```
@@ -197,7 +185,7 @@ You should see 344 rows and 8 columns. `species` and `island` are `<fct>` (categ
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: glimpse_penguins
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -255,7 +243,7 @@ glimpse(filter(penguins, species == "Adelie"))
 Your version should use `|>` twice.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: first_pipe
 penguins |>
   
@@ -292,7 +280,7 @@ Read it top to bottom: "Take `penguins`, filter to Adelie, then glimpse." The pi
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: first_pipe
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -332,7 +320,7 @@ The exclamation mark **`!` flips a yes/no test backwards**. The function `is.na(
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: filter_na
 penguins_clean <- penguins |>
   
@@ -369,7 +357,7 @@ You should have 342 rows — two fewer than the original 344.
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: filter_na
 #| check: true
 if (!exists("penguins_clean", envir = .envir_result, inherits = FALSE)) {
@@ -386,7 +374,7 @@ if (!exists("penguins_clean", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "342 rows, no missing body mass — ready for summaries and plots."
+      message = "342 rows, no missing body mass — ready for summaries and joins."
     )
   } else if (no_na && n < 344) {
     list(
@@ -409,7 +397,7 @@ if (!exists("penguins_clean", envir = .envir_result, inherits = FALSE)) {
 Compute the mean body mass of `penguins_clean`, skipping any remaining NAs with `na.rm = TRUE`. Use a pipe starting from `penguins_clean`.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| setup: true
 #| exercise: mean_pipe
 library(tidyverse)
@@ -419,7 +407,7 @@ penguins_clean <- penguins |>
 ```
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: mean_pipe
 penguins_clean |>
   
@@ -458,7 +446,7 @@ You should see about 4,002 g — the average weight across penguins with a recor
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: mean_pipe
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -514,7 +502,7 @@ On your graded assignment, the same wide layout arrives as a CSV; you will use `
 Run this to create `island_wide`:
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: create_island_wide
 island_wide <- data.frame(
   Biscoe = 120,
@@ -529,7 +517,7 @@ island_wide
 Use `pivot_longer()` to turn the wide table into a **tidy** table: one row per island, with columns `island` and `camp_elevation_m`. Save as `island_tidy` and print it.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| setup: true
 #| exercise: pivot_longer
 library(tidyverse)
@@ -541,7 +529,7 @@ island_wide <- data.frame(
 ```
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: pivot_longer
 island_tidy <- island_wide |>
   
@@ -593,7 +581,7 @@ Three rows — one per island — with elevations in a column where R can match 
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: pivot_longer
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -636,7 +624,7 @@ if (!grepl("pivot_longer\\s*\\(", code)) {
 Use `left_join()` to add `camp_elevation_m` to `penguins_clean`. Both tables share an `island` column — that is the key. Save the result as `penguins_joined`. Row count should stay 342.
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| setup: true
 #| exercise: left_join
 library(tidyverse)
@@ -657,7 +645,7 @@ island_tidy <- island_wide |>
 ```
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: left_join
 penguins_joined <- penguins_clean |>
   
@@ -700,7 +688,7 @@ nrow(penguins_joined)
 :::
 
 ```{webr}
-#| envir: wrangle_viz
+#| envir: wrangle_penguins
 #| exercise: left_join
 #| check: true
 code <- paste(.user_code, collapse = "\n")
@@ -740,277 +728,14 @@ if (!grepl("left_join\\s*\\(", code)) {
 }
 ```
 
-## 9. Histogram with ggplot2
-
-Start a figure with `ggplot()`, map `body_mass_g` to the x-axis, and add `geom_histogram()`. Use `penguins_joined` (or `penguins_clean`). Add a title with `labs(title = "...")`.
-
-```{webr}
-#| envir: wrangle_viz
-#| setup: true
-#| exercise: ggplot_histogram
-library(tidyverse)
-library(palmerpenguins)
-penguins_clean <- penguins |>
-  filter(!is.na(body_mass_g))
-island_tidy <- data.frame(
-  Biscoe = 120,
-  Dream = 85,
-  Torgersen = 45
-) |>
-  pivot_longer(everything(), names_to = "island", values_to = "camp_elevation_m")
-penguins_joined <- penguins_clean |>
-  left_join(island_tidy, by = "island")
-```
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_histogram
-ggplot(penguins_joined, aes(x = body_mass_g)) +
-  
-```
-
-::: {.hint exercise="ggplot_histogram"}
-::: {.callout-note collapse="false"}
-## Hint
-
-From `?ggplot`: `ggplot(data = NULL, mapping = aes(), ...)` — then add a layer with `+`.
-
-From `?geom_histogram`: bins one continuous variable.
-
-Example:
-
-```r
-ggplot(mtcars, aes(x = mpg)) +
-  geom_histogram() +
-  labs(title = "Car fuel economy")
-```
-
-Map the x-axis to one continuous column from your joined penguin table and add your own title.
-:::
-:::
-
-::: {.solution exercise="ggplot_histogram"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-ggplot(penguins_joined, aes(x = body_mass_g)) +
-  geom_histogram() +
-  labs(title = "Penguin body mass")
-```
-
-A histogram shows how **one continuous variable** is distributed — how many penguins fall in each weight range.
-:::
-:::
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_histogram
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-has_ggplot <- grepl("ggplot\\s*\\(", code)
-has_hist <- grepl("geom_histogram\\s*\\(", code)
-has_labs <- grepl("labs\\s*\\(", code)
-if (has_ggplot && has_hist && has_labs) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Histogram with a title — distribution of one continuous variable."
-  )
-} else if (has_ggplot && has_hist) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Add `labs(title = \"...\")` with your own title."
-  )
-} else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `ggplot(...) + geom_histogram() + labs(title = \"...\")`."
-  )
-}
-```
-
-## 10. Scatterplot — two continuous variables
-
-Build a **scatterplot**: flipper length on the x-axis, body mass on the y-axis. Map `species` to **color** so each species gets its own hue. Use `geom_point()`.
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_scatter
-ggplot(penguins_joined, aes(
-  x = flipper_length_mm,
-  y = body_mass_g,
-  color = species
-)) +
-  
-```
-
-::: {.hint exercise="ggplot_scatter"}
-::: {.callout-note collapse="false"}
-## Hint
-
-From `?geom_point`: scatterplot of two continuous variables. Map a third variable to `color` inside `aes()`.
-
-Example:
-
-```r
-ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
-  geom_point()
-```
-
-Use flipper length and body mass on the axes and map species to color on the penguin data.
-:::
-:::
-
-::: {.solution exercise="ggplot_scatter"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-ggplot(penguins_joined, aes(
-  x = flipper_length_mm,
-  y = body_mass_g,
-  color = species
-)) +
-  geom_point()
-```
-
-Scatterplots relate **two continuous measurements**. Color adds a **third variable** — here, species — so you can see clusters.
-:::
-:::
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_scatter
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_point\\s*\\(", code) && grepl("color\\s*=\\s*species", code)) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Scatterplot with species as color — two continuous vars plus a grouping."
-  )
-} else if (grepl("geom_point\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Map `color = species` inside `aes()`."
-  )
-} else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `geom_point()` with flipper length, body mass, and `color = species`."
-  )
-}
-```
-
-## 11. Boxplot — compare groups (Assignment 2 pattern)
-
-Coding Assignment 2 builds a boxplot **one layer at a time**. Here is the full pattern in one exercise:
-
-- Put **island** on the x-axis, **body_mass_g** on the y-axis
-- Use `reorder(island, camp_elevation_m)` so islands sort from lowest to highest elevation
-- Add `geom_boxplot()` with `fill` mapped to island
-- Add `theme_minimal()` and readable `labs()`
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_boxplot
-ggplot(penguins_joined, aes(
-  x = reorder(island, camp_elevation_m),
-  y = body_mass_g,
-  fill = island
-)) +
-  
-```
-
-::: {.hint exercise="ggplot_boxplot"}
-::: {.callout-note collapse="false"}
-## Hint
-
-From `?geom_boxplot`: compare a numeric variable across groups. From `?reorder`: `reorder(x, X)` sorts groups by a numeric column.
-
-Example pattern:
-
-```r
-ggplot(mtcars, aes(
-  x = reorder(factor(cyl), mpg, FUN = median),
-  y = mpg,
-  fill = factor(cyl)
-)) +
-  geom_boxplot() +
-  theme_minimal() +
-  labs(title = "MPG by cylinder count", x = "Cylinders", y = "MPG")
-```
-
-Apply the same layering — boxplot, fill, `theme_minimal()`, `labs()` — to islands and body mass on your joined table.
-:::
-:::
-
-::: {.solution exercise="ggplot_boxplot"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-ggplot(penguins_joined, aes(
-  x = reorder(island, camp_elevation_m),
-  y = body_mass_g,
-  fill = island
-)) +
-  geom_boxplot() +
-  theme_minimal() +
-  labs(
-    title = "Body mass by island",
-    x = "Island (low to high elevation)",
-    y = "Body mass (g)"
-  )
-```
-
-Boxplots compare a **continuous variable** across **groups**. `reorder()` lines groups up by elevation — the same trick Assignment 2 uses with population and elevation.
-:::
-:::
-
-```{webr}
-#| envir: wrangle_viz
-#| exercise: ggplot_boxplot
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-has_box <- grepl("geom_boxplot\\s*\\(", code)
-has_reorder <- grepl("reorder\\s*\\(", code)
-has_theme <- grepl("theme_minimal\\s*\\(", code)
-has_labs <- grepl("labs\\s*\\(", code)
-if (has_box && has_reorder && has_theme && has_labs) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Layered boxplot with reorder, fill, theme, and labels — Assignment 2 ready."
-  )
-} else if (has_box && has_reorder) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Add `theme_minimal()` and `labs(title = ..., x = ..., y = ...)`."
-  )
-} else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Include `geom_boxplot()`, `reorder(island, camp_elevation_m)`, `theme_minimal()`, and `labs()`."
-  )
-}
-```
-
-## 12. Recap — verbs you practiced
+## 9. Recap — verbs you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
 
 | Function | Role |
 |----------|------|
-| `library(tidyverse)` | Loads dplyr, ggplot2, tidyr, and related packages |
+| `library(tidyverse)` | Loads dplyr, tidyr, and related packages |
 | `glimpse()` | Quick look at rows, columns, and types |
 | <code>|></code> | Passes data from one step to the next |
 | `filter()` | Keeps rows that match a condition (with `==` or `!is.na()`) |
@@ -1018,41 +743,36 @@ if (has_box && has_reorder && has_theme && has_labs) {
 | `data.frame()` | Builds a wide table in memory — island names as column headings |
 | `pivot_longer()` | Turns wide columns into tidy rows |
 | `left_join()` | Adds columns from a second table by a shared key |
-| `ggplot()` + `aes()` | Starts a figure and maps columns to axes, color, or fill |
-| `geom_histogram()` | Distribution of one continuous variable |
-| `geom_point()` | Relationship between two continuous variables |
-| `geom_boxplot()` | Compare a continuous variable across groups |
-| `reorder()` | Sorts groups by a numeric variable (e.g. elevation) |
-| `theme_minimal()` + `labs()` | Cleans appearance and adds titles/labels |
 
 On **Coding Assignment 2** you will also use `read.csv()` to load the hemoglobin and elevation files from disk — same workflow, but the wide table arrives as a file instead of a `data.frame()` you type yourself.
 
-If you can explain each row in your own words, you have covered the core of **Coding Assignment 2**.
+If you can explain each row in your own words, you have covered the wrangling core of **Coding Assignment 2**.
 :::
 
-## 13. Transfer to Coding Assignment 2
+## 10. Transfer to Coding Assignment 2
 
 On Canvas you will repeat this workflow with **hemoglobin** measurements and **population elevation** data:
 
 1. `library(tidyverse)` and read `HumanHemoglobinElevation.csv`
 2. `glimpse()`, `filter(!is.na(...))`, and `mean(..., na.rm = TRUE)`
 3. Read `PopulationElevation.csv` (wide layout), `pivot_longer()`, then `left_join()`
-4. Build a boxplot step by step with `ggplot()`, `geom_boxplot()`, `fill`, `theme_minimal()`, and `labs()`
 
-Same functions, different biological story — altitude adaptation instead of penguin islands. You already practiced every step here.
+Same functions, different biological story — altitude adaptation instead of penguin islands. You already practiced every wrangling step here.
+
+The assignment also asks you to build a boxplot with `reorder()` so groups sort by elevation. You learned ggplot layering in **Coding Activity 2**; on Canvas you combine that with the joined table you prepare here.
 
 ## Keep playing
 
-No grading here. Try swapping geoms, filtering to one species first, or predicting what a plot will look like before you run it.
+No grading here. Try filtering to one species, chaining another summary through a pipe, or predicting how many rows a filter will leave before you run it.
 
 ```{webr}
-#| envir: wrangle_viz
-ggplot(penguins_joined, aes(x = species, y = bill_length_mm, fill = species)) +
-  geom_boxplot(show.legend = FALSE) +
-  theme_minimal() +
-  labs(title = "Bill length by species", x = NULL, y = "Bill length (mm)")
+#| envir: wrangle_penguins
+penguins |>
+  filter(species == "Gentoo") |>
+  pull(body_mass_g) |>
+  mean(na.rm = TRUE)
 ```
 
 ::: {.callout-tip appearance="simple"}
-**Try this with a partner.** One of you predicts the figure; the other runs the code. Swap roles. Saying your prediction out loud first is one of the fastest ways to learn.
+**Try this with a partner.** One of you predicts the average Gentoo body mass; the other runs the pipe. Swap roles. Saying your prediction out loud first is one of the fastest ways to learn.
 :::

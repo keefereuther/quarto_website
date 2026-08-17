@@ -36,8 +36,10 @@ Activities run in your browser or in the PDF annotator — no installs required 
 ### Coding activities
 
 1. [Run Your First Line of Code](bild_5-labs/coding-01-run-your-first-line-of-code.qmd)
-2. [Wrangle and Visualize Penguins](bild_5-labs/coding-02-wrangle-and-visualize-penguins.qmd)
-3. [Read, Fix, and Test R Errors](bild_5-labs/coding-03-read-fix-and-test-r-errors.qmd)
+2. [Visualize Penguins with ggplot2](bild_5-labs/coding-02-visualize-penguins.qmd)
+3. [Wrangle Penguins with dplyr](bild_5-labs/coding-03-wrangle-penguins.qmd)
+4. [Read, Fix, and Test R Errors](bild_5-labs/coding-04-read-fix-and-test-r-errors.qmd)
+5. [Check Assumptions Before a Parametric Test](bild_5-labs/coding-05-check-assumptions.qmd)
 
 ### Paper activities
 

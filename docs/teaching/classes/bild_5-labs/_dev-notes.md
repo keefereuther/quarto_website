@@ -39,7 +39,9 @@ Use track prefix, zero-padded number, and kebab-case slug:
 ```
 docs/teaching/classes/bild_5-labs/
   coding-01-run-your-first-line-of-code.qmd
-  coding-02-wrangle-and-visualize-penguins.qmd
+  coding-02-visualize-penguins.qmd
+  coding-03-wrangle-penguins.qmd
+  coding-05-check-assumptions.qmd
   paper-01-find-a-question-build-a-bibliography.qmd
   paper-02-annotate-bramante-2026.qmd
 ```
@@ -166,8 +168,10 @@ Never run `quarto publish` — Netlify deploys on git push.
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
 - Coding 1: `/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html`
-- Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html`
-- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html`
+- Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-visualize-penguins.html`
+- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html`
+- Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html`
+- Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.html`
 - Paper 1: `/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html`
 - Paper 2: `/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html`
 - Paper 3: `/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html`
