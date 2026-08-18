@@ -86,21 +86,19 @@ Welcome back. Everything on this page runs real R in your browser — same setup
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
-This pipeline prepares you for parametric *t*-tests. **Coding Assignment 3** uses it for a **one-sample** test against a reference mean; the roadmap below is scoped to **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). The data-prep steps are the same — only the final comparison differs. Paired, Student's equal-variance two-sample, linear regression, and ANOVA need different checks — do not use this flowchart for those tests.
+This pipeline prepares you for parametric *t*-tests. **Coding Assignment 3** uses it for a **one-sample** test against a reference mean; the steps below also apply before **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). The data-prep steps are the same — only the final comparison differs. Paired, Student's equal-variance two-sample, linear regression, and ANOVA need different checks.
 
-```{mermaid}
-flowchart TD
-  load[Load and inspect data] --> step1["Step 1: remove impossible values, keep missing"]
-  step1 --> naRm["Summaries use na.rm = TRUE"]
-  naRm --> step2["Step 2: flag IQR outliers — do not remove yet"]
-  step2 --> step3["Step 3: histogram + Shapiro-Wilk"]
-  step3 --> transform{Transform needed?}
-  transform -->|yes| recheck[Repeat histogram + Shapiro on new scale]
-  transform -->|no| step4
-  recheck --> step4["Step 4: re-flag outliers on analysis scale"]
-  step4 --> decide[Decide whether to remove flagged points]
-  decide --> ttest["Run Welch's t-test — not in this activity"]
-```
+**What you will do on this page:**
+
+1. Load and inspect the data
+2. **Step 1:** Remove impossible values; keep missing (`filter` + `is.na()`)
+3. Use `na.rm = TRUE` in summaries (mean, quantile, IQR, Shapiro)
+4. **Step 2:** Flag distributional outliers (1.5 × IQR) — do not remove yet
+5. **Step 3:** Assess normality (`ggplot` histogram + `shapiro.test`)
+6. Transform if needed; repeat histogram + Shapiro on the transformed scale
+7. **Step 4:** Re-flag outliers on the scale you will analyze
+8. Decide whether to remove flagged outliers
+9. Run Welch's *t*-test *(not done in this activity)*
 
 ::: {.callout-note collapse="true"}
 ## What this checklist does — and does not do
