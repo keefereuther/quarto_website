@@ -82,11 +82,11 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run a *t*-test, you inspect your data: fix clear errors, look at shape and extremes, and decide whether a transform helps. You will **not** run the *t*-test itself.
+Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run **Welch's *t*-test**, you inspect your data: fix clear errors, look at shape and extremes, and decide whether a transform helps. You will **not** run the test itself.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
-This roadmap is for **Student's *t*-tests** (one-sample, paired, or two independent samples). Linear regression and ANOVA need different checks — do not use this flowchart for those tests.
+This roadmap is for **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). One-sample, paired, Student's equal-variance, linear regression, and ANOVA need different checks — do not use this flowchart for those tests.
 
 ```{mermaid}
 flowchart TD
@@ -99,18 +99,18 @@ flowchart TD
   transform -->|no| step4
   recheck --> step4["Step 4: re-flag outliers on analysis scale"]
   step4 --> decide[Decide whether to remove flagged points]
-  decide --> ttest[Run t-test — not in this activity]
+  decide --> ttest["Run Welch's t-test — not in this activity"]
 ```
 
 ::: {.callout-note collapse="true"}
 ## What this checklist does — and does not do
 
-This workflow helps you **explore** data before a parametric test — it does not certify that a *t*-test is valid.
+This workflow helps you **explore** data before a parametric test — it does not certify that Welch's *t*-test is valid.
 
-- **Shapiro-Wilk:** A small p-value means "looks non-normal in this sample," not "you must abandon the *t*-test." A large p-value is **not** proof of normality. With large *n*, the *t*-test on means is often robust to mild skew.
+- **Shapiro-Wilk:** A small p-value means "looks non-normal in this sample," not "you must abandon Welch's *t*-test." A large p-value is **not** proof of normality. With moderate *n* per group, Welch's *t*-test is often robust to mild skew.
 - **IQR fences:** Flag points for review — they are not necessarily errors. The fence is an exploratory rule, not a formal test.
-- **Transforms:** If you log-transform and then run a *t*-test, you are testing a **different hypothesis** on a different scale. That can be fine — but say so in your write-up.
-- **Other *t*-test assumptions:** Independence comes from study design. Two-sample tests need similar variances (or Welch's *t*-test). Paired tests need normality of **differences**.
+- **Transforms:** If you log-transform and then run Welch's *t*-test, you are testing a **different hypothesis** on a different scale. That can be fine — but say so in your write-up.
+- **Other Welch's *t*-test assumptions:** Independence comes from study design (no paired or repeated measures). You do **not** need equal variances between groups — that is why you use Welch. Check approximate normality in **each group** (histogram + Shapiro per group, or on the scale you will analyze).
 :::
 
 ## 1. Load packages
@@ -180,7 +180,7 @@ if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
 
 ## 2. Build the study group *(Coding Assignment 3, Q2)*
 
-A one-sample *t*-test compares one group to a reference value — so you need a **single species**, not the whole dataset mixed together. Filter to **Adelie** penguins measured in **2007** and save the result as `penguin_data`. You will test assumptions on **`bill_depth_mm`**, a real measurement already in the dataset (bill depth in millimeters).
+Welch's *t*-test compares the means of **two independent groups** (e.g., males vs females) without assuming equal variances. Filter to **Adelie** penguins measured in **2007** and save the result as `penguin_data`. You will check assumptions on **`bill_depth_mm`** — the response variable you would compare across groups — using the same pipeline you will reuse on Coding Assignment 3.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -243,7 +243,7 @@ if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "50 Adelie penguins from 2007 — ready for a one-sample check on `bill_depth_mm`."
+      message = "50 Adelie penguins from 2007 — ready to check assumptions on `bill_depth_mm` before a Welch's *t*-test."
     )
   } else if (!has_filter) {
     list(
@@ -1281,7 +1281,7 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
 ```
 
 ::: {.callout-note collapse="true"}
-## If you run a *t*-test on log depth
+## If you run Welch's *t*-test on log depth
 
 Logging then testing means your inference applies to **log(depth)**, not the original millimeter scale. That is acceptable if you report it clearly in your write-up.
 :::
@@ -1483,7 +1483,7 @@ If you can explain each row in your own words, you have covered the core of **Co
 
 ## 20. Transfer to Coding Assignment 3
 
-On Canvas you will repeat this pipeline with **deer-mouse parasite** data from `RodentParasiteLoad.csv`. The table below maps each assignment question to what you practiced here.
+On Canvas you will repeat this pipeline with **deer-mouse parasite** data from `RodentParasiteLoad.csv`. The assignment prepares for a **one-sample** *t*-test against a reference mean; this lab frames the same checks for **Welch's *t*-test** between two groups. The verbs and objects match — only the biological story and final test differ.
 
 | Assignment | What you do on Canvas | What you practiced here |
 |------------|----------------------|-------------------------|
@@ -1518,5 +1518,5 @@ shapiro.test(log(gentoo$flipper_length_mm))
 ```
 
 ::: {.callout-tip appearance="simple"}
-All three p-values stay below 0.05. Flipper length spans only 203–231 mm, so no monotonic transform can fix this distribution. The honest next step is a **nonparametric test** (e.g. Wilcoxon signed-rank for one sample, Mann-Whitney for two independent samples) — not another transform.
+All three p-values stay below 0.05. Flipper length spans only 203–231 mm, so no monotonic transform can fix this distribution. The honest next step is a **nonparametric test** (e.g. **Mann-Whitney** for two independent groups) — not another transform.
 :::
