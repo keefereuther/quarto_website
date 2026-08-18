@@ -82,11 +82,11 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run **Welch's *t*-test**, you inspect your data: fix clear errors, look at shape and extremes, and decide whether a transform helps. You will **not** run the test itself.
+Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run a parametric *t*-test, you inspect your data: fix clear errors, look at shape and extremes, and decide whether a transform helps. You will **not** run the test itself.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
-This roadmap is for **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). One-sample, paired, Student's equal-variance, linear regression, and ANOVA need different checks — do not use this flowchart for those tests.
+This pipeline prepares you for parametric *t*-tests. **Coding Assignment 3** uses it for a **one-sample** test against a reference mean; the roadmap below is scoped to **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). The data-prep steps are the same — only the final comparison differs. Paired, Student's equal-variance two-sample, linear regression, and ANOVA need different checks — do not use this flowchart for those tests.
 
 ```{mermaid}
 flowchart TD
