@@ -386,7 +386,7 @@ if (!exists("penguin_clean", envir = .envir_result, inherits = FALSE)) {
   n <- nrow(bc)
   n_na <- sum(is.na(bc$bill_depth_mm))
   n_neg <- sum(!is.na(bc$bill_depth_mm) & bc$bill_depth_mm < 0)
-  used_or <- grepl("is\.na\s*\(\s*bill_depth_mm\s*\)", code) && grepl("\|", code)
+  used_or <- grepl("is\\.na\\s*\\(\\s*bill_depth_mm\\s*\\)", code) && grepl("\\|", code)
   if (n == 50 && n_na == 1 && n_neg == 0) {
     list(
       correct = TRUE,
@@ -461,7 +461,7 @@ One missing depth; mean ≈ 18.8 mm computed from the 49 complete cases only.
 #| check: true
 code <- paste(.user_code, collapse = "
 ")
-if (!grepl("na\.rm\s*=\s*TRUE", code, ignore.case = TRUE)) {
+if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
   list(
     correct = FALSE,
     type = "info",
@@ -748,7 +748,7 @@ In the same birds, bill *length* would pass Shapiro-Wilk — so a failing depth 
 
 ## 8. Square-root transform *(Coding Assignment 3, Q8)*
 
-The raw depths are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_depth` equal to the square root of `bill_depth_mm`. Save the result as `penguin_transformed` and display the first few rows with `head()`.
+The raw depths are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_depth` equal to the square root of `bill_depth_mm`. Save the result as `penguin_transformed` and inspect it with `glimpse()`.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -779,7 +779,7 @@ Add `sqrt_depth = sqrt(bill_depth_mm)` to `penguin_clean`.
 ```r
 penguin_transformed <- penguin_clean |>
   mutate(sqrt_depth = sqrt(bill_depth_mm))
-head(penguin_transformed)
+glimpse(penguin_transformed)
 ```
 
 Missing bill depths stay missing; negative rows were never present.
@@ -1011,7 +1011,7 @@ On **Coding Assignment 3**, worm counts **are** counts, and square root is the r
 
 ## 12. Log transform *(lab only — sqrt fails here)*
 
-Because square root did not pass, try a **log** transformation next. Use `mutate()` to add a column called `log_depth` equal to the natural log of `bill_depth_mm`. Save the updated table as `penguin_transformed` and display the first few rows with `head()`.
+Because square root did not pass, try a **log** transformation next. Use `mutate()` to add a column called `log_depth` equal to the natural log of `bill_depth_mm`. Save the updated table as `penguin_transformed` and inspect it with `glimpse()`.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1056,7 +1056,7 @@ Add `log_depth = log(bill_depth_mm)` to the table that already has `sqrt_depth`.
 ```r
 penguin_transformed <- penguin_transformed |>
   mutate(log_depth = log(bill_depth_mm))
-head(penguin_transformed)
+glimpse(penguin_transformed)
 ```
 
 Both transformed columns now live in the same table.
@@ -1184,7 +1184,7 @@ shapiro_log <- shapiro.test(penguin_transformed$log_depth)
 shapiro_log
 ```
 
-p ≈ 0.095 — no evidence against normality after the log transform.
+p ≈ 0.081 — no evidence against normality after the log transform.
 :::
 :::
 
@@ -1248,7 +1248,7 @@ log_is_normal <- TRUE
 log_is_normal <- TRUE
 ```
 
-p ≈ 0.095 — no evidence against normality on the log scale.
+p ≈ 0.081 — no evidence against normality on the log scale.
 :::
 :::
 
@@ -1439,23 +1439,7 @@ if (grepl("remove_outliers\\s*<-\\s*FALSE", code)) {
 }
 ```
 
-## 18. Impossible vs. extreme *(Coding Assignment 3, Q14)*
-
-::: {.callout-note collapse="true"}
-## Why keep the deep bill?
-
-One Adelie penguin had a bill depth of **21.5 mm** — above the raw-scale IQR fence. That value is **extreme but biologically plausible**. Large-billed individuals occur in wild populations. It is not a data-entry error the way a **negative** depth would be.
-
-The log transformation **compressed the right tail** of the skewed raw depths, making the distribution much more symmetric, bringing the Shapiro-Wilk test in line with the normality assumption, and pulling that bird inside the transformed-scale fence — without throwing away real observations. Passing Shapiro-Wilk after a transform does not mean the original data were "fixed" — you changed the scale.
-
-On **Coding Assignment 3** you will explain this same distinction in prose for worm counts in deer mice.
-:::
-
-::: {.callout-tip appearance="simple"}
-**Try this with a partner.** One of you explains why negative counts get removed but high counts stay; the other explains why log worked here but square root did not. Swap roles.
-:::
-
-## 19. Recap — verbs you practiced
+## 18. Recap — verbs you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
@@ -1478,28 +1462,6 @@ On **Coding Assignment 3** you will explain this same distinction in prose for w
 
 If you can explain each row in your own words, you have covered the core of **Coding Assignment 3**.
 :::
-
-## 20. Transfer to Coding Assignment 3
-
-On Canvas you will repeat this pipeline with **deer-mouse parasite** data from `RodentParasiteLoad.csv`. The assignment prepares for a **one-sample** *t*-test against a reference mean; this lab frames the same checks for **Welch's *t*-test** between two groups. The verbs and objects match — only the biological story and final test differ.
-
-| Assignment | What you do on Canvas | What you practiced here |
-|------------|----------------------|-------------------------|
-| Q1 | `library(tidyverse)` | Section 1 (+ `palmerpenguins`) |
-| Q2 | `read.csv()` + `head()` | Sections 2–3 (`filter()` + `glimpse()`) |
-| Q3 | `mean(..., na.rm = TRUE)` → `mean_raw` | Section 4 preview only — full step on Canvas |
-| Q4 | **Step 1** trim impossible → `parasite_clean` | Section 4 |
-| Q5 | **Step 2** flag outliers → `upper_fence`, `n_raw_outliers` | Section 5 |
-| Q6 | **Step 3** raw histogram → `hist_raw` | Section 6 |
-| Q7 | raw Shapiro-Wilk → `shapiro_raw` | Section 7 |
-| Q8 | `mutate(sqrt_worms = ...)` | Section 8 |
-| Q9–Q10 | sqrt histogram + Shapiro | Sections 9–10 |
-| Q11 | `sqrt_is_normal` | Section 11 (sqrt fails here; passes on Canvas) |
-| Q12 | **Step 4** re-flag on sqrt scale | Section 16 (log scale in this lab) |
-| Q13 | `remove_outliers` | Section 17 |
-| Q14 | prose answer | Section 18 |
-
-**Worm counts are counts** — square root is the correct transform on the assignment. Do not apply log just because this lab needed it for bill depth.
 
 ## Keep playing
 
