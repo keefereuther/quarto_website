@@ -1,6 +1,6 @@
 ---
-title: "Check Assumptions Before a Parametric Test"
-subtitle: "Clean data, flag outliers, assess normality, and choose the right transform — all in your browser"
+title: "Check Assumptions Before a t-test"
+subtitle: "Is our data normally distributed? If not, what should we do about it?"
 format:
   live-html:
     theme:
@@ -34,82 +34,23 @@ live:
 
 {{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
 
-```{=html}
-<style>
-.card.exercise-editor {
-  --exercise-code-block-bg: #1e1e2e;
-  --exercise-code-block-color: #e6e7ee;
-  --exercise-main-color: #e6e7ee;
-  --exercise-cap-bg: #181825;
-  --exercise-gray: #3b3b52;
-  --exercise-primary-rgb: 137, 180, 250;
-  --exercise-line-bg: rgba(137, 180, 250, .12);
-  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
-  --exercise-editor-hl-kw: #ff9e64;
-  --exercise-editor-hl-cf: #ff9e64;
-  --exercise-editor-hl-st: #9ece6a;
-  --exercise-editor-hl-ss: #9ece6a;
-  --exercise-editor-hl-ch: #9ece6a;
-  --exercise-editor-hl-dv: #ffc777;
-  --exercise-editor-hl-bn: #ffc777;
-  --exercise-editor-hl-fl: #ffc777;
-  --exercise-editor-hl-cn: #ffc777;
-  --exercise-editor-hl-fu: #82aaff;
-  --exercise-editor-hl-va: #c0caf5;
-  --exercise-editor-hl-op: #89ddff;
-  --exercise-editor-hl-ot: #89ddff;
-  --exercise-editor-hl-at: #7dcfff;
-  --exercise-editor-hl-co: #9399b2;
-  --exercise-editor-hl-er: #f7768e;
-  border: 1px solid #3b3b52;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
-}
-.card.exercise-editor .card-header {
-  color: #e6e7ee;
-}
-.card.exercise-editor .card-header .btn.btn-outline-dark {
-  --bs-btn-color: #e6e7ee;
-  --bs-btn-border-color: #6c7086;
-  --bs-btn-hover-color: #1e1e2e;
-  --bs-btn-hover-bg: #e6e7ee;
-  --bs-btn-hover-border-color: #e6e7ee;
-  --bs-btn-active-color: #1e1e2e;
-  --bs-btn-active-bg: #e6e7ee;
-  --bs-btn-active-border-color: #e6e7ee;
-}
-</style>
-```
+So you want to test whether the mean of one sample is no different than a hypothesized value. There are many statistical paths to test this null hypothesis and a one-sample t-test is one of the most common. Why? It's powerful (i.e., can detect differences when they exist) and they are simple to calculate. In part, that power comes from an assumption that the data is normally distributed. If we assume normality then all we need is a mean and a standard deviation to give us a complete theoretical picture of how the underlying population is structured. **But, we have to make sure our data is normal enough before we can make the assumption and run the t-test.**
 
-Welcome back. Everything on this page runs real R in your browser — same setup as the other coding activities. Before you run a parametric *t*-test, you inspect your data: fix clear errors, look at shape and extremes, and decide whether a transform helps. You will **not** run the test itself.
+How can we do this?
 
-The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
-
-This pipeline prepares you for parametric *t*-tests. **Coding Assignment 3** uses it for a **one-sample** test against a reference mean; the steps below also apply before **Welch's *t*-test** — comparing two **independent** groups when you do **not** assume equal variances (`t.test(..., var.equal = FALSE)` in R). The data-prep steps are the same — only the final comparison differs. Paired, Student's equal-variance two-sample, linear regression, and ANOVA need different checks.
-
-**What you will do on this page:**
-
-1. Load and inspect the data
-2. **Step 1:** Remove impossible values; keep missing (`filter` + `is.na()`)
-3. Use `na.rm = TRUE` in summaries (mean, quantile, IQR, Shapiro)
-4. **Step 2:** Flag distributional outliers (1.5 × IQR) — do not remove yet
-5. **Step 3:** Assess normality (`ggplot` histogram + `shapiro.test`)
-6. Transform if needed; repeat histogram + Shapiro on the transformed scale
-7. **Step 4:** Re-flag outliers on the scale you will analyze
-8. Decide whether to remove flagged outliers
-9. Run Welch's *t*-test *(not done in this activity)*
-
-::: {.callout-note collapse="true"}
-## What this checklist does — and does not do
-
-This workflow helps you **explore** data before a parametric test — it does not certify that Welch's *t*-test is valid.
-
-- **Shapiro-Wilk:** A small p-value means "looks non-normal in this sample," not "you must abandon Welch's *t*-test." A large p-value is **not** proof of normality. With moderate *n* per group, Welch's *t*-test is often robust to mild skew.
-- **IQR fences:** Flag points for review — they are not necessarily errors. The fence is an exploratory rule, not a formal test.
-- **Transforms:** If you log-transform and then run Welch's *t*-test, you are testing a **different hypothesis** on a different scale. That can be fine — but say so in your write-up.
-- **Other Welch's *t*-test assumptions:** Independence comes from study design (no paired or repeated measures). You do **not** need equal variances between groups — that is why you use Welch. Check approximate normality in **each group** (histogram + Shapiro per group, or on the scale you will analyze).
-:::
+1.  Clean up our data so missing values don't get in the way.
+    -   Use `na.rm = TRUE` in summaries (mean, quantile, IQR, Shapiro)
+2.  Identify and trim/filter out impossible values (e.g., negative counts or bill depths)
+3.  Flag distributional outliers (1.5 × IQR)
+4.  Look at your data using `ggplot` and `geom_histogram()`
+5.  Test for normality using `shapiro.test()`
+6.  Decide if your data is non-normal enough to warrant a transformation
+    -   If your data is normal, decide what to do, if anything, about your outliers
+7.  If the data is not normally distributed, transform it. We will use a log transformation in this activity
+8.  Look at your transformed data with a histogram and test for normality again using `shapiro.test()`
+9.  Decide which test you will run
+    -   If the data is still not normally distributed, even after appropriate transformation, conduct a non-parametric test
+    -   If the data is normal enough then run a one-sample *t*-test
 
 ## 1. Load packages
 
@@ -122,33 +63,33 @@ library()
 library()
 ```
 
-::: {.hint exercise="load_tidyverse"}
+:::: {.hint exercise="load_tidyverse"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?library`: `library(package, ...)` attaches a package so its functions become available.
 
-```r
-library(tidyverse)
-library(palmerpenguins)
+``` r
+library(package name here)
+library(another package name here)
 ```
 
 Load both packages — tidyverse for dplyr and ggplot2, palmerpenguins for the `penguins` dataset.
 :::
-:::
+::::
 
-::: {.solution exercise="load_tidyverse"}
+:::: {.solution exercise="load_tidyverse"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 library(tidyverse)
 library(palmerpenguins)
 ```
 
 On DataHub you will load tidyverse for the graded assignment; here you also need palmerpenguins for practice data.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -176,9 +117,9 @@ if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
 }
 ```
 
-## 2. Build the study group *(Coding Assignment 3, Q2)*
+## 2. Build the study group
 
-Welch's *t*-test compares the means of **two independent groups** (e.g., males vs females) without assuming equal variances. Filter to **Adelie** penguins measured in **2007** and save the result as `penguin_data`. You will check assumptions on **`bill_depth_mm`** — the response variable you would compare across groups — using the same pipeline you will reuse on Coding Assignment 3.
+A one-sample *t*-test asks whether the mean of **one group** differs from a hypothesized value. Filter to **Adelie** penguins measured in **2007** and save the result as `penguin_data`. You will check assumptions on **`bill_depth_mm`**.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -195,33 +136,33 @@ penguin_data <- penguins |>
   
 ```
 
-::: {.hint exercise="build_penguin_data"}
+:::: {.hint exercise="build_penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?filter`: keep rows where conditions are TRUE.
 
-```r
+``` r
 penguins |>
   filter(species == "Gentoo")
 ```
 
 Filter to Adelie and year 2007. No new columns needed — `bill_depth_mm` is already there.
 :::
-:::
+::::
 
-::: {.solution exercise="build_penguin_data"}
+:::: {.solution exercise="build_penguin_data"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 penguin_data <- penguins |>
   filter(species == "Adelie", year == 2007)
 ```
 
 You should have 50 rows — one Adelie cohort from a single field season.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -241,7 +182,7 @@ if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "50 Adelie penguins from 2007 — ready to check assumptions on `bill_depth_mm` before a Welch's *t*-test."
+      message = "50 Adelie penguins from 2007 — ready to check assumptions on `bill_depth_mm`."
     )
   } else if (!has_filter) {
     list(
@@ -259,7 +200,7 @@ if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 3. Glimpse the data *(Coding Assignment 3, Q2)*
+## 3. Glimpse the data
 
 Run `glimpse()` on `penguin_data` to see row count, column names, and types.
 
@@ -269,31 +210,31 @@ Run `glimpse()` on `penguin_data` to see row count, column names, and types.
 
 ```
 
-::: {.hint exercise="glimpse_penguin_data"}
+:::: {.hint exercise="glimpse_penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?glimpse`: `glimpse(x)` prints rows, columns, and types.
 
-```r
+``` r
 glimpse(mtcars)
 ```
 
 Apply it to the dataset you just built.
 :::
-:::
+::::
 
-::: {.solution exercise="glimpse_penguin_data"}
+:::: {.solution exercise="glimpse_penguin_data"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 glimpse(penguin_data)
 ```
 
 You should see 50 rows. `bill_depth_mm` is `<dbl>` — and one penguin has a missing bill measurement.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -315,12 +256,12 @@ if (grepl("glimpse\\s*\\(", code) && grepl("penguin_data", code)) {
 }
 ```
 
-## 4. Step 1 — missing and impossible values *(Coding Assignment 3, Q4)*
+## 4. Step 1 — missing and impossible values
 
 Two different data problems show up in real datasets: **missing** values (`NA`) and **impossible** values (e.g. negative counts or bill depths). They need different handling.
 
-- **Missing** means no measurement was recorded — keep those rows for now.
-- **Impossible** means a sign error or bad entry — remove those rows.
+-   **Missing** means no measurement was recorded — keep those rows for now.
+-   **Impossible** means a sign error or bad entry — remove those rows.
 
 Use `filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)` to drop impossible depths while keeping missing ones. After this step, every numeric summary uses **`na.rm = TRUE`** so R skips the remaining `NA`s.
 
@@ -341,40 +282,39 @@ penguin_clean <- penguin_data |>
   
 ```
 
-::: {.hint exercise="trim_impossible"}
+:::: {.hint exercise="trim_impossible"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?filter`: keep rows where conditions are TRUE.
 
-```r
+``` r
 mtcars |>
   filter(is.na(mpg) | mpg >= 0)
 ```
 
 Keep missing bill depths **or** non-negative depths.
 :::
-:::
+::::
 
-::: {.solution exercise="trim_impossible"}
+:::: {.solution exercise="trim_impossible"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 penguin_clean <- penguin_data |>
   filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
 ```
 
 50 rows — no negative values in this dataset, so nothing was removed. The one missing measurement is still there. **Confirming there are no impossible values is itself a reportable result.**
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: trim_impossible
 #| check: true
-code <- paste(.user_code, collapse = "
-")
+code <- paste(.user_code, collapse = "\n")
 if (!exists("penguin_clean", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
@@ -425,26 +365,26 @@ mean_preview <-
   
 ```
 
-::: {.hint exercise="check_missing"}
+:::: {.hint exercise="check_missing"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?sum`: `sum(is.na(x))` counts missing values. From `?mean`: set `na.rm = TRUE` to skip them.
 
-```r
+``` r
 n_missing <- sum(is.na(penguin_clean$bill_depth_mm))
 mean_preview <- mean(penguin_clean$bill_depth_mm, na.rm = TRUE)
 n_missing
 mean_preview
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="check_missing"}
+:::: {.solution exercise="check_missing"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 n_missing <- sum(is.na(penguin_clean$bill_depth_mm))
 mean_preview <- mean(penguin_clean$bill_depth_mm, na.rm = TRUE)
 n_missing
@@ -453,14 +393,13 @@ mean_preview
 
 One missing depth; mean ≈ 18.8 mm computed from the 49 complete cases only.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: check_missing
 #| check: true
-code <- paste(.user_code, collapse = "
-")
+code <- paste(.user_code, collapse = "\n")
 if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
   list(
     correct = FALSE,
@@ -494,7 +433,7 @@ if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
 }
 ```
 
-## 5. Flag distributional outliers *(Coding Assignment 3, Q5)*
+## 5. Flag distributional outliers
 
 **Step 2 — flag outliers.** Using only the non-missing bill depths in `penguin_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill depths exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
 
@@ -521,13 +460,13 @@ upper_fence <-
   
 ```
 
-::: {.hint exercise="upper_fence"}
+:::: {.hint exercise="upper_fence"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?quantile`: `quantile(x, probs, na.rm = FALSE)`. From `?IQR`: `IQR(x, na.rm = FALSE)`.
 
-```r
+``` r
 q3 <- quantile(mtcars$mpg, 0.75, na.rm = TRUE)
 fence <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
 n_out <- sum(mtcars$mpg > fence, na.rm = TRUE)
@@ -535,13 +474,13 @@ n_out <- sum(mtcars$mpg > fence, na.rm = TRUE)
 
 Use the 75th percentile and IQR of non-missing bill depths, then count values above the fence.
 :::
-:::
+::::
 
-::: {.solution exercise="upper_fence"}
+:::: {.solution exercise="upper_fence"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 upper_fence <- quantile(penguin_clean$bill_depth_mm, 0.75, na.rm = TRUE) +
   1.5 * IQR(penguin_clean$bill_depth_mm, na.rm = TRUE)
 n_raw_outliers <- sum(penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)
@@ -551,7 +490,7 @@ n_raw_outliers
 
 The upper fence is about 21.4 mm — one penguin has a bill depth above it.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -600,7 +539,7 @@ if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 6. Histogram on the raw scale *(Coding Assignment 3, Q6)*
+## 6. Histogram on the raw scale
 
 **Step 3 — assess normality.** Make a histogram of the non-missing bill depths in `penguin_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
 
@@ -611,13 +550,13 @@ hist_raw <- ggplot(penguin_clean, aes(x = bill_depth_mm)) +
   
 ```
 
-::: {.hint exercise="hist_raw"}
+:::: {.hint exercise="hist_raw"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 From `?ggplot`: add a layer with `+`.
 
-```r
+``` r
 hist_raw <- ggplot(mtcars, aes(x = mpg)) +
   geom_histogram()
 hist_raw
@@ -625,13 +564,13 @@ hist_raw
 
 Map `bill_depth_mm` to the x-axis and assign the whole plot to `hist_raw`.
 :::
-:::
+::::
 
-::: {.solution exercise="hist_raw"}
+:::: {.solution exercise="hist_raw"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 hist_raw <- ggplot(penguin_clean, aes(x = bill_depth_mm)) +
   geom_histogram()
 hist_raw
@@ -639,7 +578,7 @@ hist_raw
 
 The distribution is right-skewed — a long tail toward deep bills.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -661,7 +600,7 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
 }
 ```
 
-## 7. Shapiro-Wilk on the raw scale *(Coding Assignment 3, Q7)*
+## 7. Shapiro-Wilk on the raw scale
 
 Run `shapiro.test()` on the non-missing bill depths in `penguin_clean`. Save the result as `shapiro_raw` and print it.
 
@@ -670,7 +609,7 @@ Run `shapiro.test()` on the non-missing bill depths in `penguin_clean`. Save the
 
 The null hypothesis is **normality**. A **small p-value** (conventionally below 0.05) means the data look **inconsistent with** a normal distribution. A **large p-value** means you do **not** have evidence against normality — not proof that the data are perfectly normal.
 
-**Do not treat p > 0.05 as a green light or p < 0.05 as an automatic veto** — combine this test with your histogram and sample size.
+**Do not treat p \> 0.05 as a green light or p \< 0.05 as an automatic veto** — combine this test with your histogram and sample size.
 :::
 
 ```{webr}
@@ -680,32 +619,32 @@ shapiro_raw <-
   
 ```
 
-::: {.hint exercise="shapiro_raw"}
+:::: {.hint exercise="shapiro_raw"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 Pass the bill-depth vector directly.
 
-```r
+``` r
 shapiro.test(mtcars$mpg)
 ```
 
 Use non-missing values from `penguin_clean$bill_depth_mm`.
 :::
-:::
+::::
 
-::: {.solution exercise="shapiro_raw"}
+:::: {.solution exercise="shapiro_raw"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 shapiro_raw <- shapiro.test(penguin_clean$bill_depth_mm)
 shapiro_raw
 ```
 
 p ≈ 0.029 — evidence against normality on the raw scale.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -742,326 +681,106 @@ if (!grepl("shapiro\\.test\\s*\\(", code)) {
 }
 ```
 
-::: {.callout-tip appearance="simple"}
-In the same birds, bill *length* would pass Shapiro-Wilk — so a failing depth distribution is specific to this variable, not the whole dataset.
-:::
+## 8. Make the call on normality
 
-## 8. Square-root transform *(Coding Assignment 3, Q8)*
-
-The raw depths are not normally distributed. Apply a square-root transformation: use `mutate()` to add a column called `sqrt_depth` equal to the square root of `bill_depth_mm`. Save the result as `penguin_transformed` and inspect it with `glimpse()`.
+Based on your histogram and Shapiro-Wilk result, are the raw bill depths normally distributed enough for a one-sample *t*-test? Assign `data_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
 
 ```{webr}
 #| envir: assumptions_lab
-#| exercise: mutate_sqrt
+#| exercise: data_is_normal
+data_is_normal <- 
+  
+```
+
+:::: {.hint exercise="data_is_normal"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Look at `shapiro_raw$p.value`. Is it above or below 0.05?
+
+``` r
+data_is_normal <- FALSE
+```
+:::
+::::
+
+:::: {.solution exercise="data_is_normal"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+data_is_normal <- FALSE
+```
+
+p ≈ 0.029 — below 0.05, and the histogram is right-skewed. Follow checklist steps 7–9 and try a log transform.
+:::
+::::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: data_is_normal
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("data_is_normal\\s*<-\\s*FALSE", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "FALSE — raw bill depths are not normal enough. Time for a log transform."
+  )
+} else if (grepl("data_is_normal\\s*<-\\s*TRUE", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Re-check `shapiro_raw$p.value` — on the raw scale, p is below 0.05."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Assign `data_is_normal <- TRUE` or `FALSE` based on your Shapiro-Wilk result."
+  )
+}
+```
+
+## 9. Log transform
+
+The raw depths are not normally distributed. Apply a log transformation: use `mutate()` to add a column called `log_depth` equal to the natural log of `bill_depth_mm`. Save the result as `penguin_transformed` and inspect it with `glimpse()`.
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: mutate_log
 penguin_transformed <- penguin_clean |>
   
 ```
 
-::: {.hint exercise="mutate_sqrt"}
+:::: {.hint exercise="mutate_log"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-From `?mutate`: `mutate(.data, ...)` adds or changes columns.
+From `?mutate`: `mutate(.data, ...)` adds or changes columns. From `?log`: `log(x)` returns the natural logarithm.
 
-```r
+``` r
 mtcars |>
-  mutate(sqrt_mpg = sqrt(mpg))
+  mutate(log_mpg = log(mpg))
 ```
 
-Add `sqrt_depth = sqrt(bill_depth_mm)` to `penguin_clean`.
+Add `log_depth = log(bill_depth_mm)` to `penguin_clean`.
 :::
-:::
+::::
 
-::: {.solution exercise="mutate_sqrt"}
+:::: {.solution exercise="mutate_log"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 penguin_transformed <- penguin_clean |>
-  mutate(sqrt_depth = sqrt(bill_depth_mm))
+  mutate(log_depth = log(bill_depth_mm))
 glimpse(penguin_transformed)
 ```
 
 Missing bill depths stay missing; negative rows were never present.
 :::
-:::
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: mutate_sqrt
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("penguin_transformed", envir = .envir_result, inherits = FALSE)) {
-  list(
-    correct = FALSE,
-    type = "warning",
-    message = "Save the result as `penguin_transformed`."
-  )
-} else {
-  bt <- get("penguin_transformed", envir = .envir_result)
-  if (is.data.frame(bt) && "sqrt_depth" %in% names(bt)) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = "New column `sqrt_depth` added — ready to re-check normality."
-    )
-  } else {
-    list(
-      correct = FALSE,
-      type = "info",
-      message = "Use `mutate(sqrt_depth = sqrt(bill_depth_mm))` inside the pipe."
-    )
-  }
-}
-```
-
-## 9. Histogram on the square-root scale *(Coding Assignment 3, Q9)*
-
-Make a histogram of `sqrt_depth` from `penguin_transformed`, using only non-missing values. Save the plot as `hist_sqrt` and display it.
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: hist_sqrt
-hist_sqrt <- ggplot(penguin_transformed, aes(x = sqrt_depth)) +
-  
-```
-
-::: {.hint exercise="hist_sqrt"}
-::: {.callout-note collapse="false"}
-## Hint
-
-Same pattern as the raw histogram — map the transformed column to `x`.
-
-```r
-hist_sqrt <- ggplot(mtcars, aes(x = sqrt(mpg))) +
-  geom_histogram()
-hist_sqrt
-```
-:::
-:::
-
-::: {.solution exercise="hist_sqrt"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-hist_sqrt <- ggplot(penguin_transformed, aes(x = sqrt_depth)) +
-  geom_histogram()
-hist_sqrt
-```
-
-The histogram may look a bit more symmetric, but the skew has not fully disappeared.
-:::
-:::
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: hist_sqrt
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("sqrt_depth", code)) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Square-root histogram saved — compare its shape to `hist_raw`."
-  )
-} else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Plot `sqrt_depth` with `ggplot(...) + geom_histogram()` and save as `hist_sqrt`."
-  )
-}
-```
-
-## 10. Shapiro-Wilk on the square-root scale *(Coding Assignment 3, Q10)*
-
-Run `shapiro.test()` on the non-missing `sqrt_depth` values in `penguin_transformed`. Save the result as `shapiro_sqrt` and print it.
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: shapiro_sqrt
-shapiro_sqrt <- 
-  
-```
-
-::: {.hint exercise="shapiro_sqrt"}
-::: {.callout-note collapse="false"}
-## Hint
-
-Same function as before — pass the transformed column.
-
-```r
-shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)
-shapiro_sqrt
-```
-:::
-:::
-
-::: {.solution exercise="shapiro_sqrt"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)
-shapiro_sqrt
-```
-
-p ≈ 0.050 — slightly better than the raw scale, but still at or below 0.05. Square root did not rescue this variable.
-:::
-:::
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: shapiro_sqrt
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("shapiro_sqrt", envir = .envir_result, inherits = FALSE)) {
-  list(
-    correct = FALSE,
-    type = "warning",
-    message = "Save the result as `shapiro_sqrt`."
-  )
-} else {
-  ss <- get("shapiro_sqrt", envir = .envir_result)
-  if (!is.null(ss$p.value) && ss$p.value < 0.05) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = paste0("p = ", signif(ss$p.value, 3), " — square-root depths still fail the normality check.")
-    )
-  } else {
-    list(
-      correct = FALSE,
-      type = "info",
-      message = "Run `shapiro_sqrt <- shapiro.test(penguin_transformed$sqrt_depth)`."
-    )
-  }
-}
-```
-
-## 11. Make the call on square root *(Coding Assignment 3, Q11)*
-
-Based on your histogram and Shapiro-Wilk result for the square-root data, are the transformed bill depths normally distributed enough for a parametric test? Assign `sqrt_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: sqrt_is_normal
-sqrt_is_normal <- 
-  
-```
-
-::: {.hint exercise="sqrt_is_normal"}
-::: {.callout-note collapse="false"}
-## Hint
-
-Look at `shapiro_sqrt$p.value`. Is it above or below 0.05?
-
-```r
-sqrt_is_normal <- FALSE
-```
-:::
-:::
-
-::: {.solution exercise="sqrt_is_normal"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-sqrt_is_normal <- FALSE
-```
-
-p ≈ 0.050 — at or below 0.05, so square root alone is not enough.
-:::
-:::
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: sqrt_is_normal
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("sqrt_is_normal\\s*<-\\s*FALSE", code)) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "FALSE — the square-root transform did not bring bill depth in line with the normality assumption."
-  )
-} else if (grepl("sqrt_is_normal\\s*<-\\s*TRUE", code)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Re-check `shapiro_sqrt$p.value` — on the sqrt scale, p is still below 0.05."
-  )
-} else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Assign `sqrt_is_normal <- TRUE` or `FALSE` based on your Shapiro-Wilk result."
-  )
-}
-```
-
-::: {.callout-note collapse="true"}
-## Why did square root fail here?
-
-Square root is the standard transform for **right-skewed counts** — parasite loads, cell counts, tick burdens. **Bill depth is a continuous measurement**, not a count. It improved the Shapiro-Wilk p-value but not enough to pass 0.05. When square root is not enough for a right-skewed continuous variable, a **log** transform is the next thing to try.
-
-On **Coding Assignment 3**, worm counts **are** counts, and square root is the right first transform there. Do not mechanically apply log to that assignment.
-:::
-
-## 12. Log transform *(lab only — sqrt fails here)*
-
-Because square root did not pass, try a **log** transformation next. Use `mutate()` to add a column called `log_depth` equal to the natural log of `bill_depth_mm`. Save the updated table as `penguin_transformed` and inspect it with `glimpse()`.
-
-```{webr}
-#| envir: assumptions_lab
-#| setup: true
-#| exercise: mutate_log
-library(tidyverse)
-library(palmerpenguins)
-penguin_data <- penguins |>
-  filter(species == "Adelie", year == 2007)
-penguin_clean <- penguin_data |>
-  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
-penguin_transformed <- penguin_clean |>
-  mutate(sqrt_depth = sqrt(bill_depth_mm))
-```
-
-```{webr}
-#| envir: assumptions_lab
-#| exercise: mutate_log
-penguin_transformed <- penguin_transformed |>
-  
-```
-
-::: {.hint exercise="mutate_log"}
-::: {.callout-note collapse="false"}
-## Hint
-
-From `?log`: `log(x)` returns the natural logarithm.
-
-```r
-mtcars |>
-  mutate(log_mpg = log(mpg))
-```
-
-Add `log_depth = log(bill_depth_mm)` to the table that already has `sqrt_depth`.
-:::
-:::
-
-::: {.solution exercise="mutate_log"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-```r
-penguin_transformed <- penguin_transformed |>
-  mutate(log_depth = log(bill_depth_mm))
-glimpse(penguin_transformed)
-```
-
-Both transformed columns now live in the same table.
-:::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1080,7 +799,7 @@ if (!exists("penguin_transformed", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = TRUE,
       type = "success",
-      message = "New column `log_depth` added — ready to re-check normality on the log scale."
+      message = "New column `log_depth` added — ready to re-check normality."
     )
   } else {
     list(
@@ -1092,7 +811,7 @@ if (!exists("penguin_transformed", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 13. Histogram on the log scale
+## 10. Histogram on the log scale
 
 Make a histogram of `log_depth` from `penguin_transformed`, using only non-missing values. Save the plot as `hist_log` and display it.
 
@@ -1103,25 +822,25 @@ hist_log <- ggplot(penguin_transformed, aes(x = log_depth)) +
   
 ```
 
-::: {.hint exercise="hist_log"}
+:::: {.hint exercise="hist_log"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Same pattern as the earlier histograms — map `log_depth` to `x`.
+Same pattern as the raw histogram — map the transformed column to `x`.
 
-```r
+``` r
 hist_log <- ggplot(mtcars, aes(x = log(mpg))) +
   geom_histogram()
 hist_log
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="hist_log"}
+:::: {.solution exercise="hist_log"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 hist_log <- ggplot(penguin_transformed, aes(x = log_depth)) +
   geom_histogram()
 hist_log
@@ -1129,7 +848,7 @@ hist_log
 
 The distribution looks much more symmetric after the log transform.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1140,7 +859,7 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
   list(
     correct = TRUE,
     type = "success",
-    message = "Log histogram saved — much more bell-shaped than the raw or sqrt plots."
+    message = "Log histogram saved — much more bell-shaped than the raw plot."
   )
 } else {
   list(
@@ -1151,7 +870,7 @@ if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grep
 }
 ```
 
-## 14. Shapiro-Wilk on the log scale
+## 11. Shapiro-Wilk on the log scale
 
 Run `shapiro.test()` on the non-missing `log_depth` values in `penguin_transformed`. Save the result as `shapiro_log` and print it.
 
@@ -1162,31 +881,31 @@ shapiro_log <-
   
 ```
 
-::: {.hint exercise="shapiro_log"}
+:::: {.hint exercise="shapiro_log"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 Same function as before — pass the log column.
 
-```r
+``` r
 shapiro_log <- shapiro.test(penguin_transformed$log_depth)
 shapiro_log
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="shapiro_log"}
+:::: {.solution exercise="shapiro_log"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 shapiro_log <- shapiro.test(penguin_transformed$log_depth)
 shapiro_log
 ```
 
 p ≈ 0.081 — no evidence against normality after the log transform.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1217,9 +936,9 @@ if (!exists("shapiro_log", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 15. Make the call on log
+## 12. Make the call on log
 
-Based on your histogram and Shapiro-Wilk result for the log-transformed data, are the log bill depths normally distributed enough for a parametric test? Assign `log_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
+Based on your histogram and Shapiro-Wilk result for the log-transformed data, are the log bill depths normally distributed enough for a one-sample *t*-test? Assign `log_is_normal` to `TRUE` or `FALSE` (no quotes, all caps).
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1228,29 +947,29 @@ log_is_normal <-
   
 ```
 
-::: {.hint exercise="log_is_normal"}
+:::: {.hint exercise="log_is_normal"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 Look at `shapiro_log$p.value`. Is it above or below 0.05?
 
-```r
+``` r
 log_is_normal <- TRUE
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="log_is_normal"}
+:::: {.solution exercise="log_is_normal"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 log_is_normal <- TRUE
 ```
 
 p ≈ 0.081 — no evidence against normality on the log scale.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1278,15 +997,23 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
 }
 ```
 
-::: {.callout-note collapse="true"}
-## If you run Welch's *t*-test on log depth
-
-Logging then testing means your inference applies to **log(depth)**, not the original millimeter scale. That is acceptable if you report it clearly in your write-up.
-:::
-
-## 16. Re-flag outliers after transformation *(Coding Assignment 3, Q12)*
+## 13. Re-flag outliers after transformation
 
 **Step 4 — re-flag outliers after transformation.** Using only the non-missing `log_depth` values in `penguin_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_depth` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
+
+```{webr}
+#| envir: assumptions_lab
+#| setup: true
+#| exercise: upper_fence_log
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
+penguin_clean <- penguin_data |>
+  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+penguin_transformed <- penguin_clean |>
+  mutate(log_depth = log(bill_depth_mm))
+```
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1295,25 +1022,25 @@ upper_fence_log <-
   
 ```
 
-::: {.hint exercise="upper_fence_log"}
+:::: {.hint exercise="upper_fence_log"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 Apply the same Q3 + 1.5 × IQR formula to `log_depth` instead of `bill_depth_mm`.
 
-```r
+``` r
 upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
   1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
 n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="upper_fence_log"}
+:::: {.solution exercise="upper_fence_log"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
   1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
 n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
@@ -1323,7 +1050,7 @@ n_log_outliers
 
 Zero penguins sit above the log-scale fence — the one raw outlier was pulled inside the fence by the transformation.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1378,7 +1105,7 @@ if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 17. Decide whether to remove outliers *(Coding Assignment 3, Q13)*
+## 14. Decide whether to remove outliers
 
 Based on your log-scale outlier count, decide whether to remove any rows. Assign `remove_outliers` to `TRUE` if you would filter out IQR outliers, or `FALSE` if you would keep all rows.
 
@@ -1389,29 +1116,29 @@ remove_outliers <-
   
 ```
 
-::: {.hint exercise="remove_outliers"}
+:::: {.hint exercise="remove_outliers"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
 The raw outlier was a Torgersen male with a **21.5 mm** bill depth — large but biologically plausible. After the log transform, `n_log_outliers` is **0**, so there is nothing left to filter out.
 
-```r
+``` r
 remove_outliers <- FALSE
 ```
 :::
-:::
+::::
 
-::: {.solution exercise="remove_outliers"}
+:::: {.solution exercise="remove_outliers"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-```r
+``` r
 remove_outliers <- FALSE
 ```
 
 Keep all rows. The one bird flagged on the raw scale is no longer an outlier after transformation, and it was never an impossible value like a negative count.
 :::
-:::
+::::
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1439,17 +1166,120 @@ if (grepl("remove_outliers\\s*<-\\s*FALSE", code)) {
 }
 ```
 
-## 18. Recap — verbs you practiced
+## 15. Run a one-sample *t*-test
+
+Assumptions look good on the **log scale**: no impossible values, no log-scale IQR outliers, and `log_depth` is normal enough. Test whether mean log bill depth differs from **log(18.5)**.
+
+Use `t.test()` on `penguin_transformed$log_depth` with `mu = log(18.5)`. Save the result as `t_test_result` and print it.
+
+::: {.callout-note appearance="simple"}
+## Reading one-sample *t*-test output
+
+The null hypothesis is that the **true mean equals `mu`**. A small p-value (conventionally below 0.05) means the sample mean looks inconsistent with the hypothesized value.
+
+Logging then testing means your inference applies to **log(depth)**, not the original millimeter scale. That is acceptable if you report it clearly in your write-up.
+:::
+
+```{webr}
+#| envir: assumptions_lab
+#| setup: true
+#| exercise: one_sample_t
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", year == 2007)
+penguin_clean <- penguin_data |>
+  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+penguin_transformed <- penguin_clean |>
+  mutate(log_depth = log(bill_depth_mm))
+```
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: one_sample_t
+t_test_result <- 
+  
+```
+
+:::: {.hint exercise="one_sample_t"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?t.test`: for one sample, pass a numeric vector and a hypothesized mean.
+
+``` r
+t.test(mtcars$mpg, mu = 20)
+```
+
+Use `penguin_transformed$log_depth` and `mu = log(18.5)`.
+:::
+::::
+
+:::: {.solution exercise="one_sample_t"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_test_result <- t.test(penguin_transformed$log_depth, mu = log(18.5))
+t_test_result
+```
+
+t ≈ 1.33, df = 48, p ≈ 0.19. Mean log bill depth in these 2007 Adelie penguins is not significantly different from log(18.5).
+:::
+::::
+
+```{webr}
+#| envir: assumptions_lab
+#| exercise: one_sample_t
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("t\\.test\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call `t.test()` on the log-depth vector."
+  )
+} else if (!grepl("log\\s*\\(\\s*18\\.5\\s*\\)", code)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Set the hypothesized mean on the log scale with `mu = log(18.5)`."
+  )
+} else if (!exists("t_test_result", envir = .envir_result, inherits = FALSE)) {
+  list(
+    correct = FALSE,
+    type = "warning",
+    message = "Save the result as `t_test_result`."
+  )
+} else {
+  tt <- get("t_test_result", envir = .envir_result)
+  if (!is.null(tt$p.value) && tt$p.value > 0.05) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = paste0("p = ", signif(tt$p.value, 3), " — do not reject H0. Mean log bill depth is consistent with log(18.5).")
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Run `t_test_result <- t.test(penguin_transformed$log_depth, mu = log(18.5))`."
+    )
+  }
+}
+```
+
+## 16. Recap — verbs you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
 
 | Function | Role |
-|----------|------|
+|---------------------------------------------|---------------------------|
 | `library(tidyverse)` | Loads dplyr, ggplot2, and related packages |
 | `library(palmerpenguins)` | Loads the `penguins` dataset |
 | `filter()` | Keeps rows matching a condition (`species == "Adelie"`, `is.na(...) \| ... >= 0`) |
-| `mutate()` | Adds transformed columns (`sqrt_depth`, `log_depth`) |
+| `mutate()` | Adds transformed columns (`log_depth`) |
 | `glimpse()` | Quick look at rows, columns, and types |
 | `mean(..., na.rm = TRUE)` | Average of a numeric column, skipping missing values |
 | `quantile(..., 0.75, na.rm = TRUE)` | 75th percentile for the IQR fence |
@@ -1457,26 +1287,24 @@ if (grepl("remove_outliers\\s*<-\\s*FALSE", code)) {
 | `sum(x > fence, na.rm = TRUE)` | Counts values above an outlier fence |
 | `ggplot()` + `geom_histogram()` | Visual check of distribution shape |
 | `shapiro.test()` | Formal test of normality (H₀: data are normal) |
-| `sqrt()` | Square-root transformation (for right-skewed **counts**) |
-| `log()` | Natural-log transformation (when sqrt is not enough for right-skewed data) |
+| `log()` | Natural-log transformation for right-skewed data |
+| `t.test(x, mu = ...)` | One-sample *t*-test against a hypothesized mean |
 
 If you can explain each row in your own words, you have covered the core of **Coding Assignment 3**.
 :::
 
 ## Keep playing
 
-Compare two variables side by side: Gentoo **flipper length** (roughly symmetric visually) vs. the same measurement after every transform. Run `shapiro.test()` on raw, square-root, and log scales and see that **none** rescue this variable — the honest next step is a non-parametric test, not another transform.
+What happens if you filter to **male Adelie penguins only**? Run Shapiro-Wilk on that smaller group and compare it to the full 2007 cohort.
 
 ```{webr}
 #| envir: assumptions_lab
 library(tidyverse)
 library(palmerpenguins)
-gentoo <- penguins |> filter(species == "Gentoo")
-shapiro.test(gentoo$flipper_length_mm)
-shapiro.test(sqrt(gentoo$flipper_length_mm))
-shapiro.test(log(gentoo$flipper_length_mm))
+males_2007 <- penguins |> filter(species == "Adelie", year == 2007, sex == "male")
+shapiro.test(males_2007$bill_depth_mm)
 ```
 
 ::: {.callout-tip appearance="simple"}
-All three p-values stay below 0.05. Flipper length spans only 203–231 mm, so no monotonic transform can fix this distribution. The honest next step is a **nonparametric test** (e.g. **Mann-Whitney** for two independent groups) — not another transform.
+p ≈ 0.12 — males alone pass the normality check on the raw scale. The full 2007 cohort failed because males and females have different bill depths stacked together. That is why you check assumptions on **one group**, not a pile of groups.
 :::
