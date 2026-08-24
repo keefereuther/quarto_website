@@ -258,14 +258,14 @@ if (grepl("glimpse\\s*\\(", code) && grepl("penguin_data", code)) {
 
 ## 4. Step 1 — missing and impossible values
 
-Two different data problems show up in real datasets: **missing** values (`NA`) and **impossible** values (e.g. negative counts or bill depths). They need different handling.
+Two different data problems show up in real datasets: **missing** values (`NA`) and **impossible** values (e.g. negative bill depths). They need different handling.
 
 -   **Missing** means no measurement was recorded — keep those rows for now.
 -   **Impossible** means a sign error or bad entry — remove those rows.
 
 Use `filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)` to drop impossible depths while keeping missing ones. After this step, every numeric summary uses **`na.rm = TRUE`** so R skips the remaining `NA`s.
 
-**Step 1 — trim impossible values.** Bill depth cannot be negative. Remove rows where `bill_depth_mm` is negative. **Keep** rows where `bill_depth_mm` is missing. Save the result as `penguin_clean`.
+Bill depth cannot be negative. Remove rows where `bill_depth_mm` is negative. **Keep** rows where `bill_depth_mm` is missing. Save the result as `penguin_clean`.
 
 ::: {.callout-note appearance="simple"}
 ## `|` means "or"
@@ -371,12 +371,14 @@ mean_preview <-
 
 From `?sum`: `sum(is.na(x))` counts missing values. From `?mean`: set `na.rm = TRUE` to skip them.
 
+Example on `mtcars`:
+
 ``` r
-n_missing <- sum(is.na(penguin_clean$bill_depth_mm))
-mean_preview <- mean(penguin_clean$bill_depth_mm, na.rm = TRUE)
-n_missing
-mean_preview
+n_missing <- sum(is.na(mtcars$mpg))
+mean_preview <- mean(mtcars$mpg, na.rm = TRUE)
 ```
+
+Apply the same pattern to `penguin_clean$bill_depth_mm`.
 :::
 ::::
 
@@ -435,7 +437,7 @@ if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
 
 ## 5. Flag distributional outliers
 
-**Step 2 — flag outliers.** Using only the non-missing bill depths in `penguin_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill depths exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
+Using only the non-missing bill depths in `penguin_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill depths exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
 
 ::: {.callout-note appearance="simple"}
 The 1.5 × IQR rule is a **screening tool**. Points above the fence deserve a look; they are not automatically errors.
@@ -541,7 +543,7 @@ if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
 
 ## 6. Histogram on the raw scale
 
-**Step 3 — assess normality.** Make a histogram of the non-missing bill depths in `penguin_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
+Make a histogram of the non-missing bill depths in `penguin_clean` using `ggplot()` and `geom_histogram()`. Save the plot as `hist_raw` and display it.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -697,10 +699,6 @@ data_is_normal <-
 ## Hint
 
 Look at `shapiro_raw$p.value`. Is it above or below 0.05?
-
-``` r
-data_is_normal <- FALSE
-```
 :::
 ::::
 
@@ -885,12 +883,15 @@ shapiro_log <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Same function as before — pass the log column.
+Same function as before — pass a numeric vector to `shapiro.test()`.
+
+Example:
 
 ``` r
-shapiro_log <- shapiro.test(penguin_transformed$log_depth)
-shapiro_log
+shapiro.test(mtcars$mpg)
 ```
+
+Use non-missing values from `penguin_transformed$log_depth`.
 :::
 ::::
 
@@ -952,10 +953,6 @@ log_is_normal <-
 ## Hint
 
 Look at `shapiro_log$p.value`. Is it above or below 0.05?
-
-``` r
-log_is_normal <- TRUE
-```
 :::
 ::::
 
@@ -999,7 +996,7 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
 
 ## 13. Re-flag outliers after transformation
 
-**Step 4 — re-flag outliers after transformation.** Using only the non-missing `log_depth` values in `penguin_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_depth` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
+Using only the non-missing `log_depth` values in `penguin_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_depth` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1028,10 +1025,12 @@ upper_fence_log <-
 
 Apply the same Q3 + 1.5 × IQR formula to `log_depth` instead of `bill_depth_mm`.
 
+Example on `mtcars`:
+
 ``` r
-upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
-  1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
-n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
+q3 <- quantile(mtcars$mpg, 0.75, na.rm = TRUE)
+upper_fence_log <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
+n_log_outliers <- sum(mtcars$mpg > upper_fence_log, na.rm = TRUE)
 ```
 :::
 ::::
@@ -1105,7 +1104,7 @@ if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE)) {
 }
 ```
 
-## 14. Decide whether to remove outliers
+## 14. Decide whether to trim/Winsorize outliers
 
 Based on your log-scale outlier count, decide whether to remove any rows. Assign `remove_outliers` to `TRUE` if you would filter out IQR outliers, or `FALSE` if you would keep all rows.
 
@@ -1120,11 +1119,7 @@ remove_outliers <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-The raw outlier was a Torgersen male with a **21.5 mm** bill depth — large but biologically plausible. After the log transform, `n_log_outliers` is **0**, so there is nothing left to filter out.
-
-``` r
-remove_outliers <- FALSE
-```
+The raw outlier was a Torgersen male with a **21.5 mm** bill depth — large but biologically plausible. After the log transform, `n_log_outliers` is **0**, so there is nothing left to filter out. Assign `TRUE` or `FALSE` accordingly.
 :::
 ::::
 
@@ -1269,7 +1264,7 @@ if (!grepl("t\\.test\\s*\\(", code)) {
 }
 ```
 
-## 16. Recap — verbs you practiced
+## 16. Recap — functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?

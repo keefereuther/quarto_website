@@ -1,0 +1,643 @@
+---
+title: "Compare Several Means with ANOVA"
+subtitle: "Fit the model, check residual spread, then use Tukey's HSD to see which groups differ"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - tidyverse
+        - palmerpenguins
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Everything on this page runs real R in your browser. You will practice **Coding Assignment 4, Part C**: one-way ANOVA with assumption checks and Tukey's HSD post-hoc comparisons.
+
+::: {.callout-note}
+## Assignment vs this activity
+
+On DataHub, Assignment 4 uses `BrittlebushNitrogen.csv` with four nitrogen levels and `biomass_g`. Here we ask whether **bill depth** differs across the three penguin **species**. The workflow — `aov()`, residual plot, `fligner.test()`, `TukeyHSD()` — is the same.
+:::
+
+::: {.callout-note appearance="simple"}
+## ANOVA in one sentence
+
+One-way ANOVA tests whether **any** group mean differs when you have one categorical factor with **more than two** levels and a continuous response. If the overall F-test is significant, use **Tukey's HSD** (not a pile of uncorrected *t*-tests) to see which pairs differ.
+
+With several groups, fit the model first, then check **residuals** — faceted histograms show each level; `plot(model, which = 1)` shows residual spread.
+:::
+
+**Research question:** Does mean bill depth differ across Adelie, Chinstrap, and Gentoo penguins?
+
+## 1. Load packages
+
+```{webr}
+#| envir: anova_lab
+#| exercise: load_packages
+library()
+library()
+```
+
+:::: {.hint exercise="load_packages"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Load `tidyverse` (ggplot2, dplyr) and `palmerpenguins` (`penguins` dataset).
+:::
+::::
+
+:::: {.solution exercise="load_packages"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+library(tidyverse)
+library(palmerpenguins)
+```
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: load_packages
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code) || !grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
+  list(correct = FALSE, type = "error", message = "Load both `tidyverse` and `palmerpenguins`.")
+} else {
+  list(correct = TRUE, type = "success", message = "Packages loaded.")
+}
+```
+
+## 2. Build the analysis table
+
+Keep every penguin with non-missing `bill_depth_mm` — use `filter(!is.na(bill_depth_mm))`. Save as `penguin_data`.
+
+```{webr}
+#| envir: anova_lab
+#| setup: true
+#| exercise: penguin_data
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{webr}
+#| envir: anova_lab
+#| exercise: penguin_data
+penguin_data <- penguins |>
+  
+```
+
+:::: {.hint exercise="penguin_data"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Filter `penguins` to rows with non-missing `bill_depth_mm`.
+
+Example:
+
+``` r
+penguins |>
+  filter(!is.na(bill_length_mm))
+```
+:::
+::::
+
+:::: {.solution exercise="penguin_data"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+penguin_data <- penguins |>
+  filter(!is.na(bill_depth_mm))
+```
+
+342 rows — all three species, no missing bill depths.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: penguin_data
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `penguin_data`.")
+} else {
+  pd <- get("penguin_data", envir = .envir_result)
+  if (is.data.frame(pd) && nrow(pd) == 342 && length(unique(pd$species)) == 3) {
+    list(correct = TRUE, type = "success", message = "342 complete rows — three species ready for ANOVA.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Filter to rows with non-missing `bill_depth_mm`.")
+  }
+}
+```
+
+## 3. Boxplot by species
+
+Make a boxplot of `bill_depth_mm` by `species`. Save as `box_species` and display it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: box_species
+box_species <- ggplot(penguin_data, aes(x = species, y = bill_depth_mm)) +
+  
+```
+
+:::: {.hint exercise="box_species"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `ggplot()`, `aes()`, and `geom_boxplot()` on `penguin_data`. Map `species` to x and `bill_depth_mm` to y.
+
+Example:
+
+``` r
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot()
+```
+:::
+::::
+
+:::: {.solution exercise="box_species"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+box_species <- ggplot(penguin_data, aes(x = species, y = bill_depth_mm)) +
+  geom_boxplot()
+box_species
+```
+
+Gentoo bills look shallower than Adelie and Chinstrap — but is that difference significant?
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: box_species
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_boxplot\\s*\\(", code) && grepl("box_species", code)) {
+  list(correct = TRUE, type = "success", message = "Boxplot by species — first look at group spread.")
+} else {
+  list(correct = FALSE, type = "error", message = "Use `ggplot(...) + geom_boxplot()`, save as `box_species`.")
+}
+```
+
+## 4. Faceted histograms
+
+Build a histogram of `bill_depth_mm` **faceted by species** so you can judge shape within each level (as in lecture A009's `facet_wrap(~ feed)`). Save as `hist_species` and display it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: hist_species
+hist_species <- ggplot(penguin_data, aes(x = bill_depth_mm)) +
+  
+```
+
+:::: {.hint exercise="hist_species"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Add `geom_histogram()`, then `facet_wrap(~ species)` so each species gets its own panel.
+
+Example:
+
+``` r
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram() +
+  facet_wrap(~ species)
+```
+:::
+::::
+
+:::: {.solution exercise="hist_species"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+hist_species <- ggplot(penguin_data, aes(x = bill_depth_mm)) +
+  geom_histogram() +
+  facet_wrap(~ species)
+hist_species
+```
+
+Each species gets its own panel — easier to spot skew or outliers per group.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: hist_species
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("geom_histogram\\s*\\(", code) && grepl("facet_wrap\\s*\\(", code) && grepl("species", code)) {
+  list(correct = TRUE, type = "success", message = "Faceted histograms — one distribution per species level.")
+} else {
+  list(correct = FALSE, type = "info", message = "Add `geom_histogram()` and `facet_wrap(~ species)`.")
+}
+```
+
+## 5. Fit one-way ANOVA
+
+Fit `aov(bill_depth_mm ~ species, data = penguin_data)`. Save as `anova_model` and print `summary(anova_model)`.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: anova_model
+anova_model <- 
+
+```
+
+:::: {.hint exercise="anova_model"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Fit one-way ANOVA with `aov(response ~ factor, data = ...)`, then `summary()`.
+
+Example:
+
+``` r
+fit <- aov(mpg ~ as.factor(cyl), data = mtcars)
+summary(fit)
+```
+:::
+::::
+
+:::: {.solution exercise="anova_model"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
+summary(anova_model)
+```
+
+F is large and p ≪ 0.001 — at least one species mean differs.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: anova_model
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("anova_model", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `anova_model`.")
+} else {
+  am <- get("anova_model", envir = .envir_result)
+  sm <- summary(am)
+  pval <- sm[[1]]$`Pr(>F)`[1]
+  if (!is.na(pval) && pval < 0.001) {
+    list(correct = TRUE, type = "success", message = paste0("Overall ANOVA p = ", format(pval, digits = 3), " — species means differ."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Fit `aov(bill_depth_mm ~ species, data = penguin_data)` and print `summary()`.")
+  }
+}
+```
+
+## 6. Residuals vs fitted
+
+Use `plot(anova_model, which = 1)` to display the residuals-versus-fitted plot. **Use only `which = 1`** — do not interpret the normal Q–Q panel.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: plot_residuals
+plot(anova_model, which = 1)
+```
+
+:::: {.hint exercise="plot_residuals"}
+::: {.callout-note collapse="false"}
+## Hint
+
+After fitting `anova_model`, check residual spread with `plot(model, which = 1)`.
+
+Look for a random cloud with no funnel shape — the exercise code is already written for you; run it and inspect the plot.
+:::
+::::
+
+:::: {.solution exercise="plot_residuals"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+plot(anova_model, which = 1)
+```
+
+Residuals scatter roughly evenly around zero — no strong funnel.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: plot_residuals
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("plot\\s*\\(\\s*anova_model", code) && grepl("which\\s*=\\s*1", code)) {
+  list(correct = TRUE, type = "success", message = "Residuals vs fitted — check for even spread around zero.")
+} else {
+  list(correct = FALSE, type = "info", message = "Run `plot(anova_model, which = 1)`.")
+}
+```
+
+## 7. Fligner test for equal variance
+
+Test homogeneity of variance across species with `fligner.test()`. Save as `fligner_anova` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: fligner_anova
+fligner_anova <- 
+
+```
+
+:::: {.hint exercise="fligner_anova"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Test equal variances with `fligner.test()` using the same formula as your ANOVA.
+
+Example:
+
+``` r
+fligner.test(mpg ~ as.factor(cyl), data = mtcars)
+```
+:::
+::::
+
+:::: {.solution exercise="fligner_anova"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+fligner_anova <- fligner.test(bill_depth_mm ~ species, data = penguin_data)
+fligner_anova
+```
+
+p ≈ 0.13 — no strong evidence against equal variances.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: fligner_anova
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("fligner_anova", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `fligner_anova`.")
+} else {
+  fa <- get("fligner_anova", envir = .envir_result)
+  if (!is.null(fa$p.value) && fa$p.value > 0.05) {
+    list(correct = TRUE, type = "success", message = paste0("Fligner p = ", round(fa$p.value, 3), " — equal-variance assumption looks OK."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `fligner.test(bill_depth_mm ~ species, data = penguin_data)`.")
+  }
+}
+```
+
+## 8. Assumptions reasonably met?
+
+Assign `anova_assumptions_ok <- TRUE` if the residual plot and Fligner test look acceptable.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: anova_assumptions_ok
+anova_assumptions_ok <- 
+```
+
+:::: {.hint exercise="anova_assumptions_ok"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use the Fligner p-value and your residual plot. Assign `TRUE` if variance homogeneity looks acceptable, otherwise `FALSE`.
+:::
+::::
+
+:::: {.solution exercise="anova_assumptions_ok"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+anova_assumptions_ok <- TRUE
+```
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: anova_assumptions_ok
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("anova_assumptions_ok\\s*<-\\s*TRUE", code)) {
+  list(correct = TRUE, type = "success", message = "Assumptions look reasonably met — interpret the ANOVA.")
+} else {
+  list(correct = FALSE, type = "info", message = "Fligner was not significant — assign `anova_assumptions_ok <- TRUE`.")
+}
+```
+
+## 9. Tukey's HSD
+
+Run `TukeyHSD(anova_model)`. Save as `tukey_result` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: tukey_result
+tukey_result <- 
+
+```
+
+:::: {.hint exercise="tukey_result"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Run `TukeyHSD()` on the fitted ANOVA model object.
+
+Example:
+
+``` r
+TukeyHSD(aov(mpg ~ as.factor(cyl), data = mtcars))
+```
+:::
+::::
+
+:::: {.solution exercise="tukey_result"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+tukey_result <- TukeyHSD(anova_model)
+tukey_result
+```
+
+Adelie–Chinstrap: not significant. Gentoo differs from both Adelie and Chinstrap.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: tukey_result
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("tukey_result", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `tukey_result`.")
+} else {
+  tr <- get("tukey_result", envir = .envir_result)
+  padj <- tr$species[, "p adj"]
+  if ("Chinstrap-Adelie" %in% names(padj) && padj["Chinstrap-Adelie"] > 0.05 &&
+      "Gentoo-Adelie" %in% names(padj) && padj["Gentoo-Adelie"] < 0.001) {
+    list(correct = TRUE, type = "success", message = "Tukey HSD — Gentoo differs from Adelie/Chinstrap; Adelie vs Chinstrap does not.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `TukeyHSD(anova_model)` and print the result.")
+  }
+}
+```
+
+## 10. Interpret Tukey contrasts
+
+Which pair is **not** significantly different? Assign `adelie_chinstrap_same <- TRUE` if Adelie and Chinstrap bill depths do not differ after Tukey correction.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: interpret_tukey
+adelie_chinstrap_same <- 
+gentoo_shallower <- 
+```
+
+:::: {.hint exercise="interpret_tukey"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Read `tukey_result` — check each pairwise `p adj`. Which species pair is **not** significant? Is Gentoo shallower than both others?
+:::
+::::
+
+:::: {.solution exercise="interpret_tukey"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+adelie_chinstrap_same <- TRUE
+gentoo_shallower <- TRUE
+```
+
+Overall ANOVA was significant, but only Gentoo stands apart in bill depth — Adelie and Chinstrap are statistically similar.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: interpret_tukey
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("adelie_chinstrap_same\\s*<-\\s*TRUE", code) && grepl("gentoo_shallower\\s*<-\\s*TRUE", code)) {
+  list(correct = TRUE, type = "success", message = "Correct — one non-significant pair (Adelie–Chinstrap) and Gentoo shallower than both.")
+} else {
+  list(correct = FALSE, type = "info", message = "Adelie–Chinstrap p adj > 0.05; Gentoo differs from both — assign both `TRUE`.")
+}
+```
+
+## 11. Recap — functions you practiced
+
+::: {.callout-note collapse="true"}
+## What does each function do?
+
+| Function | Role |
+|----------|------|
+| `ggplot()` + `geom_boxplot()` | Compare a continuous response across factor levels |
+| `geom_histogram()` + `facet_wrap(~ species)` | One distribution panel per level |
+| `aov(y ~ x, data = ...)` | Fit one-way ANOVA |
+| `summary(anova_model)` | Overall F-test — do any means differ? |
+| `plot(model, which = 1)` | Residuals vs fitted — check spread |
+| `fligner.test(y ~ x, data = ...)` | Test homogeneity of variances |
+| `TukeyHSD(model)` | Pairwise comparisons with family-wise error control |
+
+If you can explain each row, you have covered **Coding Assignment 4, Part C**.
+:::
+
+## Keep playing
+
+Try ANOVA on `body_mass_g ~ species` instead. Run `fligner.test(body_mass_g ~ species, data = penguin_data)` — does equal variance hold?
+
+```{webr}
+#| envir: anova_lab
+library(tidyverse)
+library(palmerpenguins)
+penguin_mass <- penguins |> filter(!is.na(body_mass_g))
+fligner.test(body_mass_g ~ species, data = penguin_mass)
+```
+
+::: {.callout-tip appearance="simple"}
+Fligner p ≈ 0.01 for body mass — variances differ across species. That is why this activity uses **bill depth**, where Fligner passes. Choosing a response where assumptions hold makes interpretation cleaner.
+:::

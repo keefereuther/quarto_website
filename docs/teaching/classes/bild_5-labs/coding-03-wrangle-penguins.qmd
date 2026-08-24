@@ -728,7 +728,7 @@ if (!grepl("left_join\\s*\\(", code)) {
 }
 ```
 
-## 9. Recap — verbs you practiced
+## 9. Recap — functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?

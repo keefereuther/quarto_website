@@ -1,0 +1,684 @@
+---
+title: "Correlation and Linear Regression"
+subtitle: "Association vs prediction — r, a fitted line, R², and Cook's distance on Adelie penguins"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - tidyverse
+        - palmerpenguins
+        - broom
+        - ggrepel
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Everything on this page runs real R in your browser. You will practice **Coding Assignment 4, Part D** plus lecture extras on correlation, R², and Cook's distance.
+
+::: {.callout-note}
+## Assignment vs this activity
+
+On DataHub, Assignment 4 regresses `biomass_g` on `leaf_area_cm2` in the brittlebush dataset. Here we ask whether **flipper length** predicts **body mass** in **Adelie** penguins only — so species clustering does not inflate R². The workflow — scatterplot, `lm()`, residual plot, R² — matches the assignment; `cor.test()` and Cook's distance come from lecture A010.
+:::
+
+::: {.callout-note appearance="simple"}
+## Correlation vs regression
+
+- **Correlation** (*r*): strength and direction of a **linear association** in the data you measured. Use `cor.test()` when both variables are numeric and you want r **and** a p-value.
+- **Regression**: fit a line to **predict** Y from X. Check assumptions **after** fitting with residual plots. **R²** = proportion of variance in Y explained by the model (r² when there is one predictor).
+
+Unlike a *t*-test, you fit the model first, **then** diagnose it.
+:::
+
+**Research question:** Among Adelie penguins, does flipper length predict body mass?
+
+## 1. Load packages
+
+```{webr}
+#| envir: regression_lab
+#| exercise: load_packages
+library()
+library()
+```
+
+:::: {.hint exercise="load_packages"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Load `tidyverse` and `palmerpenguins`. You will load `broom` and `ggrepel` later for the Cook's distance plot.
+:::
+::::
+
+:::: {.solution exercise="load_packages"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+library(tidyverse)
+library(palmerpenguins)
+```
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: load_packages
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code) || !grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
+  list(correct = FALSE, type = "error", message = "Load both `tidyverse` and `palmerpenguins`.")
+} else {
+  list(correct = TRUE, type = "success", message = "Packages loaded.")
+}
+```
+
+## 2. Build the Adelie table
+
+Keep Adelie penguins with non-missing `body_mass_g` and `flipper_length_mm` — use `!is.na()` on both columns in `filter()`. Save as `penguin_data`.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: penguin_data
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: penguin_data
+penguin_data <- penguins |>
+  
+```
+
+:::: {.hint exercise="penguin_data"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Filter `penguins` to Adelie rows with non-missing `body_mass_g` and `flipper_length_mm`.
+
+Example:
+
+``` r
+penguins |>
+  filter(species == "Gentoo", !is.na(body_mass_g))
+```
+:::
+::::
+
+:::: {.solution exercise="penguin_data"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+```
+
+151 Adelie penguins — complete measurements only.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: penguin_data
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `penguin_data`.")
+} else {
+  pd <- get("penguin_data", envir = .envir_result)
+  if (is.data.frame(pd) && nrow(pd) == 151 && all(pd$species == "Adelie")) {
+    list(correct = TRUE, type = "success", message = "151 Adelie rows — ready for regression.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Filter to Adelie with non-missing mass and flipper length.")
+  }
+}
+```
+
+## 3. Scatterplot with trend line
+
+Plot `body_mass_g` (y) vs `flipper_length_mm` (x). Add a linear trend with `geom_smooth(method = "lm")`. Save as `scatter_lm` and display it.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: scatter_lm
+scatter_lm <- ggplot(penguin_data, aes(x = flipper_length_mm, y = body_mass_g)) +
+  
+```
+
+:::: {.hint exercise="scatter_lm"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `ggplot()` with `geom_point()` and `geom_smooth(method = "lm")`. Map flipper length to x and body mass to y.
+
+Example:
+
+``` r
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+:::
+::::
+
+:::: {.solution exercise="scatter_lm"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+scatter_lm <- ggplot(penguin_data, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+scatter_lm
+```
+
+Positive slope — heavier Adelie penguins tend to have longer flippers.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: scatter_lm
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_smooth", code) && grepl("scatter_lm", code)) {
+  list(correct = TRUE, type = "success", message = "Scatter with linear trend — visual check before fitting.")
+} else {
+  list(correct = FALSE, type = "error", message = "Add points and `geom_smooth(method = \"lm\")`, save as `scatter_lm`.")
+}
+```
+
+## 4. Pearson correlation
+
+Run `cor.test()` on flipper length and body mass. Save as `cor_result` and print it — you need both **r** and a **p-value**.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cor_result
+cor_result <- 
+
+```
+
+:::: {.hint exercise="cor_result"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `cor.test()` on two numeric vectors from the same data frame.
+
+Example:
+
+``` r
+cor.test(mtcars$mpg, mtcars$wt)
+```
+:::
+::::
+
+:::: {.solution exercise="cor_result"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+cor_result <- cor.test(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+cor_result
+```
+
+r ≈ 0.47, p ≪ 0.001 — moderate positive association, statistically significant.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cor_result
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("cor_result", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `cor_result`.")
+} else {
+  cr <- get("cor_result", envir = .envir_result)
+  r <- if (!is.null(cr$estimate)) cr$estimate else NA
+  if (!is.na(r) && abs(r - 0.468) < 0.05 && !is.null(cr$p.value) && cr$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = paste0("r ≈ ", round(r, 2), ", p ≪ 0.05 — significant moderate correlation."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `cor.test(flipper_length_mm, body_mass_g)` on `penguin_data`.")
+  }
+}
+```
+
+## 5. Fit linear model
+
+Fit `lm(body_mass_g ~ flipper_length_mm, data = penguin_data)`. Save as `lm_model` and print `summary(lm_model)`.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_model
+lm_model <- 
+
+```
+
+:::: {.hint exercise="lm_model"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Fit with `lm(response ~ predictor, data = ...)` and inspect with `summary()`.
+
+Example:
+
+``` r
+fit <- lm(mpg ~ wt, data = mtcars)
+summary(fit)
+```
+:::
+::::
+
+:::: {.solution exercise="lm_model"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+summary(lm_model)
+```
+
+Slope for flipper length is positive and highly significant.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_model
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("lm_model", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `lm_model`.")
+} else {
+  lm1 <- get("lm_model", envir = .envir_result)
+  sm <- summary(lm1)
+  pval <- sm$coefficients[2, 4]
+  if (!is.na(pval) && pval < 0.001) {
+    list(correct = TRUE, type = "success", message = "Slope significant — flipper length predicts body mass.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Fit `lm(body_mass_g ~ flipper_length_mm, data = penguin_data)`.")
+  }
+}
+```
+
+## 6. Residuals vs fitted
+
+Use `plot(lm_model, which = 1)` to display the residuals-versus-fitted plot.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: plot_residuals
+plot(lm_model, which = 1)
+```
+
+:::: {.hint exercise="plot_residuals"}
+::: {.callout-note collapse="false"}
+## Hint
+
+After fitting a linear model, use `plot(model, which = 1)` to check residual spread.
+
+Example:
+
+``` r
+fit <- lm(mpg ~ wt, data = mtcars)
+plot(fit, which = 1)
+```
+
+Look for residuals scattered roughly evenly around zero with no obvious curve.
+:::
+::::
+
+:::: {.solution exercise="plot_residuals"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+plot(lm_model, which = 1)
+```
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: plot_residuals
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("plot\\s*\\(\\s*lm_model", code) && grepl("which\\s*=\\s*1", code)) {
+  list(correct = TRUE, type = "success", message = "Residuals vs fitted — check linearity and homoscedasticity.")
+} else {
+  list(correct = FALSE, type = "info", message = "Run `plot(lm_model, which = 1)`.")
+}
+```
+
+## 7. Cook's distance
+
+Load `broom` and `ggrepel`, then build the Cook's distance plot from lecture A010. Flag cases above `4 / nobs(lm_model)`.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cooks_distance
+library(broom)
+library(ggrepel)
+
+aug <- augment(lm_model) |>
+  mutate(case = row_number())
+
+cook_cut <- 4 / nobs(lm_model)
+influential <- aug |>
+  filter(.cooksd > cook_cut)
+
+p_cooks <- aug |>
+  ggplot(aes(case, .cooksd)) +
+  geom_segment(aes(xend = case, yend = 0)) +
+  geom_hline(yintercept = cook_cut, linetype = "dashed") +
+  geom_point() +
+  theme_minimal() +
+  geom_point(data = influential, color = "red") +
+  geom_text_repel(data = influential, aes(label = case), size = 3) +
+  labs(
+    title = "Cook's Distance by Case",
+    x = "Case index",
+    y = "Cook's distance"
+  )
+p_cooks
+```
+
+:::: {.hint exercise="cooks_distance"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Layers to add after `ggplot(aes(case, .cooksd))`:
+
+- `geom_segment()` from each point down to zero
+- `geom_hline()` at `cook_cut` (dashed)
+- `geom_point()` for all cases
+- red `geom_point()` for rows in `influential`
+- `geom_text_repel()` to label influential case numbers
+- `labs()` for title and axis names
+
+Example segment plot on a small made-up table:
+
+``` r
+tibble(case = 1:5, value = c(0.01, 0.02, 0.15, 0.01, 0.03)) |>
+  ggplot(aes(case, value)) +
+  geom_segment(aes(xend = case, yend = 0)) +
+  geom_point()
+```
+:::
+::::
+
+:::: {.solution exercise="cooks_distance"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+library(broom)
+library(ggrepel)
+
+aug <- augment(lm_model) |>
+  mutate(case = row_number())
+
+cook_cut <- 4 / nobs(lm_model)
+influential <- aug |>
+  filter(.cooksd > cook_cut)
+
+p_cooks <- aug |>
+  ggplot(aes(case, .cooksd)) +
+  geom_segment(aes(xend = case, yend = 0)) +
+  geom_hline(yintercept = cook_cut, linetype = "dashed") +
+  geom_point() +
+  theme_minimal() +
+  geom_point(data = influential, color = "red") +
+  geom_text_repel(data = influential, aes(label = case), size = 3) +
+  labs(
+    title = "Cook's Distance by Case",
+    x = "Case index",
+    y = "Cook's distance"
+  )
+p_cooks
+```
+
+Six cases exceed the cutoff — they pull the line more than typical points. **Flagging ≠ deleting** unless you have a biological reason.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cooks_distance
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("p_cooks", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save the plot as `p_cooks`.")
+} else if (!exists("cook_cut", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info", message = "Compute `cook_cut <- 4 / nobs(lm_model)`.")
+} else if (!grepl("geom_text_repel|geom_hline", code)) {
+  list(correct = FALSE, type = "info", message = "Add the dashed cutoff line and label influential points with `geom_text_repel()`.")
+} else {
+  cc <- get("cook_cut", envir = .envir_result)
+  n_inf <- if (exists("influential", envir = .envir_result, inherits = FALSE)) {
+    nrow(get("influential", envir = .envir_result))
+  } else NA
+  if (abs(cc - 4/151) < 0.001 && !is.na(n_inf) && n_inf >= 5) {
+    list(correct = TRUE, type = "success", message = paste0(n_inf, " influential cases above 4/n — flagged, not removed."))
+  } else {
+    list(correct = TRUE, type = "success", message = "Cook's distance plot complete — check cases above the dashed line.")
+  }
+}
+```
+
+::: {.callout-note appearance="simple"}
+## Outliers vs influence
+
+A point can be an outlier in Y without strongly influencing the slope. Cook's distance combines **leverage** and **residual size**. The 4/n cutoff is a **screening rule** — investigate flagged cases, but do not winsorize or trim without justification.
+:::
+
+## 8. R-squared
+
+Extract R² from `summary(lm_model)`. Save as `lm_r_squared` and print it.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_r_squared
+lm_r_squared <- 
+
+```
+
+:::: {.hint exercise="lm_r_squared"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Extract R² from the model summary object with `$r.squared`.
+
+Example:
+
+``` r
+summary(lm(mpg ~ wt, data = mtcars))$r.squared
+```
+:::
+::::
+
+:::: {.solution exercise="lm_r_squared"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+lm_r_squared <- summary(lm_model)$r.squared
+lm_r_squared
+```
+
+R² ≈ 0.22 — flipper length explains about 22% of body-mass variation among Adelie penguins. r ≈ 0.47, so r² ≈ 0.22 — same information, different scale.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_r_squared
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("lm_r_squared", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `lm_r_squared`.")
+} else {
+  r2 <- get("lm_r_squared", envir = .envir_result)
+  if (is.numeric(r2) && r2 > 0.18 && r2 < 0.26) {
+    list(correct = TRUE, type = "success", message = paste0("R² = ", round(r2, 3), " — moderate explanatory power within Adelie only."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Use `summary(lm_model)$r.squared`.")
+  }
+}
+```
+
+## 9. Interpret the model
+
+Assign `slope_significant <- TRUE` and `keep_influential_points <- TRUE` (flag but do not delete influential cases without cause).
+
+```{webr}
+#| envir: regression_lab
+#| exercise: interpret_lm
+slope_significant <- 
+keep_influential_points <- 
+```
+
+:::: {.hint exercise="interpret_lm"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Read `summary(lm_model)` for the slope p-value. Inspect `p_cooks` — are there influential points worth flagging? Assign `TRUE` or `FALSE` for each variable.
+:::
+::::
+
+:::: {.solution exercise="interpret_lm"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+slope_significant <- TRUE
+keep_influential_points <- TRUE
+```
+
+Residual plot looks reasonable; slope p ≪ 0.001; r and R² tell a consistent moderate-positive story.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: interpret_lm
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("slope_significant\\s*<-\\s*TRUE", code) && grepl("keep_influential_points\\s*<-\\s*TRUE", code)) {
+  list(correct = TRUE, type = "success", message = "Correct — significant slope; influential points flagged but kept.")
+} else {
+  list(correct = FALSE, type = "info", message = "Slope was significant; keep influential rows unless biologically unjustified — both `TRUE`.")
+}
+```
+
+## 10. Recap — functions you practiced
+
+::: {.callout-note collapse="true"}
+## What does each function do?
+
+| Function | Role |
+|----------|------|
+| `ggplot()` + `geom_point()` + `geom_smooth(method = "lm")` | Scatter with fitted line |
+| `cor.test(x, y)` | Pearson r and p-value for linear association |
+| `lm(y ~ x, data = ...)` | Fit simple linear regression |
+| `summary(lm_model)` | Coefficients, R², and p-values |
+| `plot(model, which = 1)` | Residuals vs fitted |
+| `augment(model)` | Add residuals, fitted values, Cook's d (.cooksd) |
+| `4 / nobs(model)` | Common Cook's distance cutoff |
+| `geom_text_repel()` | Label influential case indices |
+
+If you can explain each row, you have covered **Coding Assignment 4, Part D** plus lecture A010 extras.
+:::
+
+## Keep playing
+
+Pool all three species and plot body mass vs flipper length colored by species. Why does R² jump when you ignore species?
+
+```{webr}
+#| envir: regression_lab
+library(tidyverse)
+library(palmerpenguins)
+all_p <- penguins |> filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
+ggplot(all_p, aes(flipper_length_mm, body_mass_g, color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+summary(lm(body_mass_g ~ flipper_length_mm, data = all_p))$r.squared
+```
+
+::: {.callout-tip appearance="simple"}
+R² ≈ 0.76 pooled vs ≈ 0.22 within Adelie — much of the "prediction" was really **species clustering**, not flipper length alone. That is why we regressed within one species.
+:::

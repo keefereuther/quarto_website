@@ -477,7 +477,7 @@ if (has_box && has_theme && has_labs) {
 }
 ```
 
-## 6. Recap — ggplot verbs you practiced
+## 6. Recap — ggplot functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?

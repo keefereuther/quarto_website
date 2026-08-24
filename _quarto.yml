@@ -76,6 +76,12 @@ website:
               href: docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.qmd
             - text: "Coding 5 — Check Assumptions Before a Parametric Test"
               href: docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.qmd
+            - text: "Coding 6 — Compare Two Means with t-tests"
+              href: docs/teaching/classes/bild_5-labs/coding-06-run-t-tests.qmd
+            - text: "Coding 7 — Compare Several Means with ANOVA"
+              href: docs/teaching/classes/bild_5-labs/coding-07-run-anova.qmd
+            - text: "Coding 8 — Correlation and Linear Regression"
+              href: docs/teaching/classes/bild_5-labs/coding-08-correlation-and-regression.qmd
         - section: "Paper activities"
           contents:
             - text: "Paper 1 — Find a Question, Build a Bibliography"

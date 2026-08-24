@@ -40,6 +40,9 @@ Activities run in your browser or in the PDF annotator — no installs required 
 3. [Wrangle Penguins with dplyr](bild_5-labs/coding-03-wrangle-penguins.qmd)
 4. [Read, Fix, and Test R Errors](bild_5-labs/coding-04-read-fix-and-test-r-errors.qmd)
 5. [Check Assumptions Before a Parametric Test](bild_5-labs/coding-05-check-assumptions.qmd)
+6. [Compare Two Means with t-tests](bild_5-labs/coding-06-run-t-tests.qmd)
+7. [Compare Several Means with ANOVA](bild_5-labs/coding-07-run-anova.qmd)
+8. [Correlation and Linear Regression](bild_5-labs/coding-08-correlation-and-regression.qmd)
 
 ### Paper activities
 

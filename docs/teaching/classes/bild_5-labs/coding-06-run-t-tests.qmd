@@ -1,0 +1,1352 @@
+---
+title: "Compare Two Means with t-tests"
+subtitle: "One-sample, Welch two-sample, and paired t-tests on Palmer Penguins — check assumptions, then interpret"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - tidyverse
+        - palmerpenguins
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Everything on this page runs real R in your browser. You will practice the same workflow as **Coding Assignment 4, Parts A and B**, plus a **one-sample** *t*-test from lecture A008: explore the data, check assumptions, run the test, and interpret the result.
+
+::: {.callout-note}
+## Assignment vs this activity
+
+On DataHub, Assignment 4 uses brittlebush CSV files. Here we use Palmer Penguins so you can practice in the browser. In **Part A**, bill length is pre-filtered for you in step 2. **Part B** builds nest-mate pairs from `penguins_raw` and asks you to `mutate()` a delta column, just like Assignment 4. In **Part C**, the `penguins` table can still have missing `body_mass_g` — you will drop those rows with `!is.na()` before the one-sample test.
+
+For a **one-sample** *t*-test with transformation when normality fails, see [Coding Activity 5](coding-05-check-assumptions.qmd). Part C here runs a directional one-sample test on data that already looks normal enough.
+:::
+
+::: {.callout-note appearance="simple"}
+## Choosing a *t*-test
+
+| Design | Test | H₀ in words |
+|--------|------|-------------|
+| One group vs a hypothesized mean | One-sample *t*-test | True mean equals `mu` |
+| Two **independent** groups | Welch two-sample *t*-test | True means are equal |
+| Two measurements on the **same** unit (pair) | Paired *t*-test | True mean **difference** is zero |
+
+Welch's two-sample test does **not** assume equal variances. Default `t.test()` is **two-sided**; you can set `alternative = "greater"` or `"less"` when the research question is directional — choose the tail **before** you look at the p-value.
+:::
+
+## Part A — Welch two-sample *t*-test
+
+**Research question:** Is mean bill length different between Adelie and Chinstrap penguins?
+
+### 1. Load packages
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: load_packages
+library()
+library()
+```
+
+:::: {.hint exercise="load_packages"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Load `tidyverse` (ggplot2, dplyr) and `palmerpenguins` (the `penguins` dataset).
+:::
+::::
+
+:::: {.solution exercise="load_packages"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+library(tidyverse)
+library(palmerpenguins)
+```
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: load_packages
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
+  list(correct = FALSE, type = "error", message = "Load the tidyverse with `library(tidyverse)`.")
+} else if (!grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
+  list(correct = FALSE, type = "error", message = "Also load `library(palmerpenguins)`.")
+} else {
+  list(correct = TRUE, type = "success", message = "Packages loaded — ready for Part A.")
+}
+```
+
+### 2. Boxplot all species
+
+Make a boxplot of `bill_length_mm` by `species` for every penguin with a complete bill measurement. Save as `box_species` and display it.
+
+```{webr}
+#| envir: ttests_lab
+#| setup: true
+#| exercise: box_species
+library(tidyverse)
+library(palmerpenguins)
+penguin_bills <- penguins |>
+  filter(!is.na(bill_length_mm))
+```
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: box_species
+box_species <- ggplot(penguin_bills, aes(x = species, y = bill_length_mm)) +
+  
+```
+
+:::: {.hint exercise="box_species"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `ggplot()`, `aes()`, and `geom_boxplot()` on `penguin_bills`. Map `species` to x and `bill_length_mm` to y.
+
+Example on a different dataset:
+
+``` r
+ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot()
+```
+:::
+::::
+
+:::: {.solution exercise="box_species"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+box_species <- ggplot(penguin_bills, aes(x = species, y = bill_length_mm)) +
+  geom_boxplot()
+box_species
+```
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: box_species
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_boxplot\\s*\\(", code) && grepl("box_species", code)) {
+  list(correct = TRUE, type = "success", message = "Boxplot saved as `box_species` — compare bill length across all three species.")
+} else {
+  list(correct = FALSE, type = "error", message = "Use `ggplot(...) + geom_boxplot()`, save as `box_species`, and display it.")
+}
+```
+
+### 3. Filter to two groups
+
+Keep only Adelie and Chinstrap rows. Save as `two_group`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: two_group
+two_group <- penguin_bills |>
+  
+```
+
+:::: {.hint exercise="two_group"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `filter()` on `penguin_bills` to keep Adelie or Chinstrap rows.
+
+Example:
+
+``` r
+penguins |>
+  filter(species == "Gentoo")
+```
+:::
+::::
+
+:::: {.solution exercise="two_group"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+two_group <- penguin_bills |>
+  filter(species == "Adelie" | species == "Chinstrap")
+```
+
+151 Adelie + 68 Chinstrap = 219 rows.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: two_group
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("two_group", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save the filtered table as `two_group`.")
+} else {
+  tg <- get("two_group", envir = .envir_result)
+  if (is.data.frame(tg) && nrow(tg) == 219 && length(unique(tg$species)) == 2) {
+    list(correct = TRUE, type = "success", message = "219 rows — Adelie and Chinstrap only.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Filter to Adelie and Chinstrap with `filter(species == \"Adelie\" | species == \"Chinstrap\")`.")
+  }
+}
+```
+
+### 4. Shapiro-Wilk per group
+
+Run `shapiro.test()` on `bill_length_mm` separately for Adelie and Chinstrap in `two_group`. Save as `shapiro_adelie` and `shapiro_chinstrap`, and print both.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_two_group
+shapiro_adelie <- 
+shapiro_chinstrap <- 
+
+```
+
+:::: {.hint exercise="shapiro_two_group"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Run `shapiro.test()` separately on each group's bill lengths. Subset with `$` and a logical condition.
+
+Example:
+
+``` r
+shapiro.test(mtcars$mpg[mtcars$cyl == 4])
+```
+:::
+::::
+
+:::: {.solution exercise="shapiro_two_group"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+shapiro_adelie <- shapiro.test(two_group$bill_length_mm[two_group$species == "Adelie"])
+shapiro_chinstrap <- shapiro.test(two_group$bill_length_mm[two_group$species == "Chinstrap"])
+shapiro_adelie
+shapiro_chinstrap
+```
+
+Both p-values are above 0.05 — normality within each group looks acceptable for a Welch *t*-test.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_two_group
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("shapiro_adelie", envir = .envir_result, inherits = FALSE) ||
+    !exists("shapiro_chinstrap", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save both results as `shapiro_adelie` and `shapiro_chinstrap`.")
+} else {
+  sa <- get("shapiro_adelie", envir = .envir_result)
+  sc <- get("shapiro_chinstrap", envir = .envir_result)
+  if (!is.null(sa$p.value) && !is.null(sc$p.value) && sa$p.value > 0.05 && sc$p.value > 0.05) {
+    list(correct = TRUE, type = "success", message = "Both Shapiro p-values > 0.05 — normality assumption looks met for each group.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Run Shapiro-Wilk on bill length separately for Adelie and Chinstrap.")
+  }
+}
+```
+
+### 5. Assumptions met?
+
+Assign `assumptions_ok <- TRUE` if the Shapiro tests support normality in each group (Welch does not require equal variance).
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: assumptions_ok
+assumptions_ok <- 
+```
+
+:::: {.hint exercise="assumptions_ok"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Compare both Shapiro p-values to 0.05. Assign `TRUE` if normality looks acceptable in each group, otherwise `FALSE`.
+:::
+::::
+
+:::: {.solution exercise="assumptions_ok"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+assumptions_ok <- TRUE
+```
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: assumptions_ok
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("assumptions_ok\\s*<-\\s*TRUE", code)) {
+  list(correct = TRUE, type = "success", message = "Assumptions look met — proceed with the Welch test.")
+} else {
+  list(correct = FALSE, type = "info", message = "Both Shapiro p-values were > 0.05, so assign `assumptions_ok <- TRUE`.")
+}
+```
+
+### 6. Two-sided Welch *t*-test
+
+Run a Welch two-sample *t*-test comparing `bill_length_mm` between species in `two_group`. Save as `t_two_sample` and print it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_two_sample
+t_two_sample <- 
+
+```
+
+:::: {.hint exercise="t_two_sample"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `t.test()` with a formula: continuous variable ~ grouping factor, and `data = two_group`.
+
+Example:
+
+``` r
+t.test(mpg ~ as.factor(cyl), data = mtcars)
+```
+
+Default `alternative` is `"two.sided"` — what Assignment 4 uses.
+:::
+::::
+
+:::: {.solution exercise="t_two_sample"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_two_sample <- t.test(bill_length_mm ~ species, data = two_group)
+t_two_sample
+```
+
+p ≪ 0.001 — reject H₀. Chinstrap mean bill length is about 10 mm longer than Adelie.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_two_sample
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("t_two_sample", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save the result as `t_two_sample`.")
+} else {
+  tt <- get("t_two_sample", envir = .envir_result)
+  if (!is.null(tt$p.value) && tt$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = paste0("Reject H₀ — species means differ (p ", format.pval(tt$p.value, digits = 3, eps = 0.001), ")."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `t.test(bill_length_mm ~ species, data = two_group)`.")
+  }
+}
+```
+
+### 7. One-tailed Welch *t*-test
+
+**Directional question:** Are Chinstrap bills **longer** than Adelie bills?
+
+Re-run the test with `alternative = "less"`. Adelie is the **first** factor level, so `"less"` tests whether Adelie mean &lt; Chinstrap mean (i.e., Chinstrap is longer). Save as `t_two_sample_one_tailed` and print it.
+
+::: {.callout-note appearance="simple"}
+## One-tailed vs two-tailed
+
+When the effect goes in the direction you hypothesized, the one-tailed p-value is about **half** the two-tailed p-value. Assignment 4 uses two-sided tests unless a question says otherwise.
+:::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_one_tailed
+t_two_sample_one_tailed <- 
+
+```
+
+:::: {.hint exercise="t_one_tailed"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Re-run the two-sample test with `alternative = "less"` (Adelie is the first factor level).
+
+Functions: `t.test()`. Objects: `two_group`, `bill_length_mm`, `species`.
+:::
+::::
+
+:::: {.solution exercise="t_one_tailed"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_two_sample_one_tailed <- t.test(
+  bill_length_mm ~ species,
+  data = two_group,
+  alternative = "less"
+)
+t_two_sample_one_tailed
+```
+
+One-tailed p is still ≪ 0.001 — Chinstrap bills are significantly longer.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_one_tailed
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("alternative\\s*=\\s*[\"']less[\"']", code)) {
+  list(correct = FALSE, type = "info", message = "Set `alternative = \"less\"` (Adelie is the first level; Chinstrap-longer is a \"less\" test on Adelie vs Chinstrap).")
+} else if (!exists("t_two_sample_one_tailed", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `t_two_sample_one_tailed`.")
+} else {
+  tt <- get("t_two_sample_one_tailed", envir = .envir_result)
+  if (!is.null(tt$p.value) && tt$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = "One-tailed test confirms Chinstrap bills are longer.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Re-run with `alternative = \"less\"`.")
+  }
+}
+```
+
+### 8. Interpret the two-sample test
+
+Using `t_two_sample`, decide whether Chinstrap mean bill length is **significantly longer** than Adelie (α = 0.05). Assign `chinstrap_longer <- TRUE` or `FALSE`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: chinstrap_longer
+chinstrap_longer <- 
+```
+
+:::: {.hint exercise="chinstrap_longer"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Compare `t_two_sample$p.value` to 0.05, then check which species had the larger mean in `t_two_sample$estimate`.
+:::
+::::
+
+:::: {.solution exercise="chinstrap_longer"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+chinstrap_longer <- TRUE
+```
+
+p ≪ 0.05 and the Chinstrap mean exceeds the Adelie mean by about 10 mm.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: chinstrap_longer
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("t_two_sample", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Run the two-sample test first (exercise 6).")
+} else if (!grepl("chinstrap_longer\\s*<-\\s*(TRUE|FALSE)", code)) {
+  list(correct = FALSE, type = "info", message = "Assign `chinstrap_longer <- TRUE` or `FALSE`.")
+} else {
+  tt <- get("t_two_sample", envir = .envir_result)
+  est <- tt$estimate
+  chinstrap_higher <- length(est) >= 2 && unname(est[2]) > unname(est[1])
+  expected <- !is.null(tt$p.value) && tt$p.value < 0.05 && chinstrap_higher
+  user_val <- grepl("chinstrap_longer\\s*<-\\s*TRUE", code)
+  if (user_val == expected) {
+    if (expected) {
+      list(correct = TRUE, type = "success", message = "Correct — reject H₀; Chinstrap mean bill length exceeds Adelie.")
+    } else {
+      list(correct = TRUE, type = "success", message = "Correct — the evidence does not support that conclusion.")
+    }
+  } else {
+    list(correct = FALSE, type = "info", message = "Re-read the p-value and sample means in `t_two_sample`.")
+  }
+}
+```
+
+## Part B — Paired *t*-test
+
+**Research question:** Within Adelie breeding pairs, is male body mass different from female body mass?
+
+The raw Palmer Penguins file (`penguins_raw`) records individual birds with nest IDs like `N1A1`. You will build **72 Adelie nest-mate pairs** — one male and one female measured at the same nest in the same breeding season — then add a paired-difference column before running the test.
+
+### 9. Build Adelie nest-mate pairs
+
+From `penguins_raw`, keep Adelie penguins with non-missing body mass and sex — after `make.names()`, use `!is.na(Body.Mass..g.)` in `filter()`. Extract nest ID and year, keep nests with exactly two birds, then `pivot_wider()` so each row has `female_mass` and `male_mass`. Save as `adelie_pairs` (72 rows).
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: adelie_pairs
+adelie_pairs <- penguins_raw |>
+
+```
+
+:::: {.hint exercise="adelie_pairs"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Objects: `penguins_raw`. Functions you'll likely need: `make.names()`, `mutate()`, `str_extract()`, `count()`, `filter()`, `inner_join()`, `pivot_wider()`, `transmute()`.
+
+Workflow: extract nest ID from `Individual.ID`, keep Adelie birds with mass and sex, find nests with exactly two birds in the same year, then pivot sex to columns.
+
+Small `pivot_wider()` example:
+
+``` r
+tibble(
+  nest = c("A", "A", "B", "B"),
+  sex = c("female", "male", "female", "male"),
+  mass = c(3800, 3750, 3200, 3400)
+) |>
+  pivot_wider(names_from = sex, values_from = mass)
+```
+:::
+::::
+
+:::: {.solution exercise="adelie_pairs"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+raw <- penguins_raw
+names(raw) <- make.names(names(raw))
+adelie_nests <- raw |>
+  mutate(
+    nest_id = str_extract(Individual.ID, "^N[0-9]+"),
+    year = as.integer(format(Date.Egg, "%Y")),
+    species_short = if_else(str_detect(Species, "Adelie"), "Adelie", "Other"),
+    sex_l = tolower(Sex)
+  ) |>
+  filter(species_short == "Adelie", !is.na(Body.Mass..g.), sex_l %in% c("male", "female"))
+two_bird_nests <- adelie_nests |>
+  count(nest_id, year, name = "n_birds") |>
+  filter(n_birds == 2) |>
+  select(nest_id, year)
+adelie_pairs <- adelie_nests |>
+  inner_join(two_bird_nests, by = c("nest_id", "year")) |>
+  select(nest_id, year, sex_l, mass = Body.Mass..g.) |>
+  pivot_wider(names_from = sex_l, values_from = mass) |>
+  filter(!is.na(male), !is.na(female)) |>
+  transmute(
+    female_mass = female,
+    male_mass = male
+  )
+adelie_pairs
+```
+
+72 rows — one nest-mate pair per row.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: adelie_pairs
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("adelie_pairs", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save the paired table as `adelie_pairs`.")
+} else {
+  ap <- get("adelie_pairs", envir = .envir_result)
+  if (is.data.frame(ap) && nrow(ap) == 72 &&
+      all(c("female_mass", "male_mass") %in% names(ap))) {
+    list(correct = TRUE, type = "success", message = "72 Adelie nest-mate pairs — one row per nest with female and male mass.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Build 72 rows with `female_mass` and `male_mass` from `penguins_raw` (see hint).")
+  }
+}
+```
+
+### 10. Paired difference column
+
+Assignment 4 asks you to compute a delta column. Add `mass_delta = male_mass - female_mass` to `adelie_pairs` with `mutate()`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: mass_delta
+adelie_pairs <- adelie_pairs |>
+
+```
+
+:::: {.hint exercise="mass_delta"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Add a column with `mutate()`: male mass minus female mass.
+
+Example:
+
+``` r
+mtcars |>
+  mutate(log_mpg = log(mpg))
+```
+:::
+::::
+
+:::: {.solution exercise="mass_delta"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+adelie_pairs <- adelie_pairs |>
+  mutate(mass_delta = male_mass - female_mass)
+adelie_pairs
+```
+
+Most values are positive — males tend to be heavier within a pair.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: mass_delta
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("adelie_pairs", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Build `adelie_pairs` first (exercise 9).")
+} else if (!grepl("mutate\\s*\\(", code) || !grepl("mass_delta", code)) {
+  list(correct = FALSE, type = "info", message = "Use `mutate()` to add `mass_delta = male_mass - female_mass`.")
+} else {
+  ap <- get("adelie_pairs", envir = .envir_result)
+  if (is.data.frame(ap) && "mass_delta" %in% names(ap) && nrow(ap) == 72 &&
+      mean(ap$mass_delta, na.rm = TRUE) > 500) {
+    list(correct = TRUE, type = "success", message = "Paired difference column added — mean male − female ≈ 682 g.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Check the formula: `mass_delta = male_mass - female_mass`.")
+  }
+}
+```
+
+### 11. Histogram of paired differences
+
+Make a histogram of `mass_delta` in `adelie_pairs`. Save as `hist_delta` and display it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: hist_delta
+hist_delta <- ggplot(adelie_pairs, aes(x = mass_delta)) +
+  
+```
+
+:::: {.hint exercise="hist_delta"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `ggplot()` + `geom_histogram()` on `mass_delta` in `adelie_pairs`.
+
+Example:
+
+``` r
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram()
+```
+:::
+::::
+
+:::: {.solution exercise="hist_delta"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+hist_delta <- ggplot(adelie_pairs, aes(x = mass_delta)) +
+  geom_histogram()
+hist_delta
+```
+
+Most differences are positive — males tend to be heavier within a pair.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: hist_delta
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("mass_delta", code)) {
+  list(correct = TRUE, type = "success", message = "Histogram of paired differences — check symmetry before the paired test.")
+} else {
+  list(correct = FALSE, type = "error", message = "Plot `mass_delta` with `ggplot(...) + geom_histogram()`, save as `hist_delta`.")
+}
+```
+
+### 12. Shapiro-Wilk on the differences
+
+Run `shapiro.test()` on `mass_delta`. Save as `shapiro_delta` and print it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_delta
+shapiro_delta <- 
+
+```
+
+:::: {.hint exercise="shapiro_delta"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Pass the difference vector to `shapiro.test()`.
+
+Example:
+
+``` r
+shapiro.test(mtcars$mpg)
+```
+:::
+::::
+
+:::: {.solution exercise="shapiro_delta"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+shapiro_delta <- shapiro.test(adelie_pairs$mass_delta)
+shapiro_delta
+```
+
+p ≈ 0.26 — the paired differences look roughly normal.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_delta
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("shapiro_delta", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `shapiro_delta`.")
+} else {
+  sd <- get("shapiro_delta", envir = .envir_result)
+  if (!is.null(sd$p.value) && sd$p.value > 0.05) {
+    list(correct = TRUE, type = "success", message = paste0("p = ", round(sd$p.value, 3), " — normality of differences looks OK."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `shapiro.test(adelie_pairs$mass_delta)`.")
+  }
+}
+```
+
+### 13. Two-sided paired *t*-test
+
+Run a paired *t*-test on `male_mass` and `female_mass` in `adelie_pairs`. Save as `t_paired` and print it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_paired
+t_paired <- 
+
+```
+
+:::: {.hint exercise="t_paired"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Use `t.test()` with `paired = TRUE` on the two mass columns in `adelie_pairs`.
+
+Example with made-up paired measurements:
+
+``` r
+before <- c(10, 12, 11)
+after <- c(11, 13, 12)
+t.test(after, before, paired = TRUE)
+```
+:::
+::::
+
+:::: {.solution exercise="t_paired"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_paired <- t.test(adelie_pairs$male_mass, adelie_pairs$female_mass, paired = TRUE)
+t_paired
+```
+
+p ≪ 0.001 — reject H₀ that the mean difference is zero.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_paired
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("paired\\s*=\\s*TRUE", code)) {
+  list(correct = FALSE, type = "info", message = "Set `paired = TRUE`.")
+} else if (!exists("t_paired", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `t_paired`.")
+} else {
+  tp <- get("t_paired", envir = .envir_result)
+  if (!is.null(tp$p.value) && tp$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = "Paired test significant — mean difference ≠ 0.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `t.test(male_mass, female_mass, paired = TRUE)` on `adelie_pairs`.")
+  }
+}
+```
+
+### 14. One-tailed paired *t*-test
+
+**Directional question:** Are males **heavier** than their nest-mates?
+
+Re-run with `alternative = "greater"` (male column first). Save as `t_paired_greater` and print it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_paired_greater
+t_paired_greater <- 
+
+```
+
+:::: {.hint exercise="t_paired_greater"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Same paired setup as before, with `alternative = "greater"` and the male column first.
+
+Functions: `t.test()`, `paired = TRUE`, `alternative = "greater"`. Objects: `adelie_pairs$male_mass`, `adelie_pairs$female_mass`.
+:::
+::::
+
+:::: {.solution exercise="t_paired_greater"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_paired_greater <- t.test(
+  adelie_pairs$male_mass,
+  adelie_pairs$female_mass,
+  paired = TRUE,
+  alternative = "greater"
+)
+t_paired_greater
+```
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_paired_greater
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("alternative\\s*=\\s*[\"']greater[\"']", code)) {
+  list(correct = FALSE, type = "info", message = "Set `alternative = \"greater\"` with male mass first.")
+} else if (!exists("t_paired_greater", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `t_paired_greater`.")
+} else {
+  tp <- get("t_paired_greater", envir = .envir_result)
+  if (!is.null(tp$p.value) && tp$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = "One-tailed paired test — males significantly heavier.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Re-run with `alternative = \"greater\"`.")
+  }
+}
+```
+
+### 15. Same result two ways
+
+A paired *t*-test on two columns equals a one-sample *t*-test of the differences against `mu = 0`. Run both and confirm they match.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: paired_equiv
+t_from_columns <- t.test(adelie_pairs$male_mass, adelie_pairs$female_mass, paired = TRUE)
+t_from_delta <- t.test(adelie_pairs$mass_delta, mu = 0)
+t_from_columns$p.value
+t_from_delta$p.value
+```
+
+:::: {.hint exercise="paired_equiv"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Run both lines above — the p-values and t statistics should be identical.
+:::
+::::
+
+:::: {.solution exercise="paired_equiv"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+Both give the same t statistic and p-value. The paired test is really asking whether the mean **difference** is zero.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: paired_equiv
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("mass_delta", code) && grepl("mu\\s*=\\s*0", code) && grepl("paired\\s*=\\s*TRUE", code)) {
+  list(correct = TRUE, type = "success", message = "Same p-value both ways — paired test = one-sample test on the differences.")
+} else {
+  list(correct = FALSE, type = "info", message = "Run paired `t.test` on the two columns AND `t.test(mass_delta, mu = 0)`.")
+}
+```
+
+### 16. Interpret the paired test
+
+Using `t_paired`, decide whether males are **significantly heavier** than females within Adelie breeding pairs (α = 0.05). Assign `males_heavier <- TRUE` or `FALSE`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: males_heavier
+males_heavier <- 
+```
+
+:::: {.hint exercise="males_heavier"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Check `t_paired$p.value` against 0.05 and compare the male and female means in `t_paired$estimate` (male column was first).
+:::
+::::
+
+:::: {.solution exercise="males_heavier"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+males_heavier <- TRUE
+```
+
+Mean male − female mass ≈ 682 g within pairs; p ≪ 0.05.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: males_heavier
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("t_paired", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Run the paired test first (exercise 13).")
+} else if (!grepl("males_heavier\\s*<-\\s*(TRUE|FALSE)", code)) {
+  list(correct = FALSE, type = "info", message = "Assign `males_heavier <- TRUE` or `FALSE`.")
+} else {
+  tp <- get("t_paired", envir = .envir_result)
+  est <- tp$estimate
+  males_higher <- length(est) >= 2 && unname(est[1]) > unname(est[2])
+  expected <- !is.null(tp$p.value) && tp$p.value < 0.05 && males_higher
+  user_val <- grepl("males_heavier\\s*<-\\s*TRUE", code)
+  if (user_val == expected) {
+    if (expected) {
+      list(correct = TRUE, type = "success", message = "Correct — males are significantly heavier within Adelie breeding pairs.")
+    } else {
+      list(correct = TRUE, type = "success", message = "Correct — the evidence does not support that conclusion.")
+    }
+  } else {
+    list(correct = FALSE, type = "info", message = "Re-read the p-value and sample means in `t_paired`.")
+  }
+}
+```
+
+## Part C — One-sample *t*-test (one-tailed)
+
+**Research question:** Does mean body mass among **Gentoo** penguins exceed **4500 g**?
+
+This matches the lecture pattern: one continuous sample compared to a hypothesized mean (`mu`), with a **directional** alternative. H₀: true mean = 4500 g. Hₐ: true mean **>** 4500 g.
+
+### 17. Build the Gentoo sample
+
+Filter `penguins` to Gentoo rows with non-missing body mass: `filter(species == "Gentoo", !is.na(body_mass_g))`. Save as `gentoo_mass`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: gentoo_mass
+gentoo_mass <- penguins |>
+  
+```
+
+:::: {.hint exercise="gentoo_mass"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Filter `penguins` to Gentoo rows with non-missing `body_mass_g`.
+
+Example:
+
+``` r
+penguins |>
+  filter(species == "Adelie", !is.na(bill_length_mm))
+```
+:::
+::::
+
+:::: {.solution exercise="gentoo_mass"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+gentoo_mass <- penguins |>
+  filter(species == "Gentoo", !is.na(body_mass_g))
+```
+
+123 Gentoo penguins — sample mean ≈ 5076 g.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: gentoo_mass
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("gentoo_mass", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `gentoo_mass`.")
+} else {
+  gm <- get("gentoo_mass", envir = .envir_result)
+  if (is.data.frame(gm) && nrow(gm) == 123 && all(gm$species == "Gentoo")) {
+    list(correct = TRUE, type = "success", message = "123 Gentoo rows — one sample ready for a one-sample t-test.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Filter to Gentoo with non-missing `body_mass_g`.")
+  }
+}
+```
+
+### 18. Histogram
+
+Make a histogram of `body_mass_g` in `gentoo_mass`. Save as `hist_gentoo_mass` and display it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: hist_gentoo_mass
+hist_gentoo_mass <- ggplot(gentoo_mass, aes(x = body_mass_g)) +
+  
+```
+
+:::: {.hint exercise="hist_gentoo_mass"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Histogram of `body_mass_g` from `gentoo_mass` using `ggplot()` + `geom_histogram()`.
+
+Example:
+
+``` r
+ggplot(mtcars, aes(x = wt)) +
+  geom_histogram()
+```
+:::
+::::
+
+:::: {.solution exercise="hist_gentoo_mass"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+hist_gentoo_mass <- ggplot(gentoo_mass, aes(x = body_mass_g)) +
+  geom_histogram()
+hist_gentoo_mass
+```
+
+Roughly bell-shaped — a reasonable first look before Shapiro-Wilk.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: hist_gentoo_mass
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (grepl("ggplot\\s*\\(", code) && grepl("geom_histogram\\s*\\(", code) && grepl("body_mass_g", code)) {
+  list(correct = TRUE, type = "success", message = "Histogram of Gentoo body mass — check shape before the one-sample test.")
+} else {
+  list(correct = FALSE, type = "error", message = "Plot `body_mass_g` with `ggplot(...) + geom_histogram()`, save as `hist_gentoo_mass`.")
+}
+```
+
+### 19. Shapiro-Wilk
+
+Run `shapiro.test()` on `body_mass_g` in `gentoo_mass`. Save as `shapiro_gentoo_mass` and print it.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_gentoo_mass
+shapiro_gentoo_mass <- 
+
+```
+
+:::: {.hint exercise="shapiro_gentoo_mass"}
+::: {.callout-note collapse="false"}
+## Hint
+
+One-sample normality check: `shapiro.test()` on `gentoo_mass$body_mass_g`.
+
+Example:
+
+``` r
+shapiro.test(mtcars$mpg)
+```
+:::
+::::
+
+:::: {.solution exercise="shapiro_gentoo_mass"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+shapiro_gentoo_mass <- shapiro.test(gentoo_mass$body_mass_g)
+shapiro_gentoo_mass
+```
+
+p ≈ 0.23 — normality looks acceptable for a one-sample *t*-test on this sample.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: shapiro_gentoo_mass
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("shapiro_gentoo_mass", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `shapiro_gentoo_mass`.")
+} else {
+  sg <- get("shapiro_gentoo_mass", envir = .envir_result)
+  if (!is.null(sg$p.value) && sg$p.value > 0.05) {
+    list(correct = TRUE, type = "success", message = paste0("p = ", round(sg$p.value, 3), " — normality assumption looks met."))
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `shapiro.test(gentoo_mass$body_mass_g)`.")
+  }
+}
+```
+
+### 20. One-tailed one-sample *t*-test
+
+Test whether mean Gentoo body mass is **greater than 4500 g**. Use `alternative = "greater"`. Save as `t_one_sample_greater` and print it.
+
+::: {.callout-note appearance="simple"}
+## Reading one-sample output
+
+Pass a **numeric vector** and a hypothesized mean `mu`. With `alternative = "greater"`, H₀ is that the true mean equals `mu`; Hₐ is that the true mean is **above** `mu`.
+:::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_one_sample_greater
+t_one_sample_greater <- 
+
+```
+
+:::: {.hint exercise="t_one_sample_greater"}
+::: {.callout-note collapse="false"}
+## Hint
+
+One-sample `t.test()` on a numeric vector with `mu = 4500` and `alternative = "greater"`.
+
+Example:
+
+``` r
+t.test(mtcars$mpg, mu = 20, alternative = "greater")
+```
+:::
+::::
+
+:::: {.solution exercise="t_one_sample_greater"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+t_one_sample_greater <- t.test(
+  gentoo_mass$body_mass_g,
+  mu = 4500,
+  alternative = "greater"
+)
+t_one_sample_greater
+```
+
+p ≪ 0.001 — reject H₀. Mean Gentoo body mass is significantly above 4500 g.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: t_one_sample_greater
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("alternative\\s*=\\s*[\"']greater[\"']", code)) {
+  list(correct = FALSE, type = "info", message = "Set `alternative = \"greater\"` for the directional hypothesis.")
+} else if (!grepl("mu\\s*=\\s*4500", code)) {
+  list(correct = FALSE, type = "info", message = "Set the hypothesized mean with `mu = 4500`.")
+} else if (!exists("t_one_sample_greater", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Save as `t_one_sample_greater`.")
+} else {
+  tt <- get("t_one_sample_greater", envir = .envir_result)
+  if (!is.null(tt$p.value) && tt$p.value < 0.001) {
+    list(correct = TRUE, type = "success", message = "One-tailed test — Gentoo mean body mass exceeds 4500 g.")
+  } else {
+    list(correct = FALSE, type = "info", message = "Run `t.test(gentoo_mass$body_mass_g, mu = 4500, alternative = \"greater\")`.")
+  }
+}
+```
+
+### 21. Interpret the one-sample test
+
+Using `t_one_sample_greater`, decide whether Gentoo mean body mass is **significantly above** 4500 g (α = 0.05). Assign `gentoo_above_4500 <- TRUE` or `FALSE`.
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: gentoo_above_4500
+gentoo_above_4500 <- 
+```
+
+:::: {.hint exercise="gentoo_above_4500"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Compare `t_one_sample_greater$p.value` to 0.05 and check whether the sample mean in `t_one_sample_greater$estimate` exceeds 4500 g.
+:::
+::::
+
+:::: {.solution exercise="gentoo_above_4500"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+gentoo_above_4500 <- TRUE
+```
+
+Sample mean is well above 4500 g and the one-tailed p-value is ≪ 0.05.
+:::
+::::
+
+```{webr}
+#| envir: ttests_lab
+#| exercise: gentoo_above_4500
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!exists("t_one_sample_greater", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "warning", message = "Run the one-sample test first (exercise 20).")
+} else if (!grepl("gentoo_above_4500\\s*<-\\s*(TRUE|FALSE)", code)) {
+  list(correct = FALSE, type = "info", message = "Assign `gentoo_above_4500 <- TRUE` or `FALSE`.")
+} else {
+  tt <- get("t_one_sample_greater", envir = .envir_result)
+  mean_above <- !is.null(tt$estimate) && unname(tt$estimate) > 4500
+  expected <- !is.null(tt$p.value) && tt$p.value < 0.05 && mean_above
+  user_val <- grepl("gentoo_above_4500\\s*<-\\s*TRUE", code)
+  if (user_val == expected) {
+    if (expected) {
+      list(correct = TRUE, type = "success", message = "Correct — Gentoo mean body mass is significantly above 4500 g.")
+    } else {
+      list(correct = TRUE, type = "success", message = "Correct — the evidence does not support that conclusion.")
+    }
+  } else {
+    list(correct = FALSE, type = "info", message = "Re-read the p-value and sample mean in `t_one_sample_greater`.")
+  }
+}
+```
+
+## 22. Recap — functions you practiced
+
+::: {.callout-note collapse="true"}
+## What does each function do?
+
+| Function | Role |
+|----------|------|
+| `ggplot()` + `geom_boxplot()` | Compare a continuous variable across groups |
+| `filter()` | Keep rows for the groups you want to compare |
+| `pivot_wider()` | Reshape long nest records to one row per pair |
+| `mutate()` | Compute paired difference (`mass_delta`) |
+| `shapiro.test()` | Test normality (H₀: data are normal) |
+| `t.test(x, mu = ..., alternative = "greater")` | One-sample *t*-test against a hypothesized mean |
+| `t.test(y ~ x, data = ...)` | Welch two-sample *t*-test (default two-sided) |
+| `t.test(..., alternative = "less")` | One-tailed Welch test |
+| `ggplot()` + `geom_histogram()` | Visual check on one sample or paired differences |
+| `t.test(x, y, paired = TRUE)` | Paired *t*-test on two matched columns |
+| `t.test(delta, mu = 0)` | Equivalent one-sample test on differences |
+
+If you can explain each row, you have covered **Coding Assignment 4, Parts A and B** plus the lecture one-sample workflow.
+:::
+
+## Keep playing
+
+What if you compare **Gentoo male vs female** body mass with a two-sample Welch test instead of a paired design? Load `penguins`, filter to Gentoo with complete sex and mass, and run `t.test(body_mass_g ~ sex, data = gentoo)`.
+
+```{webr}
+#| envir: ttests_lab
+library(tidyverse)
+library(palmerpenguins)
+gentoo <- penguins |>
+  filter(species == "Gentoo", !is.na(body_mass_g), !is.na(sex))
+t.test(body_mass_g ~ sex, data = gentoo)
+```
+
+::: {.callout-tip appearance="simple"}
+Same biological question (sex difference in mass), different experimental design — independent samples vs matched pairs. The test you choose follows from **how the data were collected**, not from what you wish were true.
+:::

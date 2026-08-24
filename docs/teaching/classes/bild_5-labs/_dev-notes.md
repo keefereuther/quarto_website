@@ -42,6 +42,9 @@ docs/teaching/classes/bild_5-labs/
   coding-02-visualize-penguins.qmd
   coding-03-wrangle-penguins.qmd
   coding-05-check-assumptions.qmd
+  coding-06-run-t-tests.qmd
+  coding-07-run-anova.qmd
+  coding-08-correlation-and-regression.qmd
   paper-01-find-a-question-build-a-bibliography.qmd
   paper-02-annotate-bramante-2026.qmd
 ```
@@ -172,6 +175,9 @@ Never run `quarto publish` — Netlify deploys on git push.
 - Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html`
 - Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html`
 - Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.html`
+- Coding 6: `/docs/teaching/classes/bild_5-labs/coding-06-run-t-tests.html`
+- Coding 7: `/docs/teaching/classes/bild_5-labs/coding-07-run-anova.html`
+- Coding 8: `/docs/teaching/classes/bild_5-labs/coding-08-correlation-and-regression.html`
 - Paper 1: `/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html`
 - Paper 2: `/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html`
 - Paper 3: `/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html`
