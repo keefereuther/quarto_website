@@ -1,6 +1,6 @@
 ---
 title: "Can Humans Choose Randomly?"
-subtitle: "Read real data, make one plot, and test a hypothesis — all in your browser"
+subtitle: ""
 format:
   live-html:
     theme:
@@ -138,15 +138,15 @@ Nearly 1,000 students looked at this grid and were asked to pick three squares *
 
 A CSV is a plain spreadsheet, like an Excel file. Each row is one student. A `1` marks a square they chose; a `0` marks one they did not. The first three rows of `rand_data.csv` look like this:
 
-::: {.data-head}
+::: data-head
 | One | Two | Three | Four | Five | Six | Seven | Eight | Nine |
 |:---:|:---:|:-----:|:----:|:----:|:---:|:-----:|:-----:|:----:|
-| 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
-| 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
-| 0 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 0 |
+|  1  |  0  |   0   |  0   |  1   |  0  |   0   |   0   |  1   |
+|  1  |  1  |   0   |  0   |  1   |  0  |   0   |   0   |  0   |
+|  0  |  1  |   0   |  0   |  1   |  0  |   0   |   1   |  0   |
 :::
 
-So the first student chose 1, 5, and 9.
+So the first student chose squares 1, 5, and 9.
 
 ## Part 1. Which squares were chosen most and least?
 
@@ -184,7 +184,7 @@ Find the three tallest bars. Where do those squares sit on the grid?
 ::: {.callout-tip collapse="true"}
 ## Answer
 
-1, 5, 9: the diagonal from top-left to bottom-right. It shows up 241 times. The next most common are 2-4-9 and 3-5-7 (the other diagonal). Straight lines and symmetric patterns feel random to people, but they are the opposite.
+1, 5, 9
 :::
 
 **3. What does each line of code do?** Read it like a sentence.
@@ -198,9 +198,9 @@ The arrow `<-` means "store this under the name on the left." A word followed by
 ::: {.callout-tip collapse="true"}
 ## Answer
 
-- `d <- read.csv("rand_data.csv")` opens the spreadsheet file and stores it under the name `d`.
-- `colSums(d)` adds up each column, giving nine totals: how many students chose each square.
-- `barplot(...)` draws those nine totals as bars.
+-   `d <- read.csv("rand_data.csv")` opens the spreadsheet file and stores it under the object name `d`.
+-   `colSums(d)` adds up each column, giving nine totals: how many students chose each square.
+-   `barplot(...)` draws those nine totals as bars.
 :::
 
 ## Part 2. Is 1-5-9 chosen more often than chance?
@@ -277,9 +277,9 @@ Yes, strongly. Chance predicts 1-5-9 about 1% of the time; it appeared 24% of th
 ::: {.callout-tip collapse="true"}
 ## Answer
 
-- `target <- c(1,0,0,0,1,0,0,0,1)` stores the 1-5-9 pattern as nine 0s and 1s, named `target`.
-- `match <- rowSums(d == target[col(d)]) == 9` compares every student's row to `target`, square by square. A row matches only when all nine squares agree, so each student gets a `TRUE` or `FALSE`. (The `target[col(d)]` part lines the pattern up against every row.)
-- `sum(match) / nrow(d)` counts the `TRUE`s and divides by the number of students: the fraction who chose 1-5-9.
+-   `target <- c(1,0,0,0,1,0,0,0,1)` stores the 1-5-9 pattern as nine 0s and 1s, named `target`.
+-   `match <- rowSums(d == target[col(d)]) == 9` compares every student's row to `target`, square by square. A row matches only when all nine squares agree, so each student gets a `TRUE` or `FALSE`. (The `target[col(d)]` part lines the pattern up against every row.)
+-   `sum(match) / nrow(d)` counts the `TRUE`s and divides by the number of students: the fraction who chose 1-5-9.
 :::
 
 ## Try it
