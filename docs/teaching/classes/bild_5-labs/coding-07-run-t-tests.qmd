@@ -89,7 +89,7 @@ Everything on this page runs real R in your browser. You will practice the same 
 
 On DataHub, Assignment 4 uses brittlebush CSV files. Here we use Palmer Penguins so you can practice in the browser. In **Part A**, bill length is pre-filtered for you in step 2. **Part B** builds nest-mate pairs from `penguins_raw` and asks you to `mutate()` a delta column, just like Assignment 4. In **Part C**, the `penguins` table can still have missing `body_mass_g` — you will drop those rows with `!is.na()` before the one-sample test.
 
-For a **one-sample** *t*-test with transformation when normality fails, see [Coding Activity 5](coding-05-check-assumptions.qmd). Part C here runs a directional one-sample test on data that already looks normal enough.
+For a **one-sample** *t*-test with transformation when normality fails, see [Coding Activity 6](coding-06-check-assumptions.qmd). Part C here runs a directional one-sample test on data that already looks normal enough.
 :::
 
 ::: {.callout-note appearance="simple"}

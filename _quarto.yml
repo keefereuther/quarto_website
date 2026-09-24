@@ -66,22 +66,24 @@ website:
           href: docs/teaching/classes/BILD_5.qmd
         - section: "Coding activities"
           contents:
-            - text: "Coding 1 — Run Your First Line of Code"
-              href: docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
-            - text: "Coding 2 — Visualize Penguins with ggplot2"
-              href: docs/teaching/classes/bild_5-labs/coding-02-visualize-penguins.qmd
-            - text: "Coding 3 — Wrangle Penguins with dplyr"
-              href: docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.qmd
-            - text: "Coding 4 — Read, Fix, and Test R Errors"
-              href: docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.qmd
-            - text: "Coding 5 — Check Assumptions Before a Parametric Test"
-              href: docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.qmd
-            - text: "Coding 6 — Compare Two Means with t-tests"
-              href: docs/teaching/classes/bild_5-labs/coding-06-run-t-tests.qmd
-            - text: "Coding 7 — Compare Several Means with ANOVA"
-              href: docs/teaching/classes/bild_5-labs/coding-07-run-anova.qmd
-            - text: "Coding 8 — Correlation and Linear Regression"
-              href: docs/teaching/classes/bild_5-labs/coding-08-correlation-and-regression.qmd
+            - text: "Coding 1 — Can Humans Choose Randomly?"
+              href: docs/teaching/classes/bild_5-labs/coding-01-can-humans-choose-randomly.qmd
+            - text: "Coding 2 — Run Your First Line of Code"
+              href: docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.qmd
+            - text: "Coding 3 — Visualize Penguins with ggplot2"
+              href: docs/teaching/classes/bild_5-labs/coding-03-visualize-penguins.qmd
+            - text: "Coding 4 — Wrangle Penguins with dplyr"
+              href: docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.qmd
+            - text: "Coding 5 — Read, Fix, and Test R Errors"
+              href: docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.qmd
+            - text: "Coding 6 — Check Assumptions Before a Parametric Test"
+              href: docs/teaching/classes/bild_5-labs/coding-06-check-assumptions.qmd
+            - text: "Coding 7 — Compare Two Means with t-tests"
+              href: docs/teaching/classes/bild_5-labs/coding-07-run-t-tests.qmd
+            - text: "Coding 8 — Compare Several Means with ANOVA"
+              href: docs/teaching/classes/bild_5-labs/coding-08-run-anova.qmd
+            - text: "Coding 9 — Correlation and Linear Regression"
+              href: docs/teaching/classes/bild_5-labs/coding-09-correlation-and-regression.qmd
         - section: "Paper activities"
           contents:
             - text: "Paper 1 — Find a Question, Build a Bibliography"

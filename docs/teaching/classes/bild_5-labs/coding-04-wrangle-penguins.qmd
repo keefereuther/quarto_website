@@ -759,7 +759,7 @@ On Canvas you will repeat this workflow with **hemoglobin** measurements and **p
 
 Same functions, different biological story — altitude adaptation instead of penguin islands. You already practiced every wrangling step here.
 
-The assignment also asks you to build a boxplot with `reorder()` so groups sort by elevation. You learned ggplot layering in **Coding Activity 2**; on Canvas you combine that with the joined table you prepare here.
+The assignment also asks you to build a boxplot with `reorder()` so groups sort by elevation. You learned ggplot layering in **Coding Activity 3**; on Canvas you combine that with the joined table you prepare here.
 
 ## Keep playing
 

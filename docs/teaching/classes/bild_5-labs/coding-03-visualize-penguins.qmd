@@ -82,7 +82,7 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 1. You already plotted with base R's `hist()`; today you will **build figures in layers** with ggplot2.
+Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 2. You already plotted with base R's `hist()`; today you will **build figures in layers** with ggplot2.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
@@ -236,7 +236,7 @@ From the `glimpse()` output:
 
 ## 3. Histogram with ggplot2
 
-Start a figure with `ggplot()`, map `body_mass_g` to the x-axis, and add `geom_histogram()`. Use the `penguins` dataset directly — an upgrade from Coding Activity 1's `hist()`. Add a title with `labs(title = "...")`.
+Start a figure with `ggplot()`, map `body_mass_g` to the x-axis, and add `geom_histogram()`. Use the `penguins` dataset directly — an upgrade from Coding Activity 2's `hist()`. Add a title with `labs(title = "...")`.
 
 ```{webr}
 #| envir: visualize_penguins
@@ -444,7 +444,7 @@ ggplot(penguins, aes(
   )
 ```
 
-Boxplots compare a **continuous variable** across **groups**. On your graded assignment you will add `reorder()` to sort groups by elevation after you join that metadata in Coding Activity 3.
+Boxplots compare a **continuous variable** across **groups**. On your graded assignment you will add `reorder()` to sort groups by elevation after you join that metadata in Coding Activity 4.
 :::
 :::
 
@@ -502,7 +502,7 @@ On Canvas you will build figures step by step with **hemoglobin** measurements a
 1. `library(tidyverse)` and read your dataset
 2. Build a boxplot one layer at a time with `ggplot()`, `geom_boxplot()`, `fill`, `theme_minimal()`, and `labs()`
 
-You practiced the layering here. Coding Activity 3 covers the wrangling steps — filtering, reshaping, and joining — that prepare the table for those plots.
+You practiced the layering here. Coding Activity 4 covers the wrangling steps — filtering, reshaping, and joining — that prepare the table for those plots.
 
 ## Keep playing
 

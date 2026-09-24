@@ -1,0 +1,291 @@
+---
+title: "Can Humans Choose Randomly?"
+subtitle: "Read real data, make one plot, and test a hypothesis — all in your browser"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      cell-options:
+        min-lines: 3
+        caption: "R code block"
+# Quarto copies anything under `resources:` into _site/ next to this page, and
+# Quarto Live downloads the same list into the browser's R session, so
+# read.csv("rand_data.csv") works with no path.
+resources:
+  - rand_data.csv
+engine: knitr
+# Site-wide _quarto.yml sets `execute: enabled: false` (static build). Quarto Live's
+# _knitr.qmd include has an {r} setup block that MUST run (needs R) to turn {webr}
+# blocks into interactive widgets, so re-enable execution for this page only. The
+# {webr} blocks themselves still run client-side in the browser, not at build time.
+# `freeze: auto` caches the render output in _freeze/ so Netlify (which has no R)
+# publishes from the cache instead of re-executing. Run `quarto render` on this file
+# locally after every edit, and commit _freeze/, before pushing.
+execute:
+  enabled: true
+  freeze: auto
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+/* Night-mode look for the interactive webR editors, even while the page is in light mode.
+   Only overrides CSS variables the extension already uses, scoped to the editor card,
+   so prose and static solution snippets are untouched. */
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+
+/* The 3 x 3 grid students sampled from. */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: min(100%, 15rem);
+  margin: 1.5rem auto 1.25rem;
+}
+.numpad span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 2px solid var(--border-color, #cfd8dc);
+  border-radius: 0.5rem;
+  background-color: var(--card-bg, transparent);
+  color: var(--text-primary, inherit);
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+/* Compact preview of the CSV so nine columns fit on a phone. */
+.data-head {
+  overflow-x: auto;
+}
+.data-head table {
+  font-size: 0.85rem;
+  margin: 0.5rem auto 0;
+}
+.data-head td,
+.data-head th {
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+}
+</style>
+
+<div class="numpad" role="img" aria-label="A three by three grid numbered one through nine, like a phone keypad: 1, 2, 3 on the top row; 4, 5, 6 in the middle; 7, 8, 9 on the bottom.">
+  <span aria-hidden="true">1</span><span aria-hidden="true">2</span><span aria-hidden="true">3</span>
+  <span aria-hidden="true">4</span><span aria-hidden="true">5</span><span aria-hidden="true">6</span>
+  <span aria-hidden="true">7</span><span aria-hidden="true">8</span><span aria-hidden="true">9</span>
+</div>
+```
+
+Nearly 1,000 students looked at this grid and were asked to pick three squares **at random**. Today we test whether they actually did.
+
+## The data
+
+A CSV is a plain spreadsheet, like an Excel file. Each row is one student. A `1` marks a square they chose; a `0` marks one they did not. The first three rows of `rand_data.csv` look like this:
+
+::: {.data-head}
+| One | Two | Three | Four | Five | Six | Seven | Eight | Nine |
+|:---:|:---:|:-----:|:----:|:----:|:---:|:-----:|:-----:|:----:|
+| 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 0 | 1 | 0 | 0 | 1 | 0 |
+:::
+
+So the first student chose 1, 5, and 9.
+
+## Part 1. Which squares were chosen most and least?
+
+Click **Run Code**. The first click downloads R into your browser (a few seconds); after that it is quick.
+
+```{webr}
+d <- read.csv("rand_data.csv")
+barplot(colSums(d))
+```
+
+Talk through these with a neighbor.
+
+**1. What does this figure tell you about how well humans sample randomly?**
+
+::: {.callout-note collapse="true"}
+## Hint
+
+If every student had truly chosen at random, what would the nine bars look like?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Random choices would make all nine bars about the same height. They are not. The center square (5) was chosen almost three times as often as square 6, and the corners (1 and 9) are also tall. People are drawn to the middle and the corners and avoid the edges. Humans are poor random samplers.
+:::
+
+**2. Which triplet (set of three squares) do you think students chose most often?**
+
+::: {.callout-note collapse="true"}
+## Hint
+
+Find the three tallest bars. Where do those squares sit on the grid?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+1, 5, 9: the diagonal from top-left to bottom-right. It shows up 241 times. The next most common are 2-4-9 and 3-5-7 (the other diagonal). Straight lines and symmetric patterns feel random to people, but they are the opposite.
+:::
+
+**3. What does each line of code do?** Read it like a sentence.
+
+::: {.callout-note collapse="true"}
+## Hint
+
+The arrow `<-` means "store this under the name on the left." A word followed by parentheses is a **function**: it does something to whatever is inside the parentheses.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+- `d <- read.csv("rand_data.csv")` opens the spreadsheet file and stores it under the name `d`.
+- `colSums(d)` adds up each column, giving nine totals: how many students chose each square.
+- `barplot(...)` draws those nine totals as bars.
+:::
+
+## Part 2. Is 1-5-9 chosen more often than chance?
+
+There are **84** different ways to pick three squares out of nine. If people chose at random, every one of those 84 triplets would be equally likely.
+
+First, work out how often 1-5-9 *should* appear by chance. R is a calculator: type the math and run it.
+
+```{webr}
+# Type your arithmetic here, then click Run Code.
+
+```
+
+**4. If choices were random, what fraction of students would pick 1-5-9? Write it as a decimal.**
+
+::: {.callout-note collapse="true"}
+## Hint
+
+One triplet out of 84 equally likely possibilities. That is a division problem.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`1 / 84` is about **0.012**. Roughly 1 student in 100 would land on 1-5-9 by chance.
+:::
+
+Now find how often students *actually* picked 1-5-9. This block uses `d` from Part 1, so run that block first.
+
+```{webr}
+target <- c(1,0,0,0,1,0,0,0,1)
+
+match <- rowSums(d == target[col(d)]) == 9
+
+sum(match) / nrow(d)
+```
+
+**5. Compare the two numbers. How many times more often did people choose 1-5-9 than chance predicts?**
+
+::: {.callout-note collapse="true"}
+## Hint
+
+Divide the number you just computed by the chance value from question 4.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+About **0.24** of students chose 1-5-9, compared with 0.012 expected by chance. That is roughly 20 times more often.
+:::
+
+**6. Hypothesis: people do not choose their three squares at random. Do the data support it?**
+
+::: {.callout-note collapse="true"}
+## Hint
+
+Could a gap this large, across nearly 1,000 students, happen by luck?
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Yes, strongly. Chance predicts 1-5-9 about 1% of the time; it appeared 24% of the time. With this many students, a gap that large is not luck. Humans have patterns even when they try not to, which is why real studies let a computer do the randomizing.
+:::
+
+**7. What does each line of code do?** You do not need to know R. Reason it out.
+
+::: {.callout-note collapse="true"}
+## Hint
+
+`c()` combines values into a list. `==` asks "are these equal?" and answers `TRUE` or `FALSE`. Adding up `TRUE`s counts them. `nrow()` counts rows.
+:::
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+- `target <- c(1,0,0,0,1,0,0,0,1)` stores the 1-5-9 pattern as nine 0s and 1s, named `target`.
+- `match <- rowSums(d == target[col(d)]) == 9` compares every student's row to `target`, square by square. A row matches only when all nine squares agree, so each student gets a `TRUE` or `FALSE`. (The `target[col(d)]` part lines the pattern up against every row.)
+- `sum(match) / nrow(d)` counts the `TRUE`s and divides by the number of students: the fraction who chose 1-5-9.
+:::
+
+## Try it
+
+Want a truly random triplet? Let R pick one. Run this a few times.
+
+```{webr}
+sample(1:9, 3)
+```

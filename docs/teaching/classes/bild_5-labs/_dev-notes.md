@@ -38,13 +38,15 @@ Use track prefix, zero-padded number, and kebab-case slug:
 
 ```
 docs/teaching/classes/bild_5-labs/
-  coding-01-run-your-first-line-of-code.qmd
-  coding-02-visualize-penguins.qmd
-  coding-03-wrangle-penguins.qmd
-  coding-05-check-assumptions.qmd
-  coding-06-run-t-tests.qmd
-  coding-07-run-anova.qmd
-  coding-08-correlation-and-regression.qmd
+  coding-01-can-humans-choose-randomly.qmd
+  coding-02-run-your-first-line-of-code.qmd
+  coding-03-visualize-penguins.qmd
+  coding-04-wrangle-penguins.qmd
+  coding-05-read-fix-and-test-r-errors.qmd
+  coding-06-check-assumptions.qmd
+  coding-07-run-t-tests.qmd
+  coding-08-run-anova.qmd
+  coding-09-correlation-and-regression.qmd
   paper-01-find-a-question-build-a-bibliography.qmd
   paper-02-annotate-bramante-2026.qmd
 ```
@@ -55,7 +57,7 @@ docs/teaching/classes/bild_5-labs/
 
 | Step | Action |
 |------|--------|
-| 1 | Create `docs/teaching/classes/bild_5-labs/coding-NN-short-slug.qmd` (copy front matter from coding-01) |
+| 1 | Create `docs/teaching/classes/bild_5-labs/coding-NN-short-slug.qmd` (copy front matter from coding-02) |
 | 2 | Add `Coding N — Page Title` under **Coding activities** in `_quarto.yml` and link from `BILD_5.qmd` |
 | 3 | `quarto render docs/teaching/classes/bild_5-labs/coding-NN-short-slug.qmd` locally |
 | 4 | Commit the `.qmd`, matching `_freeze/` path, and `_quarto.yml` sidebar entry |
@@ -110,7 +112,7 @@ Open the repo folder in Cursor, then in the integrated terminal (``Ctrl+` ``):
 quarto preview
 
 # Faster while iterating on one activity:
-quarto preview docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.qmd
 ```
 
 Preview live-reloads as you save. First load of the page in the browser pulls webR
@@ -144,7 +146,7 @@ in each activity's front matter does.
 **Every time you edit an activity**, before pushing:
 
 ```bash
-quarto render docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
+quarto render docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.qmd
 
 git add docs/teaching/classes/bild_5-labs/ _extensions/r-wasm/ _freeze/ _quarto.yml
 git commit -m "BILD 5: update coding activity"
@@ -161,28 +163,36 @@ and the Netlify build will try to run R and fail.
 
 ```bash
 quarto check
-quarto preview docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
-quarto render  docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.qmd
+quarto preview docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.qmd
+quarto render  docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.qmd
 ```
 
 Never run `quarto publish` — Netlify deploys on git push.
 
+### Data files for coding activities
+
+A CSV a webR page reads (e.g. `rand_data.csv` for Coding 1) lives next to the `.qmd` and is
+listed under top-level `resources:` in that page's front matter. Quarto copies it into `_site/`
+and Quarto Live downloads it into the browser's R session, so `read.csv("rand_data.csv")` just
+works. No `webr: resources:` needed — the extension falls back to the document `resources` list.
+
 ## Live URLs
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
-- Coding 1: `/docs/teaching/classes/bild_5-labs/coding-01-run-your-first-line-of-code.html`
-- Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-visualize-penguins.html`
-- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html`
-- Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html`
-- Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.html`
-- Coding 6: `/docs/teaching/classes/bild_5-labs/coding-06-run-t-tests.html`
-- Coding 7: `/docs/teaching/classes/bild_5-labs/coding-07-run-anova.html`
-- Coding 8: `/docs/teaching/classes/bild_5-labs/coding-08-correlation-and-regression.html`
+- Coding 1: `/docs/teaching/classes/bild_5-labs/coding-01-can-humans-choose-randomly.html`
+- Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.html`
+- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-visualize-penguins.html`
+- Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html`
+- Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html`
+- Coding 6: `/docs/teaching/classes/bild_5-labs/coding-06-check-assumptions.html`
+- Coding 7: `/docs/teaching/classes/bild_5-labs/coding-07-run-t-tests.html`
+- Coding 8: `/docs/teaching/classes/bild_5-labs/coding-08-run-anova.html`
+- Coding 9: `/docs/teaching/classes/bild_5-labs/coding-09-correlation-and-regression.html`
 - Paper 1: `/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html`
 - Paper 2: `/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html`
 - Paper 3: `/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html`
 - Bare `/docs/teaching/classes/bild_5-labs/` 301s to Coding 1 (there is no `index.qmd` here by design)
-- Old numbered URLs (`01-…` through `06-…`) 301 to the matching `coding-NN-` / `paper-NN-` paths (`netlify.toml`)
+- Old numbered URLs (`01-…` through `06-…`) and the pre-September-2026 `coding-01-` … `coding-08-` slugs (before "Can Humans Choose Randomly?" became Coding 1) 301 to the current `coding-NN-` / `paper-NN-` paths (`netlify.toml`)
 - Old activity URLs under `/bild_5/` redirect to `bild_5-labs/` (301 in `netlify.toml`)
 
 ## Annotation viewer
