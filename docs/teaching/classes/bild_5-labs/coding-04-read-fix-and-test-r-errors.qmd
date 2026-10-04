@@ -216,6 +216,29 @@ This line fails because the column name is slightly wrong. Fix it and run `head(
 
 ```{webr}
 #| envir: debug_lab
+#| setup: true
+#| exercise: fix_column_name
+library(palmerpenguins)
+if (!exists("$.exact_col_df", envir = .GlobalEnv, inherits = FALSE)) {
+  assign(
+    "$.exact_col_df",
+    function(x, name) {
+      if (!name %in% names(x)) {
+        stop(
+          "Column '", name, "' not found. Check spelling — column names must match exactly (try `names(penguins)`)."
+        )
+      }
+      x[[name]]
+    },
+    envir = .GlobalEnv
+  )
+}
+src <- if (exists("penguins", inherits = FALSE)) penguins else palmerpenguins::penguins
+penguins <- structure(as.data.frame(src), class = c("exact_col_df", "data.frame"))
+```
+
+```{webr}
+#| envir: debug_lab
 #| exercise: fix_column_name
 body_mass <- penguins$body_mass
 head(body_mass)
@@ -232,7 +255,7 @@ glimpse(mtcars)
 head(mtcars$mpg)
 ```
 
-If `$` returns `NULL`, the name is wrong. Use `glimpse()` on `penguins` to find the correct body-mass column name.
+On a plain data frame, R can **partial-match** short names (for example `body_mass` may pull `body_mass_g` even when you meant something else). When the name is truly wrong, `$` can return `NULL`. Use `glimpse()` or `names(penguins)` on `penguins` to find the correct body-mass column name.
 :::
 :::
 
@@ -245,7 +268,7 @@ body_mass <- penguins$body_mass_g
 head(body_mass)
 ```
 
-`$` returns `NULL` when the column name does not match exactly — R is case-sensitive and picky about spelling.
+Wrong or partial names fail here with an error. The body-mass column is spelled `body_mass_g` — R is case-sensitive and picky about spelling.
 :::
 :::
 
@@ -299,7 +322,7 @@ library(dplyr)
 #| envir: debug_lab
 #| exercise: fix_function_typo
 adelie <- filtr(penguins, species == "Adelie")
-adelie
+head(adelie)
 ```
 
 ::: {.hint exercise="fix_function_typo"}
@@ -324,7 +347,7 @@ Compare your function name letter by letter with the dplyr verb for keeping rows
 
 ```r
 adelie <- filter(penguins, species == "Adelie")
-adelie
+head(adelie)
 ```
 
 `could not find function "filtr"` means R has no function with that exact name — often a one-letter typo.
@@ -367,35 +390,43 @@ if (grepl("filtr\\s*\\(", code) && !grepl("filter\\s*\\(", code)) {
   list(
     correct = FALSE,
     type = "info",
-    message = "Save the result as `adelie` and display it."
+    message = "Save the result as `adelie` and run `head(adelie)`."
   )
 }
 ```
 
 ## 4. Type mismatch
 
-Run this broken line on purpose. Read the error, then fix it so R averages a **numeric column**, not text in quotes.
+Someone stored three weights as **character** strings (quotes), then tried to average them. Run the broken code, read the error, then fix it so `mean()` works on **numeric** data from `penguins`.
 
 ```{webr}
 #| envir: debug_lab
 #| exercise: fix_type_mismatch
-mean("3500")
+weights_g <- c("3500", "3800", "3650")
+mean(weights_g)
 ```
 
 ::: {.hint exercise="fix_type_mismatch"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-From `?mean`: the first argument must be **numeric**. Text in quotes is character, not a number.
-
-Broken vs. fixed pattern:
+From `?mean`: the first argument must be **numeric**. R treats values differently by type:
 
 ```r
-mean("20")                      # character — wrong type
+c(3500, 3800, 3650)           # numeric — numbers without quotes
+c("3500", "3800", "3650")     # character — text in quotes (even if it looks like a number)
+c(TRUE, FALSE, TRUE)          # logical — TRUE/FALSE (mean() treats TRUE as 1, FALSE as 0)
+```
+
+`mean()` fails on a **character** vector of "numbers" because they are text, not math.
+
+Fixed pattern with real data:
+
+```r
 mean(mtcars$mpg, na.rm = TRUE)  # numeric column — correct type
 ```
 
-Pass a numeric column from `penguins`, not a quoted string.
+Use `mean()` on a numeric column from `penguins`, not on quoted strings.
 :::
 :::
 
@@ -421,6 +452,12 @@ if (grepl('mean\\s*\\(\\s*"', code) || grepl("mean\\s*\\(\\s*'", code)) {
     correct = FALSE,
     type = "error",
     message = "Remove the quotes — pass a numeric column, not a text string."
+  )
+} else if (grepl("mean\\s*\\(\\s*weights_g\\s*\\)", code) && !grepl("as\\.numeric", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "`weights_g` is character. Use a numeric column from `penguins` (for example `body_mass_g`)."
   )
 } else if (grepl("body_mass_g", code) && grepl("mean\\s*\\(", code)) {
   if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {

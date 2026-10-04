@@ -1,0 +1,586 @@
+---
+title: "Describe Penguins: Center and Spread"
+subtitle: "Mean, median, and measures of variation on Palmer Penguins — all in your browser"
+format:
+  live-html:
+    theme:
+      light: [minty, ../../../../theme-light.scss]
+      dark: [quartz, ../../../../theme-dark.scss]
+    css: ../../../../styles.css
+    include-in-header: ../../../../_includes/skip-nav.html
+    page-layout: article
+    fontsize: 1.2em
+    toc: false
+    math: false
+    grid:
+      sidebar-width: 200px
+      body-width: 1000px
+      margin-width: 200px
+    webr:
+      packages:
+        - palmerpenguins
+      cell-options:
+        min-lines: 4
+        caption: "R code block"
+engine: knitr
+execute:
+  enabled: true
+  freeze: auto
+live:
+  show-hints: true
+  show-solutions: true
+---
+
+{{< include ../../../../_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{=html}
+<style>
+.card.exercise-editor {
+  --exercise-code-block-bg: #1e1e2e;
+  --exercise-code-block-color: #e6e7ee;
+  --exercise-main-color: #e6e7ee;
+  --exercise-cap-bg: #181825;
+  --exercise-gray: #3b3b52;
+  --exercise-primary-rgb: 137, 180, 250;
+  --exercise-line-bg: rgba(137, 180, 250, .12);
+  --exercise-line-gutter-bg: rgba(137, 180, 250, .22);
+  --exercise-editor-hl-kw: #ff9e64;
+  --exercise-editor-hl-cf: #ff9e64;
+  --exercise-editor-hl-st: #9ece6a;
+  --exercise-editor-hl-ss: #9ece6a;
+  --exercise-editor-hl-ch: #9ece6a;
+  --exercise-editor-hl-dv: #ffc777;
+  --exercise-editor-hl-bn: #ffc777;
+  --exercise-editor-hl-fl: #ffc777;
+  --exercise-editor-hl-cn: #ffc777;
+  --exercise-editor-hl-fu: #82aaff;
+  --exercise-editor-hl-va: #c0caf5;
+  --exercise-editor-hl-op: #89ddff;
+  --exercise-editor-hl-ot: #89ddff;
+  --exercise-editor-hl-at: #7dcfff;
+  --exercise-editor-hl-co: #9399b2;
+  --exercise-editor-hl-er: #f7768e;
+  border: 1px solid #3b3b52;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+}
+.card.exercise-editor .card-header {
+  color: #e6e7ee;
+}
+.card.exercise-editor .card-header .btn.btn-outline-dark {
+  --bs-btn-color: #e6e7ee;
+  --bs-btn-border-color: #6c7086;
+  --bs-btn-hover-color: #1e1e2e;
+  --bs-btn-hover-bg: #e6e7ee;
+  --bs-btn-hover-border-color: #e6e7ee;
+  --bs-btn-active-color: #1e1e2e;
+  --bs-btn-active-bg: #e6e7ee;
+  --bs-btn-active-border-color: #e6e7ee;
+}
+</style>
+```
+
+Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 2. You already pulled a column and computed a mean; today you will **summarize** a variable with standard tools for **center** (typical value) and **spread** (how much values vary).
+
+The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
+
+::: {.callout-note}
+## Center and spread in one sentence
+
+- **Center** — where most values sit (`mean()`, `median()`).
+- **Spread** — how far values scatter from that center (`sd()`, `IQR()`).
+
+Always say **units** when you report a number (grams for body mass here).
+:::
+
+## 1. Load body mass
+
+Run this to load Palmer Penguins and store body mass in grams. Two penguins have missing weights (`NA`); we skip those in every summary below.
+
+```{webr}
+#| envir: global
+library(palmerpenguins)
+body_mass <- penguins$body_mass_g
+head(body_mass)
+```
+
+## 2. Center: mean and median
+
+Compute the **mean** and **median** of `body_mass`, each with `na.rm = TRUE`. Run both lines. (If you skipped the cell above, the setup below runs automatically when you click **Run Code** here.)
+
+```{webr}
+#| envir: global
+#| setup: true
+#| exercise: center_mean_median
+library(palmerpenguins)
+body_mass <- penguins$body_mass_g
+```
+
+```{webr}
+#| envir: global
+#| exercise: center_mean_median
+mean(body_mass, na.rm = TRUE)
+median(body_mass, na.rm = TRUE)
+```
+
+::: {.hint exercise="center_mean_median"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mean` and `?median`: the first argument `x` is a numeric vector. By default `na.rm = FALSE`, so any `NA` makes the result `NA` — pass `na.rm = TRUE` to skip missing values.
+
+Example with a built-in dataset:
+
+```r
+mean(mtcars$mpg, na.rm = TRUE)
+median(mtcars$mpg, na.rm = TRUE)
+```
+
+Apply the same pattern to the object named in the exercise prompt.
+:::
+:::
+
+::: {.solution exercise="center_mean_median"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean(body_mass, na.rm = TRUE)
+median(body_mass, na.rm = TRUE)
+```
+
+Mean ≈ 4,002 g; median ≈ 3,700 g. The mean is pulled upward by a few heavy Gentoo penguins — that is why mean and median differ.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: center_mean_median
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("mean\\s*\\(", code) || !grepl("median\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Call both `mean(body_mass, na.rm = TRUE)` and `median(body_mass, na.rm = TRUE)`."
+  )
+} else if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Add `na.rm = TRUE` inside both `mean()` and `median()`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0(
+      "Median ≈ ",
+      round(.last_value, 0),
+      " g. Compare it to the mean you printed — which is larger?"
+    )
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run both summaries on `body_mass` with `na.rm = TRUE`."
+  )
+}
+```
+
+## 3. Spread: standard deviation
+
+`sd()` measures typical distance from the mean. Compute the standard deviation of `body_mass` with `na.rm = TRUE`.
+
+```{webr}
+#| envir: global
+#| exercise: spread_sd
+sd(body_mass, na.rm = TRUE)
+```
+
+::: {.hint exercise="spread_sd"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?sd`: `sd(x, na.rm = FALSE)` measures spread around the mean in the **same units** as `x`. Like `mean()`, set `na.rm = TRUE` when the vector can contain missing values.
+
+Example:
+
+```r
+sd(mtcars$hp, na.rm = TRUE)
+```
+
+Use `sd()` on the body-mass vector from this activity.
+:::
+:::
+
+::: {.solution exercise="spread_sd"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+sd(body_mass, na.rm = TRUE)
+```
+
+You should see about 800 g. Standard deviation uses the **same units** as the data — grams, not grams squared.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: spread_sd
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("sd\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `sd(body_mass, na.rm = TRUE)`."
+  )
+} else if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Add `na.rm = TRUE` inside `sd()`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0("Spread ≈ ", round(.last_value, 0), " g — report sd in grams when you describe variation.")
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run `sd(body_mass, na.rm = TRUE)`."
+  )
+}
+```
+
+## 4. Variance vs. standard deviation
+
+`var()` is sd squared, so its units are **grams²** — awkward for biology papers. Run `var()` and `sd()` on `body_mass` (both with `na.rm = TRUE`) and notice the difference in scale.
+
+```{webr}
+#| envir: global
+#| exercise: spread_var
+var(body_mass, na.rm = TRUE)
+sd(body_mass, na.rm = TRUE)
+```
+
+::: {.hint exercise="spread_var"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?var`: variance has the same arguments as `sd()` — numeric vector `x`, and `na.rm` (default `FALSE`). Variance is in squared units; standard deviation is the square root and is easier to interpret in a sentence.
+
+Compare both on the same column, for example:
+
+```r
+var(mtcars$mpg, na.rm = TRUE)
+sd(mtcars$mpg, na.rm = TRUE)
+```
+
+Run both functions on the penguin body-mass vector here.
+:::
+:::
+
+::: {.solution exercise="spread_var"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+var(body_mass, na.rm = TRUE)
+sd(body_mass, na.rm = TRUE)
+```
+
+Variance ≈ 640,000 g²; sd ≈ 800 g. For a sentence in a lab report, prefer sd in grams.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: spread_var
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("var\\s*\\(", code) || !grepl("sd\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Run both `var(body_mass, na.rm = TRUE)` and `sd(body_mass, na.rm = TRUE)`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value) &&
+             .last_value > 100 && .last_value < 2000) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "Good — sd is in grams; variance is sd squared (grams²)."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Call `var()` and `sd()` on `body_mass` with `na.rm = TRUE`."
+  )
+}
+```
+
+## 5. Middle 50%: IQR
+
+The **interquartile range** (`IQR()`) spans the middle half of the data — less sensitive to extreme values than sd. Compute it for `body_mass`.
+
+```{webr}
+#| envir: global
+#| exercise: spread_iqr
+IQR(body_mass, na.rm = TRUE)
+```
+
+::: {.hint exercise="spread_iqr"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?IQR`: `IQR(x, na.rm = FALSE, type = 7)` returns the distance between the 25th and 75th percentiles (middle 50% of the data). Use `na.rm = TRUE` when needed.
+
+Example:
+
+```r
+IQR(mtcars$wt, na.rm = TRUE)
+```
+
+Call it on the vector named in the prompt.
+:::
+:::
+
+::: {.solution exercise="spread_iqr"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+IQR(body_mass, na.rm = TRUE)
+```
+
+IQR ≈ 1,200 g — the distance between the 25th and 75th percentiles.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: spread_iqr
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("IQR\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Use `IQR(body_mass, na.rm = TRUE)`."
+  )
+} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = paste0("IQR ≈ ", round(.last_value, 0), " g — spread of the middle 50%.")
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run `IQR(body_mass, na.rm = TRUE)`."
+  )
+}
+```
+
+## 6. Five-number summary
+
+`summary()` on a numeric vector prints min, quartiles, median, mean, and max in one call. Run it on `body_mass`.
+
+```{webr}
+#| envir: global
+#| exercise: summary_body_mass
+summary(body_mass)
+```
+
+::: {.hint exercise="summary_body_mass"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?summary`: for a numeric vector, `summary()` prints min, quartiles, median, mean, and max in one table. No extra arguments are required for a simple numeric vector.
+
+Example:
+
+```r
+summary(mtcars$disp)
+```
+
+Pass in the body-mass object you created earlier.
+:::
+:::
+
+::: {.solution exercise="summary_body_mass"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+summary(body_mass)
+```
+
+Use this as a quick sanity check before you write up results.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: summary_body_mass
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+if (!grepl("summary\\s*\\(", code)) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Run `summary(body_mass)`."
+  )
+} else if (grepl("body_mass", code)) {
+  list(
+    correct = TRUE,
+    type = "success",
+    message = "That table is your five-number summary plus the mean."
+  )
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run `summary(body_mass)` and read the printed table."
+  )
+}
+```
+
+## 7. Compare two species
+
+Adelie and Gentoo penguins differ in size. The vectors below are ready — compute **mean** and **sd** for each (with `na.rm = TRUE`). No hypothesis test yet; just describe center and spread.
+
+```{webr}
+#| envir: global
+#| setup: true
+#| exercise: compare_species
+library(palmerpenguins)
+adelie_mass <- penguins$body_mass_g[penguins$species == "Adelie"]
+gentoo_mass <- penguins$body_mass_g[penguins$species == "Gentoo"]
+```
+
+```{webr}
+#| envir: global
+#| exercise: compare_species
+mean(adelie_mass, na.rm = TRUE)
+sd(adelie_mass, na.rm = TRUE)
+mean(gentoo_mass, na.rm = TRUE)
+sd(gentoo_mass, na.rm = TRUE)
+```
+
+::: {.hint exercise="compare_species"}
+::: {.callout-note collapse="false"}
+## Hint
+
+You already have two numeric vectors in memory. For **each** vector, call `mean(..., na.rm = TRUE)` and `sd(..., na.rm = TRUE)` — four lines total.
+
+Practice the idea on `mtcars` by splitting on a category, then summarizing each subset:
+
+```r
+v4 <- mtcars$mpg[mtcars$cyl == 4]
+v8 <- mtcars$mpg[mtcars$cyl == 8]
+mean(v4, na.rm = TRUE)
+sd(v4, na.rm = TRUE)
+```
+
+Repeat for the second group, then do the same for the two species vectors in this exercise.
+:::
+:::
+
+::: {.solution exercise="compare_species"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+mean(adelie_mass, na.rm = TRUE)
+sd(adelie_mass, na.rm = TRUE)
+mean(gentoo_mass, na.rm = TRUE)
+sd(gentoo_mass, na.rm = TRUE)
+```
+
+Gentoo mean body mass is higher; both groups show substantial spread around their means.
+:::
+:::
+
+```{webr}
+#| envir: global
+#| exercise: compare_species
+#| check: true
+code <- paste(.user_code, collapse = "\n")
+has_adelie <- grepl("adelie_mass", code) && grepl("mean\\s*\\(", code) && grepl("sd\\s*\\(", code)
+has_gentoo <- grepl("gentoo_mass", code)
+if (!has_adelie || !has_gentoo) {
+  list(
+    correct = FALSE,
+    type = "error",
+    message = "Compute `mean()` and `sd()` for both `adelie_mass` and `gentoo_mass`."
+  )
+} else if (grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE) &&
+             exists("adelie_mass", envir = .envir_result, inherits = FALSE) &&
+             exists("gentoo_mass", envir = .envir_result, inherits = FALSE)) {
+  am <- mean(get("adelie_mass", envir = .envir_result), na.rm = TRUE)
+  gm <- mean(get("gentoo_mass", envir = .envir_result), na.rm = TRUE)
+  if (gm > am) {
+    list(
+      correct = TRUE,
+      type = "success",
+      message = "Gentoo center is higher; compare the sd values for spread within each species."
+    )
+  } else {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Re-run mean and sd for both `adelie_mass` and `gentoo_mass`."
+    )
+  }
+} else {
+  list(
+    correct = FALSE,
+    type = "info",
+    message = "Run mean and sd on both species vectors with `na.rm = TRUE`."
+  )
+}
+```
+
+## 8. Recap
+
+::: {.callout-note collapse="true"}
+## Functions you used
+
+| Function | What it tells you |
+|----------|-------------------|
+| `mean(..., na.rm = TRUE)` | Average (center) |
+| `median(..., na.rm = TRUE)` | Middle value (robust center) |
+| `sd(..., na.rm = TRUE)` | Typical deviation from the mean (spread, same units) |
+| `var(..., na.rm = TRUE)` | Squared spread (same units as data, squared) |
+| `IQR(..., na.rm = TRUE)` | Spread of the middle 50% |
+| `summary()` | Min, quartiles, median, mean, max |
+
+In **Coding Activity 5** you will visualize these distributions with ggplot2.
+:::
+
+## Keep playing
+
+Try the same summaries on flipper length in millimeters.
+
+```{webr}
+#| envir: global
+flipper <- penguins$flipper_length_mm
+mean(flipper, na.rm = TRUE)
+sd(flipper, na.rm = TRUE)
+summary(flipper)
+```
+
+::: {.callout-tip appearance="simple"}
+**Try this with a partner.** One person predicts whether flipper length has more or less spread than body mass; the other runs `sd()` on both. Swap roles.
+:::

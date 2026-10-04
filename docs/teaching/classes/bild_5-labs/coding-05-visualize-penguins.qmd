@@ -444,7 +444,7 @@ ggplot(penguins, aes(
   )
 ```
 
-Boxplots compare a **continuous variable** across **groups**. On your graded assignment you will add `reorder()` to sort groups by elevation after you join that metadata in Coding Activity 4.
+Boxplots compare a **continuous variable** across **groups**. On your graded assignment you will add `reorder()` to sort groups by elevation after you join that metadata in Coding Activity 6.
 :::
 :::
 
@@ -502,7 +502,7 @@ On Canvas you will build figures step by step with **hemoglobin** measurements a
 1. `library(tidyverse)` and read your dataset
 2. Build a boxplot one layer at a time with `ggplot()`, `geom_boxplot()`, `fill`, `theme_minimal()`, and `labs()`
 
-You practiced the layering here. Coding Activity 4 covers the wrangling steps — filtering, reshaping, and joining — that prepare the table for those plots.
+You practiced the layering here. Coding Activity 6 covers the wrangling steps — filtering, reshaping, and joining — that prepare the table for those plots.
 
 ## Keep playing
 

@@ -40,13 +40,14 @@ Use track prefix, zero-padded number, and kebab-case slug:
 docs/teaching/classes/bild_5-labs/
   coding-01-can-humans-choose-randomly.qmd
   coding-02-run-your-first-line-of-code.qmd
-  coding-03-visualize-penguins.qmd
-  coding-04-wrangle-penguins.qmd
-  coding-05-read-fix-and-test-r-errors.qmd
-  coding-06-check-assumptions.qmd
-  coding-07-run-t-tests.qmd
-  coding-08-run-anova.qmd
-  coding-09-correlation-and-regression.qmd
+  coding-03-describe-penguins.qmd
+  coding-04-read-fix-and-test-r-errors.qmd
+  coding-05-visualize-penguins.qmd
+  coding-06-wrangle-penguins.qmd
+  coding-07-check-assumptions.qmd
+  coding-08-run-t-tests.qmd
+  coding-09-run-anova.qmd
+  coding-10-correlation-and-regression.qmd
   paper-01-find-a-question-build-a-bibliography.qmd
   paper-02-annotate-bramante-2026.qmd
 ```
@@ -181,13 +182,14 @@ works. No `webr: resources:` needed — the extension falls back to the document
 - Course hub: `/docs/teaching/classes/BILD_5.html`
 - Coding 1: `/docs/teaching/classes/bild_5-labs/coding-01-can-humans-choose-randomly.html`
 - Coding 2: `/docs/teaching/classes/bild_5-labs/coding-02-run-your-first-line-of-code.html`
-- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-visualize-penguins.html`
-- Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html`
-- Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html`
-- Coding 6: `/docs/teaching/classes/bild_5-labs/coding-06-check-assumptions.html`
-- Coding 7: `/docs/teaching/classes/bild_5-labs/coding-07-run-t-tests.html`
-- Coding 8: `/docs/teaching/classes/bild_5-labs/coding-08-run-anova.html`
-- Coding 9: `/docs/teaching/classes/bild_5-labs/coding-09-correlation-and-regression.html`
+- Coding 3: `/docs/teaching/classes/bild_5-labs/coding-03-describe-penguins.html`
+- Coding 4: `/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html`
+- Coding 5: `/docs/teaching/classes/bild_5-labs/coding-05-visualize-penguins.html`
+- Coding 6: `/docs/teaching/classes/bild_5-labs/coding-06-wrangle-penguins.html`
+- Coding 7: `/docs/teaching/classes/bild_5-labs/coding-07-check-assumptions.html`
+- Coding 8: `/docs/teaching/classes/bild_5-labs/coding-08-run-t-tests.html`
+- Coding 9: `/docs/teaching/classes/bild_5-labs/coding-09-run-anova.html`
+- Coding 10: `/docs/teaching/classes/bild_5-labs/coding-10-correlation-and-regression.html`
 - Paper 1: `/docs/teaching/classes/bild_5-labs/paper-01-find-a-question-build-a-bibliography.html`
 - Paper 2: `/docs/teaching/classes/bild_5-labs/paper-02-annotate-bramante-2026.html`
 - Paper 3: `/docs/teaching/classes/bild_5-labs/paper-03-ethics-design-killingley-2022.html`

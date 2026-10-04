@@ -79,22 +79,22 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/05-wrangle-and-visualize-penguins.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-06-wrangle-penguins.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/06-read-fix-and-test-r-errors.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-02-wrangle-and-visualize-penguins.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-06-wrangle-penguins.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-03-read-fix-and-test-r-errors.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
   status = 301
 
 [[redirects]]
@@ -117,37 +117,68 @@
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-02-visualize-penguins.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-03-visualize-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-05-visualize-penguins.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-03-wrangle-penguins.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html"
-  status = 301
-
-[[redirects]]
-  from = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-06-wrangle-penguins.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-05-check-assumptions.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-06-check-assumptions.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-07-check-assumptions.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-06-run-t-tests.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-07-run-t-tests.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-08-run-t-tests.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-07-run-anova.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-08-run-anova.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-09-run-anova.html"
   status = 301
 
 [[redirects]]
   from = "/docs/teaching/classes/bild_5-labs/coding-08-correlation-and-regression.html"
-  to = "/docs/teaching/classes/bild_5-labs/coding-09-correlation-and-regression.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-10-correlation-and-regression.html"
+  status = 301
+
+# April 2026: descriptive-stats lab inserted as Coding 3; debug moved to 4; later labs +1 (correlation is 10).
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-03-visualize-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-05-visualize-penguins.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-04-wrangle-penguins.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-06-wrangle-penguins.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-05-read-fix-and-test-r-errors.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-04-read-fix-and-test-r-errors.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-06-check-assumptions.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-07-check-assumptions.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-07-run-t-tests.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-08-run-t-tests.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-08-run-anova.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-09-run-anova.html"
+  status = 301
+
+[[redirects]]
+  from = "/docs/teaching/classes/bild_5-labs/coding-09-correlation-and-regression.html"
+  to = "/docs/teaching/classes/bild_5-labs/coding-10-correlation-and-regression.html"
   status = 301
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
