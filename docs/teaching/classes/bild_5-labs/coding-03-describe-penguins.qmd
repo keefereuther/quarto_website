@@ -150,7 +150,7 @@ mean(body_mass, na.rm = TRUE)
 median(body_mass, na.rm = TRUE)
 ```
 
-Mean ≈ 4,002 g; median ≈ 3,700 g. The mean is pulled upward by a few heavy Gentoo penguins — that is why mean and median differ.
+Mean ≈ 4,202 g; median ≈ 4,050 g. The mean is pulled upward by a few heavy Gentoo penguins — that is why mean and median differ.
 :::
 :::
 
