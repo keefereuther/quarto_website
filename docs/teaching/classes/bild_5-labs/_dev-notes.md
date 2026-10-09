@@ -177,6 +177,25 @@ listed under top-level `resources:` in that page's front matter. Quarto copies i
 and Quarto Live downloads it into the browser's R session, so `read.csv("rand_data.csv")` just
 works. No `webr: resources:` needed — the extension falls back to the document `resources` list.
 
+### webR exercise gotchas (learned while building Coding 4)
+
+- **Exercise boxes intercept syntax errors.** Quarto Live runs `parse()` on student code before
+  evaluating it and shows its own generic "might not be valid R code" alert, so R's real
+  `unexpected ')'` / `pipe operator requires a function call` text never appears in an
+  `#| exercise:` cell. To show R's message, use a plain `{webr}` cell (no `exercise:`).
+- **`library()` is session-wide.** Separate `#| envir:` names isolate objects, not attached
+  packages. A station that depends on a package *not* being loaded must `detach()` it in its
+  setup chunk, or it silently passes for anyone who ran an earlier station first.
+- **Always `library(palmerpenguins)`.** R ≥ 4.5 ships a built-in `datasets::penguins` with
+  different column names (`body_mass`, not `body_mass_g`). webR 0.6 may expose it, and local
+  R 4.6 does. Attaching palmerpenguins masks it.
+- **Grade results, not code text.** In a `#| check: true` block, `.evaluate_result` is the
+  `evaluate::evaluate()` list, so `any(vapply(.evaluate_result, inherits, logical(1), "error"))`
+  detects a runtime error and `inherits(x, "warning")` detects warnings; `.last_value` is the
+  final value. Checking these accepts any correct route (`na.omit()`, `summarise()`, a
+  one-liner) where `grepl()` on `.user_code` rejects them. Use `type = "info"` for nudges,
+  `"warning"` when code ran but the answer is wrong, `"success"` when done.
+
 ## Live URLs
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
