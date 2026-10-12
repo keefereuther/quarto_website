@@ -1,6 +1,6 @@
 ---
 title: "Wrangle Penguins with dplyr"
-subtitle: "Filter rows, chain steps with pipes, reshape tables, and join metadata — all in your browser"
+subtitle: "Filter rows, chain steps with pipes, reshape tables, and join metadata"
 format:
   live-html:
     theme:
@@ -82,7 +82,7 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activities 1 and 2. You already know **ggplot2** from Activity 2; today you will **reshape tables** with dplyr and tidyr — filter rows, chain steps with pipes, and join metadata.
+In Coding 5 you built figures with **ggplot2**. Today you will **reshape tables** with dplyr and tidyr: filter rows, chain steps with pipes, and join metadata.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 

@@ -82,7 +82,7 @@ live:
 </style>
 ```
 
-Everything on this page runs real R in your browser. You will practice the same workflow as **Coding Assignment 4, Parts A and B**, plus a **one-sample** *t*-test from lecture A008: explore the data, check assumptions, run the test, and interpret the result.
+You will practice the same workflow as **Coding Assignment 4, Parts A and B**, plus a **one-sample** *t*-test from lecture A008: explore the data, check assumptions, run the test, and interpret the result.
 
 ::: {.callout-note}
 ## Assignment vs this activity

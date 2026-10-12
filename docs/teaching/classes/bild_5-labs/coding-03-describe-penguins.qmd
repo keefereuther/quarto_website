@@ -1,6 +1,6 @@
 ---
 title: "Describe Penguins: Center and Spread"
-subtitle: "Mean, median, and measures of variation on Palmer Penguins — all in your browser"
+subtitle: "Mean, median, and measures of variation on Palmer Penguins"
 format:
   live-html:
     theme:
@@ -81,7 +81,7 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 2. You already pulled a column and computed a mean; today you will **summarize** a variable with standard tools for **center** (typical value) and **spread** (how much values vary).
+In Coding 2 you pulled a column and computed a mean. Today you will **summarize** a variable with standard tools for **center** (typical value) and **spread** (how much values vary).
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 

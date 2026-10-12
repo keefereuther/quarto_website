@@ -84,7 +84,7 @@ live:
 </style>
 ```
 
-Everything on this page runs real R in your browser. You will practice **Coding Assignment 4, Part D** plus lecture extras on correlation, R², and Cook's distance.
+You will practice **Coding Assignment 4, Part D** plus lecture extras on correlation, R², and Cook's distance.
 
 ::: {.callout-note}
 ## Assignment vs this activity

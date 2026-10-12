@@ -97,7 +97,7 @@ The first time you click **Run Code**, your browser downloads R once (a few seco
 | **Warning**, plus output | R finished, but something looked wrong to it. | Treat the output as suspect until you understand the warning. |
 | **No message**, but the answer is `NA`, `NULL`, or 0 rows | R did exactly what you typed. What you typed was not what you meant. | Check the result with `nrow()`, `head()`, or `class()` before you trust it. |
 
-Fix **one thing**, run again, and see whether the message changes. Errors are information, not failure.
+Fix **one thing**, run again, and see whether the message changes.
 :::
 
 ::: {.callout-tip collapse="true"}

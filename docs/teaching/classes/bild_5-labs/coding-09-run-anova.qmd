@@ -82,7 +82,7 @@ live:
 </style>
 ```
 
-Everything on this page runs real R in your browser. You will practice **Coding Assignment 4, Part C**: one-way ANOVA with assumption checks and Tukey's HSD post-hoc comparisons.
+You will practice **Coding Assignment 4, Part C**: one-way ANOVA with assumption checks and Tukey's HSD post-hoc comparisons.
 
 ::: {.callout-note}
 ## Assignment vs this activity

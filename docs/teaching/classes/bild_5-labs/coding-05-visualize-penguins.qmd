@@ -1,6 +1,6 @@
 ---
 title: "Visualize Penguins with ggplot2"
-subtitle: "Build layered figures — histograms, scatterplots, and boxplots — all in your browser"
+subtitle: "Build layered figures: histograms, scatterplots, and boxplots"
 format:
   live-html:
     theme:
@@ -82,7 +82,7 @@ live:
 </style>
 ```
 
-Welcome back. Everything on this page runs real R in your browser — same setup as Coding Activity 2. You already plotted with base R's `hist()`; today you will **build figures in layers** with ggplot2.
+In Coding 2 you plotted with base R's `hist()`. Today you will **build figures in layers** with ggplot2.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 

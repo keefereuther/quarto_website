@@ -1,6 +1,6 @@
 ---
 title: "Run Your First Line of Code"
-subtitle: "Make your own objects, explore real data, and plot your first histogram — all in your browser"
+subtitle: "Make your own objects, explore real data, and plot your first histogram"
 format:
   live-html:
     theme:
@@ -94,7 +94,7 @@ live:
 </style>
 ```
 
-Welcome. Everything on this page runs real R, right inside your browser. Nothing to install, and you cannot break anything. If a line produces an error, that is normal: read it, adjust, and run again.
+If a line produces an error, read it, adjust, and run again.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
 
@@ -329,7 +329,7 @@ You should see an error like `non-numeric argument to binary operator`. That is 
 ::: {.callout-note collapse="true"}
 ## Why did this happen?
 
-`+` is defined for numbers: R adds the values. A sentence in quotes is **character** data, not a number. When R hits `number + "text"`, it stops and tells you the second argument is not numeric. Errors are information, not failure — read the message and adjust.
+`+` is defined for numbers: R adds the values. A sentence in quotes is **character** data, not a number. When R hits `number + "text"`, it stops and tells you the second argument is not numeric. Read the message and adjust.
 :::
 
 ## 4. Print your sentence
