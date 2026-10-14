@@ -95,7 +95,47 @@ Every ggplot2 figure has three essential pieces:
 2. **aes** — aesthetic mappings: which column goes on which axis, or which color
 3. **geom** — the geometric object: points, boxes, bars, histogram bins
 
-You add layers with `+`. We will practice all three today.
+You add layers with `+`. We will practice all three today. The two tables below are a reference for this activity and for your assignments.
+:::
+
+::: {.callout-note collapse="true"}
+## Common geoms (click to expand)
+
+| Geom | Shows | Needs in `aes()` | Note |
+|---|---|---|---|
+| `geom_histogram()` | Distribution of one continuous variable | `x` | `bins = 30` by default; try `binwidth = 100` |
+| `geom_density()` | Smoothed outline of a histogram | `x` | |
+| `geom_bar()` | Count of rows in each category | `x` (categorical) | Counts for you |
+| `geom_col()` | Bars whose heights you already computed | `x`, `y` | |
+| `geom_point()` | Scatterplot of two continuous variables | `x`, `y` | |
+| `geom_jitter()` | Scatterplot with points nudged apart so they do not overlap | `x`, `y` | `width = 0.2` controls the nudge |
+| `geom_boxplot()` | Median, quartiles, and outliers per group | `x` (group), `y` | |
+| `geom_violin()` | Full distribution shape per group | `x` (group), `y` | |
+| `geom_line()` | Values connected in order along x | `x`, `y` | |
+| `geom_smooth()` | A fitted trend line with a confidence band | `x`, `y` | `method = "lm"` for a straight line |
+| `geom_errorbar()` | Error bars around a summary | `x`, `ymin`, `ymax` | |
+
+Layers stack with `+` in the order you write them, so `geom_point() + geom_smooth()` draws the line on top of the points.
+:::
+
+::: {.callout-note collapse="true"}
+## Aesthetics: what `aes()` can map a column to (click to expand)
+
+| Aesthetic | Controls | Works best with | Example |
+|---|---|---|---|
+| `x`, `y` | Position on the axes | Any column | `aes(x = flipper_length_mm, y = body_mass_g)` |
+| `color` | Outline or point color | Categories, or a continuous gradient | `aes(color = species)` |
+| `fill` | Inside color of bars, boxes, and violins | Categories | `aes(fill = island)` |
+| `size` | Point size or line thickness | Continuous | `aes(size = bill_depth_mm)` |
+| `shape` | Point shape | Categories (six or fewer) | `aes(shape = sex)` |
+| `alpha` | Transparency, 0 to 1 | Continuous, or a fixed value | `geom_point(alpha = 0.5)` |
+| `group` | Which rows belong together for lines and boxes | Categories | `aes(group = species)` |
+
+Inside `aes()`, a setting **maps** a column, so each species gets its own color. Outside `aes()`, it **sets** one constant for the whole layer: `geom_point(color = "blue")` makes every point blue.
+
+Helpers you will add to almost every figure: `labs()` for the title and axis labels, `theme_minimal()` for a clean background, and `facet_wrap(~ species)` for one panel per group.
+
+Posit, the company that makes RStudio, publishes a one-page summary of all of this: [ggplot2 cheat sheet](https://rstudio.github.io/cheatsheets/html/data-visualization.html) (web page) or [PDF](https://rstudio.github.io/cheatsheets/data-visualization.pdf). Keep it open while you work on assignments.
 :::
 
 ## 1. Load the tidyverse
@@ -134,19 +174,16 @@ On DataHub and in your graded assignment you will type exactly this.
 #| envir: visualize_penguins
 #| exercise: load_tidyverse
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Load the tidyverse with `library(tidyverse)`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Put the package name inside the parentheses: `library(name)`.")
+} else if ("package:ggplot2" %in% search()) {
+  list(correct = TRUE, type = "success",
+       message = "Tidyverse loaded. ggplot2 is ready to use.")
 } else {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Tidyverse loaded. ggplot2 is ready to use."
-  )
+  list(correct = FALSE, type = "info",
+       message = "No error, but ggplot2 is not loaded yet. Which bundle of packages contains ggplot2?")
 }
 ```
 
@@ -200,25 +237,17 @@ You should see 344 rows and 8 columns. `species` and `island` are `<fct>` (categ
 #| envir: visualize_penguins
 #| exercise: glimpse_penguins
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("glimpse\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Call `glimpse(penguins)` to inspect the dataset."
-  )
-} else if (!grepl("penguins", code)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Pass `penguins` into `glimpse()`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+v <- .last_value
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Is the function spelled `glimpse` and the dataset `penguins`?")
+} else if (is.data.frame(v) && nrow(v) == 344) {
+  list(correct = TRUE, type = "success",
+       message = "344 rows, 8 columns. Now you know which columns can go on an axis or a color.")
 } else {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "344 rows, 8 columns — ready to map columns to a figure."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Run `glimpse()` on the `penguins` table.")
 }
 ```
 
@@ -283,28 +312,38 @@ A histogram shows how **one continuous variable** is distributed — how many pe
 #| envir: visualize_penguins
 #| exercise: ggplot_histogram
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-has_ggplot <- grepl("ggplot\\s*\\(", code)
-has_hist <- grepl("geom_histogram\\s*\\(", code)
-has_labs <- grepl("labs\\s*\\(", code)
-if (has_ggplot && has_hist && has_labs) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Histogram with a title — distribution of one continuous variable."
-  )
-} else if (has_ggplot && has_hist) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Add `labs(title = \"...\")` with your own title."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+plot_maps <- function(p) {
+  m <- c(as.list(p$mapping), unlist(lapply(p$layers, function(l) as.list(l$mapping)), recursive = FALSE))
+  names(m) <- sub(".*\\.", "", names(m))
+  m
+}
+plot_title <- function(p) tryCatch(p$labels$title, error = function(e) NULL)
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Layers are joined with `+`, and `aes()` sits inside `ggplot()`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Start with `ggplot(penguins, aes(x = body_mass_g))` and add a geom with `+`.")
+} else if (!"StatBin" %in% layer_class(p, "stat")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but not a histogram. Add `geom_histogram()` to bin one continuous variable.")
+} else if (is.null(plot_title(p))) {
+  list(correct = FALSE, type = "info",
+       message = "Histogram drawn. Add a title with `labs(title = \"...\")`.")
 } else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `ggplot(...) + geom_histogram() + labs(title = \"...\")`."
-  )
+  list(correct = TRUE, type = "success",
+       message = "Histogram with a title: the distribution of one continuous variable.")
 }
 ```
 
@@ -361,25 +400,43 @@ Scatterplots relate **two continuous measurements**. Color adds a **third variab
 #| envir: visualize_penguins
 #| exercise: ggplot_scatter
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_point\\s*\\(", code) && grepl("color\\s*=\\s*species", code)) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Scatterplot with species as color — two continuous vars plus a grouping."
-  )
-} else if (grepl("geom_point\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Map `color = species` inside `aes()`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+plot_maps <- function(p) {
+  m <- c(as.list(p$mapping), unlist(lapply(p$layers, function(l) as.list(l$mapping)), recursive = FALSE))
+  names(m) <- sub(".*\\.", "", names(m))
+  m
+}
+plot_title <- function(p) tryCatch(p$labels$title, error = function(e) NULL)
+p <- find_plot(.last_value, .envir_result)
+maps <- if (is.null(p)) list() else plot_maps(p)
+col_var <- if (!is.null(maps$colour)) rlang::as_label(maps$colour) else NULL
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Check that every `aes()` argument is separated by a comma.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add a geom with `+`.")
+} else if (!"GeomPoint" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but no points. Add `geom_point()` for a scatterplot.")
+} else if (is.null(col_var)) {
+  list(correct = FALSE, type = "info",
+       message = "Points drawn. Map `color = species` inside `aes()` so each species gets its own hue.")
+} else if (col_var != "species") {
+  list(correct = FALSE, type = "warning",
+       message = paste0("Color is mapped to `", col_var, "`. The prompt asks for `species` so the three clusters stand out."))
 } else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `geom_point()` with flipper length, body mass, and `color = species`."
-  )
+  list(correct = TRUE, type = "success",
+       message = "Scatterplot with species as color: two continuous variables plus a grouping.")
 }
 ```
 
@@ -452,28 +509,41 @@ Boxplots compare a **continuous variable** across **groups**. On your graded ass
 #| envir: visualize_penguins
 #| exercise: ggplot_boxplot
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-has_box <- grepl("geom_boxplot\\s*\\(", code)
-has_theme <- grepl("theme_minimal\\s*\\(", code)
-has_labs <- grepl("labs\\s*\\(", code)
-if (has_box && has_theme && has_labs) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Layered boxplot with fill, theme, and labels — Assignment 2 ready."
-  )
-} else if (has_box) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Add `theme_minimal()` and `labs(title = ..., x = ..., y = ...)`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+plot_maps <- function(p) {
+  m <- c(as.list(p$mapping), unlist(lapply(p$layers, function(l) as.list(l$mapping)), recursive = FALSE))
+  names(m) <- sub(".*\\.", "", names(m))
+  m
+}
+plot_title <- function(p) tryCatch(p$labels$title, error = function(e) NULL)
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Every layer, including `theme_minimal()` and `labs()`, is joined with `+`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_boxplot()` with `+`.")
+} else if (!"GeomBoxplot" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but no boxes. Add `geom_boxplot()`.")
+} else if (length(p$theme) == 0) {
+  list(correct = FALSE, type = "info",
+       message = "Boxplot drawn. Add `theme_minimal()` for a cleaner background.")
+} else if (is.null(plot_title(p))) {
+  list(correct = FALSE, type = "info",
+       message = "Almost there. Add `labs(title = ..., x = ..., y = ...)` so a reader knows what they are looking at.")
 } else {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Include `geom_boxplot()`, `theme_minimal()`, and `labs()`."
-  )
+  list(correct = TRUE, type = "success",
+       message = "Layered boxplot with fill, theme, and labels. Assignment 2 ready.")
 }
 ```
 

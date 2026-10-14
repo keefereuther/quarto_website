@@ -82,9 +82,49 @@ live:
 </style>
 ```
 
-In Coding 5 you built figures with **ggplot2**. Today you will **reshape tables** with dplyr and tidyr: filter rows, chain steps with pipes, and join metadata.
+In Coding 5 you built figures with **ggplot2**. Today you will **reshape tables** with dplyr and tidyr: filter rows with conditions, add columns, chain steps with pipes, and join metadata. The two tables below are a reference for the whole activity and for your assignments.
 
 The first time you click **Run Code**, your browser downloads R once (a few seconds). After that it is quick.
+
+::: {.callout-note collapse="true"}
+## dplyr and tidyr functions you will use most (click to expand)
+
+| Function | What it does | Example |
+|---|---|---|
+| `glimpse()` | Shows rows, columns, and column types | `glimpse(penguins)` |
+| `filter()` | Keeps rows that meet a condition | `filter(penguins, species == "Adelie")` |
+| `select()` | Keeps only the columns you name | `select(penguins, species, body_mass_g)` |
+| `mutate()` | Adds a new column computed from existing ones | `mutate(penguins, body_mass_kg = body_mass_g / 1000)` |
+| `arrange()` | Sorts rows by a column; wrap in `desc()` for largest first | `arrange(penguins, desc(body_mass_g))` |
+| `summarise()` | Collapses many rows into one summary number | `summarise(penguins, avg = mean(body_mass_g, na.rm = TRUE))` |
+| `group_by()` | Makes the next summary happen once per group | <code>penguins &#124;&gt; group_by(species) &#124;&gt; summarise(n = n())</code> |
+| `count()` | Counts rows per group in one step | `count(penguins, species)` |
+| `pull()` | Takes one column out as a plain vector | `pull(penguins, body_mass_g)` |
+| `distinct()` | Lists each unique value once | `distinct(penguins, island)` |
+| `pivot_longer()` | Turns wide column headings into tidy rows (from tidyr) | `pivot_longer(island_wide, cols = everything(), names_to = "island", values_to = "elev")` |
+| `left_join()` | Adds columns from a second table by a shared key | `left_join(penguins, island_tidy, by = "island")` |
+| <code>&#124;&gt;</code> | Passes the result of one step into the next | <code>penguins &#124;&gt; filter(species == &quot;Adelie&quot;) &#124;&gt; count(island)</code> |
+
+Posit, the company that makes RStudio, publishes a one-page summary of all of these: [dplyr cheat sheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html) (web page) or [PDF](https://rstudio.github.io/cheatsheets/data-transformation.pdf). Keep it open while you work on assignments.
+:::
+
+::: {.callout-note collapse="true"}
+## Conditions: yes-or-no questions inside `filter()` (click to expand)
+
+| Write | Meaning | Example inside `filter()` |
+|---|---|---|
+| `==` | is equal to | `species == "Adelie"` |
+| `!=` | is not equal to | `species != "Gentoo"` |
+| `>` and `>=` | greater than, greater than or equal to | `body_mass_g >= 4500` |
+| `<` and `<=` | less than, less than or equal to | `flipper_length_mm < 190` |
+| `%in%` | is one of these values | `species %in% c("Adelie", "Chinstrap")` |
+| `is.na()` | is missing | `is.na(body_mass_g)` |
+| `!` | not; flips TRUE and FALSE | `!is.na(body_mass_g)` |
+| `&` or a comma | both must be true | `species == "Gentoo", body_mass_g >= 4500` |
+| <code>&#124;</code> | either can be true | <code>island == &quot;Dream&quot; &#124; island == &quot;Biscoe&quot;</code> |
+
+Text goes in quotes (`"Adelie"`); numbers do not (`4500`). One `=` assigns a value; two `==` compares. Each condition produces TRUE or FALSE for every row, and `filter()` keeps the TRUE rows.
+:::
 
 ## 1. Load the tidyverse
 
@@ -122,19 +162,16 @@ On DataHub and in your graded assignment you will type exactly this. The tidyver
 #| envir: wrangle_penguins
 #| exercise: load_tidyverse
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Load the tidyverse with `library(tidyverse)`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Put the package name inside the parentheses: `library(name)`.")
+} else if ("package:dplyr" %in% search()) {
+  list(correct = TRUE, type = "success",
+       message = "Tidyverse loaded. dplyr and tidyr are ready to use.")
 } else {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Tidyverse loaded. dplyr and tidyr are ready to use."
-  )
+  list(correct = FALSE, type = "info",
+       message = "No error, but dplyr is not loaded yet. Which bundle of packages contains dplyr and tidyr?")
 }
 ```
 
@@ -188,25 +225,17 @@ You should see 344 rows and 8 columns. `species` and `island` are `<fct>` (categ
 #| envir: wrangle_penguins
 #| exercise: glimpse_penguins
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("glimpse\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Call `glimpse(penguins)` to inspect the dataset."
-  )
-} else if (!grepl("penguins", code)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Pass `penguins` into `glimpse()`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+v <- .last_value
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Is the function spelled `glimpse` and the dataset `penguins`?")
+} else if (is.data.frame(v) && nrow(v) == 344) {
+  list(correct = TRUE, type = "success",
+       message = "344 rows, 8 columns. A tidy table ready to wrangle.")
 } else {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "344 rows, 8 columns — a tidy table ready to wrangle."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Run `glimpse()` on the `penguins` table.")
 }
 ```
 
@@ -283,29 +312,26 @@ Read it top to bottom: "Take `penguins`, filter to Adelie, then glimpse." The pi
 #| envir: wrangle_penguins
 #| exercise: first_pipe
 #| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+v <- .last_value
 code <- paste(.user_code, collapse = "\n")
-has_pipe <- grepl("\\|>", code)
-has_filter <- grepl("filter\\s*\\(", code)
-has_glimpse <- grepl("glimpse\\s*\\(", code)
-has_adelie <- grepl("Adelie", code)
-if (has_pipe && has_filter && has_glimpse && has_adelie) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = "Nice pipe chain. You filtered first, then inspected — same result, clearer code."
-  )
-} else if (!has_pipe) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use the native pipe `|>` to connect at least two steps."
-  )
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Each step after `|>` needs its parentheses.")
+} else if (is.data.frame(v) && nrow(v) == 152 && all(v$species == "Adelie")) {
+  if (grepl("\\|>|%>%", code)) {
+    list(correct = TRUE, type = "success",
+         message = "152 Adelie penguins, filtered then inspected. Same result as the nested version, clearer code.")
+  } else {
+    list(correct = FALSE, type = "info",
+         message = "Correct result. Now write it as a pipe chain with `|>` so each step reads top to bottom.")
+  }
+} else if (is.data.frame(v)) {
+  list(correct = FALSE, type = "warning",
+       message = paste0("Runs, but the result has ", nrow(v), " rows instead of the 152 Adelie penguins. Check the condition inside `filter()`."))
 } else {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Chain `penguins |> filter(species == \"Adelie\") |> glimpse()`."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Start from `penguins`, pipe into `filter()` for Adelie, then pipe into `glimpse()`.")
 }
 ```
 
@@ -360,34 +386,27 @@ You should have 342 rows — two fewer than the original 344.
 #| envir: wrangle_penguins
 #| exercise: filter_na
 #| check: true
-if (!exists("penguins_clean", envir = .envir_result, inherits = FALSE)) {
-  list(
-    correct = FALSE,
-    type = "warning",
-    message = "Save the filtered table as `penguins_clean`."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `is.na()` needs the column name inside its parentheses.")
+} else if (!exists("penguins_clean", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the filtered table as `penguins_clean` with `<-`.")
 } else {
   pc <- get("penguins_clean", envir = .envir_result)
-  n <- nrow(pc)
-  no_na <- sum(is.na(pc$body_mass_g)) == 0
-  if (n == 342 && no_na) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = "342 rows, no missing body mass — ready for summaries and joins."
-    )
-  } else if (no_na && n < 344) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = paste0("Missing values removed (", n, " rows). Good to go.")
-    )
+  if (!is.data.frame(pc)) {
+    list(correct = FALSE, type = "info",
+         message = "`penguins_clean` should be a table. Pipe `penguins` into `filter()`.")
+  } else if (any(is.na(pc$body_mass_g))) {
+    list(correct = FALSE, type = "warning",
+         message = "Rows with missing body mass are still there. `!is.na(body_mass_g)` keeps the rows where body mass is not missing.")
+  } else if (nrow(pc) == 342) {
+    list(correct = TRUE, type = "success",
+         message = "342 rows, no missing body mass. Two rows dropped, as expected.")
   } else {
-    list(
-      correct = FALSE,
-      type = "info",
-      message = "Use `filter(!is.na(body_mass_g))` so rows with missing body mass are dropped."
-    )
+    list(correct = TRUE, type = "success",
+         message = paste0("No missing body mass remains (", nrow(pc), " rows). Filtering on body mass alone would leave 342."))
   }
 }
 ```
@@ -441,7 +460,7 @@ penguins_clean |>
   mean(na.rm = TRUE)
 ```
 
-You should see about 4,002 g — the average weight across penguins with a recorded body mass.
+You should see about 4,202 g — the average weight across penguins with a recorded body mass.
 :::
 :::
 
@@ -449,35 +468,134 @@ You should see about 4,002 g — the average weight across penguins with a recor
 #| envir: wrangle_penguins
 #| exercise: mean_pipe
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("mean\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Finish the pipe with `mean(...)`."
-  )
-} else if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Include `na.rm = TRUE` inside `mean()`."
-  )
-} else if (is.numeric(.last_value) && length(.last_value) == 1 && !is.na(.last_value)) {
-  list(
-    correct = TRUE,
-    type = "success",
-    message = paste0("Average body mass: ", round(.last_value, 1), " g.")
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+v <- .last_value
+val <- if (is.numeric(v) && length(v) == 1) v else if (is.data.frame(v) && ncol(v) >= 1 && is.numeric(v[[ncol(v)]])) v[[ncol(v)]][1] else NULL
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. After `|>`, each function needs its parentheses.")
+} else if (!is.null(val) && !is.na(val)) {
+  list(correct = TRUE, type = "success",
+       message = paste0("Average body mass: ", round(val), " g."))
+} else if (!is.null(val) && is.na(val)) {
+  list(correct = FALSE, type = "warning",
+       message = "`NA` means a missing value slipped in. Add `na.rm = TRUE` inside `mean()`.")
 } else {
-  list(
-    correct = FALSE,
-    type = "info",
-    message = "Pipe from `penguins_clean` to `mean(..., na.rm = TRUE)` on body mass."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Finish the pipe with `mean()` on the body-mass column. `pull()` takes the column out first.")
 }
 ```
 
-## 6. Meet a wide table
+## 6. Add a column with `mutate()`, then `filter()` with two conditions
+
+`mutate()` adds a new column computed from existing ones. Body mass is recorded in grams; add `body_mass_kg` by dividing by 1000. Then `filter()` to the **heavy Gentoo** penguins: `body_mass_kg >= 4.5` **and** `species == "Gentoo"`. Save the result as `heavy_gentoo` and print its row count. You should get 107.
+
+```{webr}
+#| envir: wrangle_penguins
+#| setup: true
+#| exercise: mutate_filter
+library(tidyverse)
+library(palmerpenguins)
+penguins_clean <- penguins |>
+  filter(!is.na(body_mass_g))
+```
+
+```{webr}
+#| envir: wrangle_penguins
+#| exercise: mutate_filter
+heavy_gentoo <- penguins_clean |>
+  mutate() |>
+  filter()
+nrow(heavy_gentoo)
+```
+
+::: {.hint exercise="mutate_filter"}
+::: {.callout-note collapse="false"}
+## Hint
+
+From `?mutate`: `mutate(.data, new_name = expression)` creates a column from a calculation. From `?filter`: separate two conditions with a comma (both must be true). The conditions table at the top of the page lists `>=` and friends.
+
+Example:
+
+```r
+mtcars |>
+  mutate(wt_kg = wt * 453.6) |>
+  filter(wt_kg >= 1500, cyl == 8) |>
+  nrow()
+```
+
+Apply the same shape: a unit conversion in `mutate()`, then a numeric condition and a text condition in `filter()`.
+:::
+:::
+
+::: {.solution exercise="mutate_filter"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+```r
+heavy_gentoo <- penguins_clean |>
+  mutate(body_mass_kg = body_mass_g / 1000) |>
+  filter(body_mass_kg >= 4.5, species == "Gentoo")
+nrow(heavy_gentoo)
+```
+
+107 rows. The comma inside `filter()` means "and": a row must pass both tests. `mutate()` comes first so that `filter()` can use the new column.
+:::
+:::
+
+```{webr}
+#| envir: wrangle_penguins
+#| exercise: mutate_filter
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Inside `mutate()`, the new column needs a name and an `=`; inside `filter()`, conditions use `==` and `>=`.")
+} else if (!exists("heavy_gentoo", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `heavy_gentoo` with `<-`, then print `nrow(heavy_gentoo)`.")
+} else {
+  hg <- get("heavy_gentoo", envir = .envir_result)
+  n <- nrow(hg)
+  if (!is.data.frame(hg)) {
+    list(correct = FALSE, type = "info",
+         message = "`heavy_gentoo` should be a table. Keep the pipe going from `penguins_clean` through `mutate()` and `filter()`.")
+  } else if (!"body_mass_kg" %in% names(hg)) {
+    list(correct = FALSE, type = "info",
+         message = "No `body_mass_kg` column yet. `mutate(body_mass_kg = ...)` creates it from `body_mass_g`.")
+  } else if (max(hg$body_mass_kg, na.rm = TRUE) > 100) {
+    list(correct = FALSE, type = "warning",
+         message = "`body_mass_kg` still looks like grams. There are 1000 g in a kilogram.")
+  } else if (n == 107 && all(hg$species == "Gentoo")) {
+    list(correct = TRUE, type = "success",
+         message = "107 heavy Gentoo penguins. A new column, then two conditions joined by a comma.")
+  } else if (n == 342) {
+    list(correct = FALSE, type = "info",
+         message = "Still all 342 rows, so `filter()` has not kept anything out yet. Add the two conditions.")
+  } else if (n == 118) {
+    list(correct = FALSE, type = "warning",
+         message = "118 rows: heavy penguins of every species. Add the `species == \"Gentoo\"` condition.")
+  } else if (all(hg$species == "Gentoo") && n == 123) {
+    list(correct = FALSE, type = "warning",
+         message = "All 123 Gentoo penguins, light ones included. Add the `body_mass_kg >= 4.5` condition.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0(n, " rows. Expected 107: Gentoo only, body mass at least 4.5 kg. Check each condition against the table at the top of the page."))
+  }
+}
+```
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+1. What would change if you wrote `>` instead of `>=`?
+2. How would you keep heavy penguins of **every** species?
+3. How would you keep Adelie and Chinstrap penguins but not Gentoo?
+
+**Answers:** (1) Penguins weighing exactly 4.5 kg would be dropped; here that changes nothing, but it often matters. (2) Remove the species condition: 118 rows. (3) `species != "Gentoo"`, or `species %in% c("Adelie", "Chinstrap")`: 219 rows either way.
+:::
+
+## 7. Meet a wide table
 
 On Coding Assignment 2 you will read a wide elevation table from a CSV file. Here we create the same kind of object directly — no file to read.
 
@@ -512,7 +630,7 @@ island_wide <- data.frame(
 island_wide
 ```
 
-## 7. Reshape with `pivot_longer()`
+## 8. Reshape with `pivot_longer()`
 
 Use `pivot_longer()` to turn the wide table into a **tidy** table: one row per island, with columns `island` and `camp_elevation_m`. Save as `island_tidy` and print it.
 
@@ -584,33 +702,24 @@ Three rows — one per island — with elevations in a column where R can match 
 #| envir: wrangle_penguins
 #| exercise: pivot_longer
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("pivot_longer\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `pivot_longer()` to reshape the wide table."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `pivot_longer()` needs `cols`, `names_to`, and `values_to`, separated by commas.")
 } else if (!exists("island_tidy", envir = .envir_result, inherits = FALSE)) {
-  list(
-    correct = FALSE,
-    type = "warning",
-    message = "Save the result as `island_tidy`."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `island_tidy` with `<-`.")
 } else {
   it <- get("island_tidy", envir = .envir_result)
-  if (is.data.frame(it) && nrow(it) == 3 && "island" %in% names(it)) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = "Tidy island table — three rows, ready to join."
-    )
+  if (is.data.frame(it) && nrow(it) == 3 && all(c("island", "camp_elevation_m") %in% names(it))) {
+    list(correct = TRUE, type = "success",
+         message = "Three rows, one per island, with `island` and `camp_elevation_m` columns. Ready to join.")
+  } else if (is.data.frame(it) && nrow(it) == 3) {
+    list(correct = FALSE, type = "info",
+         message = paste0("Three rows, but the columns are named ", paste(names(it), collapse = ", "), ". Use `names_to = \"island\"` and `values_to = \"camp_elevation_m\"`."))
   } else {
-    list(
-      correct = FALSE,
-      type = "info",
-      message = "Use `names_to = \"island\"` and `values_to = \"camp_elevation_m\"` with `cols = everything()`."
-    )
+    list(correct = FALSE, type = "info",
+         message = "`island_tidy` should have one row per island. Use `pivot_longer()` with `cols = everything()`.")
   }
 }
 ```
@@ -619,7 +728,7 @@ if (!grepl("pivot_longer\\s*\\(", code)) {
 **Wide vs. tidy:** In Coding Assignment 2, population names sit in **column headings** of the elevation file — same problem, same fix with `pivot_longer()`.
 :::
 
-## 8. Join elevation onto penguins
+## 9. Join elevation onto penguins
 
 Use `left_join()` to add `camp_elevation_m` to `penguins_clean`. Both tables share an `island` column — that is the key. Save the result as `penguins_joined`. Row count should stay 342.
 
@@ -691,44 +800,29 @@ nrow(penguins_joined)
 #| envir: wrangle_penguins
 #| exercise: left_join
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("left_join\\s*\\(", code)) {
-  list(
-    correct = FALSE,
-    type = "error",
-    message = "Use `left_join(island_tidy, by = \"island\")` in your pipe."
-  )
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `left_join()` takes the second table and `by = \"island\"`.")
 } else if (!exists("penguins_joined", envir = .envir_result, inherits = FALSE)) {
-  list(
-    correct = FALSE,
-    type = "warning",
-    message = "Save the joined table as `penguins_joined`."
-  )
+  list(correct = FALSE, type = "info",
+       message = "Save the joined table as `penguins_joined` with `<-`.")
 } else {
   pj <- get("penguins_joined", envir = .envir_result)
   if (is.data.frame(pj) && "camp_elevation_m" %in% names(pj) && nrow(pj) == 342) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = "Joined. 342 rows with a new `camp_elevation_m` column."
-    )
+    list(correct = TRUE, type = "success",
+         message = "Joined. 342 rows with a new `camp_elevation_m` column, and no penguin lost.")
   } else if (is.data.frame(pj) && "camp_elevation_m" %in% names(pj)) {
-    list(
-      correct = TRUE,
-      type = "success",
-      message = paste0("Join worked (", nrow(pj), " rows). Elevation column added.")
-    )
+    list(correct = FALSE, type = "warning",
+         message = paste0("Joined, but ", nrow(pj), " rows. A `left_join()` keeps every row of the left table, so start from `penguins_clean` (342 rows)."))
   } else {
-    list(
-      correct = FALSE,
-      type = "info",
-      message = "Join `penguins_clean` with `island_tidy` using `by = \"island\"`."
-    )
+    list(correct = FALSE, type = "info",
+         message = "No `camp_elevation_m` column yet. Join `island_tidy` onto `penguins_clean` by the `island` column they share.")
   }
 }
 ```
 
-## 9. Recap — functions you practiced
+## 10. Recap — functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
@@ -737,9 +831,10 @@ if (!grepl("left_join\\s*\\(", code)) {
 |----------|------|
 | `library(tidyverse)` | Loads dplyr, tidyr, and related packages |
 | `glimpse()` | Quick look at rows, columns, and types |
-| <code>|></code> | Passes data from one step to the next |
-| `filter()` | Keeps rows that match a condition (with `==` or `!is.na()`) |
+| <code>&#124;&gt;</code> | Passes data from one step to the next |
+| `filter()` | Keeps rows that match a condition (`==`, `>=`, `!is.na()`, or several separated by commas) |
 | `mean(..., na.rm = TRUE)` | Average of a numeric column, skipping missing values |
+| `mutate()` | Adds a new column computed from existing ones (grams to kilograms) |
 | `data.frame()` | Builds a wide table in memory — island names as column headings |
 | `pivot_longer()` | Turns wide columns into tidy rows |
 | `left_join()` | Adds columns from a second table by a shared key |
@@ -749,7 +844,7 @@ On **Coding Assignment 2** you will also use `read.csv()` to load the hemoglobin
 If you can explain each row in your own words, you have covered the wrangling core of **Coding Assignment 2**.
 :::
 
-## 10. Transfer to Coding Assignment 2
+## 11. Transfer to Coding Assignment 2
 
 On Canvas you will repeat this workflow with **hemoglobin** measurements and **population elevation** data:
 
