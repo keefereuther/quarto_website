@@ -263,16 +263,16 @@ Two different data problems show up in real datasets: **missing** values (`NA`) 
 -   **Missing** means no measurement was recorded — keep those rows for now.
 -   **Impossible** means a sign error or bad entry — remove those rows.
 
-Use `filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)` to drop impossible depths while keeping missing ones. After this step, every numeric summary uses **`na.rm = TRUE`** so R skips the remaining `NA`s.
+Use `filter(is.na(bill_depth_mm) | bill_depth_mm > 0)` to drop impossible depths while keeping missing ones. After this step, every numeric summary uses **`na.rm = TRUE`** so R skips the remaining `NA`s.
 
-Bill depth cannot be negative. Remove rows where `bill_depth_mm` is negative. **Keep** rows where `bill_depth_mm` is missing. Save the result as `penguin_clean`.
+A bill depth of zero or less is impossible. Remove rows where `bill_depth_mm` is zero or negative. **Keep** rows where `bill_depth_mm` is missing. Save the result as `penguin_clean`.
 
 ::: {.callout-note appearance="simple"}
 ## `|` means "or"
 
-Inside `filter()`, the vertical bar **`|`** means **"or"**. The condition `is.na(bill_depth_mm) | bill_depth_mm >= 0` keeps a row if **either** the depth is missing **or** it is zero or positive.
+Inside `filter()`, the vertical bar **`|`** means **"or"**. The condition `is.na(bill_depth_mm) | bill_depth_mm > 0` keeps a row if **either** the depth is missing **or** it is positive.
 
-Writing `filter(bill_depth_mm >= 0)` alone silently **drops the missing rows** — because `NA >= 0` evaluates to `NA`, not `TRUE`.
+Writing `filter(bill_depth_mm > 0)` alone silently **drops the missing rows** — because `NA > 0` evaluates to `NA`, not `TRUE`.
 :::
 
 ```{webr}
@@ -290,10 +290,10 @@ From `?filter`: keep rows where conditions are TRUE.
 
 ``` r
 mtcars |>
-  filter(is.na(mpg) | mpg >= 0)
+  filter(is.na(mpg) | mpg > 0)
 ```
 
-Keep missing bill depths **or** non-negative depths.
+Keep missing bill depths **or** positive depths.
 :::
 ::::
 
@@ -303,10 +303,10 @@ Keep missing bill depths **or** non-negative depths.
 
 ``` r
 penguin_clean <- penguin_data |>
-  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+  filter(is.na(bill_depth_mm) | bill_depth_mm > 0)
 ```
 
-50 rows — no negative values in this dataset, so nothing was removed. The one missing measurement is still there. **Confirming there are no impossible values is itself a reportable result.**
+50 rows — no zero or negative values in this dataset, so nothing was removed. The one missing measurement is still there. **Confirming there are no impossible values is itself a reportable result.**
 :::
 ::::
 
@@ -325,31 +325,31 @@ if (!exists("penguin_clean", envir = .envir_result, inherits = FALSE)) {
   bc <- get("penguin_clean", envir = .envir_result)
   n <- nrow(bc)
   n_na <- sum(is.na(bc$bill_depth_mm))
-  n_neg <- sum(!is.na(bc$bill_depth_mm) & bc$bill_depth_mm < 0)
+  n_neg <- sum(!is.na(bc$bill_depth_mm) & bc$bill_depth_mm <= 0)
   used_or <- grepl("is\\.na\\s*\\(\\s*bill_depth_mm\\s*\\)", code) && grepl("\\|", code)
   if (n == 50 && n_na == 1 && n_neg == 0) {
     list(
       correct = TRUE,
       type = "success",
-      message = "50 rows — no negatives found, missing value kept. That is the correct outcome here."
+      message = "50 rows — no impossible values found, missing value kept. That is the correct outcome here."
     )
   } else if (n == 49 && n_na == 0) {
     list(
       correct = FALSE,
       type = "error",
-      message = "`filter(bill_depth_mm >= 0)` alone drops missing rows. Use `is.na(bill_depth_mm) | bill_depth_mm >= 0`."
+      message = "`filter(bill_depth_mm > 0)` alone drops missing rows. Use `is.na(bill_depth_mm) | bill_depth_mm > 0`."
     )
   } else if (!used_or) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)` so missing rows stay."
+      message = "Use `filter(is.na(bill_depth_mm) | bill_depth_mm > 0)` so missing rows stay."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Filter with `is.na(bill_depth_mm) | bill_depth_mm >= 0` and save as `penguin_clean`."
+      message = "Filter with `is.na(bill_depth_mm) | bill_depth_mm > 0` and save as `penguin_clean`."
     )
   }
 }
@@ -437,10 +437,10 @@ if (!grepl("na\\.rm\\s*=\\s*TRUE", code, ignore.case = TRUE)) {
 
 ## 5. Flag distributional outliers
 
-Using only the non-missing bill depths in `penguin_clean`, calculate the upper fence of the 1.5 × IQR rule: Q3 + 1.5 × IQR. Save it as `upper_fence` and print it. Also count how many non-missing bill depths exceed that fence and save the count as `n_raw_outliers`. Print both values. Do not remove any rows.
+Using only the non-missing bill depths in `penguin_clean`, calculate **both** fences of the 1.5 × IQR rule: Q1 − 1.5 × IQR and Q3 + 1.5 × IQR. Save them as `lower_fence` and `upper_fence`. Count how many non-missing bill depths fall **outside either fence** and save the count as `n_raw_outliers`. Print all three values. Do not remove any rows.
 
 ::: {.callout-note appearance="simple"}
-The 1.5 × IQR rule is a **screening tool**. Points above the fence deserve a look; they are not automatically errors.
+The 1.5 × IQR rule is a **screening tool**. Points outside the fences deserve a look; they are not automatically errors. Always compute both fences, even when you expect only one side to catch anything.
 :::
 
 ```{webr}
@@ -452,12 +452,13 @@ library(palmerpenguins)
 penguin_data <- penguins |>
   filter(species == "Adelie", year == 2007)
 penguin_clean <- penguin_data |>
-  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+  filter(is.na(bill_depth_mm) | bill_depth_mm > 0)
 ```
 
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: upper_fence
+lower_fence <- 
 upper_fence <- 
   
 ```
@@ -469,12 +470,13 @@ upper_fence <-
 From `?quantile`: `quantile(x, probs, na.rm = FALSE)`. From `?IQR`: `IQR(x, na.rm = FALSE)`.
 
 ``` r
-q3 <- quantile(mtcars$mpg, 0.75, na.rm = TRUE)
-fence <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
-n_out <- sum(mtcars$mpg > fence, na.rm = TRUE)
+iqr <- IQR(mtcars$mpg, na.rm = TRUE)
+lower <- quantile(mtcars$mpg, 0.25, na.rm = TRUE) - 1.5 * iqr
+upper <- quantile(mtcars$mpg, 0.75, na.rm = TRUE) + 1.5 * iqr
+n_out <- sum(mtcars$mpg < lower | mtcars$mpg > upper, na.rm = TRUE)
 ```
 
-Use the 75th percentile and IQR of non-missing bill depths, then count values above the fence.
+Use the 25th and 75th percentiles and the IQR of non-missing bill depths, then count values below the lower fence **or** above the upper fence.
 :::
 ::::
 
@@ -483,14 +485,17 @@ Use the 75th percentile and IQR of non-missing bill depths, then count values ab
 ## Solution
 
 ``` r
-upper_fence <- quantile(penguin_clean$bill_depth_mm, 0.75, na.rm = TRUE) +
-  1.5 * IQR(penguin_clean$bill_depth_mm, na.rm = TRUE)
-n_raw_outliers <- sum(penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)
+iqr_raw <- IQR(penguin_clean$bill_depth_mm, na.rm = TRUE)
+lower_fence <- quantile(penguin_clean$bill_depth_mm, 0.25, na.rm = TRUE) - 1.5 * iqr_raw
+upper_fence <- quantile(penguin_clean$bill_depth_mm, 0.75, na.rm = TRUE) + 1.5 * iqr_raw
+n_raw_outliers <- sum(penguin_clean$bill_depth_mm < lower_fence |
+                      penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)
+lower_fence
 upper_fence
 n_raw_outliers
 ```
 
-The upper fence is about 21.4 mm — one penguin has a bill depth above it.
+The fences are about 15.8 mm and 21.4 mm. Nothing falls below the lower fence; one penguin has a bill depth above the upper fence.
 :::
 ::::
 
@@ -499,43 +504,52 @@ The upper fence is about 21.4 mm — one penguin has a bill depth above it.
 #| exercise: upper_fence
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("upper_fence", envir = .envir_result, inherits = FALSE)) {
+if (!exists("upper_fence", envir = .envir_result, inherits = FALSE) ||
+    !exists("lower_fence", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the result as `upper_fence`."
+    message = "Save both fences as `lower_fence` and `upper_fence`."
   )
 } else {
   uf <- as.numeric(get("upper_fence", envir = .envir_result))
+  lf <- as.numeric(get("lower_fence", envir = .envir_result))
   has_q <- grepl("quantile\\s*\\(", code)
   has_iqr <- grepl("IQR\\s*\\(", code)
   has_count <- grepl("n_raw_outliers", code) && grepl("sum\\s*\\(", code)
   n_out <- if (exists("n_raw_outliers", envir = .envir_result, inherits = FALSE)) {
     get("n_raw_outliers", envir = .envir_result)
   } else NA
-  if (length(uf) == 1 && abs(uf - 21.4) < 0.5 && has_q && has_iqr && !is.na(n_out) && n_out == 1) {
+  fences_ok <- length(uf) == 1 && length(lf) == 1 && abs(uf - 21.4) < 0.5 && abs(lf - 15.8) < 0.5
+  if (fences_ok && has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
       correct = TRUE,
       type = "success",
-      message = "Upper fence ≈ 21.4 mm. One bill depth sits above it — flag it, do not delete it yet."
+      message = "Fences ≈ 15.8 mm and 21.4 mm. Nothing below the lower fence; one bill depth above the upper fence — flag it, do not delete it yet."
+    )
+  } else if (length(lf) == 1 && length(uf) == 1 && (lf >= uf || abs(lf - 15.8) >= 0.5)) {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Check `lower_fence`: it should be Q1 − 1.5 × IQR, about 15.8 mm."
     )
   } else if (has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("Upper fence ≈ ", round(uf, 1), " mm with ", n_out, " outlier. Good.")
+      message = paste0("Fences ≈ ", round(lf, 1), " and ", round(uf, 1), " mm with ", n_out, " outlier. Good.")
     )
   } else if (!has_count) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Also count outliers: `n_raw_outliers <- sum(penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)`."
+      message = "Also count outliers: `n_raw_outliers <- sum(penguin_clean$bill_depth_mm < lower_fence | penguin_clean$bill_depth_mm > upper_fence, na.rm = TRUE)`."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Use `quantile(..., 0.75, na.rm = TRUE) + 1.5 * IQR(..., na.rm = TRUE)` and count values above the fence."
+      message = "Use `quantile(..., 0.25, na.rm = TRUE) - 1.5 * IQR(...)` and `quantile(..., 0.75, na.rm = TRUE) + 1.5 * IQR(...)`, then count values outside either fence."
     )
   }
 }
@@ -711,6 +725,8 @@ data_is_normal <- FALSE
 ```
 
 p ≈ 0.029 — below 0.05, and the histogram is right-skewed. Follow checklist steps 7–9 and try a log transform.
+
+Honest caveat: with n = 49 and skew this mild, a *t*-test on the raw scale would also be defensible. We transform here to practice the full pipeline. The recap shows how little the transform actually changed.
 :::
 ::::
 
@@ -776,7 +792,7 @@ penguin_transformed <- penguin_clean |>
 glimpse(penguin_transformed)
 ```
 
-Missing bill depths stay missing; negative rows were never present.
+Missing bill depths stay missing; impossible rows were never present.
 :::
 ::::
 
@@ -996,7 +1012,7 @@ if (grepl("log_is_normal\\s*<-\\s*TRUE", code)) {
 
 ## 13. Re-flag outliers after transformation
 
-Using only the non-missing `log_depth` values in `penguin_transformed`, calculate the upper fence of the 1.5 × IQR rule on the log scale. Save it as `upper_fence_log` and print it. Count how many non-missing `log_depth` values exceed that fence and save the count as `n_log_outliers`. Print both values. Do not remove any rows yet.
+Using only the non-missing `log_depth` values in `penguin_transformed`, calculate both fences of the 1.5 × IQR rule on the log scale. Save them as `lower_fence_log` and `upper_fence_log`. Count how many non-missing `log_depth` values fall outside either fence and save the count as `n_log_outliers`. Print all three values. Do not remove any rows yet.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1007,7 +1023,7 @@ library(palmerpenguins)
 penguin_data <- penguins |>
   filter(species == "Adelie", year == 2007)
 penguin_clean <- penguin_data |>
-  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+  filter(is.na(bill_depth_mm) | bill_depth_mm > 0)
 penguin_transformed <- penguin_clean |>
   mutate(log_depth = log(bill_depth_mm))
 ```
@@ -1015,6 +1031,7 @@ penguin_transformed <- penguin_clean |>
 ```{webr}
 #| envir: assumptions_lab
 #| exercise: upper_fence_log
+lower_fence_log <- 
 upper_fence_log <- 
   
 ```
@@ -1023,14 +1040,15 @@ upper_fence_log <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Apply the same Q3 + 1.5 × IQR formula to `log_depth` instead of `bill_depth_mm`.
+Apply the same two-fence formula to `log_depth` instead of `bill_depth_mm`.
 
 Example on `mtcars`:
 
 ``` r
-q3 <- quantile(mtcars$mpg, 0.75, na.rm = TRUE)
-upper_fence_log <- q3 + 1.5 * IQR(mtcars$mpg, na.rm = TRUE)
-n_log_outliers <- sum(mtcars$mpg > upper_fence_log, na.rm = TRUE)
+iqr <- IQR(mtcars$mpg, na.rm = TRUE)
+lower_fence_log <- quantile(mtcars$mpg, 0.25, na.rm = TRUE) - 1.5 * iqr
+upper_fence_log <- quantile(mtcars$mpg, 0.75, na.rm = TRUE) + 1.5 * iqr
+n_log_outliers <- sum(mtcars$mpg < lower_fence_log | mtcars$mpg > upper_fence_log, na.rm = TRUE)
 ```
 :::
 ::::
@@ -1040,14 +1058,17 @@ n_log_outliers <- sum(mtcars$mpg > upper_fence_log, na.rm = TRUE)
 ## Solution
 
 ``` r
-upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) +
-  1.5 * IQR(penguin_transformed$log_depth, na.rm = TRUE)
-n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
+iqr_log <- IQR(penguin_transformed$log_depth, na.rm = TRUE)
+lower_fence_log <- quantile(penguin_transformed$log_depth, 0.25, na.rm = TRUE) - 1.5 * iqr_log
+upper_fence_log <- quantile(penguin_transformed$log_depth, 0.75, na.rm = TRUE) + 1.5 * iqr_log
+n_log_outliers <- sum(penguin_transformed$log_depth < lower_fence_log |
+                      penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)
+lower_fence_log
 upper_fence_log
 n_log_outliers
 ```
 
-Zero penguins sit above the log-scale fence — the one raw outlier was pulled inside the fence by the transformation.
+The log-scale fences are about 2.77 and 3.07. Zero penguins sit outside them — the one raw outlier was pulled inside the upper fence by the transformation.
 :::
 ::::
 
@@ -1056,31 +1077,40 @@ Zero penguins sit above the log-scale fence — the one raw outlier was pulled i
 #| exercise: upper_fence_log
 #| check: true
 code <- paste(.user_code, collapse = "\n")
-if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE)) {
+if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE) ||
+    !exists("lower_fence_log", envir = .envir_result, inherits = FALSE)) {
   list(
     correct = FALSE,
     type = "warning",
-    message = "Save the result as `upper_fence_log`."
+    message = "Save both fences as `lower_fence_log` and `upper_fence_log`."
   )
 } else {
   ufl <- as.numeric(get("upper_fence_log", envir = .envir_result))
+  lfl <- as.numeric(get("lower_fence_log", envir = .envir_result))
   has_q <- grepl("quantile\\s*\\(", code)
   has_iqr <- grepl("IQR\\s*\\(", code)
   has_count <- grepl("n_log_outliers", code) && grepl("sum\\s*\\(", code)
   n_out <- if (exists("n_log_outliers", envir = .envir_result, inherits = FALSE)) {
     get("n_log_outliers", envir = .envir_result)
   } else NA
-  if (length(ufl) == 1 && abs(ufl - 3.073) < 0.05 && has_q && has_iqr && !is.na(n_out) && n_out == 0) {
+  fences_ok <- length(ufl) == 1 && length(lfl) == 1 && abs(ufl - 3.073) < 0.05 && abs(lfl - 2.772) < 0.05
+  if (fences_ok && has_q && has_iqr && !is.na(n_out) && n_out == 0) {
     list(
       correct = TRUE,
       type = "success",
-      message = "Zero log-scale outliers — the transform pulled the raw outlier inside the fence."
+      message = "Fences ≈ 2.77 and 3.07, zero log-scale outliers — the transform pulled the raw outlier inside the upper fence."
+    )
+  } else if (length(lfl) == 1 && length(ufl) == 1 && (lfl >= ufl || abs(lfl - 2.772) >= 0.05)) {
+    list(
+      correct = FALSE,
+      type = "info",
+      message = "Check `lower_fence_log`: it should be Q1 − 1.5 × IQR on the log scale, about 2.77."
     )
   } else if (has_q && has_iqr && !is.na(n_out) && n_out == 0) {
     list(
       correct = TRUE,
       type = "success",
-      message = paste0("Upper log fence ≈ ", round(ufl, 3), " with ", n_out, " outliers. Good.")
+      message = paste0("Log fences ≈ ", round(lfl, 3), " and ", round(ufl, 3), " with ", n_out, " outliers. Good.")
     )
   } else if (has_q && has_iqr && !is.na(n_out) && n_out == 1) {
     list(
@@ -1092,13 +1122,13 @@ if (!exists("upper_fence_log", envir = .envir_result, inherits = FALSE)) {
     list(
       correct = FALSE,
       type = "info",
-      message = "Also count outliers: `n_log_outliers <- sum(penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)`."
+      message = "Also count outliers: `n_log_outliers <- sum(penguin_transformed$log_depth < lower_fence_log | penguin_transformed$log_depth > upper_fence_log, na.rm = TRUE)`."
     )
   } else {
     list(
       correct = FALSE,
       type = "info",
-      message = "Apply the IQR fence formula to `log_depth` and count values above it."
+      message = "Apply both IQR fences to `log_depth` and count values outside either one."
     )
   }
 }
@@ -1172,7 +1202,7 @@ Use `t.test()` on `penguin_transformed$log_depth` with `mu = log(18.5)`. Save th
 
 The null hypothesis is that the **true mean equals `mu`**. A small p-value (conventionally below 0.05) means the sample mean looks inconsistent with the hypothesized value.
 
-Logging then testing means your inference applies to **log(depth)**, not the original millimeter scale. That is acceptable if you report it clearly in your write-up.
+Logging changes the hypothesis. The mean of `log_depth` back-transforms to the **geometric mean** of bill depth, so testing against `log(18.5)` asks whether the **geometric mean** bill depth is 18.5 mm, not the arithmetic mean. Here the two means are nearly identical (18.73 vs. 18.77 mm), so nothing turns on it, but your write-up should say which one you tested.
 :::
 
 ```{webr}
@@ -1184,7 +1214,7 @@ library(palmerpenguins)
 penguin_data <- penguins |>
   filter(species == "Adelie", year == 2007)
 penguin_clean <- penguin_data |>
-  filter(is.na(bill_depth_mm) | bill_depth_mm >= 0)
+  filter(is.na(bill_depth_mm) | bill_depth_mm > 0)
 penguin_transformed <- penguin_clean |>
   mutate(log_depth = log(bill_depth_mm))
 ```
@@ -1219,7 +1249,7 @@ t_test_result <- t.test(penguin_transformed$log_depth, mu = log(18.5))
 t_test_result
 ```
 
-t ≈ 1.33, df = 48, p ≈ 0.19. Mean log bill depth in these 2007 Adelie penguins is not significantly different from log(18.5).
+t ≈ 1.33, df = 48, p ≈ 0.19. Mean log bill depth in these 2007 Adelie penguins is not significantly different from log(18.5). Equivalently, the geometric mean bill depth (18.73 mm) is not significantly different from 18.5 mm.
 :::
 ::::
 
@@ -1273,7 +1303,7 @@ if (!grepl("t\\.test\\s*\\(", code)) {
 |---------------------------------------------|---------------------------|
 | `library(tidyverse)` | Loads dplyr, ggplot2, and related packages |
 | `library(palmerpenguins)` | Loads the `penguins` dataset |
-| `filter()` | Keeps rows matching a condition (`species == "Adelie"`, `is.na(...) \| ... >= 0`) |
+| `filter()` | Keeps rows matching a condition (`species == "Adelie"`, `is.na(...) \| ... > 0`) |
 | `mutate()` | Adds transformed columns (`log_depth`) |
 | `glimpse()` | Quick look at rows, columns, and types |
 | `mean(..., na.rm = TRUE)` | Average of a numeric column, skipping missing values |
@@ -1288,9 +1318,45 @@ if (!grepl("t\\.test\\s*\\(", code)) {
 If you can explain each row in your own words, you have covered the core of **Coding Assignment 3**.
 :::
 
+::: {.callout-important appearance="simple"}
+## Two things to say in your write-up
+
+1.  **The transform was marginal.** Skewness dropped only from 0.59 to 0.46, and Shapiro-Wilk moved from p = 0.029 to p = 0.081. A *t*-test on the raw scale gives p = 0.13; the log-scale test gives p = 0.19. Same conclusion. With this sample size and this mild a skew, the raw-scale test would have been defensible too; we transformed to practice the pipeline. A p-value below 0.05 is not an order to transform.
+2.  **The hypothesis changed.** Testing `log_depth` against `log(18.5)` asks whether the **geometric mean** bill depth is 18.5 mm, not the arithmetic mean. Here they are nearly identical (18.73 vs. 18.77 mm), so nothing turns on it, but say which one you tested.
+:::
+
 ## Keep playing
 
-What happens if you filter to **male Adelie penguins only**? Run Shapiro-Wilk on that smaller group and compare it to the full 2007 cohort.
+**Back-transform the confidence interval.** `t_test_result$conf.int` is on the log scale. Wrap it in `exp()` to get a confidence interval for the **geometric mean** bill depth in millimeters, which is the last step of the log-transform pipeline.
+
+```{webr}
+#| envir: assumptions_lab
+library(tidyverse)
+library(palmerpenguins)
+penguin_transformed <- penguins |>
+  filter(species == "Adelie", year == 2007) |>
+  mutate(log_depth = log(bill_depth_mm))
+t_test_result <- t.test(penguin_transformed$log_depth, mu = log(18.5))
+exp(t_test_result$estimate)
+exp(t_test_result$conf.int)
+```
+
+::: {.callout-tip appearance="simple"}
+Geometric mean ≈ 18.73 mm, 95% CI ≈ 18.38 to 19.08 mm. The interval contains 18.5, which matches p ≈ 0.19.
+:::
+
+**Compare with the raw scale.** Run the same test on `bill_depth_mm` with `mu = 18.5` and see whether the conclusion changes.
+
+```{webr}
+#| envir: assumptions_lab
+t.test(penguin_transformed$bill_depth_mm, mu = 18.5)
+```
+
+::: {.callout-tip appearance="simple"}
+t ≈ 1.52, df = 48, p ≈ 0.13. Same conclusion as the log-scale test, and this interval is for the arithmetic mean in millimeters with no back-transform needed.
+:::
+
+**Check one group at a time.** What happens if you filter to **male Adelie penguins only**? Run Shapiro-Wilk on that smaller group and compare it to the full 2007 cohort.
 
 ```{webr}
 #| envir: assumptions_lab
@@ -1301,5 +1367,5 @@ shapiro.test(males_2007$bill_depth_mm)
 ```
 
 ::: {.callout-tip appearance="simple"}
-p ≈ 0.12 — males alone pass the normality check on the raw scale. The full 2007 cohort failed because males and females have different bill depths stacked together. That is why you check assumptions on **one group**, not a pile of groups.
+p ≈ 0.12 — males alone pass the normality check on the raw scale. The full 2007 cohort failed because males and females have different bill depths stacked together. That is why you check assumptions on **one group**, not a pile of groups. Splitting the sexes is a better fix for this skew than any transformation.
 :::
