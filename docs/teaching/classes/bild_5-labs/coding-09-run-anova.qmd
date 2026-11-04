@@ -1,6 +1,6 @@
 ---
 title: "Compare Several Means with ANOVA"
-subtitle: "Fit the model, check residual spread, then use Tukey's HSD to see which groups differ"
+subtitle: "One-way ANOVA with residual checks and Tukey's HSD, then chi-square for counts in categories"
 format:
   live-html:
     theme:
@@ -82,25 +82,49 @@ live:
 </style>
 ```
 
-You will practice **Coding Assignment 4, Part C**: one-way ANOVA with assumption checks and Tukey's HSD post-hoc comparisons.
+Coding 8 compared two means. Lecture A010 added two tests for other kinds of data, and this activity runs both: **one-way ANOVA** for a continuous response across three or more groups, and **chi-square** for counts in categories. Same recipe as always: H₀ as math, α first, look, check, test, conclude.
 
-::: {.callout-note}
-## Assignment vs this activity
+Part A uses Palmer Penguins. Part B uses the exact counts from the slides.
 
-On DataHub, Assignment 4 uses `BrittlebushNitrogen.csv` with four nitrogen levels and `biomass_g`. Here we ask whether **bill depth** differs across the three penguin **species**. The workflow — `aov()`, residual plot, `fligner.test()`, `TukeyHSD()` — is the same.
+::: {.callout-note collapse="true"}
+## Which test? Match the data type (click to expand)
+
+| Your data | Test | H₀ as math | R |
+|---|---|---|---|
+| Continuous response, 2 groups | *t*-test (Welch, or paired) | μ₁ = μ₂ | `t.test()` |
+| Continuous response, 3+ groups | One-way ANOVA, then Tukey HSD | μ₁ = μ₂ = μ₃ = … | `aov()`, `TukeyHSD()` |
+| Counts in categories, one variable vs. a predicted ratio | χ² goodness of fit | counts follow the ratio | `chisq.test(x, p = ...)` |
+| Counts in categories, two variables | χ² test of independence | the variables are unrelated | `chisq.test(table)` |
+
+Pick the test from the data type and the number of groups. The research question tells you which row you are in.
 :::
 
-::: {.callout-note appearance="simple"}
-## ANOVA in one sentence
+::: {.callout-note collapse="true"}
+## ANOVA and chi-square functions (click to expand)
 
-One-way ANOVA tests whether **any** group mean differs when you have one categorical factor with **more than two** levels and a continuous response. If the overall F-test is significant, use **Tukey's HSD** (not a pile of uncorrected *t*-tests) to see which pairs differ.
+| Function | What it does | Example |
+|---|---|---|
+| `aov(y ~ group, data = )` | Fits a one-way ANOVA; H₀ is that every group mean is equal | `aov(bill_depth_mm ~ species, data = penguin_data)` |
+| `summary(model)` | Prints the F statistic and its p-value | `summary(anova_model)` |
+| `residuals(model)` | Each value minus its own group mean, one number per row | `residuals(anova_model)` |
+| `shapiro.test(residuals(model))` | Normality check on the residuals, one check for the whole model | |
+| `fligner.test(y ~ group, data = )` | Equal-variance check across groups; H₀ is equal variances | `fligner.test(bill_depth_mm ~ species, data = penguin_data)` |
+| `TukeyHSD(model)` | Every pairwise difference with the family-wise error rate held at α | `TukeyHSD(anova_model)` |
+| `choose(k, 2)` | How many pairs k groups make | `choose(6, 2)` is 15 |
+| `chisq.test(x, p = )` | Goodness of fit: observed counts vs. a predicted ratio | `chisq.test(c(428, 152), p = c(3/4, 1/4))` |
+| `chisq.test(table)` | Independence: are two categorical variables related? | `chisq.test(infection_table)` |
+| `matrix(..., nrow = 2, byrow = TRUE)` | Builds a contingency table from counts | see step 15 |
 
-With several groups, fit the model first, then check **residuals** — faceted histograms show each level; `plot(model, which = 1)` shows residual spread.
+`shapiro.test()`, `fligner.test()`, and `chisq.test()` all return the same kind of object as `t.test()`: pull pieces out with `$statistic`, `$parameter`, and `$p.value`.
 :::
 
-**Research question:** Does mean bill depth differ across Adelie, Chinstrap, and Gentoo penguins?
+## Part A: One-way ANOVA
 
-## 1. Load packages
+**Research question:** Does mean bill depth differ among Adelie, Chinstrap, and Gentoo penguins?
+
+H₀: μ_Adelie = μ_Chinstrap = μ_Gentoo. Hₐ: at least one mean differs. One-way ANOVA, F statistic, α = 0.05. Then, if the ANOVA is significant, Tukey's HSD to see **which** species differ.
+
+### 1. Load the packages
 
 ```{webr}
 #| envir: anova_lab
@@ -113,7 +137,7 @@ library()
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Load `tidyverse` (ggplot2, dplyr) and `palmerpenguins` (`penguins` dataset).
+Load `tidyverse` (dplyr and ggplot2) and `palmerpenguins` (the `penguins` table).
 :::
 ::::
 
@@ -132,17 +156,25 @@ library(palmerpenguins)
 #| envir: anova_lab
 #| exercise: load_packages
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code) || !grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
-  list(correct = FALSE, type = "error", message = "Load both `tidyverse` and `palmerpenguins`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Put each package name inside its own `library()` call.")
+} else if (!"package:dplyr" %in% search()) {
+  list(correct = FALSE, type = "info",
+       message = "No error, but dplyr is not loaded yet. Which bundle of packages contains it?")
+} else if (!"package:palmerpenguins" %in% search()) {
+  list(correct = FALSE, type = "info",
+       message = "Tidyverse loaded. Also load `palmerpenguins` for the `penguins` table.")
 } else {
-  list(correct = TRUE, type = "success", message = "Packages loaded.")
+  list(correct = TRUE, type = "success",
+       message = "Both packages loaded.")
 }
 ```
 
-## 2. Build the analysis table
+### 2. Build the analysis table
 
-Keep every penguin with non-missing `bill_depth_mm` — use `filter(!is.na(bill_depth_mm))`. Save as `penguin_data`.
+Keep every penguin with a non-missing `bill_depth_mm`. Save the result as `penguin_data`.
 
 ```{webr}
 #| envir: anova_lab
@@ -156,16 +188,14 @@ library(palmerpenguins)
 #| envir: anova_lab
 #| exercise: penguin_data
 penguin_data <- penguins |>
-  
+
 ```
 
 :::: {.hint exercise="penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Filter `penguins` to rows with non-missing `bill_depth_mm`.
-
-Example:
+`!is.na()` means "is not missing". You used it in Coding 6.
 
 ``` r
 penguins |>
@@ -181,9 +211,10 @@ penguins |>
 ``` r
 penguin_data <- penguins |>
   filter(!is.na(bill_depth_mm))
+penguin_data
 ```
 
-342 rows — all three species, no missing bill depths.
+342 rows: 151 Adelie, 68 Chinstrap, 123 Gentoo.
 :::
 ::::
 
@@ -191,42 +222,67 @@ penguin_data <- penguins |>
 #| envir: anova_lab
 #| exercise: penguin_data
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `penguin_data`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `is.na()` needs the column name inside its parentheses.")
+} else if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the filtered table as `penguin_data` with `<-`.")
 } else {
   pd <- get("penguin_data", envir = .envir_result)
-  if (is.data.frame(pd) && nrow(pd) == 342 && length(unique(pd$species)) == 3) {
-    list(correct = TRUE, type = "success", message = "342 complete rows — three species ready for ANOVA.")
+  if (!is.data.frame(pd)) {
+    list(correct = FALSE, type = "info",
+         message = "`penguin_data` should be a table. Pipe `penguins` into `filter()`.")
+  } else if (any(is.na(pd$bill_depth_mm))) {
+    list(correct = FALSE, type = "warning",
+         message = "Rows with missing bill depth are still there. Keep the rows where `!is.na(bill_depth_mm)`.")
+  } else if (nrow(pd) == 342 && length(unique(pd$species)) == 3) {
+    list(correct = TRUE, type = "success",
+         message = "342 penguins, three species, no missing bill depths.")
   } else {
-    list(correct = FALSE, type = "info", message = "Filter to rows with non-missing `bill_depth_mm`.")
+    list(correct = TRUE, type = "success",
+         message = paste0("No missing bill depth remains (", nrow(pd), " rows). Filtering on bill depth alone would leave 342."))
   }
 }
 ```
 
-## 3. Boxplot by species
+::: {.callout-note collapse="true"}
+## Check yourself
 
-Make a boxplot of `bill_depth_mm` by `species`. Save as `box_species` and display it.
+1.  How many **factors** are in this analysis, and how many **levels**?
+2.  What is the **response** variable?
+3.  Why not run three *t*-tests (Adelie vs. Chinstrap, Adelie vs. Gentoo, Chinstrap vs. Gentoo)?
+
+**Answers:** one factor (`species`) with three levels; `bill_depth_mm`; each test has a 5% false-positive rate, and the chances add up. Step 10 puts a number on it.
+:::
+
+### 3. Boxplot by species
+
+Make a boxplot of `bill_depth_mm` by `species`. Save it as `box_species` and display it.
+
+```{webr}
+#| envir: anova_lab
+#| setup: true
+#| exercise: box_species
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(!is.na(bill_depth_mm))
+```
 
 ```{webr}
 #| envir: anova_lab
 #| exercise: box_species
 box_species <- ggplot(penguin_data, aes(x = species, y = bill_depth_mm)) +
-  
+
 ```
 
 :::: {.hint exercise="box_species"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Use `ggplot()`, `aes()`, and `geom_boxplot()` on `penguin_data`. Map `species` to x and `bill_depth_mm` to y.
-
-Example:
-
-``` r
-ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
-  geom_boxplot()
-```
+Add `geom_boxplot()` with `+`, then type the plot's name so it displays.
 :::
 ::::
 
@@ -240,7 +296,7 @@ box_species <- ggplot(penguin_data, aes(x = species, y = bill_depth_mm)) +
 box_species
 ```
 
-Gentoo bills look shallower than Adelie and Chinstrap — but is that difference significant?
+Gentoo bills look shallower than the other two. Adelie and Chinstrap look alike. The ANOVA will say whether chance could produce this.
 :::
 ::::
 
@@ -248,38 +304,51 @@ Gentoo bills look shallower than Adelie and Chinstrap — but is that difference
 #| envir: anova_lab
 #| exercise: box_species
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_boxplot\\s*\\(", code) && grepl("box_species", code)) {
-  list(correct = TRUE, type = "success", message = "Boxplot by species — first look at group spread.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Layers are joined with `+`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_boxplot()` with `+`.")
+} else if (!"GeomBoxplot" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but no boxes. Add `geom_boxplot()`.")
+} else if (!exists("box_species", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Boxplot drawn. Save it as `box_species` with `<-`.")
 } else {
-  list(correct = FALSE, type = "error", message = "Use `ggplot(...) + geom_boxplot()`, save as `box_species`.")
+  list(correct = TRUE, type = "success",
+       message = "Three boxes. Gentoo sits lower; Adelie and Chinstrap overlap.")
 }
 ```
 
-## 4. Faceted histograms
+### 4. Histogram of every group
 
-Build a histogram of `bill_depth_mm` **faceted by species** so you can judge shape within each level (as in lecture A009's `facet_wrap(~ feed)`). Save as `hist_species` and display it.
+Make a histogram of `bill_depth_mm` with one panel per species using `facet_wrap(~ species)`. Save it as `hist_species` and display it.
 
 ```{webr}
 #| envir: anova_lab
 #| exercise: hist_species
 hist_species <- ggplot(penguin_data, aes(x = bill_depth_mm)) +
-  
+
 ```
 
 :::: {.hint exercise="hist_species"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Add `geom_histogram()`, then `facet_wrap(~ species)` so each species gets its own panel.
-
-Example:
-
-``` r
-ggplot(penguins, aes(x = bill_length_mm)) +
-  geom_histogram() +
-  facet_wrap(~ species)
-```
+Add `geom_histogram()`, then `facet_wrap(~ species)`. The slide did the same with `facet_wrap(~ feed)`.
 :::
 ::::
 
@@ -289,12 +358,12 @@ ggplot(penguins, aes(x = bill_length_mm)) +
 
 ``` r
 hist_species <- ggplot(penguin_data, aes(x = bill_depth_mm)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 0.5) +
   facet_wrap(~ species)
 hist_species
 ```
 
-Each species gets its own panel — easier to spot skew or outliers per group.
+Each species on its own looks roughly bell-shaped. Stacked together they would look bimodal, because Gentoo sits 3 mm lower. That is why ANOVA checks normality on the **residuals**, not on the pooled response.
 :::
 ::::
 
@@ -302,22 +371,46 @@ Each species gets its own panel — easier to spot skew or outliers per group.
 #| envir: anova_lab
 #| exercise: hist_species
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("geom_histogram\\s*\\(", code) && grepl("facet_wrap\\s*\\(", code) && grepl("species", code)) {
-  list(correct = TRUE, type = "success", message = "Faceted histograms — one distribution per species level.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `facet_wrap()` takes a formula: `~ species`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_histogram()` with `+`.")
+} else if (!"StatBin" %in% layer_class(p, "stat")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but not a histogram. Add `geom_histogram()`.")
+} else if (inherits(p$facet, "FacetNull")) {
+  list(correct = FALSE, type = "info",
+       message = "Histogram drawn, but all three species are stacked in one panel. Add `facet_wrap(~ species)`.")
+} else if (!exists("hist_species", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Faceted histogram drawn. Save it as `hist_species` with `<-`.")
 } else {
-  list(correct = FALSE, type = "info", message = "Add `geom_histogram()` and `facet_wrap(~ species)`.")
+  list(correct = TRUE, type = "success",
+       message = "One panel per species. Each group looks roughly symmetric on its own.")
 }
 ```
 
-## 5. Fit one-way ANOVA
+### 5. Fit the ANOVA
 
-Fit `aov(bill_depth_mm ~ species, data = penguin_data)`. Save as `anova_model` and print `summary(anova_model)`.
+Fit a one-way ANOVA of `bill_depth_mm` by `species` with `aov()`. Save the model as `anova_model` and print `summary(anova_model)`.
 
 ```{webr}
 #| envir: anova_lab
 #| exercise: anova_model
-anova_model <- 
+anova_model <-
 
 ```
 
@@ -325,12 +418,10 @@ anova_model <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Fit one-way ANOVA with `aov(response ~ factor, data = ...)`, then `summary()`.
-
-Example:
+Same formula shape as the two-sample *t*-test: response, tilde, grouping factor, `data =`.
 
 ``` r
-fit <- aov(mpg ~ as.factor(cyl), data = mtcars)
+fit <- aov(weight ~ feed, data = chickwts)
 summary(fit)
 ```
 :::
@@ -345,7 +436,7 @@ anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
 summary(anova_model)
 ```
 
-F is large and p ≪ 0.001 — at least one species mean differs.
+F = 360 on 2 and 339 df, p < 2 × 10⁻¹⁶. The spread of the three group means is enormous compared with the spread within groups.
 :::
 ::::
 
@@ -353,168 +444,411 @@ F is large and p ≪ 0.001 — at least one species mean differs.
 #| envir: anova_lab
 #| exercise: anova_model
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("anova_model", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `anova_model`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The formula is `bill_depth_mm ~ species`, and the table goes in `data = penguin_data`.")
+} else if (!exists("anova_model", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the model as `anova_model` with `<-`, then print `summary(anova_model)`.")
 } else {
   am <- get("anova_model", envir = .envir_result)
-  sm <- summary(am)
-  pval <- sm[[1]]$`Pr(>F)`[1]
-  if (!is.na(pval) && pval < 0.001) {
-    list(correct = TRUE, type = "success", message = paste0("Overall ANOVA p = ", format(pval, digits = 3), " — species means differ."))
+  if (!inherits(am, "aov")) {
+    list(correct = FALSE, type = "info",
+         message = "`anova_model` should come from `aov()`, not `lm()` or `t.test()`.")
   } else {
-    list(correct = FALSE, type = "info", message = "Fit `aov(bill_depth_mm ~ species, data = penguin_data)` and print `summary()`.")
+    sm <- summary(am)[[1]]
+    fval <- sm$`F value`[1]
+    if (!is.na(fval) && abs(fval - 359.8) < 1) {
+      list(correct = TRUE, type = "success",
+           message = "F = 360, p < 2e-16. At least one species mean differs. Which ones? Not yet.")
+    } else {
+      list(correct = FALSE, type = "warning",
+           message = paste0("An ANOVA, but F = ", round(fval, 1), ". Use `bill_depth_mm ~ species` with `data = penguin_data`."))
+    }
   }
 }
 ```
 
-## 6. Residuals vs fitted
+::: {.callout-note collapse="true"}
+## Check yourself
 
-Use `plot(anova_model, which = 1)` to display the residuals-versus-fitted plot. **Use only `which = 1`** — do not interpret the normal Q–Q panel.
+F = 360, p < 2 × 10⁻¹⁶. What have you learned?
+
+A.  Every species has a different mean bill depth\
+B.  At least one species has a different mean bill depth\
+C.  Gentoo bills are the shallowest
+
+**Answer:** B. The F test says "at least one differs". It does not say which, and it does not rank them. That is Tukey's job in step 11.
+:::
+
+### 6. Add the residuals
+
+A residual is each value minus its own group mean. `residuals(anova_model)` returns one per penguin, in the same row order as `penguin_data`. Add them as a column named `resid` with `mutate()` and save the result back as `penguin_data`.
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: plot_residuals
-plot(anova_model, which = 1)
+#| setup: true
+#| exercise: add_resid
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(!is.na(bill_depth_mm))
+anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
 ```
 
-:::: {.hint exercise="plot_residuals"}
+```{webr}
+#| envir: anova_lab
+#| exercise: add_resid
+penguin_data <- penguin_data |>
+
+```
+
+:::: {.hint exercise="add_resid"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-After fitting `anova_model`, check residual spread with `plot(model, which = 1)`.
+`mutate()` can take a vector that is the same length as the table.
 
-Look for a random cloud with no funnel shape — the exercise code is already written for you; run it and inspect the plot.
+``` r
+fit <- aov(weight ~ feed, data = chickwts)
+chickwts |>
+  mutate(resid = residuals(fit))
+```
 :::
 ::::
 
-:::: {.solution exercise="plot_residuals"}
+:::: {.solution exercise="add_resid"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-plot(anova_model, which = 1)
+penguin_data <- penguin_data |>
+  mutate(resid = residuals(anova_model))
+penguin_data
 ```
 
-Residuals scatter roughly evenly around zero — no strong funnel.
+A new column. An Adelie with a 19.3 mm bill has a residual of about +1.0, because the Adelie mean is 18.3.
 :::
 ::::
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: plot_residuals
+#| exercise: add_resid
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("plot\\s*\\(\\s*anova_model", code) && grepl("which\\s*=\\s*1", code)) {
-  list(correct = TRUE, type = "success", message = "Residuals vs fitted — check for even spread around zero.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Inside `mutate()` write `resid = residuals(anova_model)`.")
+} else if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result back as `penguin_data` with `<-`.")
 } else {
-  list(correct = FALSE, type = "info", message = "Run `plot(anova_model, which = 1)`.")
-}
-```
-
-## 7. Fligner test for equal variance
-
-Test homogeneity of variance across species with `fligner.test()`. Save as `fligner_anova` and print it.
-
-```{webr}
-#| envir: anova_lab
-#| exercise: fligner_anova
-fligner_anova <- 
-
-```
-
-:::: {.hint exercise="fligner_anova"}
-::: {.callout-note collapse="false"}
-## Hint
-
-Test equal variances with `fligner.test()` using the same formula as your ANOVA.
-
-Example:
-
-``` r
-fligner.test(mpg ~ as.factor(cyl), data = mtcars)
-```
-:::
-::::
-
-:::: {.solution exercise="fligner_anova"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-``` r
-fligner_anova <- fligner.test(bill_depth_mm ~ species, data = penguin_data)
-fligner_anova
-```
-
-p ≈ 0.13 — no strong evidence against equal variances.
-:::
-::::
-
-```{webr}
-#| envir: anova_lab
-#| exercise: fligner_anova
-#| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("fligner_anova", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `fligner_anova`.")
-} else {
-  fa <- get("fligner_anova", envir = .envir_result)
-  if (!is.null(fa$p.value) && fa$p.value > 0.05) {
-    list(correct = TRUE, type = "success", message = paste0("Fligner p = ", round(fa$p.value, 3), " — equal-variance assumption looks OK."))
+  pd <- get("penguin_data", envir = .envir_result)
+  if (!is.data.frame(pd) || !"resid" %in% names(pd)) {
+    list(correct = FALSE, type = "info",
+         message = "No `resid` column yet. Add it with `mutate(resid = residuals(anova_model))`.")
+  } else if (abs(mean(pd$resid)) < 1e-8 && abs(sd(pd$resid) - 1.118) < 0.05) {
+    list(correct = TRUE, type = "success",
+         message = "`resid` added: 342 residuals that average zero. One normality check for the whole model.")
   } else {
-    list(correct = FALSE, type = "info", message = "Run `fligner.test(bill_depth_mm ~ species, data = penguin_data)`.")
+    list(correct = FALSE, type = "warning",
+         message = "`resid` exists but does not look like the model residuals. Use `residuals(anova_model)`.")
   }
 }
 ```
 
-## 8. Assumptions reasonably met?
+### 7. Histogram of the residuals
 
-Assign `anova_assumptions_ok <- TRUE` if the residual plot and Fligner test look acceptable.
+Make a histogram of `resid` in `penguin_data`. Save it as `hist_resid` and display it.
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: anova_assumptions_ok
-anova_assumptions_ok <- 
+#| setup: true
+#| exercise: hist_resid
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(!is.na(bill_depth_mm))
+anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
+penguin_data <- penguin_data |>
+  mutate(resid = residuals(anova_model))
 ```
 
-:::: {.hint exercise="anova_assumptions_ok"}
+```{webr}
+#| envir: anova_lab
+#| exercise: hist_resid
+hist_resid <- ggplot(penguin_data, aes(x = resid)) +
+
+```
+
+:::: {.hint exercise="hist_resid"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Use the Fligner p-value and your residual plot. Assign `TRUE` if variance homogeneity looks acceptable, otherwise `FALSE`.
+Same pattern as step 4 without the facets. `binwidth = 0.25` suits residuals this size.
 :::
 ::::
 
-:::: {.solution exercise="anova_assumptions_ok"}
+:::: {.solution exercise="hist_resid"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-anova_assumptions_ok <- TRUE
+hist_resid <- ggplot(penguin_data, aes(x = resid)) +
+  geom_histogram(binwidth = 0.25)
+hist_resid
 ```
+
+One bell centered on zero, running from about −3 to +3 mm. No skew, no second hump.
 :::
 ::::
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: anova_assumptions_ok
+#| exercise: hist_resid
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("anova_assumptions_ok\\s*<-\\s*TRUE", code)) {
-  list(correct = TRUE, type = "success", message = "Assumptions look reasonably met — interpret the ANOVA.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+plot_x <- function(p) {
+  m <- c(as.list(p$mapping), unlist(lapply(p$layers, function(l) as.list(l$mapping)), recursive = FALSE))
+  names(m) <- sub(".*\\.", "", names(m))
+  if (is.null(m$x)) NULL else rlang::as_label(m$x)
+}
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Layers are joined with `+`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_histogram()` with `+`.")
+} else if (!"StatBin" %in% layer_class(p, "stat")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but not a histogram. Add `geom_histogram()`.")
+} else if (!identical(plot_x(p), "resid")) {
+  list(correct = FALSE, type = "warning",
+       message = "A histogram, but not of the residuals. Map `x = resid`.")
+} else if (!exists("hist_resid", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Histogram drawn. Save it as `hist_resid` with `<-`.")
 } else {
-  list(correct = FALSE, type = "info", message = "Fligner was not significant — assign `anova_assumptions_ok <- TRUE`.")
+  list(correct = TRUE, type = "success",
+       message = "A single bell centered on zero. This is the picture the normality assumption is about.")
 }
 ```
 
-## 9. Tukey's HSD
+### 8. Shapiro-Wilk on the residuals
 
-Run `TukeyHSD(anova_model)`. Save as `tukey_result` and print it.
+Run `shapiro.test()` on `residuals(anova_model)`. Save it as `shapiro_resid` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: shapiro_resid
+shapiro_resid <-
+
+```
+
+:::: {.hint exercise="shapiro_resid"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Either of these is the same vector:
+
+``` r
+shapiro.test(residuals(anova_model))
+shapiro.test(penguin_data$resid)
+```
+:::
+::::
+
+:::: {.solution exercise="shapiro_resid"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+shapiro_resid <- shapiro.test(residuals(anova_model))
+shapiro_resid
+```
+
+W = 0.992, p = 0.047. Just under 0.05. Read the callout below before you react.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: shapiro_resid
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Pass one vector: `residuals(anova_model)`.")
+} else if (!exists("shapiro_resid", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `shapiro_resid` with `<-`, then print it.")
+} else {
+  sr <- get("shapiro_resid", envir = .envir_result)
+  if (!inherits(sr, "htest") || is.null(sr$p.value)) {
+    list(correct = FALSE, type = "info",
+         message = "`shapiro_resid` should be the output of `shapiro.test()`.")
+  } else if (abs(sr$p.value - 0.0472) < 0.005) {
+    list(correct = TRUE, type = "success",
+         message = "W = 0.992, p = 0.047. Borderline. With n = 342 Shapiro-Wilk flags departures too small to see.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A Shapiro result, but p = ", signif(sr$p.value, 3), ". Test the residuals, not the raw bill depths."))
+  }
+}
+```
+
+::: {.callout-important appearance="simple"}
+## p = 0.047 is not an order
+
+The histogram is a clean bell. W = 0.992 is about as close to 1 as the statistic gets. The p-value is small because n = 342: with that many values, Shapiro-Wilk can detect a departure from normality far too small to matter. ANOVA is robust to this kind of departure when the groups are this large and this similar in shape.
+
+Decision: proceed with the ANOVA and report both facts. "Residuals were approximately normal (histogram symmetric; Shapiro-Wilk W = 0.99, p = 0.047 with n = 342)." A test result is one piece of evidence, not the verdict. Coding 7 made the same point in the other direction, when p = 0.029 on 49 values turned out to be a mild skew that changed nothing.
+:::
+
+### 9. Fligner test for equal variances
+
+Check whether the three species have similar spread with `fligner.test()`. Save it as `fligner_species` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: fligner_species
+fligner_species <-
+
+```
+
+:::: {.hint exercise="fligner_species"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Same formula and `data =` as the ANOVA.
+
+``` r
+fligner.test(weight ~ feed, data = chickwts)
+```
+:::
+::::
+
+:::: {.solution exercise="fligner_species"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+fligner_species <- fligner.test(bill_depth_mm ~ species, data = penguin_data)
+fligner_species
+```
+
+χ² = 4.01, df = 2, p = 0.13. No evidence that the variances differ.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: fligner_species
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Use the formula `bill_depth_mm ~ species` with `data = penguin_data`.")
+} else if (!exists("fligner_species", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `fligner_species` with `<-`, then print it.")
+} else {
+  fs <- get("fligner_species", envir = .envir_result)
+  if (!inherits(fs, "htest") || !grepl("Fligner", fs$method)) {
+    list(correct = FALSE, type = "info",
+         message = "`fligner_species` should be the output of `fligner.test()`.")
+  } else if (abs(fs$p.value - 0.1347) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "p = 0.13. Equal-variance assumption holds. Both checks done; on to the comparisons.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A Fligner result, but p = ", signif(fs$p.value, 3), ". Test `bill_depth_mm ~ species` in `penguin_data`."))
+  }
+}
+```
+
+### 10. Why not three *t*-tests?
+
+Three species make three pairs. If each pair gets its own *t*-test at α = 0.05, what is the chance of at least one false positive when H₀ is true for every pair? Compute `n_pairs` with `choose(3, 2)` and `p_false_positive` as `1 - 0.95^n_pairs`. Print both.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: false_positive
+n_pairs <-
+p_false_positive <-
+
+```
+
+:::: {.hint exercise="false_positive"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`0.95^n` is the chance that all n tests stay quiet when there is nothing to find. One minus that is the chance at least one of them fires.
+:::
+::::
+
+:::: {.solution exercise="false_positive"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+n_pairs <- choose(3, 2)
+p_false_positive <- 1 - 0.95^n_pairs
+n_pairs
+p_false_positive
+```
+
+3 pairs, 14% chance of at least one false positive. For the six feeds in `chickwts` it is 15 pairs and 54%. Tukey's HSD keeps the rate for the **whole set** of comparisons at 5%.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: false_positive
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `choose(3, 2)` counts the pairs; `^` raises to a power.")
+} else if (!exists("n_pairs", envir = .envir_result, inherits = FALSE) ||
+           !exists("p_false_positive", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Create both `n_pairs` and `p_false_positive`.")
+} else {
+  np <- get("n_pairs", envir = .envir_result)
+  pf <- get("p_false_positive", envir = .envir_result)
+  if (!is.numeric(np) || length(np) != 1 || np != 3) {
+    list(correct = FALSE, type = "warning",
+         message = "`n_pairs` should be 3: `choose(3, 2)`.")
+  } else if (!is.numeric(pf) || length(pf) != 1 || abs(pf - 0.142625) > 1e-4) {
+    list(correct = FALSE, type = "warning",
+         message = "`p_false_positive` should be `1 - 0.95^n_pairs`, about 0.14.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "Three tests, 14% chance of a false positive. Fifteen tests would be 54%.")
+  }
+}
+```
+
+### 11. Tukey's HSD
+
+The ANOVA said at least one species differs. Run `TukeyHSD()` on `anova_model` to find out which. Save it as `tukey_result` and print it.
 
 ```{webr}
 #| envir: anova_lab
 #| exercise: tukey_result
-tukey_result <- 
+tukey_result <-
 
 ```
 
@@ -522,12 +856,10 @@ tukey_result <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Run `TukeyHSD()` on the fitted ANOVA model object.
-
-Example:
+Pass the fitted model, not the data.
 
 ``` r
-TukeyHSD(aov(mpg ~ as.factor(cyl), data = mtcars))
+TukeyHSD(fit)
 ```
 :::
 ::::
@@ -541,7 +873,7 @@ tukey_result <- TukeyHSD(anova_model)
 tukey_result
 ```
 
-Adelie–Chinstrap: not significant. Gentoo differs from both Adelie and Chinstrap.
+Three rows, one per pair. `diff` is the difference in means, `lwr` and `upr` are a 95% family-wise confidence interval, and `p adj` is the p-value after correction. Chinstrap − Adelie: 0.07 mm, p adj = 0.89. Gentoo − Adelie: −3.36 mm, p adj < 0.0001. Gentoo − Chinstrap: −3.44 mm, p adj < 0.0001.
 :::
 ::::
 
@@ -549,86 +881,464 @@ Adelie–Chinstrap: not significant. Gentoo differs from both Adelie and Chinstr
 #| envir: anova_lab
 #| exercise: tukey_result
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("tukey_result", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `tukey_result`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `TukeyHSD()` takes the model object `anova_model`.")
+} else if (!exists("tukey_result", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `tukey_result` with `<-`, then print it.")
 } else {
   tr <- get("tukey_result", envir = .envir_result)
-  padj <- tr$species[, "p adj"]
-  if ("Chinstrap-Adelie" %in% names(padj) && padj["Chinstrap-Adelie"] > 0.05 &&
-      "Gentoo-Adelie" %in% names(padj) && padj["Gentoo-Adelie"] < 0.001) {
-    list(correct = TRUE, type = "success", message = "Tukey HSD — Gentoo differs from Adelie/Chinstrap; Adelie vs Chinstrap does not.")
+  if (!inherits(tr, "TukeyHSD") || is.null(tr$species)) {
+    list(correct = FALSE, type = "info",
+         message = "`tukey_result` should be `TukeyHSD(anova_model)`.")
   } else {
-    list(correct = FALSE, type = "info", message = "Run `TukeyHSD(anova_model)` and print the result.")
+    padj <- tr$species[, "p adj"]
+    if (abs(padj["Chinstrap-Adelie"] - 0.893) < 0.01 && padj["Gentoo-Adelie"] < 0.001) {
+      list(correct = TRUE, type = "success",
+           message = "Three pairs. One is not significant (Chinstrap vs. Adelie); Gentoo differs from both.")
+    } else {
+      list(correct = FALSE, type = "warning",
+           message = "A Tukey table, but the p-values do not match the bill-depth model. Run it on `anova_model`.")
+    }
   }
 }
 ```
 
-## 10. Interpret Tukey contrasts
+### 12. Make the call
 
-Which pair is **not** significantly different? Assign `adelie_chinstrap_same <- TRUE` if Adelie and Chinstrap bill depths do not differ after Tukey correction.
+Using `tukey_result`, assign two logicals: `adelie_chinstrap_differ` (do Adelie and Chinstrap differ at α = 0.05?) and `gentoo_shallower` (is the Gentoo mean below both others, and significantly so?).
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: interpret_tukey
-adelie_chinstrap_same <- 
-gentoo_shallower <- 
+#| setup: true
+#| exercise: tukey_call
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(!is.na(bill_depth_mm))
+anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
+tukey_result <- TukeyHSD(anova_model)
 ```
 
-:::: {.hint exercise="interpret_tukey"}
+```{webr}
+#| envir: anova_lab
+#| exercise: tukey_call
+adelie_chinstrap_differ <-
+gentoo_shallower <-
+```
+
+:::: {.hint exercise="tukey_call"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Read `tukey_result` — check each pairwise `p adj`. Which species pair is **not** significant? Is Gentoo shallower than both others?
+Read the `p adj` column and the sign of `diff` for the two Gentoo rows. `tukey_result$species` is the table as a matrix if you want to look at it directly.
 :::
 ::::
 
-:::: {.solution exercise="interpret_tukey"}
+:::: {.solution exercise="tukey_call"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-adelie_chinstrap_same <- TRUE
+adelie_chinstrap_differ <- FALSE
 gentoo_shallower <- TRUE
 ```
 
-Overall ANOVA was significant, but only Gentoo stands apart in bill depth — Adelie and Chinstrap are statistically similar.
+The overall ANOVA was significant, but only Gentoo stands apart. Adelie and Chinstrap bill depths are statistically indistinguishable (p adj = 0.89). Gentoo bills are about 3.4 mm shallower than both.
 :::
 ::::
 
 ```{webr}
 #| envir: anova_lab
-#| exercise: interpret_tukey
+#| exercise: tukey_call
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("adelie_chinstrap_same\\s*<-\\s*TRUE", code) && grepl("gentoo_shallower\\s*<-\\s*TRUE", code)) {
-  list(correct = TRUE, type = "success", message = "Correct — one non-significant pair (Adelie–Chinstrap) and Gentoo shallower than both.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("adelie_chinstrap_differ", envir = .envir_result, inherits = FALSE) ||
+           !exists("gentoo_shallower", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign both `adelie_chinstrap_differ` and `gentoo_shallower` to `TRUE` or `FALSE`.")
 } else {
-  list(correct = FALSE, type = "info", message = "Adelie–Chinstrap p adj > 0.05; Gentoo differs from both — assign both `TRUE`.")
+  a <- get("adelie_chinstrap_differ", envir = .envir_result)
+  g <- get("gentoo_shallower", envir = .envir_result)
+  ok <- function(x) is.logical(x) && length(x) == 1 && !is.na(x)
+  if (!ok(a) || !ok(g)) {
+    list(correct = FALSE, type = "info",
+         message = "Both objects should be exactly `TRUE` or `FALSE`.")
+  } else if (isTRUE(a)) {
+    list(correct = FALSE, type = "warning",
+         message = "Chinstrap − Adelie has p adj = 0.89 and a 0.07 mm difference. They do not differ.")
+  } else if (!isTRUE(g)) {
+    list(correct = FALSE, type = "warning",
+         message = "Both Gentoo rows have negative `diff` and p adj < 0.0001. Gentoo is significantly shallower than both.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "Correct. One non-significant pair, and Gentoo shallower than both others.")
+  }
 }
 ```
 
-## 11. Recap — functions you practiced
+## Part B: Chi-square
+
+When the response is a **count in categories**, there is no mean to compare. Chi-square compares the counts you observed with the counts H₀ predicts. Two versions: **goodness of fit** (one categorical variable; expected counts come from a hypothesis) and **independence** (two categorical variables; expected counts assume the variables are unrelated).
+
+### 13. Goodness of fit: Mendel's pea pods
+
+All parents were heterozygous for pod colour and green is dominant, so H₀ predicts 3 green : 1 yellow in the F₂. Mendel observed 428 green and 152 yellow. Create `observed_counts` as a named vector and run `chisq.test()` with `p = c(3/4, 1/4)`. Save it as `chisq_gof` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| exercise: chisq_gof
+observed_counts <- c(green = 428, yellow = 152)
+chisq_gof <-
+
+```
+
+:::: {.hint exercise="chisq_gof"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`p =` gives the predicted proportions, in the same order as the counts. They must add to 1.
+
+``` r
+chisq.test(c(50, 30, 20), p = c(0.5, 0.3, 0.2))
+```
+:::
+::::
+
+:::: {.solution exercise="chisq_gof"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+observed_counts <- c(green = 428, yellow = 152)
+chisq_gof <- chisq.test(observed_counts, p = c(3/4, 1/4))
+chisq_gof
+```
+
+χ² = 0.45, df = 1, p = 0.50. Expected counts were 435 and 145; the observed 428 and 152 are well within chance.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: chisq_gof
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The proportions in `p =` must add to 1 and match the number of counts.")
+} else if (!exists("chisq_gof", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `chisq_gof` with `<-`, then print it.")
+} else {
+  cg <- get("chisq_gof", envir = .envir_result)
+  if (!inherits(cg, "htest") || !grepl("Chi-squared", cg$method)) {
+    list(correct = FALSE, type = "info",
+         message = "`chisq_gof` should be the output of `chisq.test()`.")
+  } else if (abs(unname(cg$statistic) - 131.3) < 1) {
+    list(correct = FALSE, type = "warning",
+         message = "Without `p =`, `chisq.test()` tests a 1 : 1 ratio, which Mendel's data reject (p < 0.0001). Add `p = c(3/4, 1/4)` to test 3 : 1.")
+  } else if (abs(unname(cg$statistic) - 0.4506) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "X-squared = 0.45, df = 1, p = 0.50. Same as the slide.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A chi-square result, but X-squared = ", round(unname(cg$statistic), 2), ". Use the counts 428 and 152 with `p = c(3/4, 1/4)`."))
+  }
+}
+```
+
+### 14. Make the call
+
+Do these counts support Mendel's 3 : 1 prediction at α = 0.05? Assign `supports_3_to_1` to `TRUE` or `FALSE`.
+
+```{webr}
+#| envir: anova_lab
+#| setup: true
+#| exercise: supports_3_to_1
+observed_counts <- c(green = 428, yellow = 152)
+chisq_gof <- chisq.test(observed_counts, p = c(3/4, 1/4))
+```
+
+```{webr}
+#| envir: anova_lab
+#| exercise: supports_3_to_1
+supports_3_to_1 <-
+```
+
+:::: {.hint exercise="supports_3_to_1"}
+::: {.callout-note collapse="false"}
+## Hint
+
+H₀ here is the prediction itself. Compare `chisq_gof$p.value` with 0.05 and think about what failing to reject means.
+:::
+::::
+
+:::: {.solution exercise="supports_3_to_1"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+supports_3_to_1 <- TRUE
+```
+
+p = 0.50, so we fail to reject H₀. The counts are consistent with 3 : 1. That is support, not proof: a ratio of 2.9 : 1 would have fit about as well.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: supports_3_to_1
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("supports_3_to_1", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign `supports_3_to_1 <- TRUE` or `FALSE`.")
+} else {
+  ans <- get("supports_3_to_1", envir = .envir_result)
+  if (!is.logical(ans) || length(ans) != 1 || is.na(ans)) {
+    list(correct = FALSE, type = "info",
+         message = "`supports_3_to_1` should be exactly `TRUE` or `FALSE`.")
+  } else if (isTRUE(ans)) {
+    list(correct = TRUE, type = "success",
+         message = "TRUE. p = 0.50: the counts are consistent with 3 : 1. Fail to reject, and say 'consistent with', not 'proves'.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = "p = 0.50 is far above 0.05. The observed counts are close to the 435 : 145 that 3 : 1 predicts.")
+  }
+}
+```
+
+### 15. Independence: lizard infection by habitat
+
+Sixty lizards from an urban site and sixty from a forest site were scored infected or clean. The contingency table is built for you with `matrix()`. H₀: infection status is independent of habitat. Run `chisq.test()` on `infection_table` with `correct = FALSE`, as on the slide. Save it as `chisq_indep` and print it.
+
+```{webr}
+#| envir: anova_lab
+#| setup: true
+#| exercise: chisq_indep
+infection_table <- matrix(
+  c(18, 42,
+    33, 27),
+  nrow = 2, byrow = TRUE,
+  dimnames = list(habitat = c("urban", "forest"),
+                  status = c("infected", "clean")))
+```
+
+```{webr}
+#| envir: anova_lab
+#| exercise: chisq_indep
+infection_table <- matrix(
+  c(18, 42,
+    33, 27),
+  nrow = 2, byrow = TRUE,
+  dimnames = list(habitat = c("urban", "forest"),
+                  status = c("infected", "clean")))
+infection_table
+chisq_indep <-
+
+```
+
+:::: {.hint exercise="chisq_indep"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Pass the whole table. No `p =`: the expected counts come from the row and column totals.
+
+``` r
+chisq.test(my_table, correct = FALSE)
+```
+
+`correct = FALSE` turns off a small-sample adjustment (Yates' correction) that R applies by default to 2 × 2 tables. With it, p = 0.0097 instead of 0.0056; same conclusion.
+:::
+::::
+
+:::: {.solution exercise="chisq_indep"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+chisq_indep <- chisq.test(infection_table, correct = FALSE)
+chisq_indep
+```
+
+χ² = 7.67, df = 1, p = 0.0056. Under independence each habitat would have 25.5 infected lizards; urban had 18 and forest had 33.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: chisq_indep
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Pass `infection_table` to `chisq.test()`.")
+} else if (!exists("chisq_indep", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `chisq_indep` with `<-`, then print it.")
+} else {
+  ci <- get("chisq_indep", envir = .envir_result)
+  if (!inherits(ci, "htest") || !grepl("Chi-squared", ci$method)) {
+    list(correct = FALSE, type = "info",
+         message = "`chisq_indep` should be the output of `chisq.test()`.")
+  } else if (abs(unname(ci$statistic) - 7.6726) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "X-squared = 7.67, df = 1, p = 0.0056. Same as the slide.")
+  } else if (abs(unname(ci$statistic) - 6.6837) < 0.01) {
+    list(correct = TRUE, type = "info",
+         message = "X-squared = 6.68, p = 0.0097 with Yates' correction. Fine, and the slide used `correct = FALSE` (7.67, p = 0.0056). Same conclusion.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A chi-square result, but X-squared = ", round(unname(ci$statistic), 2), ". Run it on `infection_table` as built above."))
+  }
+}
+```
+
+### 16. Make the call
+
+Urban lizards: 30% infected. Forest lizards: 55%. Is infection associated with habitat at α = 0.05? Assign `infection_linked_to_habitat` to `TRUE` or `FALSE`.
+
+```{webr}
+#| envir: anova_lab
+#| setup: true
+#| exercise: infection_call
+infection_table <- matrix(
+  c(18, 42,
+    33, 27),
+  nrow = 2, byrow = TRUE,
+  dimnames = list(habitat = c("urban", "forest"),
+                  status = c("infected", "clean")))
+chisq_indep <- chisq.test(infection_table, correct = FALSE)
+```
+
+```{webr}
+#| envir: anova_lab
+#| exercise: infection_call
+infection_linked_to_habitat <-
+```
+
+:::: {.hint exercise="infection_call"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Compare `chisq_indep$p.value` with 0.05. Then think about what "associated" does and does not mean.
+:::
+::::
+
+:::: {.solution exercise="infection_call"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+infection_linked_to_habitat <- TRUE
+```
+
+p = 0.0056 < 0.05. Reject H₀: infection is associated with habitat, and forest lizards are infected more often. It does **not** show that living in the forest causes infection. Habitat was not randomly assigned; forest lizards may differ in age, diet, or density.
+:::
+::::
+
+```{webr}
+#| envir: anova_lab
+#| exercise: infection_call
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("infection_linked_to_habitat", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign `infection_linked_to_habitat <- TRUE` or `FALSE`.")
+} else {
+  ans <- get("infection_linked_to_habitat", envir = .envir_result)
+  if (!is.logical(ans) || length(ans) != 1 || is.na(ans)) {
+    list(correct = FALSE, type = "info",
+         message = "`infection_linked_to_habitat` should be exactly `TRUE` or `FALSE`.")
+  } else if (isTRUE(ans)) {
+    list(correct = TRUE, type = "success",
+         message = "TRUE. p = 0.0056: infection is associated with habitat. Association, not cause.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = "p = 0.0056 is below 0.05, and 55% vs. 30% is a large gap for 60 lizards per habitat.")
+  }
+}
+```
+
+## 17. Recap: functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
 
 | Function | Role |
-|----------|------|
+|---|---|
+| `filter(!is.na(...))` | Drop rows with a missing response |
 | `ggplot()` + `geom_boxplot()` | Compare a continuous response across factor levels |
 | `geom_histogram()` + `facet_wrap(~ species)` | One distribution panel per level |
-| `aov(y ~ x, data = ...)` | Fit one-way ANOVA |
-| `summary(anova_model)` | Overall F-test — do any means differ? |
-| `plot(model, which = 1)` | Residuals vs fitted — check spread |
-| `fligner.test(y ~ x, data = ...)` | Test homogeneity of variances |
-| `TukeyHSD(model)` | Pairwise comparisons with family-wise error control |
+| `aov(y ~ group, data = )` | Fit a one-way ANOVA |
+| `summary(anova_model)` | F statistic and p-value: does any mean differ? |
+| `mutate(resid = residuals(anova_model))` | Attach residuals to the table |
+| `geom_histogram()` on `resid` | Visual normality check for the whole model |
+| `shapiro.test(residuals(anova_model))` | Formal normality check on the residuals |
+| `fligner.test(y ~ group, data = )` | Equal-variance check |
+| `choose(k, 2)` and `1 - 0.95^n` | How many pairs, and the family-wise false-positive rate |
+| `TukeyHSD(anova_model)` | Which pairs differ, with the rate held at 5% |
+| `chisq.test(x, p = )` | Goodness of fit against a predicted ratio |
+| `chisq.test(table, correct = FALSE)` | Independence of two categorical variables |
 
-If you can explain each row, you have covered **Coding Assignment 4, Part C**.
+If you can explain each row in your own words, you have covered **Coding Assignment 4, Part C** and the chi-square half of lecture A010.
 :::
+
+::: {.callout-important appearance="simple"}
+## Three things to say in your write-up
+
+1.  **ANOVA says "at least one"; Tukey says which.** Reporting "Gentoo had the shallowest bills (ANOVA p < 0.001)" is wrong. The ANOVA p-value never tested Gentoo against anything. Cite the Tukey contrast: Gentoo − Adelie = −3.36 mm, 95% family-wise CI −3.68 to −3.04, p adj < 0.0001.
+2.  **Checks are evidence, not verdicts.** The residual histogram was a clean bell; Shapiro-Wilk gave p = 0.047 on 342 values; Fligner gave p = 0.13. Report all three and your decision to proceed.
+3.  **Chi-square shows association.** Forest lizards were infected more often (55% vs. 30%, χ² = 7.67, p = 0.0056). Nothing in the test says habitat is the cause.
+:::
+
+## 18. Transfer to Coding Assignment 4
+
+On DataHub, Part C fits `aov(biomass_g ~ nitrogen, data = nitrogen_data)` with four nitrogen levels. The assignment asks for `plot(anova_model, which = 1)`, a base-R residuals-versus-fitted plot, instead of the residual histogram you built in step 7. Try it on the penguin model now so the picture is familiar:
+
+```{webr}
+#| envir: anova_lab
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |> filter(!is.na(bill_depth_mm))
+anova_model <- aov(bill_depth_mm ~ species, data = penguin_data)
+plot(anova_model, which = 1)
+```
+
+::: {.callout-tip appearance="simple"}
+Three vertical stripes, one per species mean, each a cloud of residuals centered on zero. Even spread across the stripes is the equal-variance assumption in picture form. Use only `which = 1`; the assignment does not ask you to interpret the other panels.
+:::
+
+Then `fligner.test()`, `TukeyHSD()`, and a write-up naming at least one significant and one non-significant nitrogen contrast. Same functions as steps 5 through 12.
 
 ## Keep playing
 
-Try ANOVA on `body_mass_g ~ species` instead. Run `fligner.test(body_mass_g ~ species, data = penguin_data)` — does equal variance hold?
+**Six feeds, fifteen pairs.** Run the lecture's ANOVA on `chickwts` and read the Tukey table from the slide.
+
+```{webr}
+#| envir: anova_lab
+fit <- aov(weight ~ feed, data = chickwts)
+summary(fit)
+TukeyHSD(fit)
+```
+
+::: {.callout-tip appearance="simple"}
+F = 15.4, p = 6 × 10⁻¹⁰. Of the 15 pairs, 8 are significant. Sunflower and casein do not differ from each other (p adj = 0.9999) but beat horsebean, linseed, and soybean. That is the answer to "which feed would you give your chicks?"
+:::
+
+**When the variance check fails.** Try `body_mass_g` instead of bill depth.
 
 ```{webr}
 #| envir: anova_lab
@@ -639,5 +1349,18 @@ fligner.test(body_mass_g ~ species, data = penguin_mass)
 ```
 
 ::: {.callout-tip appearance="simple"}
-Fligner p ≈ 0.01 for body mass — variances differ across species. That is why this activity uses **bill depth**, where Fligner passes. Choosing a response where assumptions hold makes interpretation cleaner.
+Fligner p = 0.01. Body mass varies more in Gentoo than in the other two species, so the equal-variance assumption fails. That is why this activity used bill depth. On the assignment, report the Fligner result either way; a failed check is a finding, not a failure.
+:::
+
+**Which test?** For each design, name the test.
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+1.  Seedlings grown under four light treatments, 15 pots each, height measured after 30 days.
+2.  For each of 200 nests, whether it was in a nest box or a natural cavity, and whether it fledged at least one chick.
+3.  A bag of 500 M&Ms sorted by colour, compared with the proportions the company publishes.
+4.  A one-way ANOVA on five diets gives p = 0.03, and a student reports "Diet 3 produced the heaviest mice (p = 0.03)." What is wrong?
+
+**Answers:** (1) one-way ANOVA, then Tukey HSD if significant. (2) χ² test of independence: two categorical variables, one count per combination. (3) χ² goodness of fit: one categorical variable against a predicted ratio. (4) The ANOVA p-value does not test diet 3 against the others; a post-hoc test is needed before naming a winner.
 :::

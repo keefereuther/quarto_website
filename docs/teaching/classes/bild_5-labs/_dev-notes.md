@@ -196,6 +196,23 @@ works. No `webr: resources:` needed — the extension falls back to the document
   one-liner) where `grepl()` on `.user_code` rejects them. Use `type = "info"` for nudges,
   `"warning"` when code ran but the answer is wrong, `"success"` when done.
 
+- **Base-R datasets need no package.** `chickwts` and `sleep` (Coding 8) come from `datasets`,
+  which webR attaches by default, so those pages list only `tidyverse` under `webr: packages`.
+- **`glimpse()` returns its input invisibly**, so a checker can read `.last_value` after a bare
+  `glimpse(chickwts)` and test `nrow()` without the student assigning anything.
+- **Grade `htest` objects by their fields, not by regex.** `inherits(x, "htest")`, then `x$method`
+  (`"Paired t-test"`, `"Welch Two Sample t-test"`, `"Fligner-Killeen..."`), `x$alternative`,
+  `x$null.value`, and `abs(x$p.value - expected) < tol`. This accepts the formula form
+  `t.test(y ~ g, data =)` and the two-vector form alike, and gives targeted feedback for the
+  usual slips (forgot `paired = TRUE`, forgot `alternative =`, forgot `p =` in `chisq.test()`,
+  tested the raw column instead of the residuals).
+- **Facets:** `inherits(p$facet, "FacetNull")` is TRUE when a ggplot has no `facet_wrap()`.
+- **Checker harness.** To test every checker against its own solution and a list of wrong answers
+  without a browser, see the parse-and-evaluate script pattern used on 2026-11-04 (parses the
+  `.qmd` for `#| exercise:` blocks and `.solution` divs, emulates `.evaluate_result`,
+  `.last_value`, `.envir_result` with `evaluate::evaluate()`). Rebuild it in a scratch folder
+  when needed; it is not committed.
+
 ## Live URLs
 
 - Course hub: `/docs/teaching/classes/BILD_5.html`
