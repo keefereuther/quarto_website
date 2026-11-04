@@ -660,12 +660,7 @@ shapiro_resid <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Either of these is the same vector:
-
-``` r
-shapiro.test(residuals(anova_model))
-shapiro.test(penguin_data$resid)
-```
+`residuals(anova_model)` is a plain numeric vector, so pass it straight in, the way you passed `linseed_chicks$weight` in Coding 8.
 :::
 ::::
 
@@ -678,7 +673,7 @@ shapiro_resid <- shapiro.test(residuals(anova_model))
 shapiro_resid
 ```
 
-W = 0.992, p = 0.047. Just under 0.05. Read the callout below before you react.
+`shapiro.test(penguin_data$resid)` gives the same result. W = 0.992, p = 0.047, just under 0.05. Read the callout below before you react.
 :::
 ::::
 
@@ -1151,13 +1146,13 @@ chisq_indep <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Pass the whole table. No `p =`: the expected counts come from the row and column totals.
+Pass the whole table. No `p =`, because the expected counts come from the row and column totals.
 
 ``` r
 chisq.test(my_table, correct = FALSE)
 ```
 
-`correct = FALSE` turns off a small-sample adjustment (Yates' correction) that R applies by default to 2 × 2 tables. With it, p = 0.0097 instead of 0.0056; same conclusion.
+`correct = FALSE` turns off Yates' continuity correction, which R applies by default to 2 × 2 tables. The slide ran without it.
 :::
 ::::
 

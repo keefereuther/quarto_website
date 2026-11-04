@@ -275,9 +275,9 @@ box_feed <- ggplot(chickwts, aes(x = feed, y = weight)) +
 Add `geom_boxplot()` with `+`, then type the plot's name on its own line so it displays.
 
 ``` r
-box_cyl <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+box_iris <- ggplot(iris, aes(x = Species, y = Sepal.Length)) +
   geom_boxplot()
-box_cyl
+box_iris
 ```
 :::
 ::::
@@ -940,8 +940,6 @@ Formula form: the continuous column, a tilde, the grouping column, then `data =`
 ``` r
 t.test(mpg ~ am, data = mtcars)
 ```
-
-Coding Assignment 4 uses this form. The lecture slide passed two vectors instead: `t.test(weights_meatmeal, weights_linseed)`. Same test, same p-value, sign of *t* flipped.
 :::
 ::::
 
@@ -954,7 +952,7 @@ t_two_sample <- t.test(weight ~ feed, data = two_feeds)
 t_two_sample
 ```
 
-t = −2.35, df = 19.2, p = 0.029. The difference (linseed − meatmeal) is −58 g, 95% CI −109.8 to −6.5 g. The lecture's *t* is +2.35 because it subtracted in the other order.
+t = −2.35, df = 19.2, p = 0.029. The difference (linseed − meatmeal) is −58 g, 95% CI −109.8 to −6.5 g. The lecture passed two vectors, `t.test(weights_meatmeal, weights_linseed)`, so its *t* is +2.35: same test, same p-value, opposite subtraction order. Coding Assignment 4 uses the formula form.
 :::
 ::::
 
@@ -1143,13 +1141,7 @@ spaghetti_sleep <- ggplot(sleep, aes(x = group, y = extra, group = ID)) +
 ::: {.callout-note collapse="false"}
 ## Hint
 
-`group = ID` inside `aes()` tells `geom_line()` which points belong to the same patient. Add the two layers with `+`.
-
-``` r
-ggplot(sleep, aes(x = group, y = extra, group = ID)) +
-  geom_line() +
-  geom_point()
-```
+`group = ID` inside `aes()` tells `geom_line()` which two points belong to the same patient. Two layers, each added with `+`; the starter already has the `ggplot()` call.
 :::
 ::::
 
