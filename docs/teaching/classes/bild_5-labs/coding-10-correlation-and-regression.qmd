@@ -1,6 +1,6 @@
 ---
 title: "Correlation and Linear Regression"
-subtitle: "Association vs prediction — r, a fitted line, R², and Cook's distance on Adelie penguins"
+subtitle: "From covariance to r to a fitted line, then check the residuals and find the point that moves the fit"
 format:
   live-html:
     theme:
@@ -20,8 +20,6 @@ format:
       packages:
         - tidyverse
         - palmerpenguins
-        - broom
-        - ggrepel
       cell-options:
         min-lines: 4
         caption: "R code block"
@@ -84,26 +82,48 @@ live:
 </style>
 ```
 
-You will practice **Coding Assignment 4, Part D** plus lecture extras on correlation, R², and Cook's distance.
+Every test so far compared means across groups. Today both variables are continuous. **Correlation** asks whether two variables are linearly associated. **Regression** asks how much one changes per unit of the other, and predicts one from the other. Same recipe: H₀ as math, α first, look, check, test, conclude.
 
-::: {.callout-note}
-## Assignment vs this activity
+Lecture A012 used *Iris versicolor*. Here you use Adelie penguins: does flipper length go with body mass? Same workflow, so the logic transfers even though the numbers differ.
 
-On DataHub, Assignment 4 regresses `biomass_g` on `leaf_area_cm2` in the brittlebush dataset. Here we ask whether **flipper length** predicts **body mass** in **Adelie** penguins only — so species clustering does not inflate R². The workflow — scatterplot, `lm()`, residual plot, R² — matches the assignment; `cor.test()` and Cook's distance come from lecture A010.
+::: {.callout-note collapse="true"}
+## Correlation or regression? (click to expand)
+
+| | Correlation | Regression |
+|---|---|---|
+| Question | Are X and Y linearly associated? | How much does Y change per unit X? |
+| Symmetry | Swap X and Y, same *r* | Y is predicted from X; swapping changes the line |
+| Output | One number, *r*, with a p-value and CI | A line: intercept and slope, each with a p-value |
+| Prediction | None | Y for a new X |
+| H₀ | true correlation = 0 | true slope = 0 |
+| R | `cor()`, `cor.test()` | `lm()`, `summary()` |
+
+Correlation is the right tool when neither variable is the cause, as with two exam scores. Regression is the right tool when one variable is the explanatory one, as with a dose you set and a response you measure.
 :::
 
-::: {.callout-note appearance="simple"}
-## Correlation vs regression
+::: {.callout-note collapse="true"}
+## Functions in this activity (click to expand)
 
-- **Correlation** (*r*): strength and direction of a **linear association** in the data you measured. Use `cor.test()` when both variables are numeric and you want r **and** a p-value.
-- **Regression**: fit a line to **predict** Y from X. Check assumptions **after** fitting with residual plots. **R²** = proportion of variance in Y explained by the model (r² when there is one predictor).
+| Function | What it does | Example |
+|---|---|---|
+| `cov(x, y)` | Covariance: do X and Y move together? Sign is meaningful, size depends on units | `cov(penguin_data$flipper_length_mm, penguin_data$body_mass_g)` |
+| `cor(x, y)` | Pearson's *r*: covariance divided by both standard deviations, so it runs from −1 to 1 | `cor(x, y)` |
+| `cor.test(x, y)` | *r* with a p-value and 95% CI; H₀ is true correlation = 0 | `cor.test(x, y)` |
+| `lm(y ~ x, data = )` | Fits the least-squares line | `lm(body_mass_g ~ flipper_length_mm, data = penguin_data)` |
+| `summary(model)` | Intercept, slope, their p-values, and R² | `summary(lm_model)` |
+| `coef(model)` | Just the intercept and slope | `coef(lm_model)` |
+| `residuals(model)` | Observed minus predicted, one per row | `shapiro.test(residuals(lm_model))` |
+| `plot(model, which = 1)` | Residuals vs fitted: linearity and equal spread | |
+| `plot(model, which = 4)` | Cook's distance per observation: which points move the fit | |
+| `cooks.distance(model)` | The numbers behind that plot | `max(cooks.distance(lm_model))` |
+| `geom_smooth(method = "lm")` | Draws the fitted line and its 95% band on a scatterplot | |
 
-Unlike a *t*-test, you fit the model first, **then** diagnose it.
+`cor.test()` returns the same kind of object as `t.test()`, so `$estimate`, `$p.value`, and `$conf.int` work. `summary(lm_model)$r.squared` pulls R² out of a model summary.
 :::
 
-**Research question:** Among Adelie penguins, does flipper length predict body mass?
+## Part A: Look first
 
-## 1. Load packages
+### 1. Load the packages
 
 ```{webr}
 #| envir: regression_lab
@@ -116,7 +136,7 @@ library()
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Load `tidyverse` and `palmerpenguins`. You will load `broom` and `ggrepel` later for the Cook's distance plot.
+Load `tidyverse` (dplyr and ggplot2) and `palmerpenguins` (the `penguins` table).
 :::
 ::::
 
@@ -135,45 +155,122 @@ library(palmerpenguins)
 #| envir: regression_lab
 #| exercise: load_packages
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!grepl("library\\s*\\(\\s*tidyverse\\s*\\)", code) || !grepl("library\\s*\\(\\s*palmerpenguins\\s*\\)", code)) {
-  list(correct = FALSE, type = "error", message = "Load both `tidyverse` and `palmerpenguins`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Put each package name inside its own `library()` call.")
+} else if (!"package:dplyr" %in% search()) {
+  list(correct = FALSE, type = "info",
+       message = "No error, but dplyr is not loaded yet. Which bundle of packages contains it?")
+} else if (!"package:palmerpenguins" %in% search()) {
+  list(correct = FALSE, type = "info",
+       message = "Tidyverse loaded. Also load `palmerpenguins` for the `penguins` table.")
 } else {
-  list(correct = TRUE, type = "success", message = "Packages loaded.")
+  list(correct = TRUE, type = "success",
+       message = "Both packages loaded.")
 }
 ```
 
-## 2. Build the Adelie table
+### 2. All 344 penguins, three species
 
-Keep Adelie penguins with non-missing `body_mass_g` and `flipper_length_mm` — use `!is.na()` on both columns in `filter()`. Save as `penguin_data`.
+Plot first, and look for groups. Make a scatterplot of `body_mass_g` (y) against `flipper_length_mm` (x) for every penguin, with `color = species` inside `aes()`. Save it as `scatter_all` and display it.
 
 ```{webr}
 #| envir: regression_lab
 #| setup: true
-#| exercise: penguin_data
+#| exercise: scatter_all
 library(tidyverse)
 library(palmerpenguins)
 ```
 
 ```{webr}
 #| envir: regression_lab
+#| exercise: scatter_all
+scatter_all <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+
+```
+
+:::: {.hint exercise="scatter_all"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Add `geom_point()` with `+`. The two penguins with missing measurements are dropped with a warning, which is fine.
+:::
+::::
+
+:::: {.solution exercise="scatter_all"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+scatter_all <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point()
+scatter_all
+```
+
+Three clusters. Gentoo sit high and right, Adelie low and left, Chinstrap in between. A line through all 344 would mostly be measuring the gap between species, not flipper length. So, as in lecture, pick one species.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: scatter_all
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+plot_maps <- function(p) {
+  m <- c(as.list(p$mapping), unlist(lapply(p$layers, function(l) as.list(l$mapping)), recursive = FALSE))
+  names(m) <- sub(".*\\.", "", names(m))
+  m
+}
+p <- find_plot(.last_value, .envir_result)
+maps <- if (is.null(p)) list() else plot_maps(p)
+col_var <- if (!is.null(maps$colour)) rlang::as_label(maps$colour) else NULL
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Layers are joined with `+`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_point()` with `+`.")
+} else if (!"GeomPoint" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but no points. Add `geom_point()`.")
+} else if (!identical(col_var, "species")) {
+  list(correct = FALSE, type = "info",
+       message = "Points drawn. Keep `color = species` inside `aes()` so the three species show as three colors.")
+} else if (!exists("scatter_all", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Scatterplot drawn. Save it as `scatter_all` with `<-`.")
+} else {
+  list(correct = TRUE, type = "success",
+       message = "Three clusters, one per species. That is why the next step keeps only Adelie.")
+}
+```
+
+### 3. One species
+
+Keep Adelie penguins with non-missing `body_mass_g` and `flipper_length_mm`. Save the result as `penguin_data`.
+
+```{webr}
+#| envir: regression_lab
 #| exercise: penguin_data
 penguin_data <- penguins |>
-  
+
 ```
 
 :::: {.hint exercise="penguin_data"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Filter `penguins` to Adelie rows with non-missing `body_mass_g` and `flipper_length_mm`.
-
-Example:
-
-``` r
-penguins |>
-  filter(species == "Gentoo", !is.na(body_mass_g))
-```
+Three conditions inside one `filter()`, separated by commas: the species, and `!is.na()` on each of the two columns.
 :::
 ::::
 
@@ -184,9 +281,10 @@ penguins |>
 ``` r
 penguin_data <- penguins |>
   filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+penguin_data
 ```
 
-151 Adelie penguins — complete measurements only.
+151 Adelie penguins with both measurements.
 :::
 ::::
 
@@ -194,37 +292,73 @@ penguin_data <- penguins |>
 #| envir: regression_lab
 #| exercise: penguin_data
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `penguin_data`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Species names go in quotes, and conditions are separated by commas.")
+} else if (!exists("penguin_data", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the filtered table as `penguin_data` with `<-`.")
 } else {
   pd <- get("penguin_data", envir = .envir_result)
-  if (is.data.frame(pd) && nrow(pd) == 151 && all(pd$species == "Adelie")) {
-    list(correct = TRUE, type = "success", message = "151 Adelie rows — ready for regression.")
+  if (!is.data.frame(pd)) {
+    list(correct = FALSE, type = "info",
+         message = "`penguin_data` should be a table. Pipe `penguins` into `filter()`.")
+  } else if (nrow(pd) == 0) {
+    list(correct = FALSE, type = "warning",
+         message = "Zero rows. Check the spelling: the species is `\"Adelie\"`.")
+  } else if (!all(pd$species == "Adelie")) {
+    list(correct = FALSE, type = "warning",
+         message = "Other species are still there. Add `species == \"Adelie\"` to the filter.")
+  } else if (any(is.na(pd$body_mass_g)) || any(is.na(pd$flipper_length_mm))) {
+    list(correct = FALSE, type = "warning",
+         message = "Adelie only, but a row with a missing measurement remains. Add `!is.na(body_mass_g)` and `!is.na(flipper_length_mm)`.")
+  } else if (nrow(pd) == 151) {
+    list(correct = TRUE, type = "success",
+         message = "151 Adelie penguins, both measurements present.")
   } else {
-    list(correct = FALSE, type = "info", message = "Filter to Adelie with non-missing mass and flipper length.")
+    list(correct = TRUE, type = "success",
+         message = paste0("Adelie only, no missing values (", nrow(pd), " rows). Filtering on just these two columns leaves 151."))
   }
 }
 ```
 
-## 3. Scatterplot with trend line
+::: {.callout-note collapse="true"}
+## Check yourself
 
-Plot `body_mass_g` (y) vs `flipper_length_mm` (x). Add a linear trend with `geom_smooth(method = "lm")`. Save as `scatter_lm` and display it.
+1.  Which variable is X (explanatory) and which is Y (response) in "does flipper length predict body mass"?
+2.  Would swapping them change *r*? Would it change the regression line?
+3.  Why fit within one species instead of all 344 penguins?
+
+**Answers:** flipper length is X, body mass is Y. Swapping leaves *r* unchanged but gives a different line, because regression minimizes vertical distances to Y. Pooling species would make the line measure the species gap rather than the within-species relationship, like the pooled sepal plot in lecture where *r* flipped from +0.53 to −0.12.
+:::
+
+### 4. Scatterplot with the fitted line
+
+Plot `body_mass_g` against `flipper_length_mm` for `penguin_data`, add `geom_point()`, then add the fitted line with `geom_smooth(method = "lm")`. Save it as `scatter_lm` and display it.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: scatter_lm
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+```
 
 ```{webr}
 #| envir: regression_lab
 #| exercise: scatter_lm
 scatter_lm <- ggplot(penguin_data, aes(x = flipper_length_mm, y = body_mass_g)) +
-  
+
 ```
 
 :::: {.hint exercise="scatter_lm"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Use `ggplot()` with `geom_point()` and `geom_smooth(method = "lm")`. Map flipper length to x and body mass to y.
-
-Example:
+Two layers. `geom_smooth(method = "lm")` fits a straight line; without `method = "lm"` it draws a wiggly curve instead.
 
 ``` r
 ggplot(mtcars, aes(x = wt, y = mpg)) +
@@ -245,7 +379,7 @@ scatter_lm <- ggplot(penguin_data, aes(x = flipper_length_mm, y = body_mass_g)) 
 scatter_lm
 ```
 
-Positive slope — heavier Adelie penguins tend to have longer flippers.
+A rising cloud with plenty of scatter. The grey band is the 95% confidence band for the line. This is the figure Coding Assignment 4 asks for.
 :::
 ::::
 
@@ -253,22 +387,212 @@ Positive slope — heavier Adelie penguins tend to have longer flippers.
 #| envir: regression_lab
 #| exercise: scatter_lm
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("ggplot\\s*\\(", code) && grepl("geom_smooth", code) && grepl("scatter_lm", code)) {
-  list(correct = TRUE, type = "success", message = "Scatter with linear trend — visual check before fitting.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+find_plot <- function(v, env) {
+  if (inherits(v, "ggplot")) return(v)
+  for (nm in rev(ls(env))) {
+    o <- get(nm, envir = env)
+    if (inherits(o, "ggplot")) return(o)
+  }
+  NULL
+}
+layer_class <- function(p, part) vapply(p$layers, function(l) class(l[[part]])[1], character(1))
+smooth_method <- function(p) {
+  for (l in p$layers) if (inherits(l$geom, "GeomSmooth")) {
+    m <- l$stat_params$method
+    return(if (is.null(m)) "auto" else as.character(m))
+  }
+  NULL
+}
+p <- find_plot(.last_value, .envir_result)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Layers are joined with `+`, and `method = \"lm\"` goes inside `geom_smooth()`.")
+} else if (is.null(p)) {
+  list(correct = FALSE, type = "info",
+       message = "No figure yet. Keep the `ggplot()` call and add `geom_point()` with `+`.")
+} else if (!"GeomPoint" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "A figure, but no points. Add `geom_point()`.")
+} else if (!"GeomSmooth" %in% layer_class(p, "geom")) {
+  list(correct = FALSE, type = "info",
+       message = "Points drawn. Add the fitted line with `geom_smooth(method = \"lm\")`.")
+} else if (!identical(smooth_method(p), "lm")) {
+  list(correct = FALSE, type = "warning",
+       message = "A smooth curve, not a straight line. Set `method = \"lm\"` inside `geom_smooth()`.")
+} else if (!exists("scatter_lm", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Plot drawn. Save it as `scatter_lm` with `<-`.")
 } else {
-  list(correct = FALSE, type = "error", message = "Add points and `geom_smooth(method = \"lm\")`, save as `scatter_lm`.")
+  list(correct = TRUE, type = "success",
+       message = "Points plus the least-squares line and its confidence band.")
 }
 ```
 
-## 4. Pearson correlation
+## Part B: Correlation
 
-Run `cor.test()` on flipper length and body mass. Save as `cor_result` and print it — you need both **r** and a **p-value**.
+**Research question:** Are flipper length and body mass linearly associated in Adelie penguins?
+
+H₀: the true correlation is 0. Hₐ: it is not 0. Pearson correlation, α = 0.05.
+
+### 5. Covariance depends on the ruler
+
+Covariance measures whether X and Y move together: each penguin contributes (x − x̄)(y − ȳ), and the average of those products is the covariance. Compute it for flipper length and body mass and save it as `cov_raw`. Then compute it again with flipper length in **centimeters** (divide by 10) and body mass in **kilograms** (divide by 1000), and save that as `cov_rescaled`. Print both.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: covariance
+cov_raw <-
+cov_rescaled <-
+
+```
+
+:::: {.hint exercise="covariance"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`cov()` takes two vectors. You can divide a column right inside the call.
+
+``` r
+cov(mtcars$wt, mtcars$mpg)
+cov(mtcars$wt * 1000, mtcars$mpg)
+```
+:::
+::::
+
+:::: {.solution exercise="covariance"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+cov_raw <- cov(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+cov_rescaled <- cov(penguin_data$flipper_length_mm / 10, penguin_data$body_mass_g / 1000)
+cov_raw
+cov_rescaled
+```
+
+1404 mm·g versus 0.14 cm·kg. Same penguins, same picture, a number 10,000 times smaller. The sign is useful; the size depends on the units. That is why we need *r*.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: covariance
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `cov()` needs two vectors separated by a comma, each pulled out with `$`.")
+} else if (!exists("cov_raw", envir = .envir_result, inherits = FALSE) ||
+           !exists("cov_rescaled", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Create both `cov_raw` and `cov_rescaled`.")
+} else {
+  a <- get("cov_raw", envir = .envir_result)
+  b <- get("cov_rescaled", envir = .envir_result)
+  ok <- function(v) is.numeric(v) && length(v) == 1 && !is.na(v)
+  if (!ok(a) || !ok(b)) {
+    list(correct = FALSE, type = "info",
+         message = "Both objects should be single numbers from `cov()`.")
+  } else if (abs(a - 1404.03) > 1) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`cov_raw` = ", round(a, 2), ". Use flipper length and body mass from `penguin_data` in their original units."))
+  } else if (abs(b - 0.1404) > 0.001) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`cov_rescaled` = ", signif(b, 4), ". Divide flipper length by 10 and body mass by 1000; the answer should be about 0.14."))
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "1404 in mm and g, 0.14 in cm and kg. Same association, a number 10,000 times smaller.")
+  }
+}
+```
+
+### 6. From covariance to *r*
+
+Dividing the covariance by both standard deviations removes the units: *r* = cov(x, y) / (sₓ · sᵧ). Compute it that way and save it as `r_by_hand`. Then compute it with `cor()` and save it as `r_cor`. Print both.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: r_by_hand
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+cov_raw <- cov(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: r_by_hand
+r_by_hand <-
+r_cor <-
+
+```
+
+:::: {.hint exercise="r_by_hand"}
+::: {.callout-note collapse="false"}
+## Hint
+
+You already have `cov_raw`. Divide it by `sd()` of flipper length times `sd()` of body mass. `cor()` takes the same two vectors `cov()` did.
+:::
+::::
+
+:::: {.solution exercise="r_by_hand"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+r_by_hand <- cov_raw / (sd(penguin_data$flipper_length_mm) * sd(penguin_data$body_mass_g))
+r_cor <- cor(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+r_by_hand
+r_cor
+```
+
+Both are 0.468. Positive, moderate. Try the same division with `cov_rescaled` and the rescaled standard deviations: still 0.468. *r* does not care about the ruler.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: r_by_hand
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Put the product of the two `sd()` calls in parentheses before dividing.")
+} else if (!exists("r_by_hand", envir = .envir_result, inherits = FALSE) ||
+           !exists("r_cor", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Create both `r_by_hand` and `r_cor`.")
+} else {
+  a <- get("r_by_hand", envir = .envir_result)
+  b <- get("r_cor", envir = .envir_result)
+  ok <- function(v) is.numeric(v) && length(v) == 1 && !is.na(v)
+  if (!ok(a) || !ok(b)) {
+    list(correct = FALSE, type = "info",
+         message = "Both objects should be single numbers.")
+  } else if (abs(b - 0.4682) > 0.002) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`r_cor` = ", round(b, 3), ". Use `cor()` on flipper length and body mass in `penguin_data`."))
+  } else if (abs(a - 0.4682) > 0.002) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`r_cor` is right, but `r_by_hand` = ", signif(a, 3), ". Divide `cov_raw` by `sd(x) * sd(y)`, with the product in parentheses."))
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "r = 0.468 both ways. Covariance over the two standard deviations is the correlation.")
+  }
+}
+```
+
+### 7. *r* needs a p-value
+
+*r* = 0.47 from 151 penguins is not the same evidence as *r* = 0.47 from 8. Run `cor.test()` on flipper length and body mass. Save it as `cor_result` and print it.
 
 ```{webr}
 #| envir: regression_lab
 #| exercise: cor_result
-cor_result <- 
+cor_result <-
 
 ```
 
@@ -276,13 +600,7 @@ cor_result <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Use `cor.test()` on two numeric vectors from the same data frame.
-
-Example:
-
-``` r
-cor.test(mtcars$mpg, mtcars$wt)
-```
+Same two vectors you gave `cor()`. The output has the shape of a `t.test()` result: a statistic, df, a p-value, a confidence interval, and the estimate.
 :::
 ::::
 
@@ -295,7 +613,7 @@ cor_result <- cor.test(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
 cor_result
 ```
 
-r ≈ 0.47, p ≪ 0.001 — moderate positive association, statistically significant.
+*r* = 0.47, t = 6.47, df = 149, p = 1.3 × 10⁻⁹, 95% CI 0.33 to 0.58. The interval does not include 0.
 :::
 ::::
 
@@ -303,28 +621,120 @@ r ≈ 0.47, p ≪ 0.001 — moderate positive association, statistically signifi
 #| envir: regression_lab
 #| exercise: cor_result
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("cor_result", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `cor_result`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `cor.test()` takes two vectors separated by a comma.")
+} else if (!exists("cor_result", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `cor_result` with `<-`, then print it.")
 } else {
   cr <- get("cor_result", envir = .envir_result)
-  r <- if (!is.null(cr$estimate)) cr$estimate else NA
-  if (!is.na(r) && abs(r - 0.468) < 0.05 && !is.null(cr$p.value) && cr$p.value < 0.001) {
-    list(correct = TRUE, type = "success", message = paste0("r ≈ ", round(r, 2), ", p ≪ 0.05 — significant moderate correlation."))
+  if (is.numeric(cr) && length(cr) == 1) {
+    list(correct = FALSE, type = "info",
+         message = "That is `cor()`, a single number. `cor.test()` adds the p-value and confidence interval.")
+  } else if (!inherits(cr, "htest") || is.null(cr$estimate)) {
+    list(correct = FALSE, type = "info",
+         message = "`cor_result` should be the output of `cor.test()`.")
+  } else if (abs(unname(cr$estimate) - 0.4682) < 0.002) {
+    list(correct = TRUE, type = "success",
+         message = "r = 0.47, p = 1.3e-9, 95% CI 0.33 to 0.58. The interval excludes zero.")
   } else {
-    list(correct = FALSE, type = "info", message = "Run `cor.test(flipper_length_mm, body_mass_g)` on `penguin_data`.")
+    list(correct = FALSE, type = "warning",
+         message = paste0("A correlation test, but r = ", round(unname(cr$estimate), 3), ". Use flipper length and body mass from `penguin_data`."))
   }
 }
 ```
 
-## 5. Fit linear model
+### 8. Make the call
 
-Fit `lm(body_mass_g ~ flipper_length_mm, data = penguin_data)`. Save as `lm_model` and print `summary(lm_model)`.
+Are flipper length and body mass associated in Adelie penguins at α = 0.05? Assign `flipper_mass_associated` to `TRUE` or `FALSE`.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: assoc_call
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+cor_result <- cor.test(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: assoc_call
+flipper_mass_associated <-
+```
+
+:::: {.hint exercise="assoc_call"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Compare `cor_result$p.value` with 0.05, and check whether `cor_result$conf.int` contains 0.
+:::
+::::
+
+:::: {.solution exercise="assoc_call"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+flipper_mass_associated <- TRUE
+```
+
+p is far below 0.05 and the CI for *r* excludes 0. Reject H₀: a moderate positive association. Not "flipper length causes body mass"; nothing was manipulated.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: assoc_call
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("flipper_mass_associated", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign `flipper_mass_associated <- TRUE` or `FALSE`.")
+} else {
+  ans <- get("flipper_mass_associated", envir = .envir_result)
+  if (!is.logical(ans) || length(ans) != 1 || is.na(ans)) {
+    list(correct = FALSE, type = "info",
+         message = "`flipper_mass_associated` should be exactly `TRUE` or `FALSE`.")
+  } else if (isTRUE(ans)) {
+    list(correct = TRUE, type = "success",
+         message = "TRUE. r = 0.47 with p = 1.3e-9: a moderate association, well supported by 151 penguins.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = "p = 1.3e-9 is far below 0.05, and the 95% CI (0.33 to 0.58) does not include 0.")
+  }
+}
+```
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+Three studies all report *r* = 0.30. One has n = 8, one n = 30, one n = 300. Which is the strongest evidence that the true correlation is not zero?
+
+**Answer:** n = 300 (p ≈ 10⁻⁷). With n = 8 the same *r* gives p = 0.47; with n = 30, p = 0.11. *r* measures strength in the sample; p measures how surprising that *r* would be if the true value were 0, and that depends on n.
+:::
+
+## Part C: Linear regression
+
+**Research question:** How much heavier is an Adelie penguin per extra millimeter of flipper?
+
+H₀: the true slope is 0. Hₐ: it is not 0. Least-squares regression of body mass on flipper length, α = 0.05.
+
+### 9. Fit the line
+
+Fit `lm()` with `body_mass_g` as the response and `flipper_length_mm` as the explanatory variable. Save the model as `lm_model` and print `summary(lm_model)`.
 
 ```{webr}
 #| envir: regression_lab
 #| exercise: lm_model
-lm_model <- 
+lm_model <-
 
 ```
 
@@ -332,9 +742,7 @@ lm_model <-
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Fit with `lm(response ~ predictor, data = ...)` and inspect with `summary()`.
-
-Example:
+Same formula shape as `aov()`: response, tilde, explanatory variable, `data =`. Response goes on the left.
 
 ``` r
 fit <- lm(mpg ~ wt, data = mtcars)
@@ -352,7 +760,7 @@ lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
 summary(lm_model)
 ```
 
-Slope for flipper length is positive and highly significant.
+Slope 32.8 g per mm, p = 1.3 × 10⁻⁹. Intercept −2536 g. Multiple R-squared 0.219. The slope's p-value is the same as `cor.test()` gave: with one predictor they are the same test.
 :::
 ::::
 
@@ -360,24 +768,193 @@ Slope for flipper length is positive and highly significant.
 #| envir: regression_lab
 #| exercise: lm_model
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("lm_model", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `lm_model`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The formula is `body_mass_g ~ flipper_length_mm`, and the table goes in `data = penguin_data`.")
+} else if (!exists("lm_model", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the model as `lm_model` with `<-`, then print `summary(lm_model)`.")
 } else {
-  lm1 <- get("lm_model", envir = .envir_result)
-  sm <- summary(lm1)
-  pval <- sm$coefficients[2, 4]
-  if (!is.na(pval) && pval < 0.001) {
-    list(correct = TRUE, type = "success", message = "Slope significant — flipper length predicts body mass.")
+  m <- get("lm_model", envir = .envir_result)
+  if (!inherits(m, "lm") || inherits(m, "aov")) {
+    list(correct = FALSE, type = "info",
+         message = "`lm_model` should come from `lm()`.")
   } else {
-    list(correct = FALSE, type = "info", message = "Fit `lm(body_mass_g ~ flipper_length_mm, data = penguin_data)`.")
+    b <- unname(coef(m))
+    if (length(b) == 2 && abs(b[2] - 32.83) < 0.5) {
+      list(correct = TRUE, type = "success",
+           message = "Slope 32.8 g per mm, p = 1.3e-9, R-squared 0.219.")
+    } else if (length(b) == 2 && abs(b[2] - 0.00668) < 0.0005) {
+      list(correct = FALSE, type = "warning",
+           message = "The formula is backwards: this predicts flipper length from body mass. Put `body_mass_g` on the left of the `~`.")
+    } else {
+      list(correct = FALSE, type = "warning",
+           message = paste0("A linear model, but the slope is ", signif(b[2], 3), ". Fit `body_mass_g ~ flipper_length_mm` with `data = penguin_data`."))
+    }
   }
 }
 ```
 
-## 6. Residuals vs fitted
+::: {.callout-note collapse="true"}
+## Check yourself
 
-Use `plot(lm_model, which = 1)` to display the residuals-versus-fitted plot.
+1.  The slope is 32.8. What does it mean?
+2.  The intercept is −2536 g. What should you make of it?
+
+**Answers:** (1) Each extra millimeter of flipper goes with about 33 g more body mass, on average. Not "mass equals 33 times flipper length", and not "flipper length explains 33% of mass". (2) It is the predicted mass of a penguin with a 0 mm flipper. Flippers in this sample run from 172 to 210 mm, so X = 0 is far outside the data and the intercept has no biological meaning. It is just where the line crosses the axis. The model is still fine.
+:::
+
+### 10. R² by hand
+
+R² is the fraction of the scatter in Y that the line accounts for. Compute the sum of squared distances from each body mass to the **mean** body mass and save it as `ss_mean`. Compute the sum of squared **residuals** and save it as `ss_line`. Then compute `r_squared_by_hand` as 1 − `ss_line` / `ss_mean`. Print all three.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: r_squared_by_hand
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: r_squared_by_hand
+ss_mean <-
+ss_line <-
+r_squared_by_hand <-
+
+```
+
+:::: {.hint exercise="r_squared_by_hand"}
+::: {.callout-note collapse="false"}
+## Hint
+
+A sum of squares is `sum((values)^2)`. For `ss_mean` the values are `body_mass_g - mean(body_mass_g)`. For `ss_line` they are `residuals(lm_model)`, which are already observed minus predicted.
+:::
+::::
+
+:::: {.solution exercise="r_squared_by_hand"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+ss_mean <- sum((penguin_data$body_mass_g - mean(penguin_data$body_mass_g))^2)
+ss_line <- sum(residuals(lm_model)^2)
+r_squared_by_hand <- 1 - ss_line / ss_mean
+ss_mean
+ss_line
+r_squared_by_hand
+```
+
+Scatter around the mean is 31.5 million g²; around the line it is 24.6 million. The line removed 22% of the scatter, so R² = 0.219. And 0.468² = 0.219: with one predictor, R² is *r* squared.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: r_squared_by_hand
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+need <- c("ss_mean", "ss_line", "r_squared_by_hand")
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Square the vector inside `sum()`: `sum((...)^2)`.")
+} else if (!all(vapply(need, exists, logical(1), envir = .envir_result, inherits = FALSE))) {
+  list(correct = FALSE, type = "info",
+       message = "Create all three: `ss_mean`, `ss_line`, and `r_squared_by_hand`.")
+} else {
+  sm <- get("ss_mean", envir = .envir_result)
+  sl <- get("ss_line", envir = .envir_result)
+  r2 <- get("r_squared_by_hand", envir = .envir_result)
+  ok <- function(v) is.numeric(v) && length(v) == 1 && !is.na(v)
+  if (!ok(sm) || !ok(sl) || !ok(r2)) {
+    list(correct = FALSE, type = "info",
+         message = "All three objects should be single numbers.")
+  } else if (abs(sm - 31542434) > 1000) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`ss_mean` = ", signif(sm, 4), ". It should be `sum((body_mass_g - mean(body_mass_g))^2)`, about 31.5 million."))
+  } else if (abs(sl - 24627928) > 1000) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`ss_line` = ", signif(sl, 4), ". It should be `sum(residuals(lm_model)^2)`, about 24.6 million."))
+  } else if (abs(r2 - 0.2192) > 0.001) {
+    list(correct = FALSE, type = "warning",
+         message = "Both sums of squares are right. `r_squared_by_hand` should be `1 - ss_line / ss_mean`.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "R-squared = 0.219 by hand: the line removes 22% of the scatter around the mean.")
+  }
+}
+```
+
+### 11. R² from the summary
+
+Pull R² out of `summary(lm_model)` and save it as `lm_r_squared`. Print it, then confirm it equals `r_cor^2`.
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_r_squared
+lm_r_squared <-
+
+```
+
+:::: {.hint exercise="lm_r_squared"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`summary(lm_model)` is a list; `$r.squared` is one of its pieces.
+:::
+::::
+
+:::: {.solution exercise="lm_r_squared"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+lm_r_squared <- summary(lm_model)$r.squared
+lm_r_squared
+r_cor^2
+```
+
+0.219 both ways. Flipper length accounts for about a fifth of the variation in Adelie body mass. The other four fifths is everything else: sex, year, condition, measurement error.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_r_squared
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The piece is spelled `r.squared`, with a dot.")
+} else if (!exists("lm_r_squared", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the value as `lm_r_squared` with `<-`, then print it.")
+} else {
+  r2 <- get("lm_r_squared", envir = .envir_result)
+  if (!is.numeric(r2) || length(r2) != 1 || is.na(r2)) {
+    list(correct = FALSE, type = "info",
+         message = "`lm_r_squared` should be a single number: `summary(lm_model)$r.squared`.")
+  } else if (abs(r2 - 0.2192) < 0.001) {
+    list(correct = TRUE, type = "success",
+         message = "R-squared = 0.219, the same as r squared.")
+  } else if (abs(r2 - 0.214) < 0.001) {
+    list(correct = FALSE, type = "info",
+         message = "That is the adjusted R-squared. Use `$r.squared`, which Coding Assignment 4 asks for.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`lm_r_squared` = ", signif(r2, 3), ". Use `summary(lm_model)$r.squared`."))
+  }
+}
+```
+
+### 12. Residuals vs fitted
+
+Assumptions are checked on the residuals, after the fit. Run the block: `plot(lm_model, which = 1)` draws each residual against its fitted value.
 
 ```{webr}
 #| envir: regression_lab
@@ -389,16 +966,7 @@ plot(lm_model, which = 1)
 ::: {.callout-note collapse="false"}
 ## Hint
 
-After fitting a linear model, use `plot(model, which = 1)` to check residual spread.
-
-Example:
-
-``` r
-fit <- lm(mpg ~ wt, data = mtcars)
-plot(fit, which = 1)
-```
-
-Look for residuals scattered roughly evenly around zero with no obvious curve.
+You are looking for two things: no curve (linearity) and no fan (equal spread). A shapeless cloud around the dashed zero line is what you want.
 :::
 ::::
 
@@ -406,9 +974,7 @@ Look for residuals scattered roughly evenly around zero with no obvious curve.
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-``` r
-plot(lm_model, which = 1)
-```
+A shapeless cloud. The red trend line wobbles but does not curve, and the spread is about the same at small and large fitted values. Linearity and equal spread look fine. R labels the three largest residuals by row number; that is information, not an instruction to delete them.
 :::
 ::::
 
@@ -416,269 +982,531 @@ plot(lm_model, which = 1)
 #| envir: regression_lab
 #| exercise: plot_residuals
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("plot\\s*\\(\\s*lm_model", code) && grepl("which\\s*=\\s*1", code)) {
-  list(correct = TRUE, type = "success", message = "Residuals vs fitted — check linearity and homoscedasticity.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Fit `lm_model` in step 9 first, then run this block as written.")
 } else {
-  list(correct = FALSE, type = "info", message = "Run `plot(lm_model, which = 1)`.")
+  list(correct = TRUE, type = "success",
+       message = "Residuals vs fitted drawn. No curve, no fan.")
 }
 ```
 
-## 7. Cook's distance
+### 13. Shapiro-Wilk on the residuals
 
-Load `broom` and `ggrepel`, then build the Cook's distance plot from lecture A010. Flag cases above `4 / nobs(lm_model)`.
+Run `shapiro.test()` on `residuals(lm_model)`. Save it as `shapiro_resid` and print it.
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: cooks_distance
-library(broom)
-library(ggrepel)
+#| exercise: shapiro_resid
+shapiro_resid <-
 
-aug <- augment(lm_model) |>
-  mutate(case = row_number())
-
-cook_cut <- 4 / nobs(lm_model)
-influential <- aug |>
-  filter(.cooksd > cook_cut)
-
-p_cooks <- aug |>
-  ggplot(aes(case, .cooksd)) +
-  geom_segment(aes(xend = case, yend = 0)) +
-  geom_hline(yintercept = cook_cut, linetype = "dashed") +
-  geom_point() +
-  theme_minimal() +
-  geom_point(data = influential, color = "red") +
-  geom_text_repel(data = influential, aes(label = case), size = 3) +
-  labs(
-    title = "Cook's Distance by Case",
-    x = "Case index",
-    y = "Cook's distance"
-  )
-p_cooks
 ```
 
-:::: {.hint exercise="cooks_distance"}
+:::: {.hint exercise="shapiro_resid"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Layers to add after `ggplot(aes(case, .cooksd))`:
-
-- `geom_segment()` from each point down to zero
-- `geom_hline()` at `cook_cut` (dashed)
-- `geom_point()` for all cases
-- red `geom_point()` for rows in `influential`
-- `geom_text_repel()` to label influential case numbers
-- `labs()` for title and axis names
-
-Example segment plot on a small made-up table:
-
-``` r
-tibble(case = 1:5, value = c(0.01, 0.02, 0.15, 0.01, 0.03)) |>
-  ggplot(aes(case, value)) +
-  geom_segment(aes(xend = case, yend = 0)) +
-  geom_point()
-```
+Same call as Coding 9, step 8, with the regression model in place of the ANOVA model. Not on `body_mass_g`, not on `flipper_length_mm`.
 :::
 ::::
 
-:::: {.solution exercise="cooks_distance"}
+:::: {.solution exercise="shapiro_resid"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-library(broom)
-library(ggrepel)
-
-aug <- augment(lm_model) |>
-  mutate(case = row_number())
-
-cook_cut <- 4 / nobs(lm_model)
-influential <- aug |>
-  filter(.cooksd > cook_cut)
-
-p_cooks <- aug |>
-  ggplot(aes(case, .cooksd)) +
-  geom_segment(aes(xend = case, yend = 0)) +
-  geom_hline(yintercept = cook_cut, linetype = "dashed") +
-  geom_point() +
-  theme_minimal() +
-  geom_point(data = influential, color = "red") +
-  geom_text_repel(data = influential, aes(label = case), size = 3) +
-  labs(
-    title = "Cook's Distance by Case",
-    x = "Case index",
-    y = "Cook's distance"
-  )
-p_cooks
+shapiro_resid <- shapiro.test(residuals(lm_model))
+shapiro_resid
 ```
 
-Six cases exceed the cutoff — they pull the line more than typical points. **Flagging ≠ deleting** unless you have a biological reason.
+W = 0.988, p = 0.23. No evidence against normal residuals.
 :::
 ::::
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: cooks_distance
+#| exercise: shapiro_resid
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("p_cooks", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save the plot as `p_cooks`.")
-} else if (!exists("cook_cut", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "info", message = "Compute `cook_cut <- 4 / nobs(lm_model)`.")
-} else if (!grepl("geom_text_repel|geom_hline", code)) {
-  list(correct = FALSE, type = "info", message = "Add the dashed cutoff line and label influential points with `geom_text_repel()`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. Pass one vector: `residuals(lm_model)`.")
+} else if (!exists("shapiro_resid", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the result as `shapiro_resid` with `<-`, then print it.")
+} else {
+  sr <- get("shapiro_resid", envir = .envir_result)
+  if (!inherits(sr, "htest") || is.null(sr$p.value)) {
+    list(correct = FALSE, type = "info",
+         message = "`shapiro_resid` should be the output of `shapiro.test()`.")
+  } else if (abs(sr$p.value - 0.2313) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "p = 0.23. Residuals look normal. All four assumptions hold.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A Shapiro result, but p = ", signif(sr$p.value, 3), ". Test the residuals of `lm_model`, not a raw column."))
+  }
+}
+```
+
+### 14. Make the call
+
+Two logicals. `assumptions_ok`: do the residual plot and Shapiro test support the model? `slope_significant`: is the slope different from 0 at α = 0.05?
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: lm_call
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+shapiro_resid <- shapiro.test(residuals(lm_model))
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_call
+assumptions_ok <-
+slope_significant <-
+```
+
+:::: {.hint exercise="lm_call"}
+::: {.callout-note collapse="false"}
+## Hint
+
+The slope's p-value is in the `flipper_length_mm` row of `summary(lm_model)`, under `Pr(>|t|)`.
+:::
+::::
+
+:::: {.solution exercise="lm_call"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+assumptions_ok <- TRUE
+slope_significant <- TRUE
+```
+
+Shapeless residual plot, Shapiro p = 0.23, slope p = 1.3 × 10⁻⁹. Each extra millimeter of flipper goes with 33 g more body mass, and flipper length accounts for 22% of the variation in mass. Significant and modest at the same time.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_call
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("assumptions_ok", envir = .envir_result, inherits = FALSE) ||
+           !exists("slope_significant", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign both `assumptions_ok` and `slope_significant` to `TRUE` or `FALSE`.")
+} else {
+  a <- get("assumptions_ok", envir = .envir_result)
+  s <- get("slope_significant", envir = .envir_result)
+  ok <- function(x) is.logical(x) && length(x) == 1 && !is.na(x)
+  if (!ok(a) || !ok(s)) {
+    list(correct = FALSE, type = "info",
+         message = "Both objects should be exactly `TRUE` or `FALSE`.")
+  } else if (!isTRUE(a)) {
+    list(correct = FALSE, type = "warning",
+         message = "The residual plot showed no curve or fan, and Shapiro gave p = 0.23. The assumptions hold.")
+  } else if (!isTRUE(s)) {
+    list(correct = FALSE, type = "warning",
+         message = "The slope's p-value is 1.3e-9, far below 0.05.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "Both TRUE. A valid model with a significant slope and a modest R-squared.")
+  }
+}
+```
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+Study 1: R² = 0.02, p < 0.001, n = 3000. Study 2: R² = 0.85, p = 0.08, n = 5. Which statement is best?
+
+A.  Study 1 found the stronger relationship\
+B.  Study 2 found the stronger relationship\
+C.  Study 2 found a significant relationship\
+D.  Neither study found a relationship
+
+**Answer:** B. R² is strength; p is evidence. Study 2's relationship is far stronger, but five points are not enough to rule out chance. Study 1's is certain to exist and almost too small to matter. Report both numbers, always.
+:::
+
+## Part D: One point can rotate the line
+
+Cook's distance measures how much the fitted line would move if one observation were removed. Thirty points below follow a clean line. A thirty-first sits at X = 22, far past the others, with nothing between X = 10 and X = 20.
+
+### 15. Fit with the far-out point
+
+Run the block to build `lev_plus` and draw it. Then fit `lm(y ~ x, data = lev_plus)`, save it as `lm_lev`, and print `coef(lm_lev)`.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: lm_lev
+library(tidyverse)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_lev
+lev_plus <- data.frame(
+  x = c(1.98, 9.32, 9.54, 7.13, 7.78, 4.43, 8.92, 9.8, 5.27, 3.56,
+        9.81, 9.81, 3.88, 7.37, 0.05, 1.27, 3.15, 7.63, 3.48, 9.81,
+        8.51, 2.23, 4.4, 8.05, 7.74, 2.72, 9.74, 4.53, 1.9, 4.66, 22),
+  y = c(1.38, 12.44, 11.32, 8.48, 6.84, 4.43, 7.61, 9.67, 5.67, 5.06,
+        7.13, 11.07, 4.78, 8.61, 1.18, 1.47, 3.51, 7.96, 3.53, 10.44,
+        9.89, 4.94, 5.62, 9.68, 7.81, 4.12, 9.39, 4.74, 4.71, 5.04, 4))
+ggplot(lev_plus, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+lm_lev <-
+
+```
+
+:::: {.hint exercise="lm_lev"}
+::: {.callout-note collapse="false"}
+## Hint
+
+Same `lm()` call as step 9 with the new column names and table. `coef()` prints just the intercept and slope.
+:::
+::::
+
+:::: {.solution exercise="lm_lev"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+lm_lev <- lm(y ~ x, data = lev_plus)
+coef(lm_lev)
+```
+
+Slope 0.40. Look at the plot: the line is pulled down toward the lone point at (22, 4) and no longer runs through the cloud of 30.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: lm_lev
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message, then fit `lm(y ~ x, data = lev_plus)`.")
+} else if (!exists("lm_lev", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the model as `lm_lev` with `<-`, then print `coef(lm_lev)`.")
+} else {
+  m <- get("lm_lev", envir = .envir_result)
+  if (!inherits(m, "lm")) {
+    list(correct = FALSE, type = "info",
+         message = "`lm_lev` should come from `lm()`.")
+  } else if (abs(unname(coef(m))[2] - 0.404) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "Slope 0.40 with all 31 points. Now find out which point is responsible.")
+  } else {
+    list(correct = FALSE, type = "warning",
+         message = paste0("A linear model, but the slope is ", signif(unname(coef(m))[2], 3), ". Fit `y ~ x` on `lev_plus` as built above."))
+  }
+}
+```
+
+### 16. Cook's distance
+
+Run `plot(lm_lev, which = 4)`. Then compute the rule-of-thumb cutoff `cook_cut` as 4 divided by the number of rows, and `max_cook` as the largest value of `cooks.distance(lm_lev)`. Print both.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: cooks
+library(tidyverse)
+lev_plus <- data.frame(
+  x = c(1.98, 9.32, 9.54, 7.13, 7.78, 4.43, 8.92, 9.8, 5.27, 3.56,
+        9.81, 9.81, 3.88, 7.37, 0.05, 1.27, 3.15, 7.63, 3.48, 9.81,
+        8.51, 2.23, 4.4, 8.05, 7.74, 2.72, 9.74, 4.53, 1.9, 4.66, 22),
+  y = c(1.38, 12.44, 11.32, 8.48, 6.84, 4.43, 7.61, 9.67, 5.67, 5.06,
+        7.13, 11.07, 4.78, 8.61, 1.18, 1.47, 3.51, 7.96, 3.53, 10.44,
+        9.89, 4.94, 5.62, 9.68, 7.81, 4.12, 9.39, 4.74, 4.71, 5.04, 4))
+lm_lev <- lm(y ~ x, data = lev_plus)
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cooks
+plot(lm_lev, which = 4)
+cook_cut <-
+max_cook <-
+
+```
+
+:::: {.hint exercise="cooks"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`nrow(lev_plus)` is the number of observations. `cooks.distance()` returns one number per row; `max()` picks the largest.
+:::
+::::
+
+:::: {.solution exercise="cooks"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+plot(lm_lev, which = 4)
+cook_cut <- 4 / nrow(lev_plus)
+max_cook <- max(cooks.distance(lm_lev))
+cook_cut
+max_cook
+```
+
+One bar per observation; R labels the three largest. Observation 31 has Cook's distance 11, about 85 times the 4/n cutoff of 0.13. Every other bar is below the cutoff. One point is doing all the work.
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: cooks
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. `cooks.distance()` takes the model `lm_lev`; `nrow()` takes the table `lev_plus`.")
+} else if (!exists("cook_cut", envir = .envir_result, inherits = FALSE) ||
+           !exists("max_cook", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Create both `cook_cut` and `max_cook`.")
 } else {
   cc <- get("cook_cut", envir = .envir_result)
-  n_inf <- if (exists("influential", envir = .envir_result, inherits = FALSE)) {
-    nrow(get("influential", envir = .envir_result))
-  } else NA
-  if (abs(cc - 4/151) < 0.001 && !is.na(n_inf) && n_inf >= 5) {
-    list(correct = TRUE, type = "success", message = paste0(n_inf, " influential cases above 4/n — flagged, not removed."))
+  mc <- get("max_cook", envir = .envir_result)
+  ok <- function(v) is.numeric(v) && length(v) == 1 && !is.na(v)
+  if (!ok(cc) || !ok(mc)) {
+    list(correct = FALSE, type = "info",
+         message = "Both objects should be single numbers.")
+  } else if (abs(cc - 4 / 31) > 0.002) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`cook_cut` = ", signif(cc, 3), ". It should be `4 / nrow(lev_plus)`, which is 4 / 31."))
+  } else if (abs(mc - 11.0) > 0.2) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`max_cook` = ", signif(mc, 3), ". Use `max(cooks.distance(lm_lev))`; it should be about 11."))
   } else {
-    list(correct = TRUE, type = "success", message = "Cook's distance plot complete — check cases above the dashed line.")
+    list(correct = TRUE, type = "success",
+         message = "Cutoff 0.13, largest Cook's distance 11. Observation 31 moves the fit; nothing else comes close.")
   }
 }
 ```
 
-::: {.callout-note appearance="simple"}
-## Outliers vs influence
+### 17. Refit without it
 
-A point can be an outlier in Y without strongly influencing the slope. Cook's distance combines **leverage** and **residual size**. The 4/n cutoff is a **screening rule** — investigate flagged cases, but do not winsorize or trim without justification.
-:::
-
-## 8. R-squared
-
-Extract R² from `summary(lm_model)`. Save as `lm_r_squared` and print it.
+Keep the rows of `lev_plus` with `x < 20` and save them as `lev_without`. Fit the same model on that table as `lm_without` and print `coef(lm_without)` next to `coef(lm_lev)`.
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: lm_r_squared
-lm_r_squared <- 
+#| exercise: refit
+lev_without <- lev_plus |>
+
+lm_without <-
 
 ```
 
-:::: {.hint exercise="lm_r_squared"}
+:::: {.hint exercise="refit"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Extract R² from the model summary object with `$r.squared`.
-
-Example:
-
-``` r
-summary(lm(mpg ~ wt, data = mtcars))$r.squared
-```
+`filter(x < 20)` keeps the 30 ordinary points. Then `lm(y ~ x, data = lev_without)`.
 :::
 ::::
 
-:::: {.solution exercise="lm_r_squared"}
+:::: {.solution exercise="refit"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-lm_r_squared <- summary(lm_model)$r.squared
-lm_r_squared
+lev_without <- lev_plus |>
+  filter(x < 20)
+lm_without <- lm(y ~ x, data = lev_without)
+coef(lm_lev)
+coef(lm_without)
 ```
 
-R² ≈ 0.22 — flipper length explains about 22% of body-mass variation among Adelie penguins. r ≈ 0.47, so r² ≈ 0.22 — same information, different scale.
+Slope 0.40 with the point, 0.92 without it. R² goes from 0.31 to 0.85. One observation out of 31 more than doubled the slope.
 :::
 ::::
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: lm_r_squared
+#| exercise: refit
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (!exists("lm_r_squared", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "warning", message = "Save as `lm_r_squared`.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The condition inside `filter()` is `x < 20`.")
+} else if (!exists("lev_without", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Save the filtered table as `lev_without` with `<-`.")
+} else if (!exists("lm_without", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Fit `lm(y ~ x, data = lev_without)` and save it as `lm_without`.")
 } else {
-  r2 <- get("lm_r_squared", envir = .envir_result)
-  if (is.numeric(r2) && r2 > 0.18 && r2 < 0.26) {
-    list(correct = TRUE, type = "success", message = paste0("R² = ", round(r2, 3), " — moderate explanatory power within Adelie only."))
+  lw <- get("lev_without", envir = .envir_result)
+  m <- get("lm_without", envir = .envir_result)
+  if (!is.data.frame(lw) || nrow(lw) != 30) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`lev_without` has ", if (is.data.frame(lw)) nrow(lw) else "?", " rows. Keep the 30 points with `x < 20`."))
+  } else if (!inherits(m, "lm")) {
+    list(correct = FALSE, type = "info",
+         message = "`lm_without` should come from `lm()`.")
+  } else if (abs(unname(coef(m))[2] - 0.916) < 0.01) {
+    list(correct = TRUE, type = "success",
+         message = "Slope 0.92 without the point, 0.40 with it. That is what 'influential' means.")
   } else {
-    list(correct = FALSE, type = "info", message = "Use `summary(lm_model)$r.squared`.")
+    list(correct = FALSE, type = "warning",
+         message = paste0("Slope ", signif(unname(coef(m))[2], 3), ". Fit `y ~ x` on `lev_without`."))
   }
 }
 ```
 
-## 9. Interpret the model
+### 18. Make the call
 
-Assign `slope_significant <- TRUE` and `keep_influential_points <- TRUE` (flag but do not delete influential cases without cause).
+The far-out point is not impossible and there is no reason to think it is a data-entry error. Should you delete it? Assign `delete_the_point` to `TRUE` or `FALSE`.
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: interpret_lm
-slope_significant <- 
-keep_influential_points <- 
+#| exercise: delete_call
+delete_the_point <-
 ```
 
-:::: {.hint exercise="interpret_lm"}
+:::: {.hint exercise="delete_call"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Read `summary(lm_model)` for the slope p-value. Inspect `p_cooks` — are there influential points worth flagging? Assign `TRUE` or `FALSE` for each variable.
+Same questions as patient 9 in Coding 8. Impossible? Entry error? If neither, what do you do instead of deleting?
 :::
 ::::
 
-:::: {.solution exercise="interpret_lm"}
+:::: {.solution exercise="delete_call"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
 ``` r
-slope_significant <- TRUE
-keep_influential_points <- TRUE
+delete_the_point <- FALSE
 ```
 
-Residual plot looks reasonable; slope p ≪ 0.001; r and R² tell a consistent moderate-positive story.
+Cook's distance flags influence, not error. Keep the point, report the fit with it and without it, and say that the slope depends on one observation with no data between X = 10 and 20. Dropping it because it moves the line is choosing the answer you wanted.
 :::
 ::::
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: interpret_lm
+#| exercise: delete_call
 #| check: true
-code <- paste(.user_code, collapse = "\n")
-if (grepl("slope_significant\\s*<-\\s*TRUE", code) && grepl("keep_influential_points\\s*<-\\s*TRUE", code)) {
-  list(correct = TRUE, type = "success", message = "Correct — significant slope; influential points flagged but kept.")
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. `TRUE` and `FALSE` are written in all caps with no quotes.")
+} else if (!exists("delete_the_point", envir = .envir_result, inherits = FALSE)) {
+  list(correct = FALSE, type = "info",
+       message = "Assign `delete_the_point <- TRUE` or `FALSE`.")
 } else {
-  list(correct = FALSE, type = "info", message = "Slope was significant; keep influential rows unless biologically unjustified — both `TRUE`.")
+  ans <- get("delete_the_point", envir = .envir_result)
+  if (!is.logical(ans) || length(ans) != 1 || is.na(ans)) {
+    list(correct = FALSE, type = "info",
+         message = "`delete_the_point` should be exactly `TRUE` or `FALSE`.")
+  } else if (isTRUE(ans)) {
+    list(correct = FALSE, type = "warning",
+         message = "Influential is not wrong. Unless a value is impossible or a known entry error, keep it and report both fits.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "FALSE. Keep it, report the fit with and without it, and say which one your conclusion depends on.")
+  }
 }
 ```
 
-## 10. Recap — functions you practiced
+## 19. Recap: functions you practiced
 
 ::: {.callout-note collapse="true"}
 ## What does each function do?
 
 | Function | Role |
-|----------|------|
-| `ggplot()` + `geom_point()` + `geom_smooth(method = "lm")` | Scatter with fitted line |
-| `cor.test(x, y)` | Pearson r and p-value for linear association |
-| `lm(y ~ x, data = ...)` | Fit simple linear regression |
-| `summary(lm_model)` | Coefficients, R², and p-values |
-| `plot(model, which = 1)` | Residuals vs fitted |
-| `augment(model)` | Add residuals, fitted values, Cook's d (.cooksd) |
-| `4 / nobs(model)` | Common Cook's distance cutoff |
-| `geom_text_repel()` | Label influential case indices |
+|---|---|
+| `ggplot()` + `geom_point()` with `color = species` | Plot first; look for groups |
+| `filter()` | One species, no missing values |
+| `geom_smooth(method = "lm")` | Fitted line and its confidence band |
+| `cov(x, y)` | Direction of association; size depends on units |
+| `cor(x, y)` | *r*: covariance over both standard deviations, −1 to 1 |
+| `cor.test(x, y)` | *r* with p-value and CI; H₀: true correlation = 0 |
+| `lm(y ~ x, data = )` | Least-squares line |
+| `summary(lm_model)` | Intercept, slope, p-values, R² |
+| `sum((y - mean(y))^2)` and `sum(residuals(model)^2)` | SS around the mean and around the line |
+| `summary(lm_model)$r.squared` | R² = 1 − SS_line / SS_mean = *r*² |
+| `plot(model, which = 1)` | Residuals vs fitted: linearity and equal spread |
+| `shapiro.test(residuals(model))` | Normality of residuals |
+| `plot(model, which = 4)` and `cooks.distance(model)` | Which observation moves the fit |
+| `4 / nrow(data)` | Rule-of-thumb Cook's distance cutoff |
 
-If you can explain each row, you have covered **Coding Assignment 4, Part D** plus lecture A010 extras.
+If you can explain each row in your own words, you have covered **Coding Assignment 4, Part D** and lecture A012.
 :::
+
+::: {.callout-important appearance="simple"}
+## Three things to say in your write-up
+
+1.  **Slope, p, and R² are three different facts.** "33 g per mm (p = 1.3 × 10⁻⁹, R² = 0.22)" says how much, how sure, and how much is explained. A tiny p with a tiny R² is a real but weak relationship. A big R² with p = 0.08 is a strong pattern you cannot yet trust.
+2.  **Association is not cause.** Nothing was manipulated. Longer flippers go with heavier bodies; neither causes the other.
+3.  **Report influence honestly.** If one point moves the slope, give the fit with it and without it, say where the gap in X is, and let the reader see that the conclusion rests on one observation. Do not delete it to make the line behave.
+:::
+
+## 20. Transfer to Coding Assignment 4
+
+Part D regresses `biomass_g` on `leaf_area_cm2` with `scatter_lm`, `lm_model`, `plot(lm_model, which = 1)`, and `lm_r_squared`, the same four objects you built in steps 4, 9, 12, and 11.
+
+One thing to watch for. The assignment fits the line **across all four nitrogen treatments**. Look at your boxplot from Part A of the assignment: the `high` plants have leaf areas around 34 to 39 cm², and no plant falls between 26 and 34. That is the "two clouds, one line" picture from lecture. Within any single treatment, *r* is modest; pooled across treatments it is large, because the line is partly measuring the nitrogen effect. Say so in your write-up, as you would for the pooled penguins below.
 
 ## Keep playing
 
-Pool all three species and plot body mass vs flipper length colored by species. Why does R² jump when you ignore species?
+**What pooling would have done.** Fit the penguin regression on all three species together.
 
 ```{webr}
 #| envir: regression_lab
 library(tidyverse)
 library(palmerpenguins)
-all_p <- penguins |> filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
-ggplot(all_p, aes(flipper_length_mm, body_mass_g, color = species)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE)
-summary(lm(body_mass_g ~ flipper_length_mm, data = all_p))$r.squared
+all_penguins <- penguins |> filter(!is.na(body_mass_g), !is.na(flipper_length_mm))
+summary(lm(body_mass_g ~ flipper_length_mm, data = all_penguins))$r.squared
 ```
 
 ::: {.callout-tip appearance="simple"}
-R² ≈ 0.76 pooled vs ≈ 0.22 within Adelie — much of the "prediction" was really **species clustering**, not flipper length alone. That is why we regressed within one species.
+R² = 0.76 pooled, 0.22 within Adelie. Most of the pooled "prediction" is the species gap you saw in step 2. Same flowers, different *r*, as on the sepal slide.
+:::
+
+**Pooling can flip the sign.** Within Adelie, bill length and bill depth are positively correlated. Across all three species, the correlation is negative.
+
+```{webr}
+#| envir: regression_lab
+library(tidyverse)
+library(palmerpenguins)
+adelie <- penguins |> filter(species == "Adelie")
+cor(adelie$bill_length_mm, adelie$bill_depth_mm, use = "complete.obs")
+cor(penguins$bill_length_mm, penguins$bill_depth_mm, use = "complete.obs")
+```
+
+::: {.callout-tip appearance="simple"}
+*r* = +0.39 within Adelie, −0.24 pooled. Gentoo have long, shallow bills, which drags the pooled line the other way. Plot first, look for groups.
+:::
+
+**Which analysis?** Match each design to a test.
+
+::: {.callout-note collapse="true"}
+## Check yourself
+
+1.  Exam 1 and exam 2 scores for every student: are the two related?
+2.  1000 adults: does blood pressure predict blood glucose?
+3.  30 mice assigned to five caffeine doses; heart rate measured.
+4.  60 bacterial colonies: diameter measured, each scored resistant or not. Does resistance relate to size?
+
+**Answers:** (1) correlation; neither exam explains the other. (2) regression; one variable is named as the predictor. (3) regression; dose was set by the experimenter, so it is the explanatory variable, and the five doses are numbers on a scale, not just labels. (4) Welch *t*-test; one continuous variable (diameter) compared between two groups (resistant or not).
 :::
