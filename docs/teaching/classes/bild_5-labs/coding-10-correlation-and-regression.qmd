@@ -1141,22 +1141,22 @@ D.  Neither study found a relationship
 
 ## Part D: One point can rotate the line
 
-Cook's distance measures how much the fitted line would move if one observation were removed. Thirty points below follow a clean line. A thirty-first sits at X = 22, far past the others, with nothing between X = 10 and X = 20.
+A regression line is pulled toward every point, but not equally. A point far out along X has extra leverage: it can rotate the whole line. You will see one, measure how much it moves the slope, and decide what to do about it.
 
-### 15. Fit with the far-out point
+### 15. Look for a far-out point
 
-Run the block to build `lev_plus` and draw it. Then fit `lm(y ~ x, data = lev_plus)`, save it as `lm_lev`, and print `coef(lm_lev)`.
+The block below builds a small dataset, `lev_plus`, and draws it with the fitted line. Nothing to write; run it and look. Is there a point that sits apart from the rest?
 
 ```{webr}
 #| envir: regression_lab
 #| setup: true
-#| exercise: lm_lev
+#| exercise: look_lev
 library(tidyverse)
 ```
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: lm_lev
+#| exercise: look_lev
 lev_plus <- data.frame(
   x = c(1.98, 9.32, 9.54, 7.13, 7.78, 4.43, 8.92, 9.8, 5.27, 3.56,
         9.81, 9.81, 3.88, 7.37, 0.05, 1.27, 3.15, 7.63, 3.48, 9.81,
@@ -1167,60 +1167,163 @@ lev_plus <- data.frame(
 ggplot(lev_plus, aes(x = x, y = y)) +
   geom_point() +
   geom_smooth(method = "lm")
-lm_lev <-
-
 ```
 
-:::: {.hint exercise="lm_lev"}
+:::: {.hint exercise="look_lev"}
 ::: {.callout-note collapse="false"}
 ## Hint
 
-Same `lm()` call as step 9 with the new column names and table. `coef()` prints just the intercept and slope.
+Thirty points run from X = 0 to 10. Where is the thirty-first?
 :::
 ::::
 
-:::: {.solution exercise="lm_lev"}
+:::: {.solution exercise="look_lev"}
 ::: {.callout-tip collapse="false"}
 ## Solution
 
-``` r
-lm_lev <- lm(y ~ x, data = lev_plus)
-coef(lm_lev)
-```
-
-Slope 0.40. Look at the plot: the line is pulled down toward the lone point at (22, 4) and no longer runs through the cloud of 30.
+One point sits at X = 22, Y = 4, far to the right of the others, with nothing between X = 10 and X = 20. The fitted line tilts down toward it and no longer runs through the cloud of 30. Flagging it on the plot is the first step. Next, measure what it does.
 :::
 ::::
 
 ```{webr}
 #| envir: regression_lab
-#| exercise: lm_lev
+#| exercise: look_lev
 #| check: true
 had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
 if (had_error) {
   list(correct = FALSE, type = "info",
-       message = "R stopped. Read the last line of the message, then fit `lm(y ~ x, data = lev_plus)`.")
-} else if (!exists("lm_lev", envir = .envir_result, inherits = FALSE)) {
+       message = "R stopped. Read the last line of the message, then restore the block as written.")
+} else if (!exists("lev_plus", envir = .envir_result, inherits = FALSE) ||
+           !is.data.frame(get("lev_plus", envir = .envir_result)) ||
+           nrow(get("lev_plus", envir = .envir_result)) != 31) {
   list(correct = FALSE, type = "info",
-       message = "Save the model as `lm_lev` with `<-`, then print `coef(lm_lev)`.")
+       message = "Run the block so `lev_plus` is created with 31 rows.")
 } else {
-  m <- get("lm_lev", envir = .envir_result)
-  if (!inherits(m, "lm")) {
+  list(correct = TRUE, type = "success",
+       message = "31 points drawn. One of them is far out along X.")
+}
+```
+
+### 16. Fit the line twice
+
+How much does that one point change the slope? Fit the line with all 31 points and save it as `lm_lev`. Then keep only the rows with `x < 20`, save them as `lev_without`, and fit the same model on them as `lm_without`. Pull the slope out of each with `coef()` and save the two slopes as `slope_with` and `slope_without`. Print both slopes.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: fit_twice
+library(tidyverse)
+lev_plus <- data.frame(
+  x = c(1.98, 9.32, 9.54, 7.13, 7.78, 4.43, 8.92, 9.8, 5.27, 3.56,
+        9.81, 9.81, 3.88, 7.37, 0.05, 1.27, 3.15, 7.63, 3.48, 9.81,
+        8.51, 2.23, 4.4, 8.05, 7.74, 2.72, 9.74, 4.53, 1.9, 4.66, 22),
+  y = c(1.38, 12.44, 11.32, 8.48, 6.84, 4.43, 7.61, 9.67, 5.67, 5.06,
+        7.13, 11.07, 4.78, 8.61, 1.18, 1.47, 3.51, 7.96, 3.53, 10.44,
+        9.89, 4.94, 5.62, 9.68, 7.81, 4.12, 9.39, 4.74, 4.71, 5.04, 4))
+```
+
+```{webr}
+#| envir: regression_lab
+#| exercise: fit_twice
+lm_lev <- 
+lev_without <- lev_plus |>
+  
+lm_without <- 
+slope_with <- 
+slope_without <- 
+  
+```
+
+:::: {.hint exercise="fit_twice"}
+::: {.callout-note collapse="false"}
+## Hint
+
+`coef()` returns two numbers, the intercept and the slope. The slope is the second one.
+
+``` r
+fit <- lm(mpg ~ wt, data = mtcars)
+coef(fit)
+coef(fit)[2]
+```
+
+`filter(x < 20)` keeps the 30 ordinary points.
+:::
+::::
+
+:::: {.solution exercise="fit_twice"}
+::: {.callout-tip collapse="false"}
+## Solution
+
+``` r
+lm_lev <- lm(y ~ x, data = lev_plus)
+lev_without <- lev_plus |>
+  filter(x < 20)
+lm_without <- lm(y ~ x, data = lev_without)
+slope_with <- coef(lm_lev)[2]
+slope_without <- coef(lm_without)[2]
+slope_with
+slope_without
+```
+
+Slope 0.40 with the point, 0.92 without it. One observation out of 31 cut the slope by more than half. To see both lines on the same plot, add a second `geom_smooth()` that uses only the 30 ordinary points:
+
+``` r
+ggplot(lev_plus, aes(x = x, y = y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, linetype = "dashed") +
+  geom_smooth(data = lev_without, method = "lm", se = FALSE)
+```
+:::
+::::
+
+```{webr}
+#| envir: regression_lab
+#| exercise: fit_twice
+#| check: true
+had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
+need <- c("lm_lev", "lev_without", "lm_without", "slope_with", "slope_without")
+have <- vapply(need, exists, logical(1), envir = .envir_result, inherits = FALSE)
+if (had_error) {
+  list(correct = FALSE, type = "info",
+       message = "R stopped. Read the last line of the message. The model is `lm(y ~ x, data = ...)`, and the filter condition is `x < 20`.")
+} else if (!all(have)) {
+  list(correct = FALSE, type = "info",
+       message = paste0("Still missing: `", paste(need[!have], collapse = "`, `"), "`."))
+} else {
+  m1 <- get("lm_lev", envir = .envir_result)
+  lw <- get("lev_without", envir = .envir_result)
+  m2 <- get("lm_without", envir = .envir_result)
+  sw <- get("slope_with", envir = .envir_result)
+  so <- get("slope_without", envir = .envir_result)
+  ok <- function(v) is.numeric(v) && length(v) == 1 && !is.na(v)
+  if (!inherits(m1, "lm") || !inherits(m2, "lm")) {
     list(correct = FALSE, type = "info",
-         message = "`lm_lev` should come from `lm()`.")
-  } else if (abs(unname(coef(m))[2] - 0.404) < 0.01) {
-    list(correct = TRUE, type = "success",
-         message = "Slope 0.40 with all 31 points. Now find out which point is responsible.")
-  } else {
+         message = "`lm_lev` and `lm_without` should both come from `lm()`.")
+  } else if (!is.data.frame(lw) || nrow(lw) != 30) {
     list(correct = FALSE, type = "warning",
-         message = paste0("A linear model, but the slope is ", signif(unname(coef(m))[2], 3), ". Fit `y ~ x` on `lev_plus` as built above."))
+         message = paste0("`lev_without` has ", if (is.data.frame(lw)) nrow(lw) else "?", " rows. Keep the 30 points with `x < 20`."))
+  } else if (abs(unname(coef(m1))[2] - 0.404) > 0.01) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`lm_lev` has slope ", signif(unname(coef(m1))[2], 3), ". Fit `y ~ x` on all of `lev_plus`."))
+  } else if (abs(unname(coef(m2))[2] - 0.916) > 0.01) {
+    list(correct = FALSE, type = "warning",
+         message = paste0("`lm_without` has slope ", signif(unname(coef(m2))[2], 3), ". Fit `y ~ x` on `lev_without`."))
+  } else if (!ok(sw) || !ok(so)) {
+    list(correct = FALSE, type = "info",
+         message = "`slope_with` and `slope_without` should each be one number: `coef(model)[2]`.")
+  } else if (abs(unname(sw) - 0.404) > 0.01 || abs(unname(so) - 0.916) > 0.01) {
+    list(correct = FALSE, type = "warning",
+         message = "Both models are right, but the saved slopes do not match them. `coef(model)[1]` is the intercept; the slope is `[2]`.")
+  } else {
+    list(correct = TRUE, type = "success",
+         message = "Slope 0.40 with the point, 0.92 without it. One observation more than halved the slope.")
   }
 }
 ```
 
-### 16. Cook's distance
+### 17. Cook's distance
 
-Run `plot(lm_lev, which = 4)`. Then compute the rule-of-thumb cutoff `cook_cut` as 4 divided by the number of rows, and `max_cook` as the largest value of `cooks.distance(lm_lev)`. Print both.
+Cook's distance puts a number on what you just saw: for each observation, how much the fitted line would move if that observation were removed. Run `plot(lm_lev, which = 4)`. Then compute the rule-of-thumb cutoff `cook_cut` as 4 divided by the number of rows, and `max_cook` as the largest value of `cooks.distance(lm_lev)`. Print both.
 
 ```{webr}
 #| envir: regression_lab
@@ -1241,9 +1344,9 @@ lm_lev <- lm(y ~ x, data = lev_plus)
 #| envir: regression_lab
 #| exercise: cooks
 plot(lm_lev, which = 4)
-cook_cut <-
-max_cook <-
-
+cook_cut <- 
+max_cook <- 
+  
 ```
 
 :::: {.hint exercise="cooks"}
@@ -1266,7 +1369,7 @@ cook_cut
 max_cook
 ```
 
-One bar per observation; R labels the three largest. Observation 31 has Cook's distance 11, about 85 times the 4/n cutoff of 0.13. Every other bar is below the cutoff. One point is doing all the work.
+One bar per observation; R labels the three largest. Observation 31 has Cook's distance 11, about 85 times the 4/n cutoff of 0.13. Every other bar is below the cutoff. One point is doing all the work, and this plot finds it even when the scatterplot is too crowded to see it.
 :::
 ::::
 
@@ -1302,76 +1405,6 @@ if (had_error) {
 }
 ```
 
-### 17. Refit without it
-
-Keep the rows of `lev_plus` with `x < 20` and save them as `lev_without`. Fit the same model on that table as `lm_without` and print `coef(lm_without)` next to `coef(lm_lev)`.
-
-```{webr}
-#| envir: regression_lab
-#| exercise: refit
-lev_without <- lev_plus |>
-
-lm_without <-
-
-```
-
-:::: {.hint exercise="refit"}
-::: {.callout-note collapse="false"}
-## Hint
-
-`filter(x < 20)` keeps the 30 ordinary points. Then `lm(y ~ x, data = lev_without)`.
-:::
-::::
-
-:::: {.solution exercise="refit"}
-::: {.callout-tip collapse="false"}
-## Solution
-
-``` r
-lev_without <- lev_plus |>
-  filter(x < 20)
-lm_without <- lm(y ~ x, data = lev_without)
-coef(lm_lev)
-coef(lm_without)
-```
-
-Slope 0.40 with the point, 0.92 without it. R² goes from 0.31 to 0.85. One observation out of 31 more than doubled the slope.
-:::
-::::
-
-```{webr}
-#| envir: regression_lab
-#| exercise: refit
-#| check: true
-had_error <- any(vapply(.evaluate_result, inherits, logical(1), "error"))
-if (had_error) {
-  list(correct = FALSE, type = "info",
-       message = "R stopped. Read the last line of the message. The condition inside `filter()` is `x < 20`.")
-} else if (!exists("lev_without", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "info",
-       message = "Save the filtered table as `lev_without` with `<-`.")
-} else if (!exists("lm_without", envir = .envir_result, inherits = FALSE)) {
-  list(correct = FALSE, type = "info",
-       message = "Fit `lm(y ~ x, data = lev_without)` and save it as `lm_without`.")
-} else {
-  lw <- get("lev_without", envir = .envir_result)
-  m <- get("lm_without", envir = .envir_result)
-  if (!is.data.frame(lw) || nrow(lw) != 30) {
-    list(correct = FALSE, type = "warning",
-         message = paste0("`lev_without` has ", if (is.data.frame(lw)) nrow(lw) else "?", " rows. Keep the 30 points with `x < 20`."))
-  } else if (!inherits(m, "lm")) {
-    list(correct = FALSE, type = "info",
-         message = "`lm_without` should come from `lm()`.")
-  } else if (abs(unname(coef(m))[2] - 0.916) < 0.01) {
-    list(correct = TRUE, type = "success",
-         message = "Slope 0.92 without the point, 0.40 with it. That is what 'influential' means.")
-  } else {
-    list(correct = FALSE, type = "warning",
-         message = paste0("Slope ", signif(unname(coef(m))[2], 3), ". Fit `y ~ x` on `lev_without`."))
-  }
-}
-```
-
 ### 18. Make the call
 
 The far-out point is not impossible and there is no reason to think it is a data-entry error. Should you delete it? Assign `delete_the_point` to `TRUE` or `FALSE`.
@@ -1379,7 +1412,7 @@ The far-out point is not impossible and there is no reason to think it is a data
 ```{webr}
 #| envir: regression_lab
 #| exercise: delete_call
-delete_the_point <-
+delete_the_point <- 
 ```
 
 :::: {.hint exercise="delete_call"}
@@ -1398,7 +1431,7 @@ Same questions as patient 9 in Coding 8. Impossible? Entry error? If neither, wh
 delete_the_point <- FALSE
 ```
 
-Cook's distance flags influence, not error. Keep the point, report the fit with it and without it, and say that the slope depends on one observation with no data between X = 10 and 20. Dropping it because it moves the line is choosing the answer you wanted.
+Cook's distance flags influence, not error. Keep the point, report both slopes (0.40 with it, 0.92 without), and say that the answer depends on one observation with no data between X = 10 and 20. Dropping it because it moves the line is choosing the answer you wanted.
 :::
 ::::
 
@@ -1447,6 +1480,7 @@ if (had_error) {
 | `summary(lm_model)$r.squared` | R² = 1 − SS_line / SS_mean = *r*² |
 | `plot(model, which = 1)` | Residuals vs fitted: linearity and equal spread |
 | `shapiro.test(residuals(model))` | Normality of residuals |
+| `coef(model)[2]` | The slope, to compare fits with and without a point |
 | `plot(model, which = 4)` and `cooks.distance(model)` | Which observation moves the fit |
 | `4 / nrow(data)` | Rule-of-thumb Cook's distance cutoff |
 
