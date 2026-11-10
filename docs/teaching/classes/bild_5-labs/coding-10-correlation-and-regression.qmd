@@ -89,8 +89,8 @@ Lecture A012 used *Iris versicolor*. Here you use Adelie penguins: does flipper 
 ::: {.callout-note collapse="true"}
 ## Correlation or regression? (click to expand)
 
-| | Correlation | Regression |
-|---|---|---|
+|   | Correlation | Regression |
+|------------------------|------------------------|------------------------|
 | Question | Are X and Y linearly associated? | How much does Y change per unit X? |
 | Symmetry | Swap X and Y, same *r* | Y is predicted from X; swapping changes the line |
 | Output | One number, *r*, with a p-value and CI | A line: intercept and slope, each with a p-value |
@@ -105,7 +105,7 @@ Correlation is the right tool when neither variable is the cause, as with two ex
 ## Functions in this activity (click to expand)
 
 | Function | What it does | Example |
-|---|---|---|
+|------------------------|------------------------|------------------------|
 | `cov(x, y)` | Covariance: do X and Y move together? Sign is meaningful, size depends on units | `cov(penguin_data$flipper_length_mm, penguin_data$body_mass_g)` |
 | `cor(x, y)` | Pearson's *r*: covariance divided by both standard deviations, so it runs from −1 to 1 | `cor(x, y)` |
 | `cor.test(x, y)` | *r* with a p-value and 95% CI; H₀ is true correlation = 0 | `cor.test(x, y)` |
@@ -113,10 +113,10 @@ Correlation is the right tool when neither variable is the cause, as with two ex
 | `summary(model)` | Intercept, slope, their p-values, and R² | `summary(lm_model)` |
 | `coef(model)` | Just the intercept and slope | `coef(lm_model)` |
 | `residuals(model)` | Observed minus predicted, one per row | `shapiro.test(residuals(lm_model))` |
-| `plot(model, which = 1)` | Residuals vs fitted: linearity and equal spread | |
-| `plot(model, which = 4)` | Cook's distance per observation: which points move the fit | |
+| `plot(model, which = 1)` | Residuals vs fitted: linearity and equal spread |  |
+| `plot(model, which = 4)` | Cook's distance per observation: which points move the fit |  |
 | `cooks.distance(model)` | The numbers behind that plot | `max(cooks.distance(lm_model))` |
-| `geom_smooth(method = "lm")` | Draws the fitted line and its 95% band on a scatterplot | |
+| `geom_smooth(method = "lm")` | Draws the fitted line and its 95% band on a scatterplot |  |
 
 `cor.test()` returns the same kind of object as `t.test()`, so `$estimate`, `$p.value`, and `$conf.int` work. `summary(lm_model)$r.squared` pulls R² out of a model summary.
 :::
@@ -1129,7 +1129,7 @@ if (had_error) {
 ::: {.callout-note collapse="true"}
 ## Check yourself
 
-Study 1: R² = 0.02, p < 0.001, n = 3000. Study 2: R² = 0.85, p = 0.08, n = 5. Which statement is best?
+Study 1: R² = 0.02, p \< 0.001, n = 3000. Study 2: R² = 0.85, p = 0.08, n = 5. Which statement is best?
 
 A.  Study 1 found the stronger relationship\
 B.  Study 2 found the stronger relationship\
@@ -1467,7 +1467,7 @@ if (had_error) {
 ## What does each function do?
 
 | Function | Role |
-|---|---|
+|------------------------------------|------------------------------------|
 | `ggplot()` + `geom_point()` with `color = species` | Plot first; look for groups |
 | `filter()` | One species, no missing values |
 | `geom_smooth(method = "lm")` | Fitted line and its confidence band |
@@ -1494,12 +1494,6 @@ If you can explain each row in your own words, you have covered **Coding Assignm
 2.  **Association is not cause.** Nothing was manipulated. Longer flippers go with heavier bodies; neither causes the other.
 3.  **Report influence honestly.** If one point moves the slope, give the fit with it and without it, say where the gap in X is, and let the reader see that the conclusion rests on one observation. Do not delete it to make the line behave.
 :::
-
-## 20. Transfer to Coding Assignment 4
-
-Part D regresses `biomass_g` on `leaf_area_cm2` with `scatter_lm`, `lm_model`, `plot(lm_model, which = 1)`, and `lm_r_squared`, the same four objects you built in steps 4, 9, 12, and 11.
-
-One thing to watch for. The assignment fits the line **across all four nitrogen treatments**. Look at your boxplot from Part A of the assignment: the `high` plants have leaf areas around 34 to 39 cm², and no plant falls between 26 and 34. That is the "two clouds, one line" picture from lecture. Within any single treatment, *r* is modest; pooled across treatments it is large, because the line is partly measuring the nitrogen effect. Say so in your write-up, as you would for the pooled penguins below.
 
 ## Keep playing
 
