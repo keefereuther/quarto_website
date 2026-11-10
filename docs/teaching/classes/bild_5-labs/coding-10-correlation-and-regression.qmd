@@ -261,6 +261,14 @@ Keep Adelie penguins with non-missing `body_mass_g` and `flipper_length_mm`. Sav
 
 ```{webr}
 #| envir: regression_lab
+#| setup: true
+#| exercise: penguin_data
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{webr}
+#| envir: regression_lab
 #| exercise: penguin_data
 penguin_data <- penguins |>
 
@@ -441,6 +449,16 @@ Covariance measures whether X and Y move together: each penguin contributes (x �
 
 ```{webr}
 #| envir: regression_lab
+#| setup: true
+#| exercise: covariance
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+```
+
+```{webr}
+#| envir: regression_lab
 #| exercise: covariance
 cov_raw <-
 cov_rescaled <-
@@ -591,6 +609,16 @@ if (had_error) {
 
 ```{webr}
 #| envir: regression_lab
+#| setup: true
+#| exercise: cor_result
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+```
+
+```{webr}
+#| envir: regression_lab
 #| exercise: cor_result
 cor_result <-
 
@@ -730,6 +758,16 @@ H₀: the true slope is 0. Hₐ: it is not 0. Least-squares regression of body m
 ### 9. Fit the line
 
 Fit `lm()` with `body_mass_g` as the response and `flipper_length_mm` as the explanatory variable. Save the model as `lm_model` and print `summary(lm_model)`.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: lm_model
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+```
 
 ```{webr}
 #| envir: regression_lab
@@ -896,6 +934,18 @@ Pull R² out of `summary(lm_model)` and save it as `lm_r_squared`. Print it, the
 
 ```{webr}
 #| envir: regression_lab
+#| setup: true
+#| exercise: lm_r_squared
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+r_cor <- cor(penguin_data$flipper_length_mm, penguin_data$body_mass_g)
+```
+
+```{webr}
+#| envir: regression_lab
 #| exercise: lm_r_squared
 lm_r_squared <-
 
@@ -954,7 +1004,18 @@ if (had_error) {
 
 ### 12. Residuals vs fitted
 
-Assumptions are checked on the residuals, after the fit. Run the block: `plot(lm_model, which = 1)` draws each residual against its fitted value.
+Regression makes four assumptions: a linear relationship, independent observations, normal residuals, and equal spread of residuals along the line. Independence comes from the design (each penguin measured once). The other three are checked on the residuals, after the fit. Run the block: `plot(lm_model, which = 1)` draws each residual against its fitted value.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: plot_residuals
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+```
 
 ```{webr}
 #| envir: regression_lab
@@ -995,6 +1056,17 @@ if (had_error) {
 ### 13. Shapiro-Wilk on the residuals
 
 Run `shapiro.test()` on `residuals(lm_model)`. Save it as `shapiro_resid` and print it.
+
+```{webr}
+#| envir: regression_lab
+#| setup: true
+#| exercise: shapiro_resid
+library(tidyverse)
+library(palmerpenguins)
+penguin_data <- penguins |>
+  filter(species == "Adelie", !is.na(body_mass_g), !is.na(flipper_length_mm))
+lm_model <- lm(body_mass_g ~ flipper_length_mm, data = penguin_data)
+```
 
 ```{webr}
 #| envir: regression_lab
@@ -1042,7 +1114,7 @@ if (had_error) {
          message = "`shapiro_resid` should be the output of `shapiro.test()`.")
   } else if (abs(sr$p.value - 0.2313) < 0.01) {
     list(correct = TRUE, type = "success",
-         message = "p = 0.23. Residuals look normal. All four assumptions hold.")
+         message = "p = 0.23. Residuals look normal. With the plot from step 12, all four assumptions hold.")
   } else {
     list(correct = FALSE, type = "warning",
          message = paste0("A Shapiro result, but p = ", signif(sr$p.value, 3), ". Test the residuals of `lm_model`, not a raw column."))
@@ -1141,7 +1213,7 @@ D.  Neither study found a relationship
 
 ## Part D: One point can rotate the line
 
-A regression line is pulled toward every point, but not equally. A point far out along X has extra leverage: it can rotate the whole line. You will see one, measure how much it moves the slope, and decide what to do about it.
+A regression line is pulled toward every point, but not equally. A point far out along X has extra leverage: it can rotate the whole line. The Adelie data has no such point, so this part uses a small made-up dataset of 31 points, the same demonstration as in lecture A012. You will see the point, measure how much it moves the slope, and decide what to do about it.
 
 ### 15. Look for a far-out point
 
@@ -1508,7 +1580,7 @@ summary(lm(body_mass_g ~ flipper_length_mm, data = all_penguins))$r.squared
 ```
 
 ::: {.callout-tip appearance="simple"}
-R² = 0.76 pooled, 0.22 within Adelie. Most of the pooled "prediction" is the species gap you saw in step 2. Same flowers, different *r*, as on the sepal slide.
+R² = 0.76 pooled, 0.22 within Adelie. Most of the pooled "prediction" is the species gap you saw in step 2. The lecture's iris sepal slide showed the same thing: pool the species and the relationship changes.
 :::
 
 **Pooling can flip the sign.** Within Adelie, bill length and bill depth are positively correlated. Across all three species, the correlation is negative.
