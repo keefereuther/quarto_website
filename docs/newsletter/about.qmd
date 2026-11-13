@@ -1,0 +1,43 @@
+---
+title: "How AI in Education in the News is made"
+author: "Keefe Reuther"
+date-modified: 2026-11-13
+---
+
+## What this is
+
+A weekly digest of reports, research, tool changes, and opportunities related to AI in teaching and learning, chosen with life science educators in mind. It started as a post for the [GenAI SABER SIG](/docs/genai/community/index.qmd) listserv.
+
+I wanted something fitted to that group, and I do not have the hours each week to find and write it all up myself. So the searching and first draft are automated, and I review every issue before it goes out. This page explains exactly what the automation does.
+
+## The workflow
+
+1. **Search.** Once a week an AI assistant (Claude, made by Anthropic) runs a fixed search protocol that I wrote with it. It covers the past 7 days for news and reports, the past 30 days for journal articles, and the past 60 days for preprints from major research groups.
+2. **Verify.** It opens every source and confirms the title, authors, venue, and date from the page itself. Nothing is cited from memory, and anything it could not open directly is flagged for me.
+3. **Select.** It aims for six to eight items, plus opportunities, and does not repeat items from earlier issues.
+4. **Draft.** It writes a two to three sentence summary of each item.
+5. **Review.** The draft comes to me with a list of what was considered and cut. I read it, check the sources, edit, and publish it myself.
+
+## Where it looks
+
+- **Biology education journals:** CBE-Life Sciences Education, Journal of Microbiology and Biology Education, CourseSource, Biochemistry and Molecular Biology Education, Advances in Physiology Education, American Biology Teacher.
+- **Broader journals:** International Journal of STEM Education, Computers & Education, the Nature journals, Science, Science Advances, PNAS, and the PLOS journals.
+- **Reports and policy:** university centers and task forces; EDUCAUSE, AAC&U, Ithaka S+R, Digital Education Council; UNESCO, OECD, Jisc, HEPI, TEQSA; the US Department of Education and NSF; Pew, Gallup, Tyton Partners, RAND.
+- **Tools:** the official education pages of OpenAI, Anthropic, Google, Microsoft, and learning platforms such as Canvas.
+- **Opportunities:** journal calls for papers, society meetings (SABER, ASMCUE, NABT, ABLE, AAAS, EDUCAUSE, AERA, AIED, Learning @ Scale), and funders such as NSF.
+- **News sources:** Nature Briefing, the Science and Nature news desks, the Chronicle, Inside Higher Ed, EdSurge, and Times Higher Education. The newsletter links to the original source where there is one. When a news story is itself the piece worth reading, as with Nature News, it is featured as the item, with the underlying research linked alongside.
+
+## The rules it follows
+
+- **Scope.** AI as it bears directly on teaching, learning, students, and institutional policy. No technical model or agent news without an education link. Academic integrity appears only as policy and frameworks, not cheating stories.
+- **Preprints.** Left out by default. One gets in only if it comes from a major research university or industry lab and is directly relevant to educators. Each is labeled as not peer reviewed, and the summary says so when a company is studying its own product.
+- **K-12 research.** Included when it comes from a major research group or a core journal and bears directly on how AI supports learning. The summary states the population studied.
+- **Product news.** Included only when it changes what a student or instructor can do at an introductory level. Described neutrally, with the same bar for every company, including the one that makes the assistant.
+- **Research summaries.** Each states the study design and sample in a phrase and may note one plain limitation.
+- **Opportunities.** Deadlines are confirmed on the official page. Only recognized societies, publishers, and funders are listed.
+
+## What to keep in mind
+
+- The summaries are AI-drafted. I review them, but read the original before you cite or act on anything.
+- The search is a fixed list, so it will miss things. If you see something worth including, [let me know](/docs/about/contact/index.qmd).
+- Inclusion is not endorsement, of a paper's conclusions or of a product.

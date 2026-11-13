@@ -54,6 +54,8 @@ website:
             text: AI Tools
           - href: docs/genai/community/index.qmd
             text: AI Community
+      - href: docs/newsletter/index.qmd
+        text: Newsletter
       - href: docs/blog/index.qmd
         text: Blog
 

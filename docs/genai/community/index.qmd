@@ -10,13 +10,23 @@ I help build and sustain communities of practice around generative AI in higher 
 
 **A community of biology education researchers focused on generative AI.**
 
-I co-founded the SABER GenAI SIG with Jennifer Vaughn (UC Davis) to build a scholarly home for biology education researchers investigating the role of generative AI in undergraduate biology. The SIG runs a Google Group listserv and monthly Zoom coffee chats where members share work-in-progress, resources, and questions.
+I co-founded the SABER GenAI SIG with [Jennifer Vaughn](https://www.dallascollege.edu/employee-directory/faculty/jvaughn/) (Dallas College) to build a scholarly home for biology education researchers investigating the role of generative AI in undergraduate biology. The SIG runs a Google Group listserv and monthly Zoom coffee chats where members share work-in-progress, resources, and questions.
 
 - **Who:** Biology education researchers, instructors, and graduate students in DBER
 - **Format:** Google Group listserv + monthly Zoom coffee chats
 - **Focus:** Research, pedagogy, and equity implications of generative AI in biology education
 
 [**Join the GenAI SIG Google Group**](mailto:genai-saber-sig+subscribe@googlegroups.com){.btn .btn-primary}
+
+---
+
+## AI in Education in the News
+
+**A weekly roundup for life science educators.**
+
+Reports, research, tool changes, and opportunities related to AI in teaching and learning, drafted with AI under a fixed protocol and reviewed by me before each issue goes out.
+
+[**Read the latest issue**](/docs/newsletter/index.qmd){.btn .btn-primary}
 
 ---
 

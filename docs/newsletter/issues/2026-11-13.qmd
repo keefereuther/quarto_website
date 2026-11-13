@@ -1,0 +1,119 @@
+---
+title: "AI in Education in the News: week of November 9, 2026"
+description: "Issue 1. A Stanford review of 52 causal studies, a randomized trial of an AI tutor, MIT's report on AI in teaching, four papers from biology education journals, and upcoming deadlines."
+date: 2026-11-13
+categories:
+  - Newsletter
+---
+
+I'm trying something new: a short weekly roundup of AI and education news picked for the [GenAI SABER SIG](/docs/genai/community/index.qmd), a community of life science educators. I wanted something fitted to that group, and I don't have the hours each week to track it all down and write it up myself. So I automated the legwork. An AI assistant (Claude) runs a search protocol I designed with it, opens and checks each source, and drafts the summaries. I review everything before it goes out. [How this newsletter is made](/docs/newsletter/about.qmd) lays out the whole workflow in plain terms, including where it looks and what it deliberately leaves out.
+
+In this first issue: a Stanford review of 52 causal studies on AI and learning, a large randomized trial of an AI tutor that did not go the way its designers hoped, four papers from biology education journals, a Stanford analysis of how quickly findings about chatbots go out of date, a Nature piece on public trust in scientists' use of AI, MIT's report on AI in teaching and learning, two tool updates, and some deadlines.
+
+## Reports, policy, and guidance
+
+#### [Report of MIT's Ad Hoc Committee on AI Use in Teaching, Learning, and Research Training](https://aiandeducation.mit.edu/report/)
+
+*MIT Ad Hoc Committee on AI Use in Teaching, Learning, and Research Training (co-chairs Eric Klopfer and Sam Madden). 13 August 2026.*
+
+[Companion website, with the president's letter and the appendices](https://aiandeducation.mit.edu/)
+
+After five months of meetings and listening sessions, a committee of MIT students, faculty, and staff concluded that an AI use policy alone is not enough, and that courses, assessments, and curricula need rethinking. It recommends that instructors revisit what students should know and be able to do before redesigning assessment, and that every course post a clear AI policy tied to its learning goals, chosen from a shared menu and not imposed as one campus-wide rule. It advises against relying on AI detectors and calls for structured in-person learning in every subject.
+
+#### [The public trusts scientists with AI, more than it does anyone else](https://www.nature.com/articles/d41586-026-03578-y)
+
+*Elliot Yates. Nature (Careers news), 10 November 2026.*
+
+Underlying report: [Generative AI and News Report 2026, Reuters Institute for the Study of Journalism, 29 October 2026.](https://reutersinstitute.politics.ox.ac.uk/generative-ai-and-news-report-2026-standalone-tools-information-infrastructure)
+
+In a survey of nearly 19,000 people across nine countries, scientists came out as the group the public most expects to do good with generative AI, just ahead of health-care professionals: 46% of respondents said scientists' use of it will make society better. The article stresses that this confidence comes with conditions. People who use AI tools often were far more optimistic across every sector than people who rarely or never do.
+
+## Research
+
+### Biology education
+
+#### [Moving Research Meetings from Data Updates to Cognitive Windows in the Age of Artificial Intelligence](https://doi.org/10.1187/cbe.26-03-0053)
+
+*Prunuske AJ, Adams-Phillips LC. CBE-Life Sciences Education 25(4):pe1, 2026.*
+
+An essay, not an empirical study. Because trainees can now produce plausible analyses and summaries with AI, the authors argue that research meetings should be structured to bring reasoning into view: how well trainees judge their own understanding, whether they can explain concepts, and how they make sense of results together. One illustrative case is included.
+
+#### [More than marks: the broader educational contribution of generative AI in biomedical science](https://doi.org/10.1152/advan.00022.2026)
+
+*Zhu JL, Lim SH, Fong AY. Advances in Physiology Education 50(4):1323-1331, 2026.*
+
+An observational comparison of grades between students who declared using generative AI and those who did not, in undergraduate physiology and biochemistry courses. There was no measurable difference in any analysis, and students mostly reported using AI to have concepts explained. Use was self-declared and the design cannot show cause.
+
+#### [An educational activity tailored for undergraduate students on AI-driven nanobody design for targeted antiviral therapeutics](https://doi.org/10.1128/jmbe.00253-26)
+
+*Idris A, Idres YM, Bhattacharjee K, Gao W. Journal of Microbiology and Biology Education, 2026 (e0025326).*
+
+Describes a lab activity in which undergraduates use a generative AI protein design server (GeoFlow-V3) to design a nanobody against the influenza A hemagglutinin protein, a task that normally takes months of wet-lab work. The abstract describes the activity and reports no learning-outcome data.
+
+#### [Developing a generative AI chatbot to support students' higher-order thinking in STEM education](https://doi.org/10.1128/jmbe.00101-26)
+
+*Richland LE, Yu S, Karyagdi B, Zhao H, Doroudi S, Wong JT, Rose E, Cheraghi M, Rhodes KT. Journal of Microbiology and Biology Education, 2026 (e0010126).*
+
+A proof-of-concept study from UC Irvine. Thirty-three fifth and sixth graders talked with a chatbot built to draw out their reasoning about ratio problems they had just solved, not to deliver content. Higher-order thinking showed up in both the chatbot's prompts and the students' replies, and the two were positively associated. The sample is small, the students are K-12, and there is no comparison group.
+
+### Broader
+
+#### [The Evidence Base on AI in K-12: A November 2026 Review](https://scale.stanford.edu/ai/evidence-base-review/evidence-base-ai-k12-november-review)
+
+*Walker S, Fesler L, Martinez Claeys JP, Agnew C, Loeb S. SCALE Initiative, Stanford University, 10 November 2026.*
+
+Despite the title, most of the newly added studies took place in college settings. The review covers 52 randomized and quasi-experimental studies (32 of them new) and finds that AI looks more helpful when students use it to understand material than when they use it to produce work, with mixed results in both cases. Students often rate the tools as more engaging than their learning gains would justify. Most of the included papers are arXiv preprints, and an AI screen was used to shortlist studies.
+
+## Tools and product updates
+
+#### [Guided Learning can now be attached to Google Classroom assignments](https://workspaceupdates.googleblog.com/2026/11/educators-can-now-add-guided-learning-to-assignments-in-Google-Classroom-to-help-students-get-extra-support.html)
+
+*Google Workspace Updates, 4 November 2026.*
+
+Instructors can attach a Guided Learning activity to any Classroom assignment. It is a Gemini mode meant to walk students through a problem step by step, and it can be grounded in the instructor's own Classroom materials. Instructors can read individual student chat transcripts and AI-generated summaries of them. It is listed for the Education Fundamentals, Standard, and Plus editions and began rolling out November 3. Google also published its own report this month, "AI in Education: From potential to practice," which is the company's account of its approach: <https://services.google.com/fh/files/misc/ai_in_education_report_nov26.pdf>
+
+#### [Claude Fable 5.2 released](https://www.anthropic.com/claude-fable-and-mythos-5-2)
+
+*Anthropic, 9 November 2026.*
+
+Anthropic released a new version of its most capable general model. The company says it is faster than the previous version and that its biology and cybersecurity safeguards block fewer legitimate requests (about 55% fewer in the company's early testing). It is included on paid plans, the announcement says nothing specific to education, and Anthropic itself suggests its Opus model for most everyday work. Disclosure: this newsletter is drafted with Claude.
+
+## Opportunities
+
+#### [Webinar: AI in Higher Education: How AI is Reshaping Teaching and Learning](https://www.ipsos.com/en-us/webinar-ai-higher-education-how-ai-reshaping-teaching-and-learning)
+
+*Ipsos, with Victor Lee (Stanford) and Tracy Arner (Arizona State). Monday, November 16, 12 p.m. Pacific / 3 p.m. Eastern.*
+
+Faculty perspectives on teaching students to use AI well.
+
+#### [Webinar: Using AI to make students smarter](https://www.hepi.ac.uk/2026/11/03/forthcoming-hepi-webinars-this-november/)
+
+*HEPI, supported by Studiosity. Tuesday, November 17, 12 to 1 p.m. (the page gives no time zone; HEPI is UK-based).*
+
+A UK panel on prioritizing learning over detection.
+
+#### [Call for proposals: Teaching and Learning with AI 2027](https://aiforall.ucf.edu/teachwithai/)
+
+*University of Central Florida. Conference June 1-3, 2027, Orlando, in person only. Proposals due Friday, January 22, 2027, 11:59 p.m. Eastern.*
+
+A practitioner sharing conference, a good venue for classroom activities and course redesigns.
+
+#### [Funding: NSF Improving Undergraduate STEM Education (IUSE: EDU)](https://simpler.grants.gov/opportunity/344124)
+
+*Next proposal deadline listed on Grants.gov: Wednesday, January 20, 2027.*
+
+NSF's core program for undergraduate STEM education projects.
+
+#### [Call for papers: Integrating Generative AI into Scientific Practices and Its Implications for Science Education](https://link.springer.com/collections/eehhgegdha)
+
+*Journal of Science Education and Technology special issue. Submissions due July 31, 2027.*
+
+The stated focus is K-12 science, so check fit before writing for it.
+
+#### [Save the date: SABER 2027](https://saberbio.org/Annual-Meeting)
+
+*July 15-18, 2027, Michigan State University. Abstract deadline not yet announced.*
+
+---
+
+The summaries above were drafted with AI and reviewed by Keefe Reuther. Read the original before you cite or act on anything here.
