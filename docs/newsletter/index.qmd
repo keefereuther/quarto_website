@@ -13,7 +13,12 @@ listing:
   sort-ui: false
   filter-ui: false
   categories: false
-  feed: true
+  feed:
+    type: full
 ---
 
-Each issue is drafted by an AI assistant following a fixed search protocol, then reviewed by me before it is published. See [how this newsletter is made](about.qmd). It also goes to the [GenAI SABER SIG](/docs/genai/community/index.qmd) listserv, and you can follow new issues with the RSS feed on this page.
+Each issue is drafted by an AI assistant following a fixed search protocol, then reviewed by me before it is published. See [how this newsletter is made](about.qmd). It also goes to the [GenAI SABER SIG](/docs/genai/community/index.qmd) listserv, and you can follow new issues in any feed reader, with no signup.
+
+```{=html}
+<p><a href="/docs/newsletter/index.xml" class="btn btn-outline-primary">Subscribe via RSS</a></p>
+```
