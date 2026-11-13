@@ -15,7 +15,7 @@ I wanted something fitted to that group, and I do not have the hours each week t
 1. **Search.** Once a week an AI assistant (Claude, made by Anthropic) runs a fixed search protocol that I wrote with it. It covers the past 7 days for news and reports, the past 30 days for journal articles, and the past 60 days for preprints from major research groups.
 2. **Verify.** It opens every source and confirms the title, authors, venue, and date from the page itself. Nothing is cited from memory, and anything it could not open directly is flagged for me.
 3. **Select.** It aims for six to eight items, plus opportunities, and does not repeat items from earlier issues.
-4. **Draft.** It writes a two to three sentence summary of each item and, where there is a real connection, one sentence on why it matters for biology education.
+4. **Draft.** It writes a two to three sentence summary of each item.
 5. **Review.** The draft comes to me with a list of what was considered and cut. I read it, check the sources, edit, and publish it myself.
 
 ## Where it looks
