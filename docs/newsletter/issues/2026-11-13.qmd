@@ -28,6 +28,12 @@ Underlying report: [Generative AI and News Report 2026, Reuters Institute for th
 
 In a survey of nearly 19,000 people across nine countries, scientists came out as the group the public most expects to do good with generative AI, just ahead of health-care professionals: 46% of respondents said scientists' use of it will make society better. The article stresses that this confidence comes with conditions. People who use AI tools often were far more optimistic across every sector than people who rarely or never do.
 
+#### [Stanford invests \$10 million to rethink majors for the AI age](https://news.stanford.edu/stories/2026/11/provost-initiative-college-majors-ai)
+
+*Stanford Report, November 2026.*
+
+Starting in winter quarter 2027, Stanford departments that offer undergraduate majors can apply for one- to two-year grants of up to \$750,000 to rework their curricula for AI, from single courses to the whole sequence. The initiative expects to work with about 15 departments through 2028-29. This is a funding announcement, so there are no outcomes yet.
+
 ## Research
 
 ### Biology education
@@ -63,6 +69,18 @@ A proof-of-concept study from UC Irvine. Thirty-three fifth and sixth graders ta
 *Walker S, Fesler L, Martinez Claeys JP, Agnew C, Loeb S. SCALE Initiative, Stanford University, 10 November 2026.*
 
 Despite the title, most of the newly added studies took place in college settings. The review covers 52 randomized and quasi-experimental studies (32 of them new) and finds that AI looks more helpful when students use it to understand material than when they use it to produce work, with mixed results in both cases. Students often rate the tools as more engaging than their learning gains would justify. Most of the included papers are arXiv preprints, and an AI screen was used to shortlist studies.
+
+#### [The Effects of Course-Integrated AI Tutoring on Student Performance and Engagement: A Randomized University Trial](https://edworkingpapers.com/ai26-1598)
+
+*Liu J, Sweet T, Chen MH, Engelberg J, Masters M, Clark M, Persaud A, Lancaster A, Hollingsworth J, Rice JK (University of Maryland, College Park). EdWorkingPaper 26-1598, October 2026. Preprint, not peer reviewed.*
+
+A randomized trial with 2,379 undergraduates and 30 instructors across disciplines at a large US public university. Within the same course, sections given a course-integrated generative AI tutor ended with final grades 0.37 standard deviations lower and much lower participation in the learning management system. Estimated losses were larger for first-generation students. The abstract does not name the tutor product.
+
+#### [The shelf life of LLM findings](https://zou-group.github.io/llm-claims-shelf-life/)
+
+*Queen O, Zou J (Stanford University). Web research report, 2 November 2026. Not peer reviewed.*
+
+The authors re-tested 50 widely cited findings about chatbot behavior on 20 models released between July 2024 and September 2026. By their classification, 44% of the findings no longer hold and another 34% have weakened; the ones that expired did so about 15 months after publication on average. Failures of capability, such as fabricated citations, have mostly faded, while tendencies such as flattering the user have persisted. The sample is only 50 claims, so the estimates carry wide uncertainty.
 
 ## Tools and product updates
 
