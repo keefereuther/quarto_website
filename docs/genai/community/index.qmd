@@ -20,6 +20,16 @@ I co-founded the SABER GenAI SIG with Jennifer Vaughn (UC Davis) to build a scho
 
 ---
 
+## AI in Education in the News
+
+**A weekly roundup for life science educators.**
+
+Reports, research, tool changes, and opportunities related to AI in teaching and learning, drafted with AI under a fixed protocol and reviewed by me before each issue goes out.
+
+[**Read the latest issue**](/docs/newsletter/index.qmd){.btn .btn-primary}
+
+---
+
 ## UCSD GenAI Faculty Learning Community (FLC)
 
 **A faculty development community at UC San Diego.**

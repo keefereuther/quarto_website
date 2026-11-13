@@ -1,0 +1,7 @@
+# Options here apply to every newsletter issue in this folder.
+title-block-banner: false
+author: "Keefe Reuther"
+toc: true
+toc-title: In this issue
+toc-location: left
+toc-depth: 3

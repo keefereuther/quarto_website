@@ -1,0 +1,19 @@
+---
+title: "AI in Education in the News"
+subtitle: "A weekly roundup of reports, research, tools, and opportunities, picked for life science educators"
+page-layout: full
+title-block-banner: true
+title-block-banner-color: body
+listing:
+  sort: "date desc"
+  contents:
+    - "issues/*.qmd"
+  type: default
+  fields: [date, title, description]
+  sort-ui: false
+  filter-ui: false
+  categories: false
+  feed: true
+---
+
+Each issue is drafted by an AI assistant following a fixed search protocol, then reviewed by me before it is published. See [how this newsletter is made](about.qmd). It also goes to the [GenAI SABER SIG](/docs/genai/community/index.qmd) listserv, and you can follow new issues with the RSS feed on this page.
