@@ -1,0 +1,93 @@
+---
+title: "AI in Education in the News: week of November 23, 2026"
+description: "Two new student surveys on AI from Inside Higher Ed and Dartmouth, a survey experiment on how employers respond to student AI use, and a year-long study of writing confidence and AI reliance."
+date: 2026-11-23
+categories:
+  - Newsletter
+---
+
+A shorter issue this week, heading into Thanksgiving. Two new student surveys lead it, one from Inside Higher Ed and one from Dartmouth, along with two short letters in Nature on AI and learning. The research section has a survey experiment on how employers react to student AI use, a year-long study of writing confidence and reliance on AI, and an essay on pairing human tutors with AI. Nothing new turned up in the biology education journals this week. There is also one Google tool update and three dates for your calendar.
+
+## Reports, policy, and guidance
+
+#### [As AI Changes How Students Approach College, Old Challenges Persist](https://www.insidehighered.com/news/student-success/academic-life/2026/11/17/ai-changing-college-old-challenges-persist)
+
+*Colleen Flaherty. Inside Higher Ed, 17 November 2026.*
+
+Underlying data: [Student Voice survey interactive results](https://genlab-inside-higher-ed-2026.netlify.app/)
+
+Reports the newest round of Inside Higher Ed's Student Voice survey of 5,034 undergraduates at 310 mostly public two- and four-year institutions. About a third say generative or agentic AI helps them finish coursework and study more efficiently (34%) and feel more confident with difficult concepts (33%), while 16% say they rely on it too heavily to think or write and 20% do not use it for college work at all. Asked what responsible use looks like, 65% chose AI that helps them learn without doing the work for them. The survey also covers topics unrelated to AI, including cost and mental health.
+
+#### [Universities must measure learning, both with and without AI assistance](https://www.nature.com/articles/d41586-026-03559-1)
+
+*Christoph Trattner. Nature 659, 264 (Correspondence), 3 November 2026.*
+
+A short letter to the editor. As its title says, it argues that universities should measure what students learn both when they have AI assistance and when they do not.
+
+#### [Students need AI-free spaces to learn core skills](https://www.nature.com/articles/d41586-026-03644-5)
+
+*Pablo Neira-Castro. Nature 659, 554 (Correspondence), 10 November 2026.*
+
+A short letter to the editor. As its title says, it argues that students need settings without AI in which to learn core skills.
+
+## Research
+
+### Broader
+
+#### [Impacts of AI in Higher Education: A Panel Survey of Undergraduates](https://www.nber.org/papers/w36021)
+
+*Sacerdote B, Parris-Bacon M. NBER Working Paper 36021, November 2026. Working paper, not peer reviewed.*
+
+Survey site and dashboard: [Dartmouth AI Survey 2026](https://ai.dartmouth.edu/dartmouth-ai-survey-2026)
+
+The first wave of a survey Dartmouth plans to repeat each year: a weighted national sample of 1,003 U.S. college students plus 1,533 Dartmouth students. In the national sample, 61% use AI to explain difficult concepts and 84% say using it for writing can hurt writing skills. Only 11% say they use it to find problem-set answers, but 49% believe their peers do. Most (79%) say they built their AI skills mainly on their own, and the authors report that students want AI worked into the curriculum. All answers are self-reported.
+
+#### [Early Evidence on Employer Responses to College Student Use of Generative AI](https://edworkingpapers.com/ai26-1604)
+
+*Boyd-Swan C, Reynolds CL (Kent State University). EdWorkingPaper 26-1604, Annenberg Institute at Brown University, October 2026. Working paper, not peer reviewed.*
+
+A survey experiment with professionals who have hiring experience. Before reviewing two resumes, respondents were randomly shown a description of student AI use as assisting students, a description of it as substituting for student effort and ability, or neither. Both descriptions raised concerns about evaluating applicants. The substitution framing clearly lowered interest in interviewing and willingness to negotiate starting salary, and in-person tests were the only applicant information that respondents in both groups said would ease their concerns. The abstract does not report the sample size.
+
+#### [Does low confidence drive reliance on AI, or does reliance erode confidence? A four-wave RI-CLPM study of Chinese language and literature undergraduates](https://doi.org/10.1371/journal.pone.0361489)
+
+*Du X (Hong Kong Metropolitan University), Yu S (University of Leeds). PLOS ONE 21(10): e0361489, 26 October 2026.*
+
+A four-wave survey across one academic year of 387 undergraduates majoring in Chinese language and literature, asking about reliance on generative AI for writing and confidence in their own creative writing. When a student's confidence dropped, their reliance on AI rose in the following wave. The reverse path, reliance leading to lower confidence, was not statistically clear, and the authors state that their study was too small to rule it out. The sample is a single discipline and the measures are self-reported.
+
+#### [The New Kid on the Tutoring Block: Definitions, Developments, and Future Directions for Hybrid Human-AI Tutoring](https://edworkingpapers.com/ai26-1633)
+
+*Wu T, Gurung A, Koedinger KR, Thomas DR (Carnegie Mellon University). EdWorkingPaper 26-1633, Annenberg Institute at Brown University, November 2026. Working paper, not peer reviewed.*
+
+An essay with no new data, written with K-12 tutoring in mind. It starts from the point that human tutoring works but is expensive and hard to scale, reviews human-only and AI-only tutoring, and describes four emerging designs that combine the two, comparing how each divides the work between the person and the AI. It closes with open questions and a research agenda.
+
+## Tools and product updates
+
+#### [Transform your notes and research into dynamic tools with Gemini Notebook](https://workspaceupdates.googleblog.com/2026/11/transform-your-notes-and-research-into-dynamic-tools-with-Gemini-Notebook.html)
+
+*Google Workspace Updates, 18 November 2026.*
+
+Gemini Notebook can now turn a user's uploaded sources into an interactive web page when asked to "make me a site." Google's examples include exam-prep explainers such as an interactive periodic table or historical timeline, data dashboards, and project trackers, and the result can be opened in a new tab or shared. It is on the web only for now, for users 18 and older with Workspace or personal Google accounts, and began rolling out gradually on November 16. The post lists no added cost.
+
+## Opportunities
+
+#### [Webinar: How AI is affecting science careers](https://www.nature.com/articles/d41586-026-03680-1)
+
+*Nature Careers. Wednesday, December 2, 2026, 10 a.m. Eastern / 7 a.m. Pacific, 60 minutes, free.*
+
+Three panellists on whether AI is putting entry-level science jobs at risk and what it means for early-career researchers.
+
+#### [Call for papers: AIED 2027, the 28th International Conference on Artificial Intelligence in Education](https://www.aied-conference.org/2027/important-dates)
+
+*International AIED Society. Conference July 18-23, 2027, Adelaide, Australia. Main track abstracts due Friday, January 22, 2027, and papers due Monday, February 1, 2027, both 11:59 p.m. Anywhere on Earth.*
+
+The main research conference on AI in education; dates for the other tracks are not posted yet.
+
+#### [Calls for papers: two AI collections at the International Journal of STEM Education](https://link.springer.com/journal/40594/collections)
+
+*Springer Nature. "AI Literacy and STEM Education" and "Assessment for STEM Education in the AI Era." Submissions for both due January 31, 2027.*
+
+Two open article collections, one on AI literacy and one on assessment.
+
+---
+
+The summaries above were drafted with AI and reviewed by Keefe Reuther. Read the original before you cite or act on anything here.
