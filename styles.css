@@ -75,6 +75,18 @@ button:focus-visible,
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Between the hamburger breakpoint and ~1100px the full menu is a few
+   pixels too wide and "AI in Education News" wraps to a second line.
+   Tighten the links in that band so the bar stays on one row. */
+@media (min-width: 992px) and (max-width: 1099.98px) {
+  .navbar .navbar-nav .nav-link {
+    font-size: 0.88em;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    white-space: nowrap;
+  }
+}
+
 .quarto-light .navbar {
   background-color: var(--brand-teal) !important;
   border-bottom-color: var(--brand-teal-hover);

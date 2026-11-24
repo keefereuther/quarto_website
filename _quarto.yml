@@ -55,7 +55,7 @@ website:
           - href: docs/genai/community/index.qmd
             text: AI Community
       - href: docs/newsletter/index.qmd
-        text: Newsletter
+        text: AI in Education News
       - href: docs/blog/index.qmd
         text: Blog
 
